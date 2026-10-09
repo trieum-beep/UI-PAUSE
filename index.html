@@ -11,10 +11,7 @@
 <meta name="description" content="UI Pausen Workout App: 40-Minuten-Full-Body-Training mit Timern, Pausen und Statistiken.">
 <title>UI Pausen Workout App</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-60 -60 120 120'%3E%3Ccircle r='55' fill='%23FFFFFF' stroke='%230B3D91' stroke-width='6'/%3E%3Cg stroke='%2345A538' stroke-width='7' stroke-linecap='round'%3E%3Cpath d='M-20 0H20M-26-12V12M26-12V12M-17-8V8M17-8V8'/%3E%3C/g%3E%3C/svg%3E">
-<!-- Schrift wie Operation Lametta (Figtree). Offline greift die Systemschrift. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Keine externen Schriften oder Dienste: Es werden keine Daten an Dritte übertragen. Figtree wird genutzt, falls lokal installiert, sonst die Systemschrift. -->
 <style>
 /* ============================================================
    DESIGNSYSTEM – 1:1 aus Operation Lametta übernommen
@@ -291,6 +288,29 @@ table.t th { text-align: left; font: 700 11px var(--sans); letter-spacing: .06em
 table.t td { padding: 8px 4px; border-bottom: 1px solid var(--paper-line); }
 table.t td.n, table.t th.n { text-align: right; white-space: nowrap; }
 
+/* Login & Admin */
+body.locked .tabs, body.locked #ctlbar, body.locked .score { display: none !important; }
+.login { margin-top: 10px; }
+.lbl-pw { display: block; font: 700 13px var(--sans); color: var(--paper-ink); margin: 10px 0 6px; }
+.pw-row { display: flex; gap: 8px; align-items: stretch; }
+.pw-row .chip { margin-top: 0; }
+.pw-row .chip { flex: none; width: 52px; justify-content: center; }
+.inp.pw { flex: 1 1 auto; min-width: 0; width: 100%; text-align: left; font-size: 18px; letter-spacing: .04em; }
+.inp.wide { width: 58%; text-align: left; }
+.msg-err { color: var(--signal) !important; font-weight: 700; min-height: 22px; margin-top: 10px !important; }
+.adm-acts { display: flex; gap: 8px; margin-top: 10px; }
+.adm-acts .btn { flex: 1; min-height: 46px; }
+#accLbl button { background: none; border: 0; color: var(--ink-soft); font: inherit; text-decoration: underline; cursor: pointer; padding: 0; }
+
+/* Rechtliches */
+.legal h3 { font: 800 16px var(--sans); color: var(--paper-ink); margin: 16px 0 4px; }
+.legal p, .legal li { font-size: 14px; line-height: 1.5; }
+.legal ul { padding-left: 18px; margin: 4px 0 8px; }
+.terms { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; font-size: 14px; color: var(--paper-text); text-align: left; }
+.terms input { width: 22px; height: 22px; flex: none; accent-color: #45A538; margin: 1px 0 0; }
+.terms button { background: none; border: 0; padding: 0; color: var(--blue); text-decoration: underline; font: inherit; cursor: pointer; }
+.foot-links { white-space: nowrap; }
+
 /* Trainingsauswahl */
 .progs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .prog { text-align: left; padding: 12px 12px 10px; border-radius: 12px; border: 2px solid transparent; background: var(--paper); color: var(--paper-ink); cursor: pointer; font-family: var(--sans); min-height: 86px; display: flex; flex-direction: column; gap: 2px; }
@@ -473,8 +493,9 @@ footer button { background: none; border: 0; color: var(--ink-soft); font: inher
     <div class="note warn" id="nojs"><b>App startet nicht?</b>Diese Ansicht führt keine Skripte aus. Das passiert in der Dateivorschau auf dem iPhone (Dateien-App, Mail-Anhang, Chat-Vorschau). Bitte den Link https://trieum-beep.github.io/UI-PAUSE/ in Safari öffnen oder die Datei am Computer per Doppelklick im Browser starten.</div>
   </main>
   <footer>
-    <span>UI Pausen · Ausgabe Nr. 1 · keine medizinische Beratung</span>
-    <button type="button" data-act="safety">Sicherheitshinweise</button>
+    <span id="accLbl"></span>
+    <span>UI Pausen · keine medizinische Beratung</span>
+    <span class="foot-links"><button type="button" data-act="safety">Sicherheitshinweise</button> · <button type="button" data-act="legal">Rechtliches &amp; Datenschutz</button></span>
   </footer>
 </div>
 <div class="ctlbar hidden" id="ctlbar"><div class="ctl" id="ctl"></div></div>
@@ -488,7 +509,7 @@ window.__uipErr = function (msg) {
     var d = document.createElement('div'); d.className = 'note warn'; d.style.marginBottom = '14px';
     d.innerHTML = '<b>Technischer Fehler</b><span></span><br><button type="button" style="margin-top:10px;padding:10px 14px;border-radius:10px;border:0;background:#D0342C;color:#fff;font:700 14px system-ui">Gespeicherten Trainingsstand zurücksetzen</button>';
     d.querySelector('span').textContent = String(msg).slice(0, 300) + ' – bitte Screenshot an Claude schicken.';
-    d.querySelector('button').onclick = function () { try { localStorage.removeItem('uipause-session-v1'); localStorage.removeItem('uipause-settings-v1'); } catch (e) {} location.reload(); };
+    d.querySelector('button').onclick = function () { try { for (var i = localStorage.length - 1; i >= 0; i--) { var k = localStorage.key(i); if (k && /^uipause-.*(session|settings)/.test(k)) localStorage.removeItem(k); } } catch (e) {} location.reload(); };
     a.insertBefore(d, a.firstChild);
   } catch (e) {}
 };
@@ -500,7 +521,8 @@ window.addEventListener('error', function (e) { window.__uipErr(e.message || 'Un
 /* ============================================================
    GRUNDLAGEN
    ============================================================ */
-const KEY_SET = 'uipause-settings-v1', KEY_SESS = 'uipause-session-v1', KEY_HIST = 'uipause-history-v1';
+/* Speicher-Schlüssel werden pro Account gesetzt (siehe enterAccount) */
+let KEY_SET = 'uipause-none-settings', KEY_SESS = 'uipause-none-session', KEY_HIST = 'uipause-none-history';
 const clone = o => JSON.parse(JSON.stringify(o));
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const store = {
@@ -562,6 +584,8 @@ const EX = {
     desc: 'Rückenlage, ein Fuß aufgestellt, das andere Bein gestreckt. Gesäß anspannen und Becken anheben. Einbeinig nur, wenn das Knie schmerzfrei bleibt.' },
   glute_double: { name: 'Glute Bridges (beidbeinig)', muscles: 'Gesäß · Hüftstabilität', kind: 'reps', cat: 'strength', load: 'bw', bwf: 0.35, tempo: 2.4, setup: 6, slot: 'glute',
     desc: 'Rückenlage, beide Füße hüftbreit aufgestellt. Gesäß anspannen und Becken anheben, bis Knie, Hüfte und Schultern eine Linie bilden.' },
+  situp: { name: 'Sit-ups', muscles: 'Bauch · Hüftbeuger', kind: 'reps', cat: 'core', load: null, tempo: 2.4, setup: 5,
+    desc: 'Rückenlage, Füße aufgestellt, bei Bedarf unter etwas einhaken. Arme vor der Brust kreuzen. Mit der Ausatmung bis in den Sitz aufrollen, langsam zurückrollen.' },
   deadbug: { name: 'Dead Bugs', muscles: 'Tiefe Bauchmuskulatur', kind: 'reps', cat: 'core', load: null, tempo: 2.6, setup: 5, perSide: true, slot: 'core',
     desc: 'Rückenlage, Arme zur Decke, Beine im 90-Grad-Winkel. Unteren Rücken in den Boden drücken. Gegengleich Arm und Bein strecken und dabei ausatmen.' },
   crunch: { name: 'Crunches', muscles: 'Gerade Bauchmuskulatur', kind: 'reps', cat: 'core', load: null, tempo: 2, setup: 5, slot: 'core',
@@ -614,7 +638,7 @@ const EX = {
   chest_stretch: { name: 'Brust- und Schulterdehnung', muscles: 'Brust · vordere Schulter', kind: 'time', cat: 'cooldown',
     desc: 'Hände hinter dem Rücken verschränken. Brust öffnen, Schultern nach hinten unten ziehen. Ruhig atmen.' },
   calf_stretch: { name: 'Sanfte Wadendehnung', muscles: 'Waden · Achillessehne', kind: 'time', cat: 'cooldown', half: 'Seite wechseln',
-    desc: 'Hände an die Wand, ein Bein nach hinten, Ferse in den Boden. Vorderes Knie nur leicht beugen. Das linke Knie nie in den Schmerz dehnen.' },
+    desc: 'Hände an die Wand, ein Bein nach hinten, Ferse in den Boden. Vorderes Knie nur leicht beugen. Nie in den Schmerz dehnen.' },
   back_hip: { name: 'Rücken und Hüfte lockern', muscles: 'Rumpfseite · Hüfte', kind: 'time', cat: 'cooldown',
     desc: 'Stehend sanfte Seitneigungen, ein Arm über den Kopf. Langsam abwechseln, ohne zu federn.' },
   walk_breathe: { name: 'Ruhig gehen und atmen', muscles: 'Kreislauf · Erholung', kind: 'time', cat: 'cooldown',
@@ -626,7 +650,7 @@ const COOL_IDS = ['chest_stretch', 'calf_stretch', 'back_hip', 'walk_breathe'];
 const MG = {
   pushup: ['Brust', 'Trizeps', 'Schultern'], squat: ['Oberschenkel', 'Gesäß'], pullup: ['Latissimus', 'Bizeps'], row: ['Rücken', 'Bizeps'],
   press: ['Schultern', 'Trizeps'], calf: ['Waden'], glute_single: ['Gesäß', 'Beinrückseite'], glute_double: ['Gesäß', 'Beinrückseite'],
-  deadbug: ['Bauch'], crunch: ['Bauch'], plank: ['Rumpf', 'Schultern'], rdl: ['Beinrückseite', 'Gesäß', 'Unterer Rücken'],
+  situp: ['Bauch', 'Hüftbeuger'], deadbug: ['Bauch'], crunch: ['Bauch'], plank: ['Rumpf', 'Schultern'], rdl: ['Beinrückseite', 'Gesäß', 'Unterer Rücken'],
   curl: ['Bizeps', 'Unterarme'], kb_swing: ['Gesäß', 'Beinrückseite', 'Rumpf'], kb_deadlift: ['Gesäß', 'Unterer Rücken', 'Beinrückseite'],
   kb_goblet: ['Oberschenkel', 'Gesäß'], kb_press: ['Schultern', 'Trizeps'], floor_press: ['Brust', 'Trizeps'], lateral_raise: ['Schultern'],
   hammer_curl: ['Bizeps', 'Unterarme'], tri_ext: ['Trizeps'], pike_pushup: ['Schultern', 'Trizeps'], diamond_pushup: ['Trizeps', 'Brust'],
@@ -635,11 +659,11 @@ const MG = {
 };
 const VARIANTS = { glute: ['glute_single', 'glute_double'], core: ['deadbug', 'crunch'] };
 const VARIANT_REPS = { glute_single: 10, glute_double: 15, deadbug: 10, crunch: 15 };
-/* Vorkonfigurierte Trainings. Alle knieschonend (keine Kniebeugen, keine Sprünge). */
+/* Vorkonfigurierte Trainings. Kniebelastende Übungen entfallen automatisch im Knie-Modus. */
 const PROGRAMS = [
   { id: 'fullbody', name: 'Full-Body Classic', short: 'Calisthenics, Hanteln, Core, Lauf-Support', rounds: 3, fin: 'curl', finSets: 2, finReps: 12,
-    stations: [{ id: 'pushup', reps: 15 }, { id: 'pullup', reps: 5 }, { id: 'row', reps: 10 }, { id: 'press', reps: 10 }, { id: 'calf', reps: 20, opt: true },
-      { id: 'glute', variant: 'glute_single', reps: 10 }, { id: 'core', variant: 'deadbug', reps: 10, opt: true }, { id: 'plank', sec: 40 }] },
+    stations: [{ id: 'pushup', reps: 15 }, { id: 'squat', reps: 10 }, { id: 'pullup', reps: 5 }, { id: 'row', reps: 10 }, { id: 'press', reps: 10 }, { id: 'calf', reps: 20, opt: true },
+      { id: 'situp', reps: 15 }, { id: 'core', variant: 'deadbug', reps: 10, opt: true }, { id: 'plank', sec: 40 }] },
   { id: 'push', name: 'Push-Tag', short: 'Brust, Schultern, Trizeps', rounds: 3, fin: 'tri_ext', finSets: 2, finReps: 12,
     stations: [{ id: 'pushup', reps: 12 }, { id: 'floor_press', reps: 10 }, { id: 'press', reps: 10 }, { id: 'lateral_raise', reps: 12, opt: true },
       { id: 'pike_pushup', reps: 8 }, { id: 'diamond_pushup', reps: 8, opt: true }, { id: 'plank', sec: 40 }] },
@@ -647,13 +671,13 @@ const PROGRAMS = [
     stations: [{ id: 'pullup', reps: 5 }, { id: 'row', reps: 10 }, { id: 'chinup', reps: 4 }, { id: 'reverse_fly', reps: 12, opt: true },
       { id: 'superman', reps: 12 }, { id: 'knee_raise', reps: 10, opt: true }, { id: 'bird_dog', reps: 8 }] },
   { id: 'kettlebell', name: 'Kettlebell & Core', short: 'Hüftkraft, Schultern, stabiler Rumpf', rounds: 3, fin: null,
-    stations: [{ id: 'kb_swing', reps: 15 }, { id: 'kb_deadlift', reps: 10 }, { id: 'kb_press', reps: 8 }, { id: 'glute', variant: 'glute_double', reps: 15 },
+    stations: [{ id: 'kb_swing', reps: 15 }, { id: 'kb_deadlift', reps: 10 }, { id: 'kb_goblet', reps: 8 }, { id: 'kb_press', reps: 8 }, { id: 'situp', reps: 15 },
       { id: 'side_plank', sec: 40 }, { id: 'core', variant: 'deadbug', reps: 10, opt: true }, { id: 'plank', sec: 40 }] },
   { id: 'runner', name: 'Läufer-Kraft', short: 'Waden, Gesäß, Beinrückseite, Rumpf', rounds: 3, fin: null,
-    stations: [{ id: 'calf', reps: 20 }, { id: 'glute', variant: 'glute_single', reps: 10 }, { id: 'rdl', reps: 10 }, { id: 'side_plank', sec: 40 },
+    stations: [{ id: 'calf', reps: 20 }, { id: 'squat', reps: 10 }, { id: 'rdl', reps: 10 }, { id: 'situp', reps: 15 }, { id: 'side_plank', sec: 40 },
       { id: 'bird_dog', reps: 8 }, { id: 'superman', reps: 12, opt: true }, { id: 'core', variant: 'deadbug', reps: 10 }, { id: 'plank', sec: 40, opt: true }] },
   { id: 'express', name: 'Express 20', short: 'Kurz und knackig, 2 Runden', rounds: 2, targetMin: 20, fin: 'curl', finSets: 1, finReps: 12,
-    stations: [{ id: 'pushup', reps: 12 }, { id: 'row', reps: 10 }, { id: 'press', reps: 10 }, { id: 'glute', variant: 'glute_double', reps: 15 }, { id: 'plank', sec: 30 }] },
+    stations: [{ id: 'pushup', reps: 12 }, { id: 'squat', reps: 10 }, { id: 'row', reps: 10 }, { id: 'press', reps: 10 }, { id: 'situp', reps: 15 }, { id: 'plank', sec: 30 }] },
   { id: 'custom', name: 'Eigenes Workout', short: 'Deine Stationen aus den Einstellungen', custom: true }
 ];
 const FIN_EX = ['curl', 'hammer_curl', 'tri_ext', 'lateral_raise'];
@@ -671,7 +695,7 @@ const MET = {
 };
 
 const DEFAULTS = {
-  v: 3, program: 'fullbody', bodyWeight: 82, targetMin: 40, rounds: 3, dbWeight: 10, kbWeight: 12,
+  v: 4, kneeMode: false, program: 'fullbody', bodyWeight: 82, targetMin: 40, rounds: 3, dbWeight: 10, kbWeight: 12,
   restEx: 10, restRound: 90, restSet: 60,
   sound: true, vibration: true, autoAdvance: false,
   warmup: true, cooldown: true, finisher: true, theme: 'auto',
@@ -680,12 +704,13 @@ const DEFAULTS = {
   cooldownDur: { chest_stretch: 45, calf_stretch: 45, back_hip: 45, walk_breathe: 45 },
   circuit: [
     { id: 'pushup', on: true, reps: 15, opt: false },
-    { id: 'squat', on: false, reps: 10, opt: false },
+    { id: 'squat', on: true, reps: 10, opt: false },
     { id: 'pullup', on: true, reps: 5, opt: false },
     { id: 'row', on: true, reps: 10, opt: false },
     { id: 'press', on: true, reps: 10, opt: false },
     { id: 'calf', on: true, reps: 20, opt: true },
-    { id: 'glute', on: true, reps: 10, opt: false, variant: 'glute_single' },
+    { id: 'situp', on: true, reps: 15, opt: false },
+    { id: 'glute', on: false, reps: 10, opt: false, variant: 'glute_single' },
     { id: 'core', on: true, reps: 10, opt: true, variant: 'deadbug' },
     { id: 'plank', on: true, sec: 40, opt: false },
     { id: 'rdl', on: false, reps: 10, opt: true },
@@ -817,6 +842,8 @@ const FIG = (() => {
     F.bird_dog = { props: ['mat'], dur: 2.6, poses: [A, pose(A, { E2: [148, 92], W2: [166, 90], K2: [70, 98], F2: [48, 100] })] }; }
   { const hinge = { H: [138, 60], N: [126, 66], P: [86, 84], ...legs([97, 106], [100, 128]) };
     F.reverse_fly = { props: ['floor'], db: true, dur: 2.4, poses: [pose(SIDE, { ...hinge, ...arms([127, 84], [128, 101], -3) }), pose(SIDE, { ...hinge, ...arms([127, 72], [129, 66], -3) })] }; }
+  { const A = { H: [40, 118], N: [54, 120], P: [95, 122], E1: [60, 112], W1: [66, 118], E2: [62, 112], W2: [68, 118], K1: [111, 100], F1: [126, 126], K2: [113, 100], F2: [128, 126] };
+    F.situp = { props: ['mat'], dur: 2.4, poses: [A, pose(A, { H: [86, 72], N: [82, 85], E1: [92, 96], W1: [98, 90], E2: [94, 96], W2: [100, 90] })] }; }
   F.chest_stretch = { props: ['floor'], dur: 3.2, poses: [pose(SIDE, { H: [99, 30], ...arms([92, 62], [86, 80]) }), pose(SIDE, { H: [97, 29], ...arms([89, 62], [80, 78]) })] };
   { const A = { H: [132, 38], N: [127, 51], P: [108, 88], E1: [142, 50], W1: [156, 46], E2: [144, 50], W2: [158, 46], K1: [124, 106], F1: [126, 128], K2: [94, 108], F2: [80, 128] };
     F.calf_stretch = { props: ['floor', 'wall'], dur: 3.2, poses: [A, pose(A, { H: [134, 38], N: [129, 51], P: [110, 87], K1: [126, 106] })] }; }
@@ -882,10 +909,6 @@ function loadSettings() {
   const out = Object.assign(d, s);
   out.warmupDur = Object.assign({}, DEFAULTS.warmupDur, s.warmupDur || {});
   out.warmupOn = Object.assign({}, DEFAULTS.warmupOn, s.warmupOn || {});
-  if (!s.v || s.v < 3) { out.program = out.program || 'fullbody'; }
-  if (!PROGRAMS.find(p => p.id === out.program)) out.program = 'fullbody';
-  if (!FIN_EX.includes(out.fin.ex)) out.fin.ex = 'curl';
-  if (!s.v || s.v < 2) { out.warmupDur = clone(DEFAULTS.warmupDur); out.warmupOn = clone(DEFAULTS.warmupOn); out.kbWeight = DEFAULTS.kbWeight; out.v = 2; }
   out.cooldownDur = Object.assign({}, DEFAULTS.cooldownDur, s.cooldownDur || {});
   out.fin = Object.assign({}, DEFAULTS.fin, s.fin || {});
   const ids = DEFAULTS.circuit.map(c => c.id);
@@ -893,6 +916,21 @@ function loadSettings() {
   circ = circ.filter((c, i) => circ.findIndex(x => x.id === c.id) === i);
   ids.forEach(id => { if (!circ.find(c => c.id === id)) circ.push(clone(DEFAULTS.circuit.find(c => c.id === id))); });
   out.circuit = circ.map(c => Object.assign(clone(DEFAULTS.circuit.find(x => x.id === c.id)), c));
+  /* Migrationen älterer Versionen, genau einmal */
+  const v = +s.v || 1;
+  if (v < 2) { out.warmupDur = clone(DEFAULTS.warmupDur); out.warmupOn = clone(DEFAULTS.warmupOn); out.kbWeight = DEFAULTS.kbWeight; }
+  if (v < 3) out.program = 'fullbody';
+  if (v < 4) {
+    out.kneeMode = false;
+    const sq = out.circuit.find(x => x.id === 'squat'); if (sq) sq.on = true;
+    const gi = out.circuit.findIndex(x => x.id === 'glute');
+    if (gi >= 0) out.circuit[gi].on = false;
+    const si = out.circuit.findIndex(x => x.id === 'situp');
+    if (si >= 0 && gi >= 0) { const [su] = out.circuit.splice(si, 1); su.on = true; out.circuit.splice(out.circuit.findIndex(x => x.id === 'glute'), 0, su); }
+  }
+  out.v = DEFAULTS.v;
+  if (!PROGRAMS.find(p => p.id === out.program)) out.program = 'fullbody';
+  if (!FIN_EX.includes(out.fin.ex)) out.fin.ex = 'curl';
   return out;
 }
 let settings = loadSettings();
@@ -922,6 +960,7 @@ function effCfg(src) {
     if (!p.fin) c.finisher = false;
     else c.fin = { sets: p.finSets || 2, reps: p.finReps || 12, ex: p.fin };
   }
+  if (c.kneeMode) c.circuit = c.circuit.filter(s => !EX[slotEx(s)].knee);
   return c;
 }
 const loadW = (e, c) => e.load === 'db2' || e.load === 'db1' ? Math.max(0, Math.round(c.dbWeight * (e.wf || 1) * 2) / 2) : e.load === 'kb1' ? c.kbWeight : null;
@@ -1527,7 +1566,7 @@ function exerciseCard() {
     body = `<div class="timer ${t.done ? 'fin' : ''}">${ring(t.dur ? r / (t.dur * 1000) : 0)}<div class="cd ${t.done ? 'fin' : ''}"><b data-live="cd">${fmtCd(r)}</b><small>${lbl}</small></div></div>`;
   }
   const cue = st.kind === 'time' && e.half && sess.timer.half && !sess.timer.done ? `<div class="cue">${esc(e.half)}</div>` : '';
-  const knee = e.knee ? `<div class="note warn"><b>Knie-Hinweis</b>Nur ausführen, wenn das linke Knie beschwerdefrei ist und die Beschwerden abgeklärt sind. Bei Schmerz oder Knacken: SKIP.</div>` : '';
+  const knee = '';
   const can = sess.undo && sess.undo.length;
   return `<article class="face front fade-in" style="--ph:${PHASES[st.phase].color}" data-tok="${tok}">
     <div class="kicker"><span>${esc(k1)}</span><span class="r">${esc(k2)}${st.phase === 'circuit' ? ' · STATION ' + st.station + '/' + st.stations : ''}</span></div>
@@ -1595,10 +1634,10 @@ function homeView() {
         ? '<button type="button" class="chip" data-act="edit-custom">✎ Eigenes Workout bearbeiten</button>'
         : '<button type="button" class="chip" data-act="copy-custom">⧉ Als eigenes Workout übernehmen</button>'}</p>
     </article>
-    <div class="note warn"><b>Knie-Modus aktiv</b>Alle fertigen Trainings sind knieschonend: keine Kniebeugen, keine Sprünge. Jede Übung lässt sich jederzeit überspringen.</div>
+    ${settings.kneeMode ? '<div class="note warn"><b>Knie-Modus aktiv</b>Kniebelastende Übungen wie Squats und Goblet Squats sind ausgeblendet. Ausschalten in den Einstellungen.</div>' : ''}
     ${last ? `<div class="panel"><h3>Letztes Workout</h3><p class="sub">${dateTxt(last.date)}${last.program ? ' · ' + esc(last.program) : ''}</p><dl>
       <dt>Dauer</dt><dd>${fmt(last.ms)}</dd><dt>Hantelvolumen</dt><dd>${num(last.vol)} kg</dd><dt>Wiederholungen</dt><dd>${num(last.reps)}</dd><dt>Kalorien (geschätzt)</dt><dd>≈ ${num(last.kcal)} kcal</dd></dl></div>` : ''}
-    <div class="emerg"><h3>Sicherheit zuerst</h3>Bei Brustschmerzen, Schwindel, ungewöhnlichem Herzrasen oder Atemnot sofort aufhören. Keine Pressatmung. Die App ersetzt keine ärztliche Untersuchung.</div>
+    <div class="emerg"><h3>Sicherheit zuerst</h3>Bei Brustschmerzen, Schwindel, ungewöhnlichem Herzrasen oder Atemnot sofort aufhören. Keine Pressatmung. Die App ersetzt keine ärztliche Untersuchung. Nutzung auf eigene Verantwortung, siehe <button type="button" class="mini" style="color:inherit;padding:0" data-act="legal">Rechtliches</button>.</div>
   </div>`;
 }
 const dateTxt = ts => new Date(ts).toLocaleDateString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' }) + ', ' + new Date(ts).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
@@ -1646,7 +1685,7 @@ function nutritionHTML(hour, bw, progId) {
     : hour < 21 ? ['Lachs mit Kartoffeln und Brokkoli', 'Linsen-Bolognese mit Vollkornnudeln']
     : ['Magerquark mit etwas Honig und Nüssen', 'Hüttenkäse auf einer Scheibe Vollkornbrot'];
   const carbs = progId === 'runner' || progId === 'kettlebell' ? '<li>Kohlenhydrate gezielt auffüllen, vor allem wenn heute oder morgen ein Lauf ansteht.</li>' : '';
-  return `<div class="panel reward-food"><h3>Jetzt auftanken</h3><p class="sub">Allgemeine Empfehlung, kein individueller Ernährungsplan.</p>
+  return `<div class="panel reward-food"><h3>Jetzt auftanken</h3><p class="sub">Allgemeine Information, keine Ernährungsberatung. Gilt nicht bei Allergien, Unverträglichkeiten oder Erkrankungen.</p>
     <ul class="food">
       <li><b>Direkt danach:</b> ${pMin}–${pMax} g Eiweiß plus etwas Kohlenhydrate. Zum Beispiel ein Proteinshake mit Banane oder ein großes Glas Milch bzw. Kakao.</li>
       <li><b>Nächste Mahlzeit:</b> ${meals[0]} oder ${meals[1]}.</li>
@@ -1694,7 +1733,7 @@ function planView() {
     return { id, meta: meta(s, e), badges: (s.opt ? '<span class="badge opt">optional</span>' : '') + (e.knee ? '<span class="badge off">Knie</span>' : '') }; }), `${ec.rounds} Runden. Training auf der Startseite wählen.`);
   const fx = ec.finisher ? ec.fin.ex : null;
   if (fx) html += group('Finisher', [{ id: fx, meta: `${ec.fin.sets} × ${ec.fin.reps}` }], `${c.restSet} s Pause zwischen den Sätzen.`);
-  html += group('Cool-down', COOL_IDS.map(id => ({ id, meta: c.cooldownDur[id] + ' s', badges: c.cooldown ? '' : '<span class="badge off">Phase aus</span>' })), 'Keine schmerzhaften Dehnungen am linken Knie.');
+  html += group('Cool-down', COOL_IDS.map(id => ({ id, meta: c.cooldownDur[id] + ' s', badges: c.cooldown ? '' : '<span class="badge off">Phase aus</span>' })), 'Ruhig und ohne Schmerz dehnen.');
   const used = new Set(inProg.map(slotEx).concat(fx ? [fx] : []));
   const lib = Object.keys(EX).filter(id => EX[id].cat !== 'warmup' && EX[id].cat !== 'cooldown' && !used.has(id));
   const tag = id => EX[id].load === 'kb1' ? 'Kettlebell' : EX[id].load === 'db2' ? 'Kurzhanteln' : EX[id].load === 'db1' ? '1 Kurzhantel' : ['pullup', 'chinup', 'knee_raise'].includes(id) ? 'Klimmzugstange' : 'Körpergewicht';
@@ -1776,6 +1815,7 @@ function settingsView() {
     </div>
     <div class="sec-title">Ablauf, Sound & Darstellung</div>
     <div class="panel">
+      ${swRow('kneeMode', 'Knie-Modus (knieschonend)', c.kneeMode, 'Blendet Squats und Goblet Squats in allen Trainings aus')}
       ${swRow('sound', 'Sound', c.sound, 'Countdown-Signale, Übungsende, Rundenende, Abschlussmelodie')}
       ${swRow('vibration', 'Vibration', c.vibration, canVibrate() ? 'Wird von diesem Browser unterstützt' : 'Dieser Browser unterstützt keine Vibration (z. B. Safari auf dem iPhone)')}
       ${swRow('autoAdvance', 'Automatischer Wechsel bei Zeitübungen', c.autoAdvance, 'Standard: aus. Pausen enden immer erst mit deiner Bestätigung.')}
@@ -1834,6 +1874,7 @@ function ctlHTML() {
 
 let lastRKey = '';
 function render() {
+  if (!account) { if (adminMode) showAdmin(); else showLogin(); return; }
   document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.v === view)));
   let html;
   if (view === 'plan') html = planView();
@@ -1874,6 +1915,7 @@ function openSheet(html, locked) {
   sheet.innerHTML = html;
   dlg.dataset.locked = locked ? '1' : '';
   try { if (!dlg.open) { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); } } catch (e) { dlg.setAttribute('open', ''); }
+  dlg.scrollTop = 0; requestAnimationFrame(() => { dlg.scrollTop = 0; });
 }
 function closeSheet() { try { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); } catch (e) { dlg.removeAttribute('open'); } dlg.dataset.locked = ''; }
 dlg.addEventListener('cancel', e => { if (dlg.dataset.locked) e.preventDefault(); });
@@ -1883,10 +1925,41 @@ function confirmSheet(title, text, yes, onYes, danger = true, no = 'Abbrechen') 
   pendingYes = onYes;
   openSheet(`<h2 id="dlgTitle">${title}</h2><p>${text}</p><div class="acts"><button type="button" class="btn ${danger ? 'btn-danger' : 'btn-primary'} xl" data-act="confirm-yes">${yes}</button><button type="button" class="btn btn-ghost xl" data-act="sheet-close">${no}</button></div>`);
 }
+function legalSheet() {
+  openSheet(`<h2 id="dlgTitle">Rechtliches &amp; Datenschutz</h2>
+  <div class="legal">
+    <p class="sub">Stand: Oktober 2026</p>
+    <h3>Privates Projekt</h3>
+    <p>UI Pausen ist ein rein privates, nicht kommerzielles Hobbyprojekt für den persönlichen Gebrauch einzelner Bekannter. Es gibt keine Werbung, keine Bezahlfunktionen und keine Gewinnerzielungsabsicht. Der Zugang ist passwortgeschützt und nicht für die Öffentlichkeit bestimmt. Es handelt sich nicht um ein geschäftsmäßiges Angebot, ein Medizinprodukt oder eine Gesundheitsdienstleistung.</p>
+    <h3>Impressum</h3>
+    <p>Da es sich um ein ausschließlich privates, nicht geschäftsmäßiges Angebot für einen geschlossenen Personenkreis handelt, besteht nach Auffassung des Betreibers keine Impressumspflicht nach § 5 Digitale-Dienste-Gesetz (DDG). Verantwortlich für den Inhalt ist der private Betreiber dieses Projekts. Kontakt nur über den persönlichen Weg, über den du den Zugang erhalten hast.</p>
+    <h3>Haftungsausschluss Gesundheit</h3>
+    <ul>
+      <li>Die App ersetzt keine ärztliche Untersuchung, Diagnose, Therapie oder Trainingsberatung. Sie gibt allgemeine Anregungen, keine individuellen Empfehlungen.</li>
+      <li>Kläre vor Trainingsbeginn ärztlich ab, ob du belastbar bist, insbesondere bei Vorerkrankungen, Beschwerden, Verletzungen, Herz-Kreislauf-Problemen oder nach längerer Pause.</li>
+      <li>Training erfolgt freiwillig und auf eigene Verantwortung und eigenes Risiko. Übungen mit Gewichten, an der Klimmzugstange und am Boden bergen ein Verletzungsrisiko. Achte auf saubere Ausführung, geeignetes Material und eine sichere Umgebung.</li>
+      <li>Brich das Training sofort ab bei Schmerzen, Brustschmerzen, Schwindel, Atemnot, Herzrasen oder Unwohlsein, und hole bei Bedarf medizinische Hilfe.</li>
+      <li>Kalorien, Trainingsvolumen und Zeiten sind grobe Schätzungen ohne Gewähr.</li>
+      <li>Ernährungshinweise sind allgemeine Informationen und keine Ernährungsberatung. Bei Allergien, Unverträglichkeiten, Erkrankungen oder besonderen Ernährungsformen gelten sie nicht. Lass dich im Zweifel fachlich beraten.</li>
+    </ul>
+    <h3>Haftung</h3>
+    <p>Die Inhalte wurden mit Sorgfalt erstellt. Für Richtigkeit, Vollständigkeit, Aktualität und ständige Verfügbarkeit wird keine Gewähr übernommen. Die App wird unentgeltlich und ohne jede Zusicherung bereitgestellt. Eine Haftung des Betreibers für Schäden aus der Nutzung ist ausgeschlossen, soweit gesetzlich zulässig. Unberührt bleibt die Haftung für Vorsatz und grobe Fahrlässigkeit sowie für die Verletzung von Leben, Körper oder Gesundheit, soweit gesetzlich zwingend vorgeschrieben.</p>
+    <h3>Datenschutz</h3>
+    <ul>
+      <li>Alle Trainingsdaten, Einstellungen und Accounts werden ausschließlich lokal im Speicher deines Browsers (localStorage) auf deinem Gerät abgelegt. Es gibt keinen Server, keine Datenbank, kein Konto beim Betreiber.</li>
+      <li>Es werden keine Cookies, kein Tracking, keine Analyse-Tools, keine Werbung und keine externen Schriften oder Dienste von Dritten eingesetzt.</li>
+      <li>Der Betreiber hat keinen Zugriff auf deine Daten. Du kannst sie jederzeit löschen: in den Einstellungen, durch Abmelden und Löschen des Accounts oder durch Löschen der Website-Daten im Browser.</li>
+      <li>Hosting: Die Dateien werden über GitHub Pages (GitHub Inc., USA) ausgeliefert. Beim Aufruf verarbeitet GitHub technisch notwendige Verbindungsdaten wie die IP-Adresse. Details: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</li>
+    </ul>
+    <h3>Urheberrecht</h3>
+    <p>Gestaltung, Texte und Übungsillustrationen sind für dieses Projekt selbst erstellt. Eine Weiterverwendung außerhalb des privaten Gebrauchs ist nicht gestattet.</p>
+  </div>
+  <div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">Schließen</button></div>`);
+}
 function safetySheet() {
   openSheet(`<h2 id="dlgTitle">Sicherheitshinweise</h2><p class="sub">Die App ersetzt keine ärztliche Untersuchung und gibt keine Heilversprechen.</p>
     <div class="emerg"><h3>Sofort aufhören bei</h3><ul style="margin:6px 0 0"><li>Brustschmerzen oder Engegefühl</li><li>Schwindel oder Benommenheit</li><li>ungewöhnlichem Herzrasen</li><li>Atemnot</li></ul></div>
-    <ul><li>Linkes Knie: keine Squats, Sprungkniebeugen, Jumping Jacks oder Burpees. Nicht durch Knieschmerz trainieren.</li>
+    <ul><li>Bei Knieproblemen den Knie-Modus in den Einstellungen einschalten. Er blendet Kniebeugen-Übungen aus. Nicht durch Schmerzen trainieren.</li>
     <li>Squats erst wieder aktivieren, wenn das Knie beschwerdefrei ist und die Beschwerden abgeklärt sind.</li>
     <li>Keine Pressatmung: beim Anstrengen ausatmen.</li><li>Gewichte an das Tagesniveau anpassen, Belastung langsam steigern.</li>
     <li>Jede Übung lässt sich jederzeit überspringen.</li></ul>
@@ -1952,7 +2025,7 @@ function fireworks() {
    EREIGNISSE – Delegation, Schutz vor Doppelklicks
    ============================================================ */
 const TOK_ACTS = ['done', 'next', 'skip', 'back', 'skip-rest', 'next-ex', 'add15', 'timer-start'];
-const FREE_ACTS = ['reps-', 'reps+', 'w-', 'w+'];
+const FREE_ACTS = ['reps-', 'reps+', 'w-', 'w+', 'login', 'pw-toggle', 'adm-save', 'adm-add', 'adm-admin'];
 let lastAct = { k: '', t: 0 };
 document.addEventListener('pointerdown', () => { if (!AC || AC.state !== 'running') unlockAudio(); }, { passive: true });
 document.addEventListener('click', e => {
@@ -1969,7 +2042,7 @@ document.addEventListener('click', e => {
 });
 function act(a, b) {
   switch (a) {
-    case 'view': view = b.dataset.v; closeSheet(); render(); window.scrollTo(0, 0); break;
+    case 'view': if (!account) break; view = b.dataset.v; closeSheet(); render(); window.scrollTo(0, 0); break;
     case 'start-workout': startWorkout(); break;
     case 'timer-start': startTimer(); break;
     case 'pause': pauseWorkout(); break;
@@ -1989,6 +2062,10 @@ function act(a, b) {
     case 'undo': document.getElementById('toast').classList.remove('show'); undo(); break;
     case 'end': confirmSheet('Training beenden?', 'Alles bisher Erledigte wird ausgewertet. Du kannst das Ergebnis danach speichern.', 'END WORKOUT', () => { if (sess && sess.state === 'ACTIVE') finish(true); }, true, 'Weiter trainieren'); break;
     case 'timecheck': openTimeCheck(); break;
+    case 'login': doLogin(); break;
+    case 'logout': logout(); break;
+    case 'pw-toggle': { const pw = document.getElementById('pw'); if (pw) { pw.type = pw.type === 'password' ? 'text' : 'password'; pw.focus(); } break; }
+    case 'adm-save': case 'adm-add': case 'adm-del': case 'adm-admin': case 'adm-exit': if (adminMode) adminAct(a, b); break;
     case 'restart': resetWorkout(); break;
     case 'undo-reset': document.getElementById('toast').classList.remove('show'); undoReset(); break;
     case 'program': settings.program = b.dataset.id; saveSettings(); render(); break;
@@ -2016,6 +2093,7 @@ function act(a, b) {
     case 'confirm-yes': { const f = pendingYes; pendingYes = null; closeSheet(); if (f) f(); break; }
     case 'sheet-close': pendingYes = null; closeSheet(); break;
     case 'safety': safetySheet(); break;
+    case 'legal': legalSheet(); break;
     case 'hist-del': { const id = b.dataset.id; confirmSheet('Eintrag löschen?', 'Dieses Workout wird aus dem Verlauf entfernt.', 'LÖSCHEN', () => { history = history.filter(h => h.id !== id); saveHistory(); render(); }); break; }
     case 'clear-history': confirmSheet('Gesamten Verlauf löschen?', `${history.length} gespeicherte Workouts werden entfernt.`, 'ALLES LÖSCHEN', () => { history = []; saveHistory(); render(); toast('Verlauf gelöscht'); }); break;
     case 'reset-settings': confirmSheet('Einstellungen zurücksetzen?', 'Alle Werte werden auf den Masterplan zurückgesetzt. Der Verlauf bleibt erhalten.', 'ZURÜCKSETZEN', () => { settings = clone(DEFAULTS); saveSettings(); applyTheme(); render(); toast('Einstellungen zurückgesetzt'); }); break;
@@ -2048,11 +2126,6 @@ document.addEventListener('change', e => {
     v = clamp(v, mn, mx); if (path !== 'bodyWeight' && path !== 'dbWeight') v = Math.round(v);
   } else v = el.value;
   const m = path.match(/^circuit\.(\d+)\.(\w+)$/);
-  if (m && m[2] === 'on' && v && EX[slotEx(settings.circuit[+m[1]])].knee) {
-    el.checked = false;
-    confirmSheet(esc(EX[slotEx(settings.circuit[+m[1]])].name) + ' aktivieren?', 'Kniebeugen nur aktivieren, wenn das linke Knie beschwerdefrei ist und die Beschwerden ärztlich oder physiotherapeutisch abgeklärt sind. Keine Sprungvarianten.', 'KNIE IST BESCHWERDEFREI', () => { settings.circuit[+m[1]].on = true; saveSettings(); render(); }, false);
-    return;
-  }
   setPath(settings, path, v);
   if (m && m[2] === 'variant') settings.circuit[+m[1]].reps = VARIANT_REPS[v] || settings.circuit[+m[1]].reps;
   saveSettings();
@@ -2085,6 +2158,184 @@ if (sess && sess.state === 'ACTIVE') {
   save(); render(); openUnfinished(gap);
 } else render();
 }
+
+/* ============================================================
+   ZUGANG & ACCOUNTS
+   Hinweis: reiner Browser-Schutz ohne Server. Passwörter liegen nur
+   als SHA-256-Hash vor. Änderungen im Admin-Bereich gelten pro Gerät.
+   ============================================================ */
+function sha256(str) {
+  const K = [0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+    0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+    0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+    0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  const bytes = Array.from(new TextEncoder().encode(str)), bl = bytes.length * 8;
+  bytes.push(0x80); while (bytes.length % 64 !== 56) bytes.push(0);
+  for (let i = 7; i >= 0; i--) bytes.push(i > 3 ? 0 : (bl >>> (i * 8)) & 0xff);
+  let h = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19];
+  const r = (x, n) => (x >>> n) | (x << (32 - n));
+  for (let o = 0; o < bytes.length; o += 64) {
+    const w = new Array(64);
+    for (let i = 0; i < 16; i++) w[i] = (bytes[o + i * 4] << 24) | (bytes[o + i * 4 + 1] << 16) | (bytes[o + i * 4 + 2] << 8) | bytes[o + i * 4 + 3];
+    for (let i = 16; i < 64; i++) { const s0 = r(w[i - 15], 7) ^ r(w[i - 15], 18) ^ (w[i - 15] >>> 3), s1 = r(w[i - 2], 17) ^ r(w[i - 2], 19) ^ (w[i - 2] >>> 10); w[i] = (w[i - 16] + s0 + w[i - 7] + s1) | 0; }
+    let [a, b, c, d, e, f, g, hh] = h;
+    for (let i = 0; i < 64; i++) {
+      const t1 = (hh + (r(e, 6) ^ r(e, 11) ^ r(e, 25)) + ((e & f) ^ (~e & g)) + K[i] + w[i]) | 0;
+      const t2 = ((r(a, 2) ^ r(a, 13) ^ r(a, 22)) + ((a & b) ^ (a & c) ^ (b & c))) | 0;
+      hh = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+    }
+    h = [h[0] + a, h[1] + b, h[2] + c, h[3] + d, h[4] + e, h[5] + f, h[6] + g, h[7] + hh].map(x => x | 0);
+  }
+  return h.map(x => (x >>> 0).toString(16).padStart(8, '0')).join('');
+}
+/* Groß/klein egal, ü = ue = u */
+const normPw = s => String(s).trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/ae/g, 'a').replace(/oe/g, 'o').replace(/ue/g, 'u');
+const pwHash = s => sha256('uipause:' + normPw(s));
+const KEY_TERMS = 'uipause-terms-v1', KEY_ACC = 'uipause-accounts-v1', KEY_AUTH = 'uipause-auth-v1', KEY_ADMIN = 'uipause-admin-v1';
+const DEFAULT_ACCOUNTS = [
+  { id: 'marc', name: 'Marc', hash: '008a4542c3a5765a9596d7e070dfb1370e90fac3c3957788b6205138c12a5a79' },
+  { id: 'hueseyin', name: 'Hüseyin', hash: '24085c0d9db95bc5d38621e9dc2b75a7fbef7e27d09085bd22cb5fb0b1b1180f' }
+];
+const DEFAULT_ADMIN = '1691145f52d26bb204a0651dc1837bfa00071f0fdaa0add32e5da7781534d93d';
+const getAccounts = () => { const a = store.get(KEY_ACC, null); return Array.isArray(a) && a.length ? a : clone(DEFAULT_ACCOUNTS); };
+const setAccounts = a => store.set(KEY_ACC, a);
+const adminHash = () => store.get(KEY_ADMIN, null) || DEFAULT_ADMIN;
+let account = null, adminMode = false;
+
+function enterAccount(acc) {
+  account = acc; adminMode = false;
+  KEY_SET = `uipause-${acc.id}-settings-v1`; KEY_SESS = `uipause-${acc.id}-session-v1`; KEY_HIST = `uipause-${acc.id}-history-v1`;
+  /* Daten aus der Version ohne Login übernimmt Marc einmalig */
+  if (acc.id === 'marc' && !store.get(KEY_SET, null) && !store.get(KEY_HIST, null)) {
+    const oS = store.get('uipause-settings-v1', null), oH = store.get('uipause-history-v1', null), oX = store.get('uipause-session-v1', null);
+    if (oS) store.set(KEY_SET, oS); if (oH) store.set(KEY_HIST, oH); if (oX) store.set(KEY_SESS, oX);
+  }
+  settings = loadSettings();
+  history = store.get(KEY_HIST, []); if (!Array.isArray(history)) history = [];
+  sess = store.get(KEY_SESS, null);
+  if (sess && (sess.v !== 1 || !Array.isArray(sess.steps) || !sess.steps.length)) sess = null;
+  view = 'train';
+  store.set(KEY_AUTH, acc.id);
+  document.body.classList.remove('locked');
+  setAccountLabel();
+  safeBoot();
+}
+function setAccountLabel() {
+  const el = document.getElementById('accLbl');
+  if (el) el.innerHTML = account ? `Angemeldet als <b>${esc(account.name)}</b> · <button type="button" data-act="logout">Abmelden</button>` : '';
+}
+function logout() {
+  if (sess) save();
+  wakeOff(); closeSheet();
+  account = null; adminMode = false; sess = null; history = []; settings = clone(DEFAULTS);
+  KEY_SET = 'uipause-none-settings'; KEY_SESS = 'uipause-none-session'; KEY_HIST = 'uipause-none-history';
+  store.del(KEY_AUTH); setAccountLabel(); showLogin();
+}
+function lockUI() {
+  document.body.classList.add('locked');
+  document.getElementById('ctlbar').classList.add('hidden'); document.body.classList.remove('has-ctl');
+  updateHeader();
+}
+function showLogin(err) {
+  lockUI();
+  $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">
+    <div class="kicker"><span>Zugang</span></div>
+    <h2>Willkommen</h2>
+    <p>Gib dein Passwort ein. Groß- und Kleinschreibung spielen keine Rolle.</p>
+    <label for="pw" class="lbl-pw">Passwort</label>
+    <div class="pw-row"><input id="pw" class="inp pw" type="password" autocomplete="current-password" autocapitalize="none" spellcheck="false" enterkeyhint="go">
+      <button type="button" class="chip" data-act="pw-toggle" aria-label="Passwort anzeigen">👁</button></div>
+    ${store.get(KEY_TERMS, false) ? '' : `<label class="terms"><input type="checkbox" id="terms"><span>Ich habe den <button type="button" data-act="legal">Haftungsausschluss und die Hinweise</button> gelesen. Ich trainiere freiwillig und auf eigene Verantwortung. Die App ersetzt keine ärztliche Beratung.</span></label>`}
+    <button type="button" class="btn btn-primary xl" style="margin-top:14px" data-act="login">ANMELDEN</button>
+    <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
+  </article>`;
+  const pw = document.getElementById('pw');
+  pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+  setTimeout(() => { try { pw.focus(); } catch (e) {} }, 50);
+}
+function doLogin() {
+  const v = (document.getElementById('pw') || {}).value || '';
+  if (!v.trim()) { showLogin('Bitte ein Passwort eingeben.'); return; }
+  const tb = document.getElementById('terms');
+  if (tb && !tb.checked) { const m = document.querySelector('.msg-err'); if (m) m.textContent = 'Bitte zuerst den Haftungsausschluss bestätigen.'; return; }
+  if (tb) store.set(KEY_TERMS, Date.now());
+  const h = pwHash(v);
+  if (h === adminHash()) { adminMode = true; showAdmin(); return; }
+  const acc = getAccounts().find(a => a.hash === h);
+  if (!acc) { showLogin('Passwort nicht erkannt. Bitte noch einmal versuchen.'); return; }
+  unlockAudio(); enterAccount(acc);
+}
+
+/* Admin-Bereich */
+function showAdmin(msg) {
+  lockUI();
+  const accs = getAccounts();
+  $app.innerHTML = `<div class="fade-in">
+    <article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span><span class="r">${accs.length} Accounts</span></div>
+      <h2>Accounts verwalten</h2>
+      <p>Namen ändern, neue Passwörter setzen, Accounts anlegen oder löschen. Ein leeres Passwortfeld lässt das bisherige Passwort unverändert.</p>
+      ${msg ? `<div class="note ok"><b>Gespeichert</b>${esc(msg)}</div>` : ''}
+    </article>
+    <div class="sec-title">Bestehende Accounts</div>
+    ${accs.map(a => `<div class="panel adm-acc" style="margin-top:10px">
+      <div class="set-row"><label for="an_${a.id}">Name</label><input class="inp wide" id="an_${a.id}" value="${esc(a.name)}" maxlength="30"></div>
+      <div class="set-row"><label for="ap_${a.id}">Neues Passwort<small>leer = unverändert</small></label><input class="inp wide" id="ap_${a.id}" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
+      <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-save" data-id="${a.id}">Speichern</button><button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${a.id}">Löschen</button></div>
+      <p class="sub" style="margin:8px 0 0">${(store.get(`uipause-${a.id}-history-v1`, []) || []).length} gespeicherte Workouts auf diesem Gerät</p>
+    </div>`).join('')}
+    <div class="sec-title">Neuen Account anlegen</div>
+    <div class="panel">
+      <div class="set-row"><label for="nn">Name</label><input class="inp wide" id="nn" maxlength="30" placeholder="z. B. Anna"></div>
+      <div class="set-row"><label for="np">Passwort</label><input class="inp wide" id="np" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
+      <div class="adm-acts"><button type="button" class="btn btn-lamp" data-act="adm-add">Account anlegen</button></div>
+    </div>
+    <div class="sec-title">Admin-Passwort</div>
+    <div class="panel">
+      <div class="set-row"><label for="ad">Neues Admin-Passwort</label><input class="inp wide" id="ad" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
+      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-admin">Ändern</button></div>
+    </div>
+    <div class="note blue"><b>Wichtig</b>Die App läuft ohne Server. Änderungen hier gelten nur in diesem Browser auf diesem Gerät. Auf anderen Geräten gelten weiter die Standard-Accounts. Der Schutz hält neugierige Blicke ab, ist aber keine echte Sicherheit.</div>
+    <p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p>
+  </div>`;
+}
+function pwTaken(h, exceptId) {
+  if (h === adminHash()) return 'Dieses Passwort ist schon für den Admin vergeben.';
+  if (getAccounts().some(a => a.hash === h && a.id !== exceptId)) return 'Dieses Passwort nutzt schon ein anderer Account.';
+  return '';
+}
+function adminAct(a, b) {
+  const accs = getAccounts(), val = id => ((document.getElementById(id) || {}).value || '').trim();
+  if (a === 'adm-save') {
+    const acc = accs.find(x => x.id === b.dataset.id); if (!acc) return;
+    const name = val('an_' + acc.id), pw = val('ap_' + acc.id);
+    if (!name) { toast('Name darf nicht leer sein'); return; }
+    if (pw) { if (pw.length < 4) { toast('Passwort: mindestens 4 Zeichen'); return; } const h = pwHash(pw), t = pwTaken(h, acc.id); if (t) { toast(t); return; } acc.hash = h; }
+    acc.name = name; setAccounts(accs); showAdmin(`${name} aktualisiert${pw ? ', neues Passwort aktiv' : ''}.`);
+  } else if (a === 'adm-add') {
+    const name = val('nn'), pw = val('np');
+    if (!name || !pw) { toast('Name und Passwort eingeben'); return; }
+    if (pw.length < 4) { toast('Passwort: mindestens 4 Zeichen'); return; }
+    const h = pwHash(pw), t = pwTaken(h); if (t) { toast(t); return; }
+    let id = normPw(name).replace(/[^a-z0-9]/g, '') || 'user'; const base = id; let k = 2;
+    while (accs.some(x => x.id === id)) id = base + k++;
+    accs.push({ id, name, hash: h }); setAccounts(accs); showAdmin(`Account „${name}“ angelegt.`);
+  } else if (a === 'adm-del') {
+    const acc = accs.find(x => x.id === b.dataset.id); if (!acc) return;
+    if (accs.length <= 1) { toast('Mindestens ein Account muss bleiben'); return; }
+    confirmSheet(`${esc(acc.name)} löschen?`, 'Der Zugang und alle Workouts dieses Accounts auf diesem Gerät werden entfernt.', 'ACCOUNT LÖSCHEN', () => {
+      setAccounts(getAccounts().filter(x => x.id !== acc.id));
+      ['settings', 'session', 'history'].forEach(k => store.del(`uipause-${acc.id}-${k}-v1`));
+      if (store.get(KEY_AUTH, null) === acc.id) store.del(KEY_AUTH);
+      showAdmin(`Account „${acc.name}“ gelöscht.`);
+    });
+  } else if (a === 'adm-admin') {
+    const pw = val('ad'); if (pw.length < 4) { toast('Admin-Passwort: mindestens 4 Zeichen'); return; }
+    const h = pwHash(pw); if (getAccounts().some(x => x.hash === h)) { toast('Dieses Passwort nutzt schon ein Account.'); return; }
+    store.set(KEY_ADMIN, h); showAdmin('Admin-Passwort geändert.');
+  } else if (a === 'adm-exit') { adminMode = false; showLogin(); }
+}
+
+function safeBoot() {
 try { boot(); }
 catch (err) {
   /* Beschädigter Spielstand: Sitzung verwerfen und sauber neu starten */
@@ -2093,11 +2344,18 @@ catch (err) {
   try { settings = loadSettings(); render(); toast('Gespeicherter Trainingsstand war beschädigt und wurde zurückgesetzt.'); }
   catch (e2) { settings = clone(DEFAULTS); store.del(KEY_SET); render(); }
 }
+}
+/* Start: angemeldet bleiben, sonst Login */
+(function startApp() {
+  applyTheme();
+  const id = store.get(KEY_AUTH, null), acc = id && getAccounts().find(a => a.id === id);
+  if (acc) enterAccount(acc); else showLogin();
+})();
 setInterval(function () { try { loop(); } catch (e) { try { console.error(e); } catch (x) {} } }, 250);
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {}); });
 }
-window.__uip = { get sess() { return sess; }, get settings() { return settings; }, get history() { return history; }, summarize, elapsed: () => sess ? elapsed() : 0, estRemainingMs };
+window.__uip = { get account() { return account; }, get sess() { return sess; }, get settings() { return settings; }, get history() { return history; }, summarize, elapsed: () => sess ? elapsed() : 0, estRemainingMs };
 })();
 </script>
 </body>
