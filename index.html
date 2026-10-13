@@ -3350,10 +3350,11 @@ function firebaseBackend(cfg) {
     demo: false,
     init: async () => {
       const base = `https://www.gstatic.com/firebasejs/${FB_VER}/`;
-      await loadScript(base + 'firebase-app-compat.js');
-      await Promise.all([loadScript(base + 'firebase-auth-compat.js'), loadScript(base + 'firebase-firestore-compat.js')]);
+      if (!window.firebase) await loadScript(base + 'firebase-app-compat.js');
+      if (!firebase.auth) await loadScript(base + 'firebase-auth-compat.js');
+      if (!firebase.firestore) await loadScript(base + 'firebase-firestore-compat.js');
       const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(cfg);
-      const cred = await app.auth().signInAnonymously(); uid = cred.user.uid;
+      const user = app.auth().currentUser || (await app.auth().signInAnonymously()).user; uid = user.uid;
       db = app.firestore(); FV = firebase.firestore.FieldValue;
     },
     listenRooms: f => roomsCol().orderBy('ts').limit(50).onSnapshot(s => f(s.docs.map(conv)), e => { cbErr = e.message; render(); }),
@@ -3595,9 +3596,8 @@ function reportSend(i) {
   const m = reportMsg; if (!m) return; reportMsg = null;
   const reasons = ['Beleidigung / Belästigung', 'Rechtswidriger Inhalt', 'Spam / Werbung', 'Persönliche Daten anderer', 'Sonstiges'];
   const H = hiddenMsgs(); if (!H.includes(m.id)) H.push(m.id); store.set(hideKey(), H.slice(-500));
-  fetch(NOTIFY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ _subject: `Pausen Workout: Beitrag gemeldet (${reasons[i]})`, _template: 'box', _captcha: 'false',
-    Grund: reasons[i], 'Gemeldet von': cNick(), Verfasser: m.nick, Inhalt: m.text || (m.poll && m.poll.q) || (m.meet && m.meet.title) || '', Zeitpunkt: new Date(m.ts).toLocaleString('de-DE'),
-    'Löschen in Firebase': `Firestore Database → Daten → rooms → ${cbRoom} → msgs → ${m.id}` }) }).catch(() => {});
+  notifyAdmin(`Beitrag gemeldet (${reasons[i]})`, { Grund: reasons[i], 'Gemeldet von': cNick(), Verfasser: m.nick, Inhalt: m.text || (m.poll && m.poll.q) || (m.meet && m.meet.title) || '', Zeitpunkt: new Date(m.ts).toLocaleString('de-DE'),
+    'Löschen in Firebase': `Firestore Database → Daten → rooms → ${cbRoom} → msgs → ${m.id}` }).catch(() => {});
   closeSheet(); renderChatOnly(); toast(L('Gemeldet. Danke! Der Admin prüft das.', 'Reported. Thanks! The admin will review it.', 'Signalé. Merci ! L\'admin va vérifier.', 'Bildirildi. Teşekkürler! Yönetici inceleyecek.'));
 }
 async function cbWipe(alsoOff) {
@@ -3713,8 +3713,8 @@ function memberAct(a, b) {
     if (normPw(n) !== normPw(n2)) { toast(L('Die Passwörter stimmen nicht überein', 'Passwords don\'t match', 'Les mots de passe ne correspondent pas', 'Şifreler eşleşmiyor')); return; }
     const h = pwHash(n); store.set(pwOverKey(account.id), h);
     ['pw_old', 'pw_new', 'pw_new2'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-    if (!acc.perm) fetch(NOTIFY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ _subject: `Pausen Workout: Passwortänderung von ${account.name}`, _template: 'box', _captcha: 'false', Nickname: account.name,
-      'So übernehmen': 'App öffnen, als admin anmelden, den Code unten bei „Registrierung freischalten“ einfügen, dann accounts.json auf GitHub speichern.', 'Freigabe-Code': JSON.stringify({ id: account.id, name: account.name, g: account.g || 'm', hash: h, pwchange: true }) }) }).catch(() => {});
+    if (!acc.perm) notifyAdmin(`Passwortänderung von ${account.name}`, { Nickname: account.name, 'So übernehmen': 'App öffnen, als admin anmelden, den Code unten bei „Registrierung freischalten“ einfügen, dann accounts.json auf GitHub speichern.', 'Freigabe-Code': JSON.stringify({ id: account.id, name: account.name, g: account.g || 'm', hash: h, pwchange: true }) }).catch(() => {});
+    { const em = getProfile().email; if (em) sendUserMail(em, 'pwchanged', account.name, LANG).catch(() => {}); }
     toast(L('Passwort geändert', 'Password changed', 'Mot de passe changé', 'Şifre değiştirildi')); return;
   }
   if (a === 'm-method') { paySheet(); return; }
@@ -3746,6 +3746,144 @@ function memberAct(a, b) {
     confirmSheet(L('Alle Daten löschen?', 'Delete all data?', 'Tout supprimer ?', 'Tüm veriler silinsin mi?'), L('Verlauf, Einstellungen, Profil und Laufplan dieses Kontos werden auf diesem Gerät gelöscht. Das lässt sich nicht rückgängig machen.', 'History, settings, profile and running plan of this account are deleted on this device. This cannot be undone.', 'Historique, réglages, profil et plan de course de ce compte sont supprimés sur cet appareil. Irréversible.', 'Bu hesabın geçmişi, ayarları, profili ve koşu planı bu cihazdan silinir. Geri alınamaz.'),
       L('ENDGÜLTIG LÖSCHEN', 'DELETE PERMANENTLY', 'SUPPRIMER DÉFINITIVEMENT', 'KALICI OLARAK SİL'), () => { const pre = `uipause-${account.id}-`; try { Object.keys(localStorage).filter(k => k.startsWith(pre) || k === pwOverKey(account.id)).forEach(k => localStorage.removeItem(k)); } catch (e) {} sess = null; history = []; logout(); }, true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal'));
   }
+}
+
+/* ============================================================
+   FREISCHALTEN PER KLICK (über Firebase)
+   Registrierung legt einen Antrag in Firestore an (nicht lesbar).
+   Der Link in der Admin-Mail schaltet den Account mit einem Klick frei.
+   ============================================================ */
+let FBP = null, accBlocked = new Set();
+function fbCore() {
+  if (FBP) return FBP;
+  FBP = (async () => {
+    if (!/^https?:$/.test(location.protocol)) throw new Error('offline');
+    const r = await fetch('./community.json?ts=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) throw new Error('nocfg');
+    const cfg = await r.json();
+    if (!cfg || !cfg.apiKey || /EINF|YOUR|xxx/i.test(cfg.apiKey)) throw new Error('nocfg');
+    const base = `https://www.gstatic.com/firebasejs/${FB_VER}/`;
+    if (!window.firebase) await loadScript(base + 'firebase-app-compat.js');
+    if (!firebase.auth) await loadScript(base + 'firebase-auth-compat.js');
+    if (!firebase.firestore) await loadScript(base + 'firebase-firestore-compat.js');
+    const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(cfg);
+    if (!app.auth().currentUser) await app.auth().signInAnonymously();
+    return { db: app.firestore() };
+  })();
+  FBP.catch(() => { FBP = null; });
+  return FBP;
+}
+/* Freigeschaltete Accounts aus Firestore zur Liste ergänzen */
+async function fsMergeAccounts() {
+  const { db } = await fbCore();
+  const q = await db.collection('accounts').get();
+  let n = 0;
+  q.docs.forEach(d => { const a = d.data(); if (!a || !a.id || !a.hash || accBlocked.has(a.id)) return;
+    if (!accList.accounts.find(x => x.id === a.id || nickKey(x.name) === nickKey(a.name))) { accList.accounts.push({ id: a.id, name: a.name, g: a.g || 'm', hash: a.hash }); n++; } });
+  if (n) store.set(KEY_LIST, accList);
+}
+const b64u = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const unb64u = s => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
+const newToken = () => { const a = new Uint8Array(18); crypto.getRandomValues(a); return [...a].map(x => x.toString(16).padStart(2, '0')).join(''); };
+/* Antrag anlegen; liefert den Freischalt-Link oder null */
+async function fsCreatePending(entry, email) {
+  try {
+    const { db } = await Promise.race([fbCore(), new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 6000))]);
+    const token = newToken();
+    await db.collection('pending').doc(entry.id).set({ id: entry.id, name: entry.name, g: entry.g, hash: entry.hash, token, ts: Date.now() });
+    return location.origin + location.pathname + '#approve=' + b64u(JSON.stringify({ id: entry.id, name: entry.name, g: entry.g, hash: entry.hash, token, em: email || '', lg: LANG }));
+  } catch (e) { return null; }
+}
+/* Link aus der Mail geöffnet */
+async function checkApproveLink() {
+  const m = location.hash.match(/^#approve=([A-Za-z0-9_-]+)$/); if (!m) return;
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  let d; try { d = JSON.parse(unb64u(m[1])); } catch (e) { d = null; }
+  const box = (title, text, ok) => openSheet(`<div data-notr><h2 id="dlgTitle">${ok ? '✅' : '⚠️'} ${title}</h2><p>${text}</p><div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button></div></div>`);
+  if (!d || !d.id || !d.token) { box('Link ungültig', 'Der Freischalt-Link ist unvollständig. Bitte den kompletten Link aus der Mail öffnen.'); return; }
+  openSheet(`<div data-notr><h2 id="dlgTitle">Freischalten …</h2><p>${esc(d.name)} wird freigeschaltet.</p></div>`);
+  try {
+    const { db } = await fbCore();
+    const ref = db.collection('accounts').doc(d.id);
+    const ex = await ref.get();
+    if (ex.exists) { box(`${esc(d.name)} ist schon freigeschaltet`, 'Der Account war bereits aktiv. Die Person kann sich anmelden.', true); return; }
+    await ref.set({ id: d.id, name: d.name, g: d.g, hash: d.hash, token: d.token, ts: Date.now() });
+    let mailed = false; try { mailed = await sendUserMail(d.em, 'welcome', d.name, d.lg); } catch (e) {}
+    box(`${esc(d.name)} ist freigeschaltet`, mailed ? 'Fertig. Die Person hat automatisch eine Willkommens-Mail bekommen und kann sich ab sofort anmelden.' : 'Fertig. Die Person kann sich ab sofort mit Nickname und Passwort anmelden. Sag ihr am besten kurz Bescheid.', true);
+    refreshAccounts();
+  } catch (e) {
+    box('Freischalten nicht möglich', 'Der Link passt nicht zu einem offenen Antrag oder Firebase ist nicht erreichbar. Fehler: ' + esc(e && e.message || e));
+  }
+}
+window.addEventListener('hashchange', checkApproveLink);
+
+/* ============================================================
+   E-MAILS: EmailJS (bevorzugt, Konfiguration in email.json)
+   Fallback: FormSubmit (nur Mails an den Admin)
+   ============================================================ */
+const ADMIN_EMAIL_F = () => NOTIFY_URL.split('/').pop();
+const APP_URL = 'https://trieum-beep.github.io/UI-PAUSE/';
+let MCP = null;
+function mailCfg() {
+  if (MCP) return MCP;
+  MCP = (async () => {
+    if (!/^https?:$/.test(location.protocol)) return null;
+    try { const r = await fetch('./email.json?ts=' + Date.now(), { cache: 'no-store' }); if (!r.ok) return null; const j = await r.json();
+      return j && j.publicKey && j.serviceId && j.templateId && !/EINF|YOUR|xxx/i.test(j.publicKey) ? j : null; } catch (e) { return null; }
+  })();
+  return MCP;
+}
+const mEsc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+async function sendMail({ to, subject, html, button_url = '', button_text = '', reply_to = '' }) {
+  if (!button_url) { button_url = APP_URL; button_text = 'APP ÖFFNEN'; }
+  const c = await mailCfg(); if (!c) throw new Error('nomail');
+  const r = await fetch('https://api.emailjs.com/api/v1.0/email/send', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ service_id: c.serviceId, template_id: c.templateId, user_id: c.publicKey,
+      template_params: { to_email: to, subject, message: html, button_url, button_text, reply_to: reply_to || c.fromEmail || 'noreply.pausenworkout@gmail.com' } }) });
+  if (!r.ok) throw new Error('EmailJS ' + r.status + ' ' + (await r.text().catch(() => '')));
+  return true;
+}
+/* Mail an den Admin: EmailJS, sonst FormSubmit */
+async function notifyAdmin(subject, rows, button) {
+  const c = await mailCfg();
+  if (c) {
+    const html = `<table style="border-collapse:collapse;font-size:15px">${Object.entries(rows).map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#667;vertical-align:top;white-space:nowrap">${mEsc(k)}</td><td style="padding:6px 0;vertical-align:top;word-break:break-word">${mEsc(v)}</td></tr>`).join('')}</table>`;
+    return sendMail({ to: c.adminEmail || ADMIN_EMAIL_F(), subject: 'Pausen Workout: ' + subject, html, button_url: button ? button.url : '', button_text: button ? button.text : '', reply_to: rows['E-Mail'] || '' });
+  }
+  const r = await fetch(NOTIFY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify(Object.assign({ _subject: 'Pausen Workout: ' + subject, _template: 'box', _captcha: 'false' }, button ? { [button.text]: button.url } : {}, rows)) });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  const j = await r.json().catch(() => ({}));
+  if (String(j.success) !== 'true') throw new Error(j.message || 'nicht zugestellt');
+  return true;
+}
+/* Automatische Mails an Nutzer (nur mit EmailJS möglich) */
+const MAIL_TXT = {
+  received: {
+    de: n => ({ s: 'Deine Registrierung ist angekommen', h: `<p>Hallo ${n},</p><p>danke für deine Registrierung bei <b>Pausen Workout</b>! Wir prüfen sie kurz und schalten dich frei. Sobald das passiert ist, bekommst du eine Mail und kannst loslegen.</p><p>Bis gleich!</p>` }),
+    en: n => ({ s: 'Your registration has arrived', h: `<p>Hi ${n},</p><p>thanks for registering with <b>Pausen Workout</b>! We will review it shortly and activate your account. You will get an email as soon as you can start.</p><p>See you soon!</p>` }),
+    fr: n => ({ s: 'Ton inscription est bien arrivée', h: `<p>Bonjour ${n},</p><p>merci pour ton inscription à <b>Pausen Workout</b> ! Nous la vérifions rapidement et activons ton compte. Tu recevras un e-mail dès que tu pourras commencer.</p><p>À très vite !</p>` }),
+    tr: n => ({ s: 'Kaydın ulaştı', h: `<p>Merhaba ${n},</p><p><b>Pausen Workout</b>'a kaydolduğun için teşekkürler! Kaydını kısa sürede kontrol edip hesabını açacağız. Başlayabileceğin anda e-posta alacaksın.</p><p>Görüşmek üzere!</p>` })
+  },
+  welcome: {
+    de: n => ({ s: 'Herzlichen Glückwunsch, du bist freigeschaltet! 🎉', b: 'JETZT TRAINIEREN', h: `<p>Hallo ${n},</p><p><b>herzlichen Glückwunsch, du bist jetzt bei Pausen Workout angemeldet!</b> Viel Spaß mit deinem Workout.</p><p>So legst du los:</p><ul><li>App öffnen und mit deinem Nickname <b>${n}</b> und deinem Passwort anmelden</li><li>Auf der Startseite ein Training aus einer der vier Gruppen wählen</li><li>Tipp: App zum Home-Bildschirm hinzufügen, dann startet sie wie eine echte App</li></ul><p>Bleib dran, jedes Workout zählt! 💪</p>` }),
+    en: n => ({ s: 'Congratulations, your account is active! 🎉', b: 'START TRAINING', h: `<p>Hi ${n},</p><p><b>congratulations, you are now registered with Pausen Workout!</b> Enjoy your workout.</p><p>How to start:</p><ul><li>Open the app and log in with your nickname <b>${n}</b> and your password</li><li>Pick a workout from one of the four groups on the home screen</li><li>Tip: add the app to your home screen to launch it like a real app</li></ul><p>Keep going, every workout counts! 💪</p>` }),
+    fr: n => ({ s: 'Félicitations, ton compte est activé ! 🎉', b: 'COMMENCER', h: `<p>Bonjour ${n},</p><p><b>félicitations, tu es maintenant inscrit à Pausen Workout !</b> Bon entraînement.</p><p>Pour commencer :</p><ul><li>Ouvre l'app et connecte-toi avec ton pseudo <b>${n}</b> et ton mot de passe</li><li>Choisis un entraînement dans l'un des quatre groupes</li><li>Astuce : ajoute l'app à l'écran d'accueil</li></ul><p>Continue, chaque séance compte ! 💪</p>` }),
+    tr: n => ({ s: 'Tebrikler, hesabın açıldı! 🎉', b: 'ANTRENMANA BAŞLA', h: `<p>Merhaba ${n},</p><p><b>tebrikler, artık Pausen Workout'a kayıtlısın!</b> İyi antrenmanlar.</p><p>Nasıl başlarsın:</p><ul><li>Uygulamayı aç, <b>${n}</b> kullanıcı adın ve şifrenle giriş yap</li><li>Ana ekrandaki dört gruptan birinden bir antrenman seç</li><li>İpucu: uygulamayı ana ekrana ekle</li></ul><p>Devam et, her antrenman sayılır! 💪</p>` })
+  },
+  pwchanged: {
+    de: n => ({ s: 'Dein Passwort wurde geändert', h: `<p>Hallo ${n},</p><p>dein Passwort für Pausen Workout wurde gerade geändert. Warst du das nicht? Dann melde dich bitte bei der Person, über die du den Zugang bekommen hast.</p>` }),
+    en: n => ({ s: 'Your password was changed', h: `<p>Hi ${n},</p><p>your Pausen Workout password was just changed. If this wasn't you, please contact the person who gave you access.</p>` }),
+    fr: n => ({ s: 'Ton mot de passe a été modifié', h: `<p>Bonjour ${n},</p><p>ton mot de passe Pausen Workout vient d'être modifié. Si ce n'était pas toi, contacte la personne qui t'a donné l'accès.</p>` }),
+    tr: n => ({ s: 'Şifren değiştirildi', h: `<p>Merhaba ${n},</p><p>Pausen Workout şifren az önce değiştirildi. Bu sen değilsen lütfen sana erişim veren kişiyle iletişime geç.</p>` })
+  }
+};
+async function sendUserMail(to, kind, name, lang) {
+  if (!to || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(to)) return false;
+  const T = (MAIL_TXT[kind][lang] || MAIL_TXT[kind].de)(mEsc(name));
+  const NR = { de: 'Dies ist eine automatische Nachricht. Bitte nicht auf diese E-Mail antworten.', en: 'This is an automated message. Please do not reply to this email.', fr: 'Ceci est un message automatique. Merci de ne pas répondre à cet e-mail.', tr: 'Bu otomatik bir mesajdır. Lütfen bu e-postayı yanıtlamayın.' };
+  const foot = `<p style="color:#889;font-size:12px;margin-top:24px">${NR[lang] || NR.de}<br>Pausen Workout · Body Activity App · private Testversion · keine medizinische Beratung</p>`;
+  return sendMail({ to, subject: 'Pausen Workout: ' + T.s, html: T.h + foot, button_url: APP_URL, button_text: T.b || 'APP ÖFFNEN' });
 }
 
 let lastRKey = '';
@@ -3875,7 +4013,7 @@ function legalSheet() {
       <li>Alle Trainingsdaten, Einstellungen und Accounts werden ausschließlich lokal im Speicher deines Browsers (localStorage) auf deinem Gerät abgelegt. Es gibt keinen Server, keine Datenbank, kein Konto beim Betreiber.</li>
       <li>Es werden keine Cookies, kein Tracking, keine Analyse-Tools, keine Werbung und keine externen Schriften eingesetzt. Einzige Ausnahme ist der E-Mail-Versand bei der Registrierung.</li>
       <li>Der Betreiber hat keinen Zugriff auf deine Daten. Du kannst sie jederzeit löschen: in den Einstellungen, durch Abmelden und Löschen des Accounts oder durch Löschen der Website-Daten im Browser.</li>
-      <li>Registrierung: Nickname und E-Mail werden einmalig per E-Mail an den Admin geschickt, damit er den Zugang freischalten kann. Der Versand läuft über den Dienst FormSubmit (formsubmit.co) an ein privates Gmail-Postfach (Google). Die Daten werden nur für die Freischaltung genutzt und nicht weitergegeben. Die E-Mail-Adresse wird nicht in der App gespeichert. Freigegebene Accounts stehen nur mit Nickname und verschlüsseltem Passwort-Hash in der Datei accounts.json.</li>
+      <li>Registrierung: Nickname und E-Mail werden einmalig per E-Mail an den Admin geschickt, damit er den Zugang freischalten kann. Der Versand läuft über den Dienst FormSubmit (formsubmit.co) an ein privates Gmail-Postfach (Google). Die Daten werden nur für die Freischaltung genutzt und nicht weitergegeben. Die E-Mail-Adresse wird nicht in der App gespeichert. Für die Freischaltung per Link werden Nickname, Farbwelt und der verschlüsselte Passwort-Hash (nicht das Passwort) in Google Firebase (Standort Frankfurt) abgelegt. Freigegebene Accounts stehen nur mit Nickname und verschlüsseltem Passwort-Hash in der Datei accounts.json.</li>
       <li>Community (nur nach ausdrücklicher Zustimmung in der App): Nickname, Nachrichten, Abstimmungen und Treffen werden über Google Firebase (Google Ireland Ltd. / Google LLC, USA) gespeichert und sind für alle Community-Mitglieder sichtbar. Die Anmeldung erfolgt anonym, ohne E-Mail. Ohne Zustimmung wird keine Verbindung zu Firebase aufgebaut. Eigene Beiträge können jederzeit gelöscht und die Community in den Einstellungen wieder ausgeschaltet werden. Für Inhalte, die Mitglieder einstellen, ist der jeweilige Verfasser verantwortlich.</li>
       <li>Mitgliederbereich: Profilangaben (Name, E-Mail, Wohnort, Geburtsjahr, Größe, Ziel, Profilbild) sind freiwillig und werden nur lokal auf deinem Gerät gespeichert. Ist die Community aktiviert, sind Nickname, Profilbild und Wohnort für andere Mitglieder sichtbar. Bei einer Passwortänderung erhält der Admin per E-Mail nur den verschlüsselten Passwort-Hash.</li>
       <li>Fotos für die Teilen-Funktion werden nur lokal im Browser verarbeitet und nicht hochgeladen oder gespeichert. Was du teilst, entscheidest du selbst.</li>
@@ -4157,7 +4295,7 @@ const normPw = s => String(s).trim().toLowerCase().normalize('NFD').replace(/[̀
 const pwHash = s => sha256('uipause:' + normPw(s));
 const KEY_TERMS = 'uipause-terms-v1', KEY_LIST = 'uipause-acclist-v2', KEY_AUTH = 'uipause-auth-v1', KEY_PEND = 'uipause-pending-v1';
 /* Benachrichtigung per E-Mail an den Admin (über FormSubmit, ohne eigenen Server) */
-const NOTIFY_URL = 'https://formsubmit.co/ajax/robbery1699@gmail.com';
+const NOTIFY_URL = 'https://formsubmit.co/ajax/noreply.pausenworkout@gmail.com';
 /* Konditionen und Impressum. Impressum vor Start der kostenpflichtigen Nutzung ausfüllen. */
 const PRICE = { trialDays: 30, text: 'x € pro Monat' };
 const IMPRESSUM = { name: '', street: '', city: '', email: '' };
@@ -4181,9 +4319,11 @@ async function refreshAccounts() {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const j = await r.json();
     if (!j || !Array.isArray(j.accounts)) throw new Error('Format');
+    accBlocked = new Set(j.accounts.filter(a => a && a.blocked).map(a => a.id));
     accList = { admin: j.admin || BUILTIN.admin, accounts: j.accounts.filter(a => a && a.id && a.hash && !a.blocked) }; withPerm(accList);
     store.set(KEY_LIST, accList); listSource = 'online';
   } catch (e) { listSource = 'cache'; }
+  try { await fsMergeAccounts(); } catch (e) {}
 }
 const nickKey = s => normPw(s).replace(/[^a-z0-9]/g, '');
 const findAcc = login => { const k = nickKey(login); return accList.accounts.find(a => nickKey(a.id) === k || nickKey(a.name) === k); };
@@ -4298,15 +4438,13 @@ async function doRegister() {
   let id = nickKey(name) || 'user';
   const entry = { id, name, g: regG, hash: pwHash(p1) };
   const btn = document.querySelector('[data-act="register"]'); if (btn) { btn.disabled = true; btn.textContent = 'WIRD GESENDET …'; }
+  const approveUrl = await fsCreatePending(entry, email);
   try {
-    const r = await fetch(NOTIFY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ _subject: `Pausen Workout: Neue Registrierung von ${name}`, _template: 'box', _captcha: 'false',
-        Nickname: name, 'E-Mail': email, Geschlecht: { m: 'Mann', w: 'Frau', d: 'Divers' }[regG], Zeitpunkt: new Date().toLocaleString('de-DE'), Testphase: `Testversion, kostenlos (Demo-Testmonat bis ${new Date(Date.now() + PRICE.trialDays * 864e5).toLocaleDateString('de-DE')}, keine Zahlung)`,
-        'So freischalten': 'App öffnen, mit Nickname "admin" und Admin-Passwort anmelden, den Freigabe-Code unten einfügen, dann die neue accounts.json auf GitHub hochladen.',
-        'Alter': 'mindestens 16 Jahre (bestätigt)', 'Freigabe-Code': JSON.stringify(entry) }) });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    const j = await r.json().catch(() => ({}));
-    if (String(j.success) !== 'true') throw new Error(j.message || 'nicht zugestellt');
+    await notifyAdmin(`Neue Registrierung von ${name}`, {
+        Nickname: name, 'E-Mail': email, Geschlecht: { m: 'Mann', w: 'Frau', d: 'Divers' }[regG], Sprache: LANG.toUpperCase(), Zeitpunkt: new Date().toLocaleString('de-DE'), Alter: 'mindestens 16 Jahre (bestätigt)',
+        'So freischalten': approveUrl ? 'Einfach auf den Button bzw. Link „JETZT FREISCHALTEN“ tippen. Fertig. Die Person bekommt dann automatisch eine Willkommens-Mail.' : 'App öffnen, als admin anmelden, den Freigabe-Code unten einfügen, dann accounts.json auf GitHub speichern.',
+        'Freigabe-Code': JSON.stringify(entry) }, approveUrl ? { url: approveUrl, text: 'JETZT FREISCHALTEN (1 Klick)' } : null);
+    sendUserMail(email, 'received', name, LANG).catch(() => {});
     store.set(KEY_PEND, { name, at: Date.now() });
     authTab = 'login'; showLogin('', `Danke, ${name}! Deine Registrierung ist beim Admin. Du kannst dich anmelden, sobald du freigeschaltet bist.`);
   } catch (e) {
@@ -4315,7 +4453,7 @@ async function doRegister() {
     const act = /activat/i.test(msg);
     authErr(act ? 'Der Mail-Dienst wird gerade eingerichtet und muss vom Admin einmalig bestätigt werden. Bitte später erneut versuchen oder die Registrierung direkt per E-Mail senden.' : 'Senden hat nicht geklappt. Bitte Internetverbindung prüfen und erneut versuchen oder die Registrierung direkt per E-Mail senden.');
     const el = document.querySelector('.msg-err');
-    if (el) { const mail = NOTIFY_URL.split('/').pop(); const body = `Nickname: ${name}\nE-Mail: ${email}\nGeschlecht: ${{ m: 'Mann', w: 'Frau', d: 'Divers' }[regG]}\nAlter: mindestens 16 Jahre (bestätigt)\n\nFreigabe-Code:\n${JSON.stringify(entry)}`;
+    if (el) { const mail = NOTIFY_URL.split('/').pop(); const body = `${approveUrl ? 'Jetzt freischalten (1 Klick):\n' + approveUrl + '\n\n' : ''}Nickname: ${name}\nE-Mail: ${email}\nGeschlecht: ${{ m: 'Mann', w: 'Frau', d: 'Divers' }[regG]}\nAlter: mindestens 16 Jahre (bestätigt)\n\nFreigabe-Code:\n${JSON.stringify(entry)}`;
       el.insertAdjacentHTML('afterend', `<a class="btn btn-ghost" style="width:100%;margin-top:10px;display:flex;align-items:center;justify-content:center" href="mailto:${mail}?subject=${encodeURIComponent('Pausen Workout: Neue Registrierung von ' + name)}&body=${encodeURIComponent(body)}">✉ Registrierung per E-Mail senden</a>`);
       store.set(KEY_PEND, { name, at: Date.now() }); }
   }
@@ -4412,6 +4550,7 @@ catch (err) {
 /* Start: angemeldet bleiben, sonst Login */
 (function startApp() {
   applyTheme();
+  setTimeout(checkApproveLink, 300);
   const go = () => { const id = store.get(KEY_AUTH, null), acc = id && accList.accounts.find(a => a.id === id); if (acc) enterAccount(acc); else showLogin(); };
   go();
   /* Liste im Hintergrund aktualisieren; ein gesperrter oder entfernter Account wird abgemeldet */

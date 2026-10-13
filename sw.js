@@ -1,7 +1,7 @@
 /* Optionaler Service Worker für die Pausen Workout · Body Activity App.
    Legt index.html und die Schriften in den Cache, damit die App auch
    nach einem Neuladen ohne Internet startet. Einfach neben index.html ablegen. */
-const CACHE = 'uipause-v12';
+const CACHE = 'uipause-v16';
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html'])).then(() => self.skipWaiting()));
 });
@@ -13,7 +13,7 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   const isFont = /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
-  if (url.origin === location.origin && /(accounts|community|firmen)\.json$/.test(url.pathname)) {
+  if (url.origin === location.origin && /(accounts|community|firmen|email)\.json$/.test(url.pathname)) {
     // Freigaben immer frisch vom Server, nur offline aus dem Cache
     e.respondWith(fetch(req, { cache: 'no-store' }).then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); return r; })
       .catch(() => caches.match(req)));
