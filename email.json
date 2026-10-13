@@ -3,5 +3,17 @@
   "serviceId": "service_tvscld8",
   "templateId": "template_8bhiben",
   "adminEmail": "noreply.pausenworkout@gmail.com",
-  "fromEmail": "noreply.pausenworkout@gmail.com"
+  "fromEmail": "noreply.pausenworkout@gmail.com",
+  "impressum": {
+    "betreiber": "Pausen Workout · Max Mustermann",
+    "strasse": "Musterstraße 1",
+    "ort": "12345 Musterstadt",
+    "land": "Deutschland",
+    "vertreten": "Max Mustermann",
+    "email": "kontakt@pausen-workout.de",
+    "telefon": "+49 000 0000000",
+    "register": "",
+    "ustid": "",
+    "verantwortlich": "Max Mustermann (Anschrift wie oben)"
+  }
 }
