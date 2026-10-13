@@ -4403,7 +4403,7 @@ async function admLoad() {
   ADM.pall = {}; pe.docs.forEach(d => { ADM.pall[d.id] = Object.assign({ id: d.id }, d.data()); });
   ADM.req = rq.docs.map(d => Object.assign({ id: d.id }, d.data())).sort((a, b) => (b.ts || 0) - (a.ts || 0));
   ADM.fs = acc.docs.map(d => Object.assign({ id: d.id }, d.data()));
-  ADM.blocked = new Set(bl.docs.map(d => d.id));
+  ADM.blocked = new Set(bl.docs.map(d => d.id)); ADM.deleted = new Set(bl.docs.filter(d => (d.data() || {}).deleted).map(d => d.id));
   const known = new Set(ADM.fs.map(a => a.id).concat((draftList || accList).accounts.map(a => a.id)));
   ADM.pend = Object.values(ADM.pall).filter(p => !known.has(p.id) && p.token).sort((a, b) => (b.ts || 0) - (a.ts || 0));
 }
@@ -4438,7 +4438,7 @@ function showAdmin(msg) {
     return;
   }
   const rows = admRows();
-  const active = rows.filter(a => !ADM.blocked.has(a.id)), blocked = rows.filter(a => ADM.blocked.has(a.id));
+  const del = ADM.deleted || new Set(), active = rows.filter(a => !ADM.blocked.has(a.id)), blocked = rows.filter(a => ADM.blocked.has(a.id) && !del.has(a.id));
   const accCard = a => { const open = ADM.open.has(a.id), em = emailOf(a.id);
     return `<div class="panel adm-acc ${open ? 'open' : ''}" style="margin-top:10px">
       <button type="button" class="adm-head" data-act="adm-toggle" data-id="${a.id}" aria-expanded="${open}"><span class="adm-av">${esc(String(a.name || '?').slice(0, 1).toUpperCase())}</span><span class="adm-hn"><b>${esc(a.name)}</b><small>${em ? esc(em) : 'keine E-Mail hinterlegt'}</small></span><span class="badge">${a.src === 'json' ? 'Grundbestand' : 'Datenbank'}</span><span class="adm-chev">${open ? '▴' : '▾'}</span></button>
@@ -4450,8 +4450,8 @@ function showAdmin(msg) {
       <div class="set-row"><label for="ag_${a.id}">Geschlecht</label><select class="inp" id="ag_${a.id}">${[['m', 'Mann'], ['w', 'Frau'], ['d', 'Divers']].map(([k, n]) => `<option value="${k}" ${(a.g || 'm') === k ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
       <div class="set-row"><label for="ap_${a.id}">Neues Passwort<small>leer = unverändert</small></label><input class="inp wide" id="ap_${a.id}" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
       <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-save" data-id="${a.id}">Speichern</button><button type="button" class="btn btn-ghost" data-act="adm-reset" data-id="${a.id}" ${em ? '' : 'disabled'}>Passwort-Link senden</button></div>
-      <div class="adm-acts"><button type="button" class="btn btn-dghost" data-act="adm-block" data-id="${a.id}">Sperren</button></div>
-      ${em ? '' : '<p class="sub" style="margin:6px 0 0">Für den Passwort-Link zuerst eine E-Mail eintragen und speichern.</p>'}
+      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-block" data-id="${a.id}">Sperren</button><button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${a.id}">Löschen</button></div>
+      ${em ? '' : '<p class="sub" style="margin:6px 0 0">Keine E-Mail hinterlegt. Bei Accounts, die vor Version 20 freigeschaltet wurden, wurde sie noch nicht gespeichert. Du findest sie in der Registrierungs-Mail. Hier eintragen und speichern, dann geht auch der Passwort-Link.</p>'}
       </div>` : ''}
     </div>`; };
   $app.innerHTML = `<div class="fade-in">
@@ -4472,7 +4472,7 @@ function showAdmin(msg) {
     <div class="sec-title">Accounts (${active.length})</div>
     ${active.map(accCard).join('')}
     ${blocked.length ? `<div class="sec-title">Gesperrt (${blocked.length})</div>${blocked.map(a => `<div class="panel adm-acc" style="margin-top:10px"><div class="adm-h"><b>${esc(a.name)}</b><span class="badge off">gesperrt</span></div>
-      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-unblock" data-id="${a.id}">Entsperren</button>${a.src === 'fs' ? `<button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${a.id}">Endgültig löschen</button>` : ''}</div></div>`).join('')}` : ''}
+      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-unblock" data-id="${a.id}">Entsperren</button><button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${a.id}">Löschen</button></div></div>`).join('')}` : ''}
     <div class="panel" style="margin-top:14px"><h3>Account manuell anlegen</h3>
       <div class="set-row"><label for="nn">Nickname</label><input class="inp wide" id="nn" maxlength="24"></div>
       <div class="set-row"><label for="ng">Geschlecht</label><select class="inp" id="ng"><option value="m">Mann</option><option value="w">Frau</option><option value="d">Divers</option></select></div>
@@ -4543,12 +4543,23 @@ function adminAct(a, b) {
     const id = b.dataset.id; admRun(() => db.collection('blocked').doc(id).delete(), 'Account entsperrt.');
   } else if (a === 'adm-del') {
     const acc = rows.find(x => x.id === b.dataset.id); if (!acc) return;
-    confirmSheet(`${acc.name} endgültig löschen?`, 'Der Account wird aus der Datenbank entfernt. Der Nickname wird wieder frei.', 'LÖSCHEN', () => admRun(async () => { await db.collection('accounts').doc(acc.id).delete(); await db.collection('blocked').doc(acc.id).delete(); try { await db.collection('pending').doc(acc.id).delete(); } catch (e) {} }, `${acc.name} gelöscht.`));
+    if (rows.filter(x => !ADM.blocked.has(x.id) && x.id !== acc.id).length < 1) { toast('Mindestens ein Account muss bleiben'); return; }
+    const em = emailOf(acc.id);
+    confirmSheet(`${esc(acc.name)} löschen?`, `Der Account wird gelöscht und kann sich nicht mehr anmelden.${em ? ` Die E-Mail ${esc(em)} ist danach wieder für eine neue Registrierung frei.` : ''} Trainingsdaten auf dem Gerät der Person bleiben dort, sind aber nicht mehr erreichbar.`, 'LÖSCHEN', () => admRun(async () => {
+      const del = async ref => { try { await ref.delete(); } catch (e) {} };
+      if (acc.src !== 'json') await db.collection('accounts').doc(acc.id).delete();
+      if (acc.src !== 'fs') await db.collection('blocked').doc(acc.id).set({ id: acc.id, name: acc.name, deleted: true, ts: Date.now() });
+      else await del(db.collection('blocked').doc(acc.id));
+      if (em) await del(db.collection('emails').doc(sha256('mail:' + em.trim().toLowerCase())));
+      await del(db.collection('pending').doc(acc.id)); await del(db.collection('resets').doc(acc.id)); await del(db.collection('resetreq').doc(acc.id));
+      ADM.open.delete(acc.id);
+    }, `${acc.name} gelöscht.`));
   } else if (a === 'adm-pok') {
     const p = ADM.pend.find(x => x.id === b.dataset.id); if (!p) return;
     if (nickTaken(p.name, p.id)) { toast('Nickname gibt es schon.'); return; }
     admRun(async () => {
       await db.collection('accounts').doc(p.id).set({ id: p.id, name: p.name, g: p.g || 'm', hash: p.hash, token: p.token || '', ts: Date.now(), by: 'admin' });
+      if (ADM.blocked.has(p.id)) { try { await db.collection('blocked').doc(p.id).delete(); } catch (e) {} }
       if (p.em) { try { await sendUserMail(p.em, 'welcome', p.name, p.lg || 'de', profLink(p.id, p.fi, p.la, p.em)); } catch (e) {} }
     }, `${p.name} ist freigeschaltet.${p.em ? ' Die Willkommens-Mail ist raus.' : ''}`);
   } else if (a === 'adm-pno') {
