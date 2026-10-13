@@ -1,0 +1,7 @@
+{
+  "admin": "1691145f52d26bb204a0651dc1837bfa00071f0fdaa0add32e5da7781534d93d",
+  "accounts": [
+    { "id": "marc", "name": "Marc", "g": "m", "hash": "008a4542c3a5765a9596d7e070dfb1370e90fac3c3957788b6205138c12a5a79" },
+    { "id": "hueseyin", "name": "Hüseyin", "g": "m", "hash": "24085c0d9db95bc5d38621e9dc2b75a7fbef7e27d09085bd22cb5fb0b1b1180f" }
+  ]
+}
