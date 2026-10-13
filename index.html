@@ -747,6 +747,11 @@ footer button { background: none; border: 0; color: var(--ink-soft); font: inher
 .m-av-pic i { position: absolute; right: -2px; bottom: -2px; width: 26px; height: 26px; border-radius: 50%; background: #C9A13B; display: grid; place-items: center; font-style: normal; font-size: 13px; border: 2px solid var(--bg); }
 @media (max-width: 380px) { .acc-btn .nm { display: none; } .acc-btn { padding: 3px; } }
 /* Admin */
+.adm-tabs { grid-template-columns: 1fr 1fr; margin: 12px 0 4px; }
+.adm-tabs .c-badge { margin-left: 4px; }
+.acm-msg, .acm-user { margin-top: 10px; }
+.team-av { background: linear-gradient(135deg, #F0D98E, #C9A13B) !important; color: #061025 !important; font: 900 11px var(--sans) !important; display: inline-grid; place-items: center; border-radius: 50%; }
+.team-badge { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 9px; background: #C9A13B; color: #061025; font: 800 10.5px var(--sans); letter-spacing: .04em; text-transform: uppercase; }
 .adm-head { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: 0; padding: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .adm-av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, #F0D98E, #C9A13B); color: #061025; font: 800 16px var(--sans); flex: none; }
 .adm-hn { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -3910,7 +3915,7 @@ function msgHTML(m) {
   const me = m.nick === cNick();
   if (!me && (isBlocked(m.nick) || hiddenMsgs().includes(m.id))) return '';
   const del = me ? `<button type="button" class="c-del" data-act="c-del" data-id="${esc(m.id)}" aria-label="${L('Löschen', 'Delete', 'Supprimer', 'Sil')}">×</button>` : `<button type="button" class="c-del" data-act="c-report" data-id="${esc(m.id)}" aria-label="${L('Melden', 'Report', 'Signaler', 'Bildir')}" title="${L('Melden', 'Report', 'Signaler', 'Bildir')}">⚑</button>`;
-  const head = `<div class="c-meta">${avHTML(m.nick, 30)}<b>${esc(m.nick)}</b><span>${tStr(m.ts)}</span>${del}</div>`;
+  const head = `<div class="c-meta">${m.team ? '<span class="av team-av" style="width:30px;height:30px">PW</span>' : avHTML(m.nick, 30)}<b>${esc(m.nick)}</b>${m.team ? '<span class="team-badge">Team</span>' : ''}<span>${tStr(m.ts)}</span>${del}</div>`;
   if (m.type === 'poke') return `<div class="c-poke">👉 ${me ? L('Du hast angestupst', 'You poked', 'Tu as fait signe', 'Dürttün') : `<b>${esc(m.nick)}</b> ${L('hat dich angestupst', 'poked you', 't\'a fait signe', 'seni dürttü')}`}${m.text ? ': ' + esc(m.text) : ''} <span>${tStr(m.ts)}</span></div>`;
   if (m.type === 'poll' && m.poll) {
     const votes = m.poll.votes || {}, tot = new Set(Object.values(votes).flat()).size;
@@ -4087,6 +4092,7 @@ function reportSend(i) {
   const m = reportMsg; if (!m) return; reportMsg = null;
   const reasons = ['Beleidigung / Belästigung', 'Rechtswidriger Inhalt', 'Spam / Werbung', 'Persönliche Daten anderer', 'Sonstiges'];
   const H = hiddenMsgs(); if (!H.includes(m.id)) H.push(m.id); store.set(hideKey(), H.slice(-500));
+  if (CB && !CB.demo) fbCore().then(({ db }) => db.collection('reports').add({ room: cbRoom || '', mid: m.id || '', nick: String(m.nick || '').slice(0, 30), text: String(m.text || (m.poll && m.poll.q) || (m.meet && m.meet.title) || '').slice(0, 300), reason: reasons[i], by: cNick(), ts: Date.now() })).catch(() => {});
   notifyAdmin(`Beitrag gemeldet (${reasons[i]})`, { Grund: reasons[i], 'Gemeldet von': cNick(), Verfasser: m.nick, Inhalt: m.text || (m.poll && m.poll.q) || (m.meet && m.meet.title) || '', Zeitpunkt: new Date(m.ts).toLocaleString('de-DE'),
     'Löschen in Firebase': `Firestore Database → Daten → rooms → ${cbRoom} → msgs → ${m.id}` }).catch(() => {});
   closeSheet(); renderChatOnly(); toast(L('Gemeldet. Danke! Der Admin prüft das.', 'Reported. Thanks! The admin will review it.', 'Signalé. Merci ! L\'admin va vérifier.', 'Bildirildi. Teşekkürler! Yönetici inceleyecek.'));
@@ -4391,6 +4397,7 @@ async function admConnect(pw) {
     if (!cu || cu.email !== ADMIN_FB_EMAIL) await auth.signInWithEmailAndPassword(ADMIN_FB_EMAIL, pw);
     ADM.db = db; ADM.st = 'on';
     await admLoad();
+    try { await acmLoad(); } catch (e) {}
   } catch (e) {
     ADM.st = 'error'; ADM.err = String(e && (e.code || e.message) || e);
   }
@@ -4454,6 +4461,15 @@ function showAdmin(msg) {
       ${em ? '' : '<p class="sub" style="margin:6px 0 0">Keine E-Mail hinterlegt. Bei Accounts, die vor Version 20 freigeschaltet wurden, wurde sie noch nicht gespeichert. Du findest sie in der Registrierungs-Mail. Hier eintragen und speichern, dann geht auch der Passwort-Link.</p>'}
       </div>` : ''}
     </div>`; };
+  const nRep = (ACM.reports || []).length;
+  const tabs = `<div class="seg adm-tabs" role="tablist">${[['acc', '👤 Accounts' + (ADM.pend.length + ADM.req.length ? ` <span class="c-badge">${ADM.pend.length + ADM.req.length}</span>` : '')], ['com', '💬 Community' + (nRep ? ` <span class="c-badge">${nRep}</span>` : '')]].map(([k, t]) => `<button type="button" role="tab" aria-selected="${(ADM.tab || 'acc') === k}" data-act="adm-tab" data-v="${k}">${t}</button>`).join('')}</div>`;
+  if (ADM.tab === 'com') {
+    $app.innerHTML = `<div class="fade-in"><article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span><span class="r">✓ Datenbank verbunden</span></div>
+      <h2>Community verwalten</h2><p>Meldungen prüfen, Beiträge und Räume löschen, Profile aufräumen und Ankündigungen posten.</p>
+      ${msg ? `<div class="note ok"><b>Erledigt</b>${esc(msg)}</div>` : ''}</article>${tabs}${admComHTML()}
+      <p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p></div>`;
+    return;
+  }
   $app.innerHTML = `<div class="fade-in">
     <article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span><span class="r">✓ Datenbank verbunden</span></div>
       <h2>Accounts verwalten</h2>
@@ -4461,6 +4477,7 @@ function showAdmin(msg) {
       ${msg ? `<div class="note ok"><b>Erledigt</b>${esc(msg)}</div>` : ''}
       <div class="adm-stats"><span><b>${active.length}</b> aktiv</span><span><b>${ADM.pend.length}</b> offen</span><span><b>${blocked.length}</b> gesperrt</span><button type="button" class="mini" data-act="adm-reload">↻ Aktualisieren</button></div>
     </article>
+    ${tabs}
     ${ADM.req.length ? `<div class="sec-title">Passwort vergessen <span class="badge off">${ADM.req.length}</span></div>${ADM.req.map(r => { const acc = rows.find(x => x.id === r.id), em = emailOf(r.id), same = em && r.em && em.toLowerCase() === String(r.em).toLowerCase();
       return `<div class="panel adm-acc" style="margin-top:10px"><div class="adm-h"><b>${esc(r.nick || r.id)}</b><small>${admDate(r.ts)} · angegeben: ${esc(r.em || '–')}</small></div>
       ${!acc ? '<p class="sub">Zu diesem Nickname gibt es keinen Account.</p>' : !em ? '<p class="sub">Beim Account ist keine E-Mail hinterlegt. Account aufklappen, E-Mail eintragen, dann Link senden.</p>' : same ? '<p class="sub">✓ E-Mail stimmt mit dem Account überein.</p>' : `<p class="sub">⚠️ Angegebene E-Mail weicht ab. Der Link geht an die hinterlegte Adresse ${esc(em)}.</p>`}
@@ -4494,13 +4511,15 @@ async function admRun(fn, okMsg) {
   finally { ADM.busy = false; }
 }
 function adminAct(a, b) {
-  if (a === 'adm-exit') { adminMode = false; draftList = null; ADM = { st: 'off', err: '', pw: '', fs: [], blocked: new Set(), pend: [], busy: false }; admLogoutFb(); refreshAccounts(); showLogin(); return; }
+  if (a === 'adm-exit') { ACM = { loaded: false, rooms: [], counts: {}, users: [], reports: [], room: null, msgs: [], busy: false }; adminMode = false; draftList = null; ADM = { st: 'off', err: '', pw: '', fs: [], blocked: new Set(), pend: [], busy: false }; admLogoutFb(); refreshAccounts(); showLogin(); return; }
   if (a === 'adm-retry') { admConnect(ADM.pw); return; }
   if (ADM.st !== 'on') return;
   const db = ADM.db, rows = admRows(), FV = firebase.firestore.FieldValue;
   const taken = () => '';
   const nickTaken = (name, except) => rows.some(x => x.id !== except && nickKey(x.name) === nickKey(name)) || nickKey(name) === 'admin';
   if (a === 'adm-reload') { admRun(async () => {}, 'Liste aktualisiert.'); return; }
+  if (a === 'adm-tab') { ADM.tab = b.dataset.v; showAdmin(); window.scrollTo(0, 0); return; }
+  if (a.startsWith('adm-c-')) { admComAct(a, b); return; }
   if (a === 'adm-save') {
     const acc = rows.find(x => x.id === b.dataset.id); if (!acc) return;
     const name = val('an_' + acc.id), pw = val('ap_' + acc.id), g = val('ag_' + acc.id) || acc.g || 'm';
@@ -4545,15 +4564,16 @@ function adminAct(a, b) {
     const acc = rows.find(x => x.id === b.dataset.id); if (!acc) return;
     if (rows.filter(x => !ADM.blocked.has(x.id) && x.id !== acc.id).length < 1) { toast('Mindestens ein Account muss bleiben'); return; }
     const em = emailOf(acc.id);
-    confirmSheet(`${esc(acc.name)} löschen?`, `Der Account wird gelöscht und kann sich nicht mehr anmelden.${em ? ` Die E-Mail ${esc(em)} ist danach wieder für eine neue Registrierung frei.` : ''} Trainingsdaten auf dem Gerät der Person bleiben dort, sind aber nicht mehr erreichbar.`, 'LÖSCHEN', () => admRun(async () => {
+    confirmSheet(`${esc(acc.name)} löschen?`, `Der Account wird gelöscht und kann sich nicht mehr anmelden.${em ? ` Die E-Mail ${esc(em)} ist danach wieder für eine neue Registrierung frei.` : ''} Trainingsdaten auf dem Gerät der Person bleiben dort, sind aber nicht mehr erreichbar.</p><label class="terms"><input type="checkbox" id="delCom" checked><span>Auch alle Chat-Beiträge, Direktnachrichten und das Community-Profil löschen</span></label><p>`, 'LÖSCHEN', () => { const wipeCom = !!(document.getElementById('delCom') || {}).checked; admRun(async () => {
       const del = async ref => { try { await ref.delete(); } catch (e) {} };
+      if (wipeCom) { try { if (!ACM.loaded) await acmLoad(); await acmWipeNick(acc.name); ACM.loaded = false; } catch (e) {} }
       if (acc.src !== 'json') await db.collection('accounts').doc(acc.id).delete();
       if (acc.src !== 'fs') await db.collection('blocked').doc(acc.id).set({ id: acc.id, name: acc.name, deleted: true, ts: Date.now() });
       else await del(db.collection('blocked').doc(acc.id));
       if (em) await del(db.collection('emails').doc(sha256('mail:' + em.trim().toLowerCase())));
       await del(db.collection('pending').doc(acc.id)); await del(db.collection('resets').doc(acc.id)); await del(db.collection('resetreq').doc(acc.id));
       ADM.open.delete(acc.id);
-    }, `${acc.name} gelöscht.`));
+    }, `${acc.name} gelöscht.${wipeCom ? ' Community-Daten ebenfalls entfernt.' : ''}`); });
   } else if (a === 'adm-pok') {
     const p = ADM.pend.find(x => x.id === b.dataset.id); if (!p) return;
     if (nickTaken(p.name, p.id)) { toast('Nickname gibt es schon.'); return; }
@@ -4587,6 +4607,99 @@ async function fsMergeAdmin() {
   const { db } = await fbCore();
   try { const bl = await db.collection('blocked').get(); bl.docs.forEach(d => accBlocked.add(d.id)); } catch (e) {}
   try { const c = await db.collection('config').doc('admin').get(); if (c.exists && /^[0-9a-f]{64}$/.test((c.data() || {}).hash || '')) accList.admin = c.data().hash; } catch (e) {}
+}
+
+/* ============================================================
+   ADMIN: COMMUNITY VERWALTEN
+   Meldungen, Räume & Beiträge, Mitglieder-Profile, Ankündigungen
+   ============================================================ */
+let ACM = { loaded: false, rooms: [], counts: {}, users: [], reports: [], room: null, msgs: [], busy: false };
+const ADM_TEAM_NICK = 'Pausen Workout Team';
+const acmTs = x => x && x.toMillis ? x.toMillis() : (typeof x === 'number' ? x : 0);
+async function acmLoad() {
+  const db = ADM.db, none = () => ({ docs: [] });
+  const [rq, uq, pq] = await Promise.all([db.collection('rooms').get().catch(none), db.collection('users').get().catch(none), db.collection('reports').get().catch(none)]);
+  const custom = rq.docs.map(d => Object.assign({ id: d.id, custom: true }, d.data())).filter(r => !r.id.startsWith('dm_'));
+  ACM.rooms = DEF_ROOMS.map(r => Object.assign({ custom: false }, r)).concat(custom.filter(r => !DEF_ROOMS.some(d => d.id === r.id)));
+  ACM.users = uq.docs.map(d => Object.assign({ id: d.id }, d.data(), { ts: acmTs(d.data().ts) })).sort((a, b) => String(a.nick || '').localeCompare(String(b.nick || ''), 'de'));
+  ACM.reports = pq.docs.map(d => Object.assign({ id: d.id }, d.data())).sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  ACM.counts = {};
+  await Promise.all(ACM.rooms.map(async r => { try { const q = await db.collection('rooms').doc(r.id).collection('msgs').get(); ACM.counts[r.id] = { n: q.size, last: Math.max(0, ...q.docs.map(d => acmTs(d.data().ts) || d.data().cts || 0)) }; } catch (e) { ACM.counts[r.id] = { n: 0, last: 0 }; } }));
+  ACM.loaded = true;
+}
+async function acmLoadRoom(id) {
+  const q = await ADM.db.collection('rooms').doc(id).collection('msgs').get();
+  ACM.msgs = q.docs.map(d => Object.assign({ id: d.id }, d.data(), { ts: acmTs(d.data().ts) || d.data().cts || 0 })).sort((a, b) => b.ts - a.ts).slice(0, 200);
+}
+const acmText = m => m.type === 'poll' && m.poll ? '📊 ' + m.poll.q : m.type === 'meet' && m.meet ? '📅 ' + m.meet.title + (m.meet.place ? ' · ' + m.meet.place : '') : m.type === 'poke' ? '👉 ' + (m.text || 'Anstupser') : (m.text || '');
+function admComHTML() {
+  if (!ACM.loaded) { setTimeout(() => acmRun(async () => {}), 0); return '<div class="panel"><p class="sub" style="margin:0">Community wird geladen …</p></div>'; }
+  if (ACM.room) {
+    const r = ACM.rooms.find(x => x.id === ACM.room) || { id: ACM.room, name: ACM.room };
+    return `<div class="adm-acts" style="margin:0 0 10px"><button type="button" class="btn btn-ghost" data-act="adm-c-back">← Alle Räume</button></div>
+      <div class="panel"><div class="adm-h"><b>${esc(r.ic || '💬')} ${esc(r.name)}</b>${r.city ? `<small>📍 ${esc(r.city)}</small>` : ''}<span class="badge">${ACM.msgs.length} Beiträge</span></div>
+        <label class="lbl-pw" for="acm_post">Ankündigung als „${ADM_TEAM_NICK}“ posten</label>
+        <textarea id="acm_post" class="inp code" rows="2" maxlength="500" placeholder="z. B. Neue Challenge ab Montag …"></textarea>
+        <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-c-post">Posten</button>${r.custom ? '<button type="button" class="btn btn-dghost" data-act="adm-c-delroom">Raum löschen</button>' : ''}</div></div>
+      ${ACM.msgs.length ? ACM.msgs.map(m => `<div class="panel acm-msg"><div class="adm-h"><b>${esc(m.nick || '?')}</b><small>${admDate(m.ts)}</small></div><p style="margin:2px 0 8px;white-space:pre-wrap;word-break:break-word">${esc(acmText(m))}</p>
+        <div class="adm-acts"><button type="button" class="btn btn-dghost" data-act="adm-c-delmsg" data-id="${esc(m.id)}">Beitrag löschen</button><button type="button" class="btn btn-ghost" data-act="adm-c-delnick" data-v="${esc(m.nick || '')}">Alle von ${esc(m.nick || '?')} löschen</button></div></div>`).join('')
+      : '<div class="panel"><p class="sub" style="margin:0">Noch keine Beiträge.</p></div>'}`;
+  }
+  const rep = ACM.reports;
+  return `<div class="sec-title">⚑ Meldungen ${rep.length ? `<span class="badge off">${rep.length}</span>` : ''}</div>
+    ${rep.length ? rep.map(p => `<div class="panel acm-msg"><div class="adm-h"><b>${esc(p.reason || 'Meldung')}</b><small>${admDate(p.ts)} · gemeldet von ${esc(p.by || '?')} · Raum ${esc((ACM.rooms.find(r => r.id === p.room) || {}).name || p.room || '?')}</small></div>
+      <p style="margin:2px 0 8px"><b>${esc(p.nick || '?')}:</b> ${esc(p.text || '')}</p>
+      <div class="adm-acts"><button type="button" class="btn btn-dghost" data-act="adm-c-repdel" data-id="${esc(p.id)}">Beitrag löschen</button><button type="button" class="btn btn-ghost" data-act="adm-c-repok" data-id="${esc(p.id)}">Ignorieren</button></div></div>`).join('')
+      : '<div class="panel"><p class="sub" style="margin:0">Keine offenen Meldungen.</p></div>'}
+    <div class="sec-title">💬 Räume (${ACM.rooms.length})</div>
+    <div class="c-rooms">${ACM.rooms.map(r => { const c = ACM.counts[r.id] || { n: 0, last: 0 }; return `<button type="button" class="c-room" data-act="adm-c-room" data-id="${esc(r.id)}"><span class="ic">${esc(r.ic || '💬')}</span><span class="nm"><b>${esc(r.name)}</b><small>${c.n} Beiträge${c.last ? ' · zuletzt ' + admDate(c.last) : ''}${r.city ? ' · 📍 ' + esc(r.city) : ''}${r.custom ? ' · eigener Raum' : ''}</small></span><span class="go">›</span></button>`; }).join('')}</div>
+    <div class="sec-title">👥 Community-Profile (${ACM.users.length})</div>
+    ${ACM.users.length ? ACM.users.map(u => `<div class="panel acm-user"><div class="adm-head" style="cursor:default">${u.av ? `<img class="adm-av" src="${esc(u.av)}" alt="" style="object-fit:cover">` : `<span class="adm-av">${esc(String(u.nick || '?').slice(0, 1).toUpperCase())}</span>`}<span class="adm-hn"><b>${esc(u.nick || '?')}</b><small>${u.city ? '📍 ' + esc(u.city) + ' · ' : ''}${u.ts ? 'aktiv ' + admDate(u.ts) : ''}</small></span></div>
+      <div class="adm-acts">${u.av ? `<button type="button" class="btn btn-ghost" data-act="adm-c-noav" data-id="${esc(u.id)}">Bild entfernen</button>` : ''}<button type="button" class="btn btn-dghost" data-act="adm-c-delnick" data-v="${esc(u.nick || '')}">Alles von ${esc(u.nick || '?')} löschen</button></div></div>`).join('')
+      : '<div class="panel"><p class="sub" style="margin:0">Noch niemand hat die Community aktiviert.</p></div>'}
+    <div class="adm-acts" style="margin-top:12px"><button type="button" class="btn btn-ghost" data-act="adm-c-reload">↻ Aktualisieren</button></div>`;
+}
+async function acmRun(fn, msg) {
+  if (ACM.busy) return; ACM.busy = true;
+  try { await fn(); if (ACM.room) await acmLoadRoom(ACM.room); await acmLoad(); if (adminMode) showAdmin(msg); }
+  catch (e) { toast('Fehler: ' + (e && (e.code || e.message) || e)); }
+  finally { ACM.busy = false; }
+}
+/* Alles von einem Nickname löschen: Beiträge in allen Räumen, Direktchats, Community-Profil */
+async function acmWipeNick(nick) {
+  const db = ADM.db, k = nickKey(nick || ''); if (!k) return 0;
+  let n = 0;
+  const roomIds = new Set(ACM.rooms.map(r => r.id));
+  try { const dq = await db.collection('dms').where('members', 'array-contains', k).get(); dq.docs.forEach(d => roomIds.add(d.id));
+    for (const d of dq.docs) { const mq = await db.collection('rooms').doc(d.id).collection('msgs').get(); for (const m of mq.docs) { await m.ref.delete(); n++; } await d.ref.delete(); roomIds.delete(d.id); } } catch (e) {}
+  for (const id of roomIds) {
+    try { const q = await db.collection('rooms').doc(id).collection('msgs').get();
+      for (const m of q.docs) { if (nickKey(m.data().nick || '') === k) { await m.ref.delete(); n++; } } } catch (e) {}
+  }
+  try { const uq = await db.collection('users').get(); for (const u of uq.docs) if (nickKey(u.data().nick || '') === k) await u.ref.delete(); } catch (e) {}
+  return n;
+}
+function admComAct(a, b) {
+  const db = ADM.db;
+  if (a === 'adm-c-reload') { acmRun(async () => {}, 'Community aktualisiert.'); return; }
+  if (a === 'adm-c-room') { ACM.room = b.dataset.id; acmRun(async () => {}); return; }
+  if (a === 'adm-c-back') { ACM.room = null; ACM.msgs = []; showAdmin(); return; }
+  if (a === 'adm-c-delmsg') { const id = b.dataset.id; confirmSheet('Beitrag löschen?', 'Der Beitrag wird für alle entfernt.', 'LÖSCHEN', () => acmRun(() => db.collection('rooms').doc(ACM.room).collection('msgs').doc(id).delete(), 'Beitrag gelöscht.')); return; }
+  if (a === 'adm-c-delnick') { const nick = b.dataset.v; if (!nick) return;
+    confirmSheet(`Alles von ${esc(nick)} löschen?`, 'Alle Beiträge in allen Räumen, alle Direktnachrichten und das Community-Profil mit Bild werden entfernt. Der Account selbst bleibt bestehen.', 'ALLES LÖSCHEN', () => { let n = 0; acmRun(async () => { n = await acmWipeNick(nick); }, `Community-Daten von ${nick} gelöscht.`); }); return; }
+  if (a === 'adm-c-noav') { const id = b.dataset.id; acmRun(() => db.collection('users').doc(id).update({ av: '' }), 'Profilbild entfernt.'); return; }
+  if (a === 'adm-c-delroom') { const id = ACM.room, r = ACM.rooms.find(x => x.id === id) || {};
+    confirmSheet(`Raum „${esc(r.name || id)}“ löschen?`, 'Der Raum und alle Beiträge darin werden für alle entfernt.', 'RAUM LÖSCHEN', () => acmRun(async () => {
+      const q = await db.collection('rooms').doc(id).collection('msgs').get(); for (const m of q.docs) await m.ref.delete();
+      await db.collection('rooms').doc(id).delete(); ACM.room = null; ACM.msgs = []; }, 'Raum gelöscht.')); return; }
+  if (a === 'adm-c-post') { const t = val('acm_post'); if (!t) { toast('Bitte Text eingeben'); return; }
+    const uid = (firebase.app().auth().currentUser || {}).uid || 'admin';
+    acmRun(() => db.collection('rooms').doc(ACM.room).collection('msgs').add({ nick: ADM_TEAM_NICK, uid, text: t.slice(0, 500), team: true, cts: Date.now(), ts: firebase.firestore.FieldValue.serverTimestamp() }), 'Ankündigung gepostet.'); return; }
+  if (a === 'adm-c-repok') { const id = b.dataset.id; acmRun(() => db.collection('reports').doc(id).delete(), 'Meldung erledigt.'); return; }
+  if (a === 'adm-c-repdel') { const p = ACM.reports.find(x => x.id === b.dataset.id); if (!p) return;
+    confirmSheet('Gemeldeten Beitrag löschen?', `„${esc(p.text || '')}“ von ${esc(p.nick || '?')} wird für alle entfernt.`, 'LÖSCHEN', () => acmRun(async () => {
+      if (p.room && p.mid) { try { await db.collection('rooms').doc(p.room).collection('msgs').doc(p.mid).delete(); } catch (e) {} }
+      await db.collection('reports').doc(p.id).delete(); }, 'Beitrag gelöscht, Meldung erledigt.')); return; }
 }
 
 /* ============================================================
@@ -5297,7 +5410,7 @@ function showLogin(err, info) {
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 20 · 1-Klick-Freischaltung</p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 22 · 1-Klick-Freischaltung</p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
@@ -5325,7 +5438,7 @@ async function doRegister() {
   const first = val('rfirst'), last = val('rlast'), name = val('rn'), email = val('re'), p1 = (document.getElementById('rp') || {}).value || '', p2 = (document.getElementById('rp2') || {}).value || '';
   if (first.length < 2 || last.length < 2) { authErr('Bitte Vor- und Nachnamen angeben.'); return; }
   if (name.length < 2 || !/[a-z0-9]/i.test(name)) { authErr('Nickname: mindestens 2 Zeichen.'); return; }
-  if (nickKey(name) === 'admin') { authErr('Dieser Nickname ist reserviert.'); return; }
+  if (nickKey(name) === 'admin' || /pausenworkout|^team$|^admin/.test(nickKey(name))) { authErr('Dieser Nickname ist reserviert.'); return; }
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { authErr('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
   if (!pwStrong(p1)) { authErr('Passwort: mindestens 8 Zeichen, davon mindestens 1 Zahl und 1 Sonderzeichen (z. B. ! ? # @ $ % & *).'); return; }
   if (normPw(p1) !== normPw(p2)) { authErr('Die Passwörter stimmen nicht überein.'); return; }
