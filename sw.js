@@ -1,7 +1,7 @@
 /* Optionaler Service Worker für die Pausen Workout · Body Activity App.
    Legt index.html und die Schriften in den Cache, damit die App auch
    nach einem Neuladen ohne Internet startet. Einfach neben index.html ablegen. */
-const CACHE = 'uipause-v11';
+const CACHE = 'uipause-v12';
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html'])).then(() => self.skipWaiting()));
 });
