@@ -6,6 +6,12 @@
       "name": "Trieum",
       "g": "m",
       "hash": "8bda945ceba26ad09d880b9e0a70cd5d8ce0caafc36035322e1ccb875d49bd79"
+    },
+    {
+      "id": "test",
+      "name": "Test",
+      "g": "m",
+      "hash": "638bc9825ba52ece7a21aaa34ab814d838f3df6a3e391710642c20bd6684157c"
     }
   ]
 }
