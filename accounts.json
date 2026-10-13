@@ -12,6 +12,19 @@
       "name": "Test",
       "g": "m",
       "hash": "638bc9825ba52ece7a21aaa34ab814d838f3df6a3e391710642c20bd6684157c"
+    },
+    {
+      "id": "standard",
+      "name": "Standard",
+      "g": "m",
+      "hash": "e8f86d58baa9b83033c02cbd3cfc7cf6b08b818b87385d8598ce49a9d56628da",
+      "perm": true
+    },
+    {
+      "id": "maja",
+      "name": "maja",
+      "g": "w",
+      "hash": "e60ff616d661123ce50360ff601e85aa74ebca324362fe5dc6808c7cdbbb0b7d"
     }
   ]
 }
