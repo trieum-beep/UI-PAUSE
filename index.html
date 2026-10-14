@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fkwBA/H4i5cSs0z3ulQ3UQCZ+miv6/vbJLP55H+iVTI=' 'sha256-4LYDOuSF53fVevCrpTelpMoBUTnzxp/OTVhFeVpZijs=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fkwBA/H4i5cSs0z3ulQ3UQCZ+miv6/vbJLP55H+iVTI=' 'sha256-PYI/im4TP5uXnjvWU1z7oB1wc1Zv/r9yvE3eKcwFk7w=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
@@ -518,6 +518,50 @@ body.has-bnav .toast { bottom: 150px; }
 .jr-m b { display: block; color: var(--paper-ink); font-size: 15px; }
 .jr-m small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
 .jr-p { flex: none; font: 800 13px var(--sans); color: var(--muted); }
+.sync-wrap { margin: -6px 0 0; }
+.sync-b { display: inline-block; border: 0; background: transparent; padding: 2px 0; font: 700 12.5px var(--sans); color: var(--muted); cursor: pointer; text-align: left; }
+.sync-b.ok { color: #2E9E58; cursor: default; }
+.sync-b.err { color: #fff; background: #D0342C; padding: 8px 12px; border-radius: 10px; width: 100%; }
+.sync-b.off { color: var(--muted); text-decoration: underline; }
+.st-tiles { grid-template-columns: repeat(4, 1fr) !important; gap: 6px !important; }
+.st-tiles .tile { padding: 10px 8px !important; text-align: center; }
+.st-tiles .tile small { font-size: 9.5px !important; letter-spacing: .02em; }
+.st-tiles .tile b { font-size: 20px !important; }
+.st-tiles .tile b small { font-size: 11px !important; }
+.mr2 { position: relative; overflow: hidden; border-radius: 18px; padding: 14px 16px 14px; color: #fff; background: radial-gradient(120% 90% at 100% 0%, rgba(214,194,140,.28) 0%, rgba(214,194,140,0) 55%), linear-gradient(150deg, #13499E 0%, #0B2A63 55%, #061025 100%); box-shadow: 0 10px 28px rgba(6,16,37,.35); }
+.mr2-top { display: flex; align-items: center; justify-content: space-between; }
+.mr2-title { text-align: center; }
+.mr2-title small { display: block; font: 700 11px var(--sans); letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+.mr2-title b { font: 900 24px/1.1 var(--sans); text-transform: capitalize; }
+.mr2-title b span { font-weight: 600; opacity: .6; font-size: 16px; }
+.mr2-nav { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff; font: 800 18px var(--sans); cursor: pointer; }
+.mr2-nav[disabled] { opacity: .25; cursor: default; }
+.mr2-main { display: flex; align-items: center; gap: 16px; margin-top: 12px; }
+.mr2-ringbox { position: relative; flex: none; width: 112px; height: 112px; }
+.mr2-ring { width: 112px; height: 112px; }
+.mr2-ring circle { fill: none; stroke-width: 10; }
+.mr2-ring .bg { stroke: rgba(255,255,255,.14); }
+.mr2-ring .fg { stroke: #D6C28C; stroke-linecap: round; transition: stroke-dashoffset .8s ease; }
+.mr2-rc { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.mr2-rc b { font: 900 34px/1 var(--sans); }
+.mr2-rc small { font: 700 11.5px var(--sans); opacity: .75; margin-top: 2px; }
+.mr2-stats { flex: 1; display: grid; gap: 8px; min-width: 0; }
+.mr2-stats > div { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.mr2-stats span { font-size: 16px; width: 22px; }
+.mr2-stats b { font: 900 22px/1 var(--sans); }
+.mr2-stats small { font: 600 12.5px var(--sans); opacity: .75; }
+.mr2-d { font: 800 11px var(--sans); font-style: normal; padding: 2px 6px; border-radius: 99px; background: rgba(46,158,88,.25); color: #8BE3A8; }
+.mr2-d.down { background: rgba(208,52,44,.22); color: #FFA9A3; }
+.mr2-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(14px, 1fr)); gap: 4px; margin-top: 14px; }
+.mr2-c { aspect-ratio: 1; border-radius: 4px; background: rgba(255,255,255,.12); }
+.mr2-c.fut { background: rgba(255,255,255,.05); }
+.mr2-c.wo { background: #D6C28C; }
+.mr2-c.run { background: #3CCB74; }
+.mr2-c.both { background: linear-gradient(135deg, #D6C28C 50%, #3CCB74 50%); }
+.mr2-c.today { box-shadow: 0 0 0 2px #fff; }
+.mr2-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.mr2-verdict { font: 800 14px var(--sans); }
+.mr2-pts { font: 700 12.5px var(--sans); opacity: .8; }
 .lang-chips { display: flex; gap: 6px; justify-content: flex-end; margin: -4px 0 10px; }
 .lang-chips .chip { margin-top: 0; min-height: 34px; padding: 6px 10px; font-size: 12px; }
 
@@ -1177,6 +1221,12 @@ const EX = {
     desc: 'Sitzen, Oberkörper leicht zurücklehnen, Rücken gerade. Hände vor der Brust und Oberkörper abwechselnd nach links und rechts drehen. Füße am Boden oder angehoben.' },
   hollow: { name: 'Hollow Hold', muscles: 'Ganzer Bauch · Rumpf', kind: 'time', cat: 'core',
     desc: 'Rückenlage, unteren Rücken in die Matte drücken. Schultern und gestreckte Beine leicht anheben, Arme lang. Leichter: Knie anwinkeln.' },
+  jumping_jack: { name: 'Hampelmann', muscles: 'Kreislauf · Beine · Schultern', kind: 'time', cat: 'strength',
+    desc: 'Aus dem Stand springen: Beine auseinander, Arme über den Kopf, dann zurück. Locker auf den Fußballen landen. Leise Variante fürs Hotelzimmer: statt zu springen abwechselnd ein Bein zur Seite setzen.' },
+  high_knees: { name: 'Knieheben schnell', muscles: 'Kreislauf · Hüftbeuger · Bauch', kind: 'time', cat: 'strength',
+    desc: 'Auf der Stelle zügig die Knie Richtung Hüfthöhe ziehen, Arme schwingen mit. Oberkörper aufrecht. Leise Variante: ohne Sprung, nur schnell marschieren.' },
+  mountain_climber: { name: 'Mountain Climbers', muscles: 'Bauch · Schultern · Kreislauf', kind: 'time', cat: 'core',
+    desc: 'Hoher Liegestütz, Hände unter den Schultern. Abwechselnd die Knie zügig Richtung Brust ziehen. Hüfte bleibt tief, Rücken gerade. Leichter: langsam im Wechsel steigen.' },
 
   /* Faszienrolle */
   br_calf: { name: 'Waden rollen', muscles: 'Waden', kind: 'time', cat: 'mobility', half: 'Seite wechseln', roll: true,
@@ -1283,7 +1333,7 @@ const MG = {
   kb_goblet: ['Oberschenkel', 'Gesäß'], kb_press: ['Schultern', 'Trizeps'], floor_press: ['Brust', 'Trizeps'], lateral_raise: ['Schultern'],
   hammer_curl: ['Bizeps', 'Unterarme'], tri_ext: ['Trizeps'], pike_pushup: ['Schultern', 'Trizeps'], diamond_pushup: ['Trizeps', 'Brust'], knee_pushup: ['Brust', 'Trizeps', 'Schultern'],
   chinup: ['Bizeps', 'Latissimus'], knee_raise: ['Bauch', 'Unterarme'], side_plank: ['Seitlicher Rumpf'], superman: ['Unterer Rücken', 'Gesäß'],
-  bird_dog: ['Rumpf', 'Unterer Rücken'], bicycle: ['Bauch'], reverse_crunch: ['Bauch'], leg_raise: ['Bauch', 'Hüftbeuger'], russian_twist: ['Seitlicher Rumpf', 'Bauch'], hollow: ['Bauch', 'Rumpf'], br_calf: ['Waden'], br_quad: ['Oberschenkel'], br_it: ['Oberschenkel'], br_ham: ['Beinrückseite'],
+  bird_dog: ['Rumpf', 'Unterer Rücken'], bicycle: ['Bauch'], reverse_crunch: ['Bauch'], leg_raise: ['Bauch', 'Hüftbeuger'], jumping_jack: ['Waden', 'Schultern', 'Oberschenkel'], high_knees: ['Hüftbeuger', 'Bauch', 'Oberschenkel'], mountain_climber: ['Bauch', 'Schultern', 'Rumpf'], russian_twist: ['Seitlicher Rumpf', 'Bauch'], hollow: ['Bauch', 'Rumpf'], br_calf: ['Waden'], br_quad: ['Oberschenkel'], br_it: ['Oberschenkel'], br_ham: ['Beinrückseite'],
   br_glute: ['Gesäß'], y_catcow: ['Rücken'], y_child: ['Rücken'], y_dog: ['Beinrückseite', 'Schultern', 'Waden'], y_puppy: ['Schultern', 'Oberer Rücken'],
   y_lunge: ['Oberschenkel'], y_crescent: ['Oberschenkel', 'Schultern'], y_warrior2: ['Oberschenkel', 'Schultern'], y_triangle: ['Beinrückseite', 'Seitlicher Rumpf'], y_fold: ['Beinrückseite', 'Unterer Rücken'],
   y_cobra: ['Unterer Rücken', 'Brust'], y_sphinx: ['Unterer Rücken', 'Brust'], y_updog: ['Unterer Rücken', 'Brust', 'Schultern'], y_pigeon: ['Gesäß'], y_fig4: ['Gesäß'], y_twist: ['Seitlicher Rumpf', 'Rücken'],
@@ -1395,10 +1445,18 @@ const PROGRAMS = [
     stations: [{ id: 'march', sec: 45 }, { id: 'chair_squat', reps: 10 }, { id: 'wall_pushup', sec: 30 }, { id: 'standing_cross_crunch', reps: 10 }, { id: 'calf', reps: 9 }, { id: 'side_leg_raise', reps: 8 }] },
   { id: 'office_seated', name: 'Fit am Schreibtisch', short: 'Komplett im Sitzen · unauffällig zwischendurch · ca. 10 min', rounds: 2, fin: null, noWarmup: true, noCooldown: true, restEx: 10, restRound: 30, targetMin: 10,
     stations: [{ id: 'seated_knee_lift', reps: 10 }, { id: 'seated_leg_ext', reps: 10 }, { id: 'seated_calf', reps: 15 }, { id: 'r_neck', sec: 45 }, { id: 'r_sidebend', sec: 45 }, { id: 'chest_stretch', sec: 40 }] },
+  { id: 'hotel', name: 'Zimmerservice', short: 'Hotelzimmer-Workout ohne Geräte · Schwitzen statt Minibar · ca. 25 min · 3 Stufen', rounds: 3, fin: null, restEx: 15, restRound: 45, targetMin: 25,
+    stations: [{ id: 'jumping_jack', sec: 40 }, { id: 'squat', reps: 15 }, { id: 'pushup', reps: 10 }, { id: 'high_knees', sec: 30 }, { id: 'step_back_lunge', reps: 10 },
+      { id: 'mountain_climber', sec: 30 }, { id: 'leg_raise', reps: 12 }, { id: 'bicycle', reps: 12 }, { id: 'plank', sec: 40 }],
+    levels: {
+      leicht: { name: 'Leicht', info: 'Einstieg: 2 Runden, weniger Wiederholungen, längere Pausen. Hampelmann und Knieheben gern in der leisen Variante.', rounds: 2, f: 0.7, restEx: 20, restRound: 60, target: 18 },
+      mittel: { name: 'Mittel', info: '3 Runden mit Standard-Wiederholungen, kurze Pausen. Garantiert schwitzen.', rounds: 3, f: 1, restEx: 15, restRound: 45, target: 25 },
+      fordernd: { name: 'Fordernd', info: '3 Runden, mehr Wiederholungen und längere Cardio-Intervalle, kaum Pause.', rounds: 3, f: 1.3, restEx: 10, restRound: 40, target: 32 } } },
   { id: 'custom', name: 'Eigenes Workout', short: 'Deine Stationen aus den Einstellungen', custom: true }
 ];
 const PROGRAM_GROUPS = [
   { id: 'challenge', name: 'Challenges', ids: ['noexcuse', 'deskrevenge', 'women'] },
+  { id: 'travel', name: 'Unterwegs & Hotel · ohne Geräte', ids: ['hotel'] },
   { id: 'office', name: 'Am Arbeitsplatz · 10 Minuten', ids: ['office_neck', 'office_active', 'office_seated'] },
   { id: 'start', name: 'Einstieg & Alltag', ids: ['starter', 'balance', 'standing'] },
   { id: 'strength', name: 'Kraft & Muskelaufbau', ids: ['fullbody', 'push', 'pull', 'kettlebell', 'express', 'custom'] },
@@ -1690,6 +1748,14 @@ const FIG = (() => {
     F.standing_cross_crunch = { props: ['floor'], dur: 2, poses: [
       pose(SIDE, head),
       pose(SIDE, { H: [106, 36], N: [103, 49], P: [100, 86], E1: [112, 46], W1: [106, 32], E2: [116, 70], W2: [108, 40], K2: [122, 84], F2: [120, 108] })] }; }
+  /* Neu: Hampelmann, schnelles Knieheben, Mountain Climbers */
+  F.jumping_jack = { props: ['floor'], dur: 0.9, poses: [
+    pose(FRONT, { E1: [88, 62], W1: [86, 80], E2: [112, 62], W2: [114, 80], K1: [97, 106], F1: [96, 128], K2: [103, 106], F2: [104, 128] }),
+    pose(FRONT, { H: [100, 27], N: [100, 41], P: [100, 81], E1: [84, 34], W1: [76, 16], E2: [116, 34], W2: [124, 16], K1: [89, 104], F1: [80, 127], K2: [111, 104], F2: [120, 127] })] };
+  F.high_knees = { props: ['floor'], dur: 0.6, poses: march(122, 86, 118, 106) };
+  F.mountain_climber = { props: ['mat'], dur: 0.9, poses: [
+    pose(SIDE, { H: [146, 92], N: [134, 98], P: [94, 108], E1: [133, 112], W1: [136, 126], E2: [136, 112], W2: [139, 126], K1: [71, 116], F1: [48, 124], K2: [120, 112], F2: [102, 124] }),
+    pose(SIDE, { H: [146, 92], N: [134, 98], P: [94, 108], E1: [133, 112], W1: [136, 126], E2: [136, 112], W2: [139, 126], K1: [120, 112], F1: [102, 124], K2: [71, 116], F2: [48, 124] })] };
   return F;
 })();
 
@@ -5725,8 +5791,10 @@ async function boardSync() {
   st.carry -= delta; store.set(boardKey(), st);
 }
 async function boardJoin() {
-  const db = await socDb(), now = Date.now();
-  await db.collection('board').doc(myUid()).set({ nick: cNick(), pts: 0, m: monthKey(now), mp: 0, d: dayKeyS(now), dp: 0, ts: now });
+  const db = await socDb(), now = Date.now(), ref = db.collection('board').doc(myUid());
+  /* Schon dabei (z. B. auf einem anderen Gerät beigetreten)? Dann nichts überschreiben, nur das Gerät wieder verbinden */
+  const ex = await ref.get().catch(() => null);
+  if (!(ex && ex.exists)) await ref.set({ nick: cNick(), pts: 0, m: monthKey(now), mp: 0, d: dayKeyS(now), dp: 0, ts: now });
   store.set(boardKey(), { join: now, cred: activities().map(a => a.id), carry: 0 });
   await boardLoad(true);
 }
@@ -5735,7 +5803,11 @@ async function boardLeave() {
 }
 function boardHTML() {
   if (Date.now() - BOARD.loaded > 30000) setTimeout(() => boardLoad(), 0);
-  const st = boardState(), joined = !!st.join && BOARD.list.some(x => x.uid === myUid()), m = monthKey(Date.now());
+  let st = boardState(); const onServer = BOARD.list.some(x => x.uid === myUid()), m = monthKey(Date.now());
+  /* Eintrag auf dem Server, aber dieses Gerät kennt ihn nicht: Gerät still wieder verbinden (bisherige Einheiten zählen nicht doppelt) */
+  if (onServer && !st.join) { st = { join: Date.now(), cred: activities().map(a => a.id), carry: 0 }; store.set(boardKey(), st); }
+  if (!onServer && st.join && BOARD.loaded && !BOARD.err) { store.del(boardKey()); st = boardState(); }
+  const joined = onServer;
   const rows = BOARD.list.map(x => ({ uid: x.uid, nick: x.nick, v: BOARD.tab === 'month' ? (x.m === m ? x.mp || 0 : 0) : x.pts || 0 })).sort((a, b) => b.v - a.v || String(a.nick).localeCompare(String(b.nick)));
   const medal = i => i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1) + '.';
   const info = `<details class="panel pts-info"><summary>ℹ️ ${L('So gibt es Punkte', 'How points work', 'Comment gagner des points', 'Puanlar nasıl verilir')}</summary>
@@ -6067,6 +6139,7 @@ function startView() {
   return `<div class="stack fade-in start" data-notr>
     <section class="st-hello"><div><small>${new Date().toLocaleDateString(LOC, { weekday: 'long', day: 'numeric', month: 'long' })}</small><h2>${hi}, ${esc(P.first || account.name)} 👋</h2></div>
       ${streak > 1 ? `<span class="st-streak">🔥 ${streak} ${L('Tage', 'days', 'jours', 'gün')}</span>` : ''}</section>
+    <div id="syncBadge" class="sync-wrap">${syncBadgeHTML()}</div>
     ${active ? `<button type="button" class="st-resume" data-act="nav-resume"><b>▶ ${L('Workout fortsetzen', 'Resume workout', 'Reprendre', 'Devam et')}</b><small>${esc(sess.cfg.programName || '')} · ${fmt(elapsed())}</small></button>` : ''}
     <div class="st-quick">
       <button type="button" class="st-q" data-act="nav" data-v="train"><span>💪</span><b>${L('Workout starten', 'Start workout', 'Lancer la séance', 'Antrenman başlat')}</b><small>${esc(prog.name)}</small></button>
@@ -6076,8 +6149,8 @@ function startView() {
     <div class="tiles st-tiles">
       <div class="tile"><small>Workouts</small><b>${hist.length}</b></div>
       <div class="tile"><small>${L('Gelaufen', 'Run', 'Couru', 'Koşu')}</small><b>${num(km, 1)} <small>km</small></b></div>
-      <div class="tile"><small>${L('Aktive Minuten', 'Active minutes', 'Minutes actives', 'Aktif dakika')}</small><b>${min}</b></div>
-      <div class="tile"><small>${L('Punkte (Monat)', 'Points (month)', 'Points (mois)', 'Puan (ay)')}</small><b>${ptsSum(monthStart())}</b></div>
+      <div class="tile"><small>${L('Minuten', 'Minutes', 'Minutes', 'Dakika')}</small><b>${min}</b></div>
+      <div class="tile"><small>${L('Punkte', 'Points', 'Points', 'Puan')}</small><b>${hist.reduce((a, x) => a + PTS_WO(x), 0) + runs.reduce((a, x) => a + PTS_RUN(x), 0)}</b></div>
     </div>
     ${monthReportHTML()}
     ${recentHTML()}
@@ -6126,7 +6199,7 @@ function syncMark(k, deleted) {
   const uid = syncUid, s = syncSuffix(String(k), uid); if (!s) return false;
   const M = store.get(syncMetaKey(uid), { ts: {}, dirty: {} }); M.dirty = M.dirty || {}; M.dirty[s] = deleted ? -Date.now() : Date.now();
   try { localStorage.setItem(syncMetaKey(uid), JSON.stringify(M)); } catch (e) {}
-  clearTimeout(syncTimer); syncTimer = setTimeout(() => syncPush().catch(() => {}), 2500);
+  clearTimeout(syncTimer); syncTimer = setTimeout(() => syncPush().catch(() => {}), /^(history|runlog|profile|weight|onb)-/.test(s) ? 300 : 2500);
   return true;
 }
 const syncDb = async () => (await fbCore()).db;
@@ -6184,7 +6257,9 @@ async function syncPush() {
     }
     syncState.last = Date.now(); syncState.err = '';
   } catch (e) { syncState.err = String(e && (e.code || e.message) || e); }
-  finally { syncBusy = false; }
+  finally { syncBusy = false; syncBadgeUpd(); }
+  /* Während des Hochladens neu Geändertes direkt hinterher */
+  const again = store.get(syncMetaKey(uid), { dirty: {} }); if (!syncState.err && Object.keys(again.dirty || {}).length) setTimeout(() => syncPush().catch(() => {}), 500);
 }
 /* Nach dem Holen: Daten im laufenden Programm neu laden */
 function syncReload() {
@@ -6220,12 +6295,26 @@ document.addEventListener('change', e => {
   e.target.checked = true;
 });
 
+/* Sichtbarer Status: gesichert / wird gesichert / Problem */
+const syncPending = () => { if (!syncUid) return 0; const M = store.get(syncMetaKey(syncUid), { dirty: {} }); return Object.keys(M.dirty || {}).length; };
+function syncBadgeHTML() {
+  if (!account || !/^https?:$/.test(location.protocol)) return '';
+  if (settings && settings.cloudSync === false) return `<button type="button" class="sync-b off" data-act="view" data-v="settings">☁️ ${L('Sicherung aus: Daten nur auf diesem Gerät', 'Backup off: data only on this device', 'Sauvegarde désactivée', 'Yedekleme kapalı')}</button>`;
+  const n = syncPending();
+  if (syncState.err) return `<button type="button" class="sync-b err" data-act="sync-now">⚠️ ${L('Noch nicht im Konto gesichert. Antippen zum erneut Versuchen', 'Not yet backed up. Tap to retry', 'Pas encore sauvegardé. Toucher pour réessayer', 'Henüz yedeklenmedi. Tekrar dene')}${/permission/i.test(syncState.err) ? ' · ' + L('Server-Regeln prüfen', 'check server rules', 'vérifier les règles', 'kuralları kontrol et') : ''}</button>`;
+  if (n) return `<button type="button" class="sync-b busy" data-act="sync-now">☁️ ${L('Wird gesichert …', 'Backing up …', 'Sauvegarde …', 'Yedekleniyor …')}</button>`;
+  return syncState.last ? `<span class="sync-b ok">☁️ ${L('Im Konto gesichert', 'Backed up to account', 'Sauvegardé', 'Hesaba yedeklendi')} · ${new Date(syncState.last).toLocaleTimeString(LOC, { hour: '2-digit', minute: '2-digit' })}</span>` : '';
+}
+function syncBadgeUpd() { const el = document.getElementById('syncBadge'); if (el) el.innerHTML = syncBadgeHTML(); }
+window.addEventListener('online', () => { if (syncUid) syncPush().catch(() => {}); });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && syncUid) syncPush().catch(() => {}); });
+
 /* ============================================================
    FEHLERBERICHTE ans Entwicklungsteam (ab Version 38)
    errlog/{id}: Meldung, Quelle, Zeile, App-Version, Gerät (grob), Zeitpunkt.
    Keine Trainingsdaten, keine E-Mail. Lesen nur Admin.
    ============================================================ */
-const APP_VER = '40';
+const APP_VER = '44';
 let errSent = 0; const errSeen = new Set();
 const errDevice = () => { const u = navigator.userAgent || ''; return (/iPhone|iPad/.test(u) ? 'iOS' : /Android/.test(u) ? 'Android' : /Mac/.test(u) ? 'Mac' : /Windows/.test(u) ? 'Windows' : 'Sonstiges') + ' · ' + (/CriOS|Chrome/.test(u) ? 'Chrome' : /FxiOS|Firefox/.test(u) ? 'Firefox' : /Safari/.test(u) ? 'Safari' : 'Browser') + (window.matchMedia && matchMedia('(display-mode: standalone)').matches ? ' · Homescreen-App' : ''); };
 window.__uipReport = (rec, own) => {
@@ -6269,32 +6358,39 @@ function monthAgg(off) {
 }
 function monthReportHTML() {
   const M = monthAgg(mrOff), P = monthAgg(mrOff - 1);
-  const dl = (x, y, u = '') => !P.n ? '' : x === y ? `<small class="mr-d">±0</small>` : `<small class="mr-d ${x > y ? 'up' : 'down'}">${x > y ? '▲' : '▼'} ${typeof x === 'number' && x % 1 ? num(Math.abs(x - y), 1) : num(Math.abs(x - y))}${u}</small>`;
-  const name = new Date(M.a).toLocaleDateString(LOC, { month: 'long', year: 'numeric' });
-  /* Kalender Mo–So */
-  const first = new Date(M.a), lead = (first.getDay() + 6) % 7, nDays = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate(), today = dayKeyS(Date.now());
-  const byDay = {}; M.list.forEach(s => { const k = dayKeyS(s.t); (byDay[k] = byDay[k] || { wo: 0, run: 0 })[s.kind]++; });
-  const cells = []; for (let i = 0; i < lead; i++) cells.push('<i></i>');
-  for (let d = 1; d <= nDays; d++) { const k = dayKeyS(new Date(first.getFullYear(), first.getMonth(), d).getTime()), x = byDay[k];
-    cells.push(`<span class="mr-day ${x ? 'on' : ''} ${k === today ? 'today' : ''}" title="${k}">${d}${x ? `<em>${x.wo ? '<b class="w"></b>' : ''}${x.run ? '<b class="r"></b>' : ''}</em>` : ''}</span>`); }
-  const verdict = !M.n ? (mrOff === 0 ? L('Noch keine Einheit in diesem Monat. Heute ist ein guter Tag für die erste! 💪', 'No session this month yet. Today is a good day for the first one! 💪', 'Aucune séance ce mois-ci. Aujourd\'hui est un bon jour ! 💪', 'Bu ay henüz antrenman yok. Bugün başlamak için iyi bir gün! 💪') : L('In diesem Monat wurde nichts eingetragen.', 'Nothing logged this month.', 'Rien enregistré ce mois-là.', 'Bu ay kayıt yok.'))
-    : P.n && M.n > P.n ? L(`Stark: ${M.n - P.n} Einheiten mehr als im Vormonat. 🚀`, `Strong: ${M.n - P.n} more sessions than last month. 🚀`, `Bravo : ${M.n - P.n} séances de plus que le mois dernier. 🚀`, `Harika: geçen aya göre ${M.n - P.n} antrenman fazla. 🚀`)
-    : P.n && M.n === P.n ? L('Genauso fleißig wie im Vormonat. Konstanz zahlt sich aus.', 'Just as active as last month. Consistency pays off.', 'Aussi actif que le mois dernier.', 'Geçen ay kadar aktif.')
-    : P.n ? L(`${P.n - M.n} Einheiten weniger als im Vormonat. Da geht noch was!`, `${P.n - M.n} fewer sessions than last month. You've got this!`, `${P.n - M.n} séances de moins. Tu peux le faire !`, `Geçen aydan ${P.n - M.n} eksik. Yapabilirsin!`)
-    : L(`An ${M.days.size} Tagen aktiv. Weiter so!`, `Active on ${M.days.size} days. Keep it up!`, `Actif ${M.days.size} jours. Continue !`, `${M.days.size} gün aktif. Devam!`);
-  return `<section class="panel mr" data-notr>
-    <div class="mr-head"><button type="button" class="mini" data-act="mr-nav" data-v="-1" aria-label="${L('Vormonat', 'Previous month', 'Mois précédent', 'Önceki ay')}">‹</button><b>📅 ${L('Monatsbericht', 'Monthly report', 'Bilan du mois', 'Aylık rapor')} · ${esc(name)}</b><button type="button" class="mini" data-act="mr-nav" data-v="1" ${mrOff >= 0 ? 'disabled' : ''} aria-label="${L('Nächster Monat', 'Next month', 'Mois suivant', 'Sonraki ay')}">›</button></div>
-    <div class="mr-tiles">
-      <div><small>${L('Einheiten', 'Sessions', 'Séances', 'Antrenman')}</small><b>${M.n}</b>${dl(M.n, P.n)}</div>
-      <div><small>💪 Workouts</small><b>${M.wo}</b>${dl(M.wo, P.wo)}</div>
-      <div><small>🏃 ${L('Läufe', 'Runs', 'Courses', 'Koşu')}</small><b>${M.run}</b>${dl(M.run, P.run)}</div>
-      <div><small>${L('Aktive Tage', 'Active days', 'Jours actifs', 'Aktif gün')}</small><b>${M.days.size}</b>${dl(M.days.size, P.days.size)}</div>
-      <div><small>${L('Minuten', 'Minutes', 'Minutes', 'Dakika')}</small><b>${M.min}</b>${dl(M.min, P.min)}</div>
-      <div><small>km</small><b>${num(M.km, 1)}</b>${dl(Math.round(M.km * 10) / 10, Math.round(P.km * 10) / 10)}</div>
+  const first = new Date(M.a), nDays = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate(), today = dayKeyS(Date.now());
+  const goal = Math.round(nDays / 7 * 3), act = M.days.size, pct = Math.min(1, act / goal);
+  const mon = first.toLocaleDateString(LOC, { month: 'long' }), yr = first.getFullYear();
+  const pill = (x, y) => !P.n || x === y ? '' : `<i class="mr2-d ${x > y ? 'up' : 'down'}">${x > y ? '+' : '−'}${typeof x === 'number' && x % 1 ? num(Math.abs(x - y), 1) : num(Math.abs(x - y))}</i>`;
+  /* Ring */
+  const R0 = 46, C = 2 * Math.PI * R0, off = (C * (1 - pct)).toFixed(1);
+  const ring = `<svg class="mr2-ring" viewBox="0 0 110 110" aria-hidden="true"><circle cx="55" cy="55" r="${R0}" class="bg"/><circle cx="55" cy="55" r="${R0}" class="fg" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off}" transform="rotate(-90 55 55)"/></svg>`;
+  /* Tagesleiste: ein Feld pro Tag */
+  const byDay = {}; M.list.forEach(x => { const k = dayKeyS(x.t); (byDay[k] = byDay[k] || { wo: 0, run: 0 })[x.kind]++; });
+  const cells = []; for (let d = 1; d <= nDays; d++) { const k = dayKeyS(new Date(first.getFullYear(), first.getMonth(), d).getTime()), x = byDay[k], fut = k > today;
+    cells.push(`<span class="mr2-c ${x ? (x.wo && x.run ? 'both' : x.wo ? 'wo' : 'run') : ''} ${k === today ? 'today' : ''} ${fut ? 'fut' : ''}" title="${d}."></span>`); }
+  const best = (() => { const L0 = M.list.filter(x => x.kind === 'run'); return L0.length ? Math.max(...L0.map(x => x.km)) : 0; })();
+  const verdict = !M.n ? (mrOff === 0 ? L('Neuer Monat, neue Chance. Leg los! 💪', 'New month, new chance. Let\'s go! 💪', 'Nouveau mois, on y va ! 💪', 'Yeni ay, haydi! 💪') : L('In diesem Monat wurde nichts eingetragen.', 'Nothing logged this month.', 'Rien ce mois-là.', 'Bu ay kayıt yok.'))
+    : act >= goal ? L('Monatsziel geschafft! 🏆', 'Monthly goal reached! 🏆', 'Objectif du mois atteint ! 🏆', 'Aylık hedef tamam! 🏆')
+    : P.n && M.n > P.n ? L(`${M.n - P.n} Einheiten mehr als im Vormonat 🚀`, `${M.n - P.n} more sessions than last month 🚀`, `${M.n - P.n} séances de plus 🚀`, `Geçen aydan ${M.n - P.n} fazla 🚀`)
+    : mrOff === 0 ? L(`Noch ${goal - act} aktive Tage bis zum Monatsziel 🎯`, `${goal - act} more active days to your monthly goal 🎯`, `Encore ${goal - act} jours pour l'objectif 🎯`, `Hedefe ${goal - act} aktif gün 🎯`)
+    : L(`${act} aktive Tage`, `${act} active days`, `${act} jours actifs`, `${act} aktif gün`);
+  return `<section class="mr2" data-notr>
+    <div class="mr2-top">
+      <button type="button" class="mr2-nav" data-act="mr-nav" data-v="-1" aria-label="${L('Vormonat', 'Previous month', 'Mois précédent', 'Önceki ay')}">‹</button>
+      <div class="mr2-title"><small>${L('Dein Monat', 'Your month', 'Ton mois', 'Ayın')}</small><b>${esc(mon)} <span>${yr}</span></b></div>
+      <button type="button" class="mr2-nav" data-act="mr-nav" data-v="1" ${mrOff >= 0 ? 'disabled' : ''} aria-label="${L('Nächster Monat', 'Next month', 'Mois suivant', 'Sonraki ay')}">›</button>
     </div>
-    <div class="mr-cal"><span class="h">Mo</span><span class="h">Di</span><span class="h">Mi</span><span class="h">Do</span><span class="h">Fr</span><span class="h">Sa</span><span class="h">So</span>${cells.join('')}</div>
-    <p class="mr-leg"><b class="w"></b> Workout <b class="r"></b> ${L('Lauf', 'Run', 'Course', 'Koşu')} · ${M.pts} ${L('Punkte', 'points', 'points', 'puan')}${M.kcal ? ` · ≈ ${num(M.kcal)} kcal` : ''}</p>
-    <p class="mr-verdict">${verdict}</p>
+    <div class="mr2-main">
+      <div class="mr2-ringbox">${ring}<div class="mr2-rc"><b>${act}</b><small>/ ${goal} ${L('Tage', 'days', 'jours', 'gün')}</small></div></div>
+      <div class="mr2-stats">
+        <div><span>💪</span><b>${M.wo}</b><small>Workouts</small>${pill(M.wo, P.wo)}</div>
+        <div><span>🏃</span><b>${num(M.km, 1)}</b><small>km · ${M.run} ${M.run === 1 ? L('Lauf', 'run', 'course', 'koşu') : L('Läufe', 'runs', 'courses', 'koşu')}</small>${pill(Math.round(M.km * 10) / 10, Math.round(P.km * 10) / 10)}</div>
+        <div><span>⏱️</span><b>${M.min}</b><small>${L('Minuten', 'minutes', 'minutes', 'dakika')}</small>${pill(M.min, P.min)}</div>
+      </div>
+    </div>
+    <div class="mr2-strip" aria-label="${L('Aktive Tage im Monat', 'Active days this month', 'Jours actifs', 'Aktif günler')}">${cells.join('')}</div>
+    <div class="mr2-foot"><span class="mr2-verdict">${verdict}</span><span class="mr2-pts">⭐ ${M.pts}${best ? ` · 🥇 ${num(best, 1)} km` : ''}</span></div>
   </section>`;
 }
 /* Zeile in Liste */
@@ -6304,7 +6400,7 @@ function sessRow(s) {
 }
 function recentHTML() {
   const L0 = sessionsAll().slice(0, 4);
-  return `<div class="sec-title dash-title"><span>${L('Zuletzt trainiert', 'Recent sessions', 'Dernières séances', 'Son antrenmanlar')}</span>${L0.length ? `<button type="button" class="mini" data-act="nav-journal" data-notr>${L('Alle anzeigen', 'Show all', 'Tout afficher', 'Tümü')} ›</button>` : ''}</div>
+  return `<div class="sec-title dash-title"><span>${L('Zuletzt trainiert', 'Recent sessions', 'Dernières séances', 'Son antrenmanlar')}</span><span><button type="button" class="mini" data-act="jr-add" data-notr>➕ ${L('Nachtragen', 'Add', 'Ajouter', 'Ekle')}</button>${L0.length ? ` · <button type="button" class="mini" data-act="nav-journal" data-notr>${L('Alle anzeigen', 'Show all', 'Tout afficher', 'Tümü')} ›</button>` : ''}</span></div>
     <div class="jr-list" data-notr>${L0.length ? L0.map(sessRow).join('') : `<div class="panel"><p class="sub" style="margin:0">${L('Hier erscheinen deine Workouts und Läufe, sobald du loslegst.', 'Your workouts and runs will appear here once you start.', 'Tes séances apparaîtront ici.', 'Antrenmanların burada görünecek.')}</p></div>`}</div>`;
 }
 /* Eigene Seite: Verlauf */
@@ -6312,7 +6408,7 @@ function journalView() {
   const all = sessionsAll(), L0 = all.filter(s => jrFilter === 'all' || s.kind === jrFilter);
   const groups = []; L0.slice(0, jrShow).forEach(s => { const k = new Date(s.t).toLocaleDateString(LOC, { month: 'long', year: 'numeric' }); let g = groups.find(x => x.k === k); if (!g) groups.push(g = { k, list: [] }); g.list.push(s); });
   return `<div class="stack fade-in" data-notr>
-    <h2 class="page-h">📒 ${L('Verlauf', 'History', 'Historique', 'Geçmiş')}</h2>
+    <div class="dash-title"><h2 class="page-h">📒 ${L('Verlauf', 'History', 'Historique', 'Geçmiş')}</h2><button type="button" class="btn btn-ghost" data-act="jr-add">➕ ${L('Nachtragen', 'Add', 'Ajouter', 'Ekle')}</button></div>
     <div class="seg" role="radiogroup" style="grid-template-columns:repeat(3,1fr)">${[['all', L('Alle', 'All', 'Tout', 'Tümü') + ` (${all.length})`], ['wo', '💪 Workouts'], ['run', '🏃 ' + L('Läufe', 'Runs', 'Courses', 'Koşular')]].map(([k, n]) => `<button type="button" role="radio" aria-checked="${jrFilter === k}" data-act="jr-filter" data-v="${k}">${n}</button>`).join('')}</div>
     ${groups.length ? groups.map(g => { const n = g.list.length, min = g.list.reduce((s, x) => s + x.min, 0); return `<div class="sec-title" style="margin:12px 0 6px">${esc(g.k)} <span style="font-weight:600;text-transform:none;letter-spacing:0">· ${n} ${n === 1 ? L('Einheit', 'session', 'séance', 'antrenman') : L('Einheiten', 'sessions', 'séances', 'antrenman')} · ${min} Min</span></div><div class="jr-list">${g.list.map(sessRow).join('')}</div>`; }).join('')
       : `<div class="panel"><p class="sub" style="margin:0">${L('Noch keine Einheiten.', 'No sessions yet.', 'Aucune séance.', 'Henüz antrenman yok.')}</p></div>`}
@@ -6327,14 +6423,48 @@ function woDetail(h) {
       <div class="tile"><small>${L('Wiederholungen', 'Reps', 'Répétitions', 'Tekrar')}</small><b>${num(h.reps || 0)}</b></div><div class="tile"><small>${L('Übungen', 'Exercises', 'Exercices', 'Egzersiz')}</small><b>${h.exDone || 0}/${h.exTotal || 0}</b></div>
       ${h.vol ? `<div class="tile"><small>${L('Volumen', 'Volume', 'Volume', 'Hacim')}</small><b>${num(h.vol)} <small>kg</small></b></div>` : ''}<div class="tile"><small>${L('Punkte', 'Points', 'Points', 'Puan')}</small><b>+${PTS_WO(h)}</b></div></div>
     ${best.length ? `<div class="sec-title" style="margin:12px 0 6px">${L('Beste Sätze', 'Best sets', 'Meilleures séries', 'En iyi setler')}</div><ul class="motiv-list">${best.map(([id, v]) => `<li><span>✓</span>${esc((EX[id] || { name: id }).name)}: ${v}</li>`).join('')}</ul>` : ''}
-    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button>${!store.get(`uipause-${account.id}-shared-v1`, []).includes('w_' + h.id) && settings.community ? `<button type="button" class="btn btn-ghost" data-act="fd-share" data-k="workout" data-id="${esc(h.id)}">📣 ${L('In der Community teilen', 'Share in community', 'Partager', 'Paylaş')}</button>` : ''}</div></div>`);
+    ${h.manual ? `<p class="sub">✍️ ${L('Nachgetragen, Kalorien geschätzt.', 'Added manually, calories estimated.', 'Ajoutée manuellement.', 'Elle eklendi.')}</p>` : ''}<div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button><button type="button" class="btn btn-dghost" data-act="jr-del" data-id="${esc(h.id)}">${L('Eintrag löschen', 'Delete entry', 'Supprimer', 'Sil')}</button>${!store.get(`uipause-${account.id}-shared-v1`, []).includes('w_' + h.id) && settings.community ? `<button type="button" class="btn btn-ghost" data-act="fd-share" data-k="workout" data-id="${esc(h.id)}">📣 ${L('In der Community teilen', 'Share in community', 'Partager', 'Paylaş')}</button>` : ''}</div></div>`);
 }
 function journalAct(a, b) {
   if (a === 'mr-nav') { mrOff = Math.min(0, mrOff + (+b.dataset.v)); render(); return; }
   if (a === 'nav-journal') { view = 'journal'; jrShow = 40; render(); window.scrollTo(0, 0); return; }
   if (a === 'jr-filter') { jrFilter = b.dataset.v; jrShow = 40; render(); return; }
   if (a === 'jr-more') { jrShow += 40; render(); return; }
+  if (a === 'jr-add') { addSheet(); return; }
+  if (a === 'jr-add-save') { addSave(); return; }
+  if (a === 'jr-del') { woDelete(b.dataset.id); return; }
   if (a === 'jr-open') { const s = sessionsAll().find(x => x.id === b.dataset.id); if (!s) return; if (s.kind === 'run') rlShow(s.raw, false); else woDetail(s.raw); return; }
+}
+
+/* Training nachtragen (z. B. wenn ein Gerät Daten verloren hat oder ohne App trainiert wurde) */
+let addDraft = null;
+function addSheet() {
+  const d = addDraft || (addDraft = { date: dayKeyS(Date.now()), time: new Date().getHours() ? new Date(Date.now() - 36e5).toTimeString().slice(0, 5) : '00:00', prog: settings.program || 'fullbody', min: 30 });
+  const opts = PROGRAMS.map(p => `<option value="${esc(p.id)}" ${d.prog === p.id ? 'selected' : ''}>${esc(p.name)}</option>`).join('') + `<option value="other" ${d.prog === 'other' ? 'selected' : ''}>${L('Anderes Training', 'Other training', 'Autre entraînement', 'Diğer antrenman')}</option>`;
+  openSheet(`<div data-notr><h2 id="dlgTitle">➕ ${L('Training nachtragen', 'Add a past workout', 'Ajouter une séance', 'Antrenman ekle')}</h2>
+    <p class="sub">${L('Für Workouts, die nicht in der App gelaufen sind oder verloren gingen. Läufe trägst du unter „Lauf eintragen“ ein.', 'For workouts not tracked in the app or lost. Log runs under “Log a run”.', 'Pour les séances non suivies ou perdues. Les courses se saisissent dans « Enregistrer une course ».', 'Uygulamada takip edilmeyen veya kaybolan antrenmanlar için.')}</p>
+    <div class="c-2"><div><label class="lbl-pw" for="ad_date">${L('Datum', 'Date', 'Date', 'Tarih')}</label><input id="ad_date" class="inp pw full" type="date" value="${esc(d.date)}" max="${dayKeyS(Date.now())}"></div>
+      <div><label class="lbl-pw" for="ad_time">${L('Uhrzeit', 'Time', 'Heure', 'Saat')}</label><input id="ad_time" class="inp pw full" type="time" value="${esc(d.time)}"></div></div>
+    <label class="lbl-pw" for="ad_prog">${L('Programm', 'Program', 'Programme', 'Program')}</label><select id="ad_prog" class="inp pw full">${opts}</select>
+    <label class="lbl-pw" for="ad_min">${L('Dauer in Minuten', 'Duration in minutes', 'Durée en minutes', 'Süre (dakika)')}</label><input id="ad_min" class="inp pw full" type="text" inputmode="numeric" value="${esc(d.min)}">
+    <p class="msg-err" id="ad_err"></p>
+    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="jr-add-save">${L('SPEICHERN', 'SAVE', 'ENREGISTRER', 'KAYDET')}</button><button type="button" class="btn btn-ghost" data-act="sheet-close">${L('Abbrechen', 'Cancel', 'Annuler', 'İptal')}</button></div></div>`);
+}
+function addSave() {
+  const date = val('ad_date'), time = val('ad_time') || '12:00', prog = val('ad_prog'), min = parseInt(val('ad_min'), 10), err = m => { const e = document.getElementById('ad_err'); if (e) e.textContent = m; };
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) { err(L('Bitte ein Datum wählen.', 'Please pick a date.', 'Choisis une date.', 'Tarih seç.')); return; }
+  if (!(min >= 3 && min <= 300)) { err(L('Dauer zwischen 3 und 300 Minuten.', 'Duration between 3 and 300 minutes.', 'Durée entre 3 et 300 minutes.', 'Süre 3–300 dakika.')); return; }
+  const t = new Date(date + 'T' + time + ':00').getTime(); if (!(t <= Date.now() + 6e4)) { err(L('Das Datum liegt in der Zukunft.', 'Date is in the future.', 'Date dans le futur.', 'Tarih gelecekte.')); return; }
+  const P = PROGRAMS.find(p => p.id === prog), bw = +settings.bodyWeight || 75;
+  const kcal = Math.round(5 * 3.5 * bw / 200 * min); /* ca. 5 MET, Schätzung */
+  history.unshift({ id: 'm' + Date.now().toString(36), date: t, ms: min * 60000, kcal, vol: 0, bwVol: 0, reps: 0, rounds: 0, roundsPlanned: 0, exDone: 1, exTotal: 1, aborted: false, best: {}, bw, program: P ? P.name : L('Anderes Training', 'Other training', 'Autre entraînement', 'Diğer antrenman'), manual: true });
+  history.sort((a, b) => b.date - a.date); history = history.slice(0, 500);
+  if (!saveHistory()) { err('Speichern nicht möglich'); return; }
+  addDraft = null; closeSheet(); render(); toast('✅ ' + L('Training nachgetragen', 'Workout added', 'Séance ajoutée', 'Antrenman eklendi'));
+  try { boardSync().catch(() => {}); } catch (e) {}
+}
+function woDelete(id) {
+  confirmSheet(L('Eintrag löschen?', 'Delete entry?', 'Supprimer ?', 'Silinsin mi?'), L('Dieses Training wird aus dem Verlauf entfernt.', 'This workout will be removed from your history.', 'Cette séance sera supprimée.', 'Bu antrenman silinecek.'), L('LÖSCHEN', 'DELETE', 'SUPPRIMER', 'SİL'), () => { history = history.filter(h => h.id !== id); saveHistory(); render(); }, true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal'));
 }
 
 let lastRKey = '';
@@ -6594,7 +6724,8 @@ function act(a, b) {
     case 'bd-open': view = 'community'; cbTab = 'board'; cbRoom = null; render(); window.scrollTo(0, 0); break;
     case 'bd-tab': case 'bd-join': case 'bd-leave': case 'fd-private': case 'fd-share': case 'fd-post': case 'fd-react': case 'fd-open': case 'fd-csend': case 'fd-cdel': case 'fd-del': socialAct(a, b); break;
     case 'nav': navAct(b.dataset.v); break;
-    case 'mr-nav': case 'nav-journal': case 'jr-filter': case 'jr-more': case 'jr-open': journalAct(a, b); break;
+    case 'sync-now': syncState.err = ''; syncBadgeUpd(); syncPush().catch(() => {}).then(() => syncBadgeUpd()); break;
+    case 'mr-nav': case 'nav-journal': case 'jr-filter': case 'jr-more': case 'jr-open': case 'jr-add': case 'jr-add-save': case 'jr-del': journalAct(a, b); break;
     case 'nav-resume': homeOpen = false; view = 'train'; if (sess && sess.paused) resumeWorkout(); else render(); window.scrollTo(0, 0); break;
     case 'lang-menu': langSheet(); break;
     case 'go-home': if (!account) break; closeSheet(); if (sess && sess.state === 'COMPLETED') { homeOpen = false; view = 'train'; newWorkout(); break; } if (sess && sess.state === 'ACTIVE') { if (!sess.paused) pauseWorkout(); homeOpen = true; } view = 'start'; render(); window.scrollTo(0, 0); break;
@@ -6859,7 +6990,7 @@ function showLogin(err, info) {
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 40 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 44 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
@@ -6890,7 +7021,7 @@ setInterval(function () { try { loop(); } catch (e) { try { console.error(e); } 
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {}); });
 }
-window.__uip = { EX, PROGRAMS, MET, PHASES, COMPLIMENTS, REGIONS, get account() { return account; }, get sess() { return sess; }, get settings() { return settings; }, get history() { return history; }, summarize, elapsed: () => sess ? elapsed() : 0, estRemainingMs };
+window.__uip = { figSVG, EX, PROGRAMS, MET, PHASES, COMPLIMENTS, REGIONS, get account() { return account; }, get sess() { return sess; }, get settings() { return settings; }, get history() { return history; }, summarize, elapsed: () => sess ? elapsed() : 0, estRemainingMs };
 })();
 </script>
 </body>
