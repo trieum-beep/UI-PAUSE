@@ -1,7 +1,7 @@
-/* Optionaler Service Worker für die Pausen Workout · Body Activity App.
-   Legt index.html und die Schriften in den Cache, damit die App auch
-   nach einem Neuladen ohne Internet startet. Einfach neben index.html ablegen. */
-const CACHE = 'uipause-v22';
+/* Service Worker für Pausen Workout · Body Activity App.
+   Legt index.html in den Cache, damit die App auch ohne Internet startet.
+   Konfigurationsdateien werden immer zuerst frisch geladen. */
+const CACHE = 'uipause-v25';
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html'])).then(() => self.skipWaiting()));
 });
@@ -12,21 +12,20 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  const isFont = /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
-  if (url.origin === location.origin && /(accounts|community|firmen|email)\.json$/.test(url.pathname)) {
-    // Freigaben immer frisch vom Server, nur offline aus dem Cache
+  if (url.origin !== location.origin) return; /* Firebase, EmailJS usw. nie cachen */
+  if (/(community|email)\.json$/.test(url.pathname)) {
     e.respondWith(fetch(req, { cache: 'no-store' }).then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); return r; })
       .catch(() => caches.match(req)));
     return;
   }
-  if (url.origin === location.origin && req.mode === 'navigate') {
-    // Netz zuerst (für Updates), bei Offline aus dem Cache
+  if (/(accounts|firmen)\.json$/.test(url.pathname)) return; /* Altdateien: nicht mehr verwendet, nicht cachen */
+  if (req.mode === 'navigate') {
     e.respondWith(fetch(req).then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put('./index.html', cp)); return r; })
       .catch(() => caches.match('./index.html')));
-  } else if (url.origin === location.origin || isFont) {
-    e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => {
-      if (r && (r.ok || r.type === 'opaque')) { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); }
-      return r;
-    })));
+    return;
   }
+  e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => {
+    if (r && r.ok) { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); }
+    return r;
+  })));
 });

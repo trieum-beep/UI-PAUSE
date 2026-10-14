@@ -2,6 +2,8 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-hpgePWR4bZ4hnRv4vzbRFZes1JK8YLr2+yydvid+aN0=' 'sha256-464/lgEH8mNjIhTQqvaCYVGW9G+LiGkna/S/hswjne0=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -738,6 +740,25 @@ footer button { background: none; border: 0; color: var(--ink-soft); font: inher
 .ph-th > button:first-child { padding: 0; border: 0; background: none; cursor: pointer; }
 .ph-th img { width: 56px; height: 72px; object-fit: cover; border-radius: 8px; display: block; }
 .ph-th small { font-size: 10.5px; color: var(--muted); }
+/* Konto-Karte */
+.acc-card { border-color: #C9A13B; }
+.acc-card-av { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex: none; display: grid; place-items: center; background: linear-gradient(135deg, #F0D98E, #C9A13B); color: #061025; font: 800 17px var(--sans); }
+.acc-card-av img { width: 100%; height: 100%; object-fit: cover; }
+/* Glocke */
+.bell-btn { position: relative; flex: none; width: 38px; height: 38px; margin-right: 6px; border-radius: 50%; border: 1.5px solid #C9A13B; background: transparent; color: inherit; display: grid; place-items: center; cursor: pointer; }
+.bell-btn .bell-n { position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--signal, #C0392B); color: #fff; font: 800 11px/18px var(--sans); text-align: center; }
+.n-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; max-height: 60vh; overflow-y: auto; }
+.n-item { display: flex; gap: 10px; align-items: flex-start; text-align: left; padding: 10px; border-radius: 12px; border: 1px solid var(--paper-line); background: var(--paper); color: inherit; font: inherit; cursor: pointer; }
+.n-item.new { border-color: #C9A13B; box-shadow: 0 0 0 1px #C9A13B inset; }
+.n-ic { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, #F0D98E, #C9A13B); color: #061025; font: 900 15px var(--sans); flex: none; }
+.n-tx { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.n-tx small { color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+.n-tx em { font-style: normal; font-size: 11px; color: var(--muted); }
+.c-at { font-weight: 800; color: #C9A13B; }
+.c-at.me { background: rgba(201,161,59,.22); border-radius: 4px; padding: 0 3px; }
+.c-msg.mention-me { box-shadow: 0 0 0 2px #C9A13B; }
+.c-mention { display: flex; flex-wrap: wrap; gap: 6px; padding: 6px 0; }
+.c-mention .chip { display: inline-flex; align-items: center; gap: 6px; margin: 0; }
 /* Konto-Button oben */
 .acc-btn { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 3px; margin-right: 8px; border-radius: 22px; border: 1.5px solid #C9A13B; background: transparent; color: inherit; font: 700 12.5px var(--sans); cursor: pointer; max-width: 46vw; }
 .acc-btn .av { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: linear-gradient(135deg, #F0D98E, #C9A13B); color: #061025; font: 800 14px var(--sans); flex: none; }
@@ -745,7 +766,9 @@ footer button { background: none; border: 0; color: var(--ink-soft); font: inher
 .acc-btn .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .m-av-pic { position: relative; cursor: pointer; flex: none; }
 .m-av-pic i { position: absolute; right: -2px; bottom: -2px; width: 26px; height: 26px; border-radius: 50%; background: #C9A13B; display: grid; place-items: center; font-style: normal; font-size: 13px; border: 2px solid var(--bg); }
-@media (max-width: 380px) { .acc-btn .nm { display: none; } .acc-btn { padding: 3px; } }
+@media (max-width: 520px) { .acc-btn .nm { display: none; } .acc-btn { padding: 3px; margin-right: 0; } }
+.head-txt h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+header .score[hidden] { display: none; }
 /* Admin */
 .adm-tabs { grid-template-columns: 1fr 1fr; margin: 12px 0 4px; }
 .adm-tabs .c-badge { margin-left: 4px; }
@@ -822,6 +845,7 @@ footer button { background: none; border: 0; color: var(--ink-soft); font: inher
       <h1>Pausen Workout</h1>
       <div class="team"><span class="dot" id="stDot"></span><span class="st" id="stName">READY</span> · <span class="clock" id="clk">00:00</span></div>
     </div>
+    <button type="button" class="bell-btn" id="bellBtn" data-act="bell" aria-label="Benachrichtigungen" hidden></button>
     <button type="button" class="acc-btn" id="accBtn" data-act="member" aria-label="Mein Konto" hidden></button>
     <div class="score" aria-live="off"><b id="hdrPct">0 %</b>Fortschritt</div>
   </header>
@@ -2343,6 +2367,7 @@ function updateHeader() {
   dot.style.background = !sess ? 'var(--ink-soft)' : sess.state === 'COMPLETED' ? 'var(--ok)' : sess.paused ? 'var(--signal)' : sess.mode === 'rest' ? 'var(--uv)' : PHASES[step().phase].color;
   document.getElementById('clk').textContent = sess ? fmt(elapsed()) : '00:00';
   document.getElementById('hdrPct').textContent = Math.round(progressFrac() * 100) + ' %';
+  { const sc = document.querySelector('header .score'); if (sc) sc.hidden = !(sess && sess.state !== 'COMPLETED'); }
 }
 function setLive(k, v) { v = tr(v); document.querySelectorAll(`[data-live="${k}"]`).forEach(el => { if (el.textContent !== v) el.textContent = v; }); }
 function updateLive() {
@@ -2501,6 +2526,7 @@ function homeView() {
   const progMin = p => { const cc = effCfg(Object.assign({}, settings, { program: p.id })); return mins(buildPlan(cc).reduce((a, s) => a + estRaw(s) + (s.rest ? restSec(s.rest, cc) * 1000 : 0), 0)); };
   const finName = c.finisher && plan.find(s => s.phase === 'finisher') ? EX[plan.find(s => s.phase === 'finisher').ex].name : null;
   return `<div class="stack fade-in">
+    ${accountHomeCard()}
     ${homeOpen && sess && sess.state === 'ACTIVE' ? pausedBanner() : runHomeCard() + communityHomeCard()}
     ${weightHomeCard()}
     ${achieveCardHome()}
@@ -2704,6 +2730,7 @@ function settingsView() {
       <div class="opts">${amount}${variant}<label><input type="checkbox" data-set="circuit.${i}.opt" data-type="bool" ${s.opt ? 'checked' : ''}> optional</label></div></div>`;
   }).join('');
   return `<div class="fade-in">
+    ${accountHomeCard()}
     ${active ? '<div class="note"><b>Training läuft</b>Plan-Änderungen gelten ab dem nächsten Workout. Sound, Vibration, Darstellung und Auto-Wechsel wirken sofort.</div>' : ''}
     <div class="sec-title">Persönliche Daten</div>
     <div class="panel">
@@ -3812,7 +3839,8 @@ const loadScript = src => new Promise((ok, no) => { const s = document.createEle
 /* Lokale Demo: speichert nur in diesem Browser */
 function localBackend() {
   const K = 'uipause-community-demo-v1', get = () => Object.assign({ rooms: [], msgs: {}, users: {}, dms: {} }, store.get(K, {})), put = d => store.set(K, d);
-  const subs = {}; let roomSubs = [], userSubs = [], dmSubs = [];
+  const subs = {}; let roomSubs = [], userSubs = [], dmSubs = [], notifSubs = [];
+  const emitNotifs = () => { const all = get().notifs || []; notifSubs.forEach(([me, f]) => f(all.filter(x => x.to === me))); };
   const DEMO_USERS = { demo_lena: { nick: 'Lena (Demo)', city: getProfile().city || 'Trier', ts: 1 }, demo_tom: { nick: 'Tom (Demo)', city: 'Luxemburg', ts: 1 } };
   const emitUsers = () => { const u = Object.assign({}, DEMO_USERS, get().users); userSubs.forEach(f => f(Object.values(u))); };
   const emitDms = () => { const me = nickKey(cNick()); dmSubs.forEach(f => f(Object.entries(get().dms).filter(([, d]) => d.members.includes(me)).map(([id, d]) => Object.assign({ id }, d)))); };
@@ -3833,6 +3861,9 @@ function localBackend() {
     listenUsers: f => { userSubs.push(f); emitUsers(); return () => { userSubs = userSubs.filter(x => x !== f); }; },
     listenDms: f => { dmSubs.push(f); emitDms(); return () => { dmSubs = dmSubs.filter(x => x !== f); }; },
     touchDm: async (id, members, last, lastBy) => { const d = get(); d.dms[id] = { members, last, lastBy, ts: Date.now() }; put(d); emitDms(); },
+    addNotif: async n => { const d = get(); d.notifs = d.notifs || []; d.notifs.push(Object.assign({ id: 'n' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), ts: Date.now() }, n)); put(d); emitNotifs(); },
+    listenNotifs: (me, f) => { notifSubs.push([me, f]); f((get().notifs || []).filter(x => x.to === me)); return () => { notifSubs = notifSubs.filter(x => x[1] !== f); }; },
+    clearNotifs: async me => { const d = get(); d.notifs = (d.notifs || []).filter(x => x.to !== me); put(d); emitNotifs(); },
     deleteMine: async rooms => { const d = get(), me = cNick(); Object.keys(d.msgs).forEach(r => { d.msgs[r] = d.msgs[r].filter(m => m.nick !== me); }); delete d.users['me_' + nickKey(me)]; Object.keys(d.dms).forEach(k => { if (d.dms[k].members.includes(nickKey(me))) delete d.dms[k]; }); put(d); }
   };
 }
@@ -3844,13 +3875,10 @@ function firebaseBackend(cfg) {
   return {
     demo: false,
     init: async () => {
-      const base = `https://www.gstatic.com/firebasejs/${FB_VER}/`;
-      if (!window.firebase) await loadScript(base + 'firebase-app-compat.js');
-      if (!firebase.auth) await loadScript(base + 'firebase-auth-compat.js');
-      if (!firebase.firestore) await loadScript(base + 'firebase-firestore-compat.js');
-      const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(cfg);
-      const user = app.auth().currentUser || (await app.auth().signInAnonymously()).user; uid = user.uid;
-      db = app.firestore(); FV = firebase.firestore.FieldValue;
+      /* Community nur mit echtem, freigeschaltetem Konto (keine anonyme Anmeldung mehr) */
+      const core = await fbCore(); const user = core.auth.currentUser;
+      if (!user) throw new Error(L('Bitte anmelden', 'Please log in', 'Connecte-toi', 'Lütfen giriş yap'));
+      uid = user.uid; db = core.db; FV = firebase.firestore.FieldValue;
     },
     listenRooms: f => roomsCol().orderBy('ts').limit(50).onSnapshot(s => f(s.docs.map(conv)), e => { cbErr = e.message; render(); }),
     addRoom: async (name, ic, city) => { await roomsCol().add({ name: name.slice(0, 40), ic, city: (city || '').slice(0, 40), by: cNick(), uid, ts: FV.serverTimestamp() }); },
@@ -3863,6 +3891,9 @@ function firebaseBackend(cfg) {
     listenUsers: f => db.collection('users').limit(300).onSnapshot(s => f(s.docs.map(conv)), () => {}),
     listenDms: f => db.collection('dms').where('members', 'array-contains', nickKey(cNick())).onSnapshot(s => f(s.docs.map(conv)), e => { cbErr = e.message; }),
     touchDm: async (id, members, last, lastBy) => { await db.collection('dms').doc(id).set({ members, last: last.slice(0, 80), lastBy, ts: FV.serverTimestamp() }); },
+    addNotif: async n => { await db.collection('notifs').add(Object.assign({}, n, { text: String(n.text || '').slice(0, 140), ts: Date.now() })); },
+    listenNotifs: (me, f) => db.collection('notifs').where('to', '==', me).limit(60).onSnapshot(s => f(s.docs.map(d => Object.assign({ id: d.id }, d.data()))), () => {}),
+    clearNotifs: async me => { const q = await db.collection('notifs').where('to', '==', me).get(); for (const d of q.docs) await d.ref.delete(); },
     deleteMine: async rooms => {
       let n = 0;
       for (const r of rooms) { const q = await msgsCol(r).where('uid', '==', uid).get(); for (const d of q.docs) { await d.ref.delete(); n++; } }
@@ -3887,10 +3918,11 @@ async function cbStart() {
       cbDms = list.sort((a, b) => b.ts - a.ts); updTitle(); if (view === 'community' && !cbRoom) render(); else if (view === 'train') render(); });
     CB.setProfile(myPublicProfile()).catch(() => {});
     watchRooms();
+    try { notifStart(); } catch (e) {}
   }
   render();
 }
-function cbStop() { unwatchRooms(); try { cbUnsub && cbUnsub(); cbUnsubRooms && cbUnsubRooms(); cbUnsubUsers && cbUnsubUsers(); cbUnsubDms && cbUnsubDms(); } catch (e) {} cbUnsub = cbUnsubRooms = cbUnsubUsers = cbUnsubDms = null; cbUsers = {}; cbDms = []; CB = null; cbState = 'off'; cbRoom = null; cbMsgs = []; }
+function cbStop() { try { notifStop(); } catch (e) {} unwatchRooms(); try { cbUnsub && cbUnsub(); cbUnsubRooms && cbUnsubRooms(); cbUnsubUsers && cbUnsubUsers(); cbUnsubDms && cbUnsubDms(); } catch (e) {} cbUnsub = cbUnsubRooms = cbUnsubUsers = cbUnsubDms = null; cbUsers = {}; cbDms = []; CB = null; cbState = 'off'; cbRoom = null; cbMsgs = []; }
 function cbOpenRoom(id) {
   try { cbUnsub && cbUnsub(); } catch (e) {}
   cbRoom = id; cbMsgs = []; render();
@@ -3931,7 +3963,8 @@ function msgHTML(m) {
       <button type="button" class="btn ${mine ? 'btn-lamp' : 'btn-primary'}" style="width:100%;margin-top:10px;min-height:44px" data-act="c-join" data-id="${esc(m.id)}">${mine ? '✓ ' + L('Ich bin dabei', 'I\'m in', 'Je viens', 'Katılıyorum') : L('Ich bin dabei', 'I\'m in', 'Je viens', 'Katılıyorum') + '?'}</button>
       <div class="c-foot">${g.length ? `${g.length} ${L('dabei', 'going', 'participants', 'katılıyor')}: ${g.map(esc).join(', ')}` : L('Noch keine Zusagen', 'No one yet', 'Pas encore de participants', 'Henüz katılan yok')}</div></div>`;
   }
-  return `<div class="c-msg ${me ? 'me' : ''}">${head}<div class="c-text">${esc(m.text || '')}</div></div>`;
+  const forMe = !me && (m.mentions || []).includes(nickKey(cNick()));
+  return `<div class="c-msg ${me ? 'me' : ''} ${forMe ? 'mention-me' : ''}">${head}<div class="c-text">${mentionHTML(m.text || '')}</div></div>`;
 }
 function renderChatOnly() { const b = document.getElementById('chatBox'); if (b) b.innerHTML = cbMsgs.length ? cbMsgs.map(msgHTML).join('') : `<p class="sub c-empty">${L('Noch keine Nachrichten. Schreib die erste oder schlag ein Training vor!', 'No messages yet. Write the first one or suggest a workout!', 'Aucun message. Écris le premier ou propose un entraînement !', 'Henüz mesaj yok. İlkini yaz ya da bir antrenman öner!')}</p>`; }
 function communityView() {
@@ -3961,7 +3994,7 @@ function communityView() {
     <div class="c-box" id="chatBox"></div>
     <div class="c-tools"><button type="button" class="chip" data-act="c-poll">📊 ${L('Abstimmung', 'Poll', 'Sondage', 'Anket')}</button><button type="button" class="chip" data-act="c-meet">📅 ${L('Treffen', 'Meetup', 'Rendez-vous', 'Buluşma')}</button></div>
     <p class="c-hint">${L('Respektvoll bleiben · keine Gesundheits- oder sensiblen Daten teilen · ⚑ meldet Beiträge', 'Stay respectful · don\'t share health or sensitive data · ⚑ reports posts', 'Reste respectueux · pas de données de santé ou sensibles · ⚑ signale un message', 'Saygılı ol · sağlık veya hassas veri paylaşma · ⚑ ile bildir')}</p>
-    <form class="c-form" data-act-form="c-send" onsubmit="return false"><input id="cText" class="inp" maxlength="500" autocomplete="off" placeholder="${L('Nachricht …', 'Message …', 'Message …', 'Mesaj …')}"><button type="button" class="btn btn-primary" data-act="c-send" aria-label="${L('Senden', 'Send', 'Envoyer', 'Gönder')}">➤</button></form>
+    <div id="cMention" class="c-mention" hidden></div><form class="c-form" data-act-form="c-send"><input id="cText" class="inp" maxlength="500" autocomplete="off" placeholder="${L('Nachricht …', 'Message …', 'Message …', 'Mesaj …')}"><button type="button" class="btn btn-primary" data-act="c-send" aria-label="${L('Senden', 'Send', 'Envoyer', 'Gönder')}">➤</button></form>
   </div>`;
 }
 const val2 = id => ((document.getElementById(id) || {}).value || '').trim();
@@ -4000,16 +4033,19 @@ function communityAct(a, b) {
     else { cbStop(); render(); } return; }
   if (a === 'c-wipe') { confirmSheet(L('Community-Daten löschen?', 'Delete community data?', 'Supprimer les données ?', 'Topluluk verileri silinsin mi?'), L('Dein Profil und alle Nachrichten, die du von diesem Gerät geschrieben hast, werden aus der Community gelöscht. Danach ist die Community ausgeschaltet.', 'Your profile and all messages you wrote from this device are deleted from the community. The community is then switched off.', 'Ton profil et tous les messages écrits depuis cet appareil sont supprimés. La communauté est ensuite désactivée.', 'Profilin ve bu cihazdan yazdığın tüm mesajlar silinir. Ardından topluluk kapanır.'), L('ENDGÜLTIG LÖSCHEN', 'DELETE PERMANENTLY', 'SUPPRIMER DÉFINITIVEMENT', 'KALICI OLARAK SİL'), () => cbWipe(false), true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal')); return; }
   if (a === 'c-unblock') { const L2 = blockList().filter(x => x !== b.dataset.u); store.set(blockKey(), L2); render(); return; }
-  if (a === 'c-block') { const u = b.dataset.u, n = (cbUsers[u] || {}).nick || u; confirmSheet(L(`${n} blockieren?`, `Block ${n}?`, `Bloquer ${n} ?`, `${n} engellensin mi?`), L('Du siehst keine Nachrichten und Anstupser mehr von dieser Person. Das kannst du in der Mitgliederliste wieder aufheben.', 'You will no longer see messages or pokes from this person. You can undo this in the member list.', 'Tu ne verras plus ses messages ni ses signes. Annulable dans la liste des membres.', 'Bu kişinin mesajlarını ve dürtmelerini artık görmezsin. Üye listesinden geri alabilirsin.'), L('BLOCKIEREN', 'BLOCK', 'BLOQUER', 'ENGELLE'), () => { const B2 = blockList(); if (!B2.includes(u)) B2.push(u); store.set(blockKey(), B2); if (cbRoom && cbRoom.startsWith('dm_') && dmOther(cbRoom) === u) { cbRoom = null; cbTab = 'people'; } render(); }, true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal')); return; }
+  if (a === 'c-block') { const u = b.dataset.u, n = esc((cbUsers[u] || {}).nick || u); confirmSheet(L(`${n} blockieren?`, `Block ${n}?`, `Bloquer ${n} ?`, `${n} engellensin mi?`), L('Du siehst keine Nachrichten und Anstupser mehr von dieser Person. Das kannst du in der Mitgliederliste wieder aufheben.', 'You will no longer see messages or pokes from this person. You can undo this in the member list.', 'Tu ne verras plus ses messages ni ses signes. Annulable dans la liste des membres.', 'Bu kişinin mesajlarını ve dürtmelerini artık görmezsin. Üye listesinden geri alabilirsin.'), L('BLOCKIEREN', 'BLOCK', 'BLOQUER', 'ENGELLE'), () => { const B2 = blockList(); if (!B2.includes(u)) B2.push(u); store.set(blockKey(), B2); if (cbRoom && cbRoom.startsWith('dm_') && dmOther(cbRoom) === u) { cbRoom = null; cbTab = 'people'; } render(); }, true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal')); return; }
   if (a === 'c-retry') { cbStop(); cbStart(); return; }
   if (!CB) return;
   if (a === 'c-room') { cbOpenRoom(b.dataset.id); return; }
   if (a === 'c-tab') { cbTab = b.dataset.v; render(); return; }
   if (a === 'c-dm') { cbOpenRoom(dmId(b.dataset.u)); return; }
   if (a === 'c-poke') { const u = b.dataset.u, id = dmId(u), txt = L('Lust auf ein Training?', 'Fancy a workout?', 'Partant pour une séance ?', 'Antrenman yapalım mı?');
-    CB.send(id, { type: 'poke', text: txt }).then(() => CB.touchDm(id, dmMembers(id), '👉 ' + txt, nickKey(cNick()))).then(() => { toast(L(`${(cbUsers[u] || {}).nick || u} angestupst 👉`, `Poked ${(cbUsers[u] || {}).nick || u} 👉`, `Signe envoyé à ${(cbUsers[u] || {}).nick || u} 👉`, `${(cbUsers[u] || {}).nick || u} dürtüldü 👉`)); if (cbRoom === id) setTimeout(scrollChat, 100); }).catch(cFail); return; }
+    CB.send(id, { type: 'poke', text: txt }).then(() => { notifyAdd(u, 'poke', id, txt); return CB.touchDm(id, dmMembers(id), '👉 ' + txt, nickKey(cNick())); }).then(() => { toast(L(`${(cbUsers[u] || {}).nick || u} angestupst 👉`, `Poked ${(cbUsers[u] || {}).nick || u} 👉`, `Signe envoyé à ${(cbUsers[u] || {}).nick || u} 👉`, `${(cbUsers[u] || {}).nick || u} dürtüldü 👉`)); if (cbRoom === id) setTimeout(scrollChat, 100); }).catch(cFail); return; }
   if (a === 'c-back') { try { cbUnsub && cbUnsub(); } catch (e) {} if (cbRoom) { markSeen(cbRoom); roomUnread[cbRoom] = 0; if (cbRoom.startsWith('dm_')) cbTab = 'dms'; } watchRooms(); cbUnsub = null; cbRoom = null; render(); return; }
-  if (a === 'c-send') { const t = val2('cText'); if (!t) return; document.getElementById('cText').value = ''; CB.send(cbRoom, { type: 'msg', text: t.slice(0, 500) }).then(() => { scrollChat(); if (cbRoom.startsWith('dm_')) CB.touchDm(cbRoom, dmMembers(cbRoom), t, nickKey(cNick())); }).catch(cFail); return; }
+  if (a === 'c-mention') { mentionPick(b.dataset.v); return; }
+  if (a === 'c-send') { const t = val2('cText'); if (!t) return; document.getElementById('cText').value = ''; mentionHide();
+    const room = cbRoom, ments = findMentions(t);
+    CB.send(room, { type: 'msg', text: t.slice(0, 500), mentions: ments }).then(() => { scrollChat(); notifyOnSend(room, t, ments); if (room.startsWith('dm_')) CB.touchDm(room, dmMembers(room), t, nickKey(cNick())); }).catch(cFail); return; }
   if (a === 'c-poll') { pollSheet(); return; }
   if (a === 'c-meet') { meetSheet(); return; }
   if (a === 'c-newroom') { roomSheet(); return; }
@@ -4129,30 +4165,121 @@ function updBadges() {
 }
 /* Community nach dem Login still im Hintergrund verbinden, damit neue Nachrichten angezeigt werden */
 function cbAutoStart() { if (account && settings.community && !CB && cbState !== 'loading') cbStart().catch(() => {}); }
-function updTitle() { try { const n = unreadTotal(); document.title = (n ? `(${n}) ` : '') + 'Pausen Workout'; } catch (e) {} }
+function updTitle() { try { const n = unreadTotal() + (typeof notifUnread === 'function' ? notifUnread() : 0); document.title = (n ? `(${n}) ` : '') + 'Pausen Workout'; } catch (e) {} }
+document.addEventListener('submit', e => { if (e.target && e.target.classList && e.target.classList.contains('c-form')) e.preventDefault(); });
+
+/* ============================================================
+   GLOCKE: Erwähnungen (@Name), Direktnachrichten, Anstupser
+   ============================================================ */
+let NOTIFS = [], notifUnsub = null, notifBoot = 0;
+const nSeenKey = () => `uipause-${account.id}-notifseen-v1`;
+const notifUnread = () => { if (!account) return 0; const t = store.get(nSeenKey(), 0); return NOTIFS.filter(n => n.ts > t && !isBlocked(n.from)).length; };
+function notifStart() {
+  if (!CB || !CB.listenNotifs || !account) return;
+  notifStop(); notifBoot = Date.now();
+  notifUnsub = CB.listenNotifs(nickKey(cNick()), list => {
+    const old = new Set(NOTIFS.map(n => n.id));
+    NOTIFS = list.slice().sort((a, b) => b.ts - a.ts);
+    const fresh = NOTIFS.filter(n => !old.has(n.id) && n.ts > notifBoot && !isBlocked(n.from));
+    if (fresh.length && !(cbRoom && fresh[0].room === cbRoom)) toast('🔔 ' + notifLine(fresh[0]));
+    bellUpdate(); updTitle();
+  });
+  bellUpdate();
+}
+function notifStop() { try { notifUnsub && notifUnsub(); } catch (e) {} notifUnsub = null; NOTIFS = []; bellUpdate(); }
+function notifLine(n) {
+  const who = n.from || '?';
+  if (n.type === 'mention') return L(`${who} hat dich erwähnt`, `${who} mentioned you`, `${who} t'a mentionné`, `${who} senden bahsetti`) + (n.rname ? ` · ${n.rname}` : '');
+  if (n.type === 'poke') return L(`${who} hat dich angestupst`, `${who} poked you`, `${who} t'a fait signe`, `${who} seni dürttü`);
+  return L(`Neue Nachricht von ${who}`, `New message from ${who}`, `Nouveau message de ${who}`, `${who} kişisinden yeni mesaj`);
+}
+function bellUpdate() {
+  const bb = document.getElementById('bellBtn'); if (!bb) return;
+  const on = !!(account && settings && settings.community && CB);
+  bb.hidden = !on; if (!on) return;
+  const n = notifUnread();
+  bb.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>${n ? `<span class="bell-n">${n > 9 ? '9+' : n}</span>` : ''}`;
+  bb.setAttribute('aria-label', L('Benachrichtigungen', 'Notifications', 'Notifications', 'Bildirimler') + (n ? ` (${n})` : ''));
+}
+function bellSheet() {
+  const t = store.get(nSeenKey(), 0), list = NOTIFS.filter(n => !isBlocked(n.from)).slice(0, 40);
+  const ic = n => n.type === 'mention' ? '@' : n.type === 'poke' ? '👉' : '✉️';
+  openSheet(`<div data-notr><h2 id="dlgTitle">🔔 ${L('Benachrichtigungen', 'Notifications', 'Notifications', 'Bildirimler')}</h2>
+    ${list.length ? `<div class="n-list">${list.map(n => `<button type="button" class="n-item ${n.ts > t ? 'new' : ''}" data-act="n-open" data-id="${esc(n.id)}"><span class="n-ic">${ic(n)}</span><span class="n-tx"><b>${esc(notifLine(n))}</b>${n.text ? `<small>„${esc(n.text)}“</small>` : ''}<em>${tStr(n.ts)}</em></span></button>`).join('')}</div>`
+      : `<p class="sub">${L('Noch keine Benachrichtigungen. Hier erscheint es, wenn dich jemand mit @Name erwähnt, dir schreibt oder dich anstupst.', 'No notifications yet. You will see it here when someone mentions you with @name, messages you or pokes you.', 'Aucune notification. Elles apparaissent ici quand quelqu\'un te mentionne avec @nom, t\'écrit ou te fait signe.', 'Henüz bildirim yok. Biri seni @isim ile andığında, yazdığında veya dürttüğünde burada görünür.')}</p>`}
+    <div class="acts">${list.length ? `<button type="button" class="btn btn-ghost" data-act="n-clear">${L('Alle löschen', 'Clear all', 'Tout effacer', 'Tümünü sil')}</button>` : ''}<button type="button" class="btn btn-primary xl" data-act="sheet-close">${L('Schließen', 'Close', 'Fermer', 'Kapat')}</button></div></div>`);
+  store.set(nSeenKey(), Date.now()); bellUpdate(); updTitle();
+}
+function notifAct(a, b) {
+  if (a === 'bell') { bellSheet(); return; }
+  if (a === 'n-clear') { if (CB && CB.clearNotifs) CB.clearNotifs(nickKey(cNick())).catch(() => {}); NOTIFS = []; closeSheet(); bellUpdate(); updTitle(); return; }
+  if (a === 'n-open') { const n = NOTIFS.find(x => x.id === b.dataset.id); closeSheet(); if (!n || !n.room) return;
+    view = 'community'; cbTab = n.room.startsWith('dm_') ? 'dms' : 'rooms'; render(); cbOpenRoom(n.room); window.scrollTo(0, 0); }
+}
+/* Erwähnungen erkennen: @ gefolgt von einem bekannten Nickname (auch mit Leerzeichen) */
+function knownNicks() { return Object.values(cbUsers).map(u => u.nick).filter(Boolean).filter(n => nickKey(n) !== nickKey(cNick())).sort((a, b) => b.length - a.length); }
+function findMentions(t) {
+  const low = t.toLowerCase(), out = [];
+  knownNicks().forEach(n => { if (low.includes('@' + n.toLowerCase())) { const k = nickKey(n); if (!out.includes(k)) out.push(k); } });
+  return out.slice(0, 10);
+}
+function mentionHTML(text) {
+  let h = esc(text); const nicks = Object.values(cbUsers).map(u => u.nick).filter(Boolean).concat([cNick()]).sort((a, b) => b.length - a.length);
+  nicks.forEach(n => { const e = esc('@' + n), re = new RegExp(e.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    h = h.replace(re, m => `<span class="c-at ${nickKey(n) === nickKey(cNick()) ? 'me' : ''}">${m}</span>`); });
+  return h;
+}
+function notifyAdd(toKey, type, room, text, rname) {
+  if (!CB || !CB.addNotif || !toKey || toKey === nickKey(cNick())) return;
+  CB.addNotif({ to: toKey, type, from: cNick(), room, rname: rname || '', text: String(text || '').slice(0, 140) }).catch(() => {});
+}
+function notifyOnSend(room, text, ments) {
+  const isDm = room.startsWith('dm_');
+  const rname = isDm ? '' : ((allRooms().find(r => r.id === room) || {}).name || '');
+  if (isDm) { const other = dmOther(room); notifyAdd(other, 'dm', room, text); ments = ments.filter(k => k !== other); }
+  ments.forEach(k => notifyAdd(k, 'mention', room, text, rname));
+}
+/* Vorschläge beim Tippen von @ */
+function mentionHide() { const box = document.getElementById('cMention'); if (box) { box.hidden = true; box.innerHTML = ''; } }
+document.addEventListener('input', e => {
+  if (!e.target || e.target.id !== 'cText') return;
+  const box = document.getElementById('cMention'); if (!box) return;
+  const v = e.target.value, pos = e.target.selectionStart || v.length, before = v.slice(0, pos), m = before.match(/@([^@\n]{0,24})$/);
+  if (!m) { mentionHide(); return; }
+  const q = m[1].toLowerCase(), hits = knownNicks().filter(n => n.toLowerCase().startsWith(q) || nickKey(n).startsWith(nickKey(q))).slice(0, 6);
+  if (!hits.length) { mentionHide(); return; }
+  box.innerHTML = hits.map(n => `<button type="button" class="chip" data-act="c-mention" data-v="${esc(n)}">${avHTML(n, 20)} ${esc(n)}</button>`).join('');
+  box.hidden = false;
+});
+function mentionPick(nick) {
+  const inp = document.getElementById('cText'); if (!inp) return;
+  const v = inp.value, pos = inp.selectionStart || v.length, before = v.slice(0, pos).replace(/@([^@\n]{0,24})$/, '@' + nick + ' ');
+  inp.value = before + v.slice(pos); inp.focus(); try { inp.setSelectionRange(before.length, before.length); } catch (e) {}
+  mentionHide();
+}
 
 /* ============================================================
    MITGLIEDERBEREICH – Profil, Passwort, Abo & Zahlung (Demo),
    Kündigung, Widerruf, Daten
-   Alle Angaben bleiben lokal auf diesem Gerät.
+   Profilangaben bleiben lokal; Konto, Passwort und Tarif liegen bei Firebase.
    ============================================================ */
 const profKey = () => `uipause-${account.id}-profile-v1`;
 const subKey = () => `uipause-${account.id}-sub-v1`;
 const pwOverKey = id => `uipause-pw-${id}`;
 const getProfile = () => Object.assign({ first: '', last: '', email: '', city: '', birth: '', height: '', goal: '', av: '' }, account ? store.get(profKey(), {}) : {});
-/* Arbeitgeber-Codes: eingebaute Demo plus optional firmen.json neben index.html, Format {"CODE": "Firmenname"} */
-const AG_BUILTIN = { 'DEMO-2026': 'Musterfirma GmbH (Demo)' };
-async function agLookup(code) {
-  const c = String(code || '').trim().toUpperCase().replace(/\s+/g, ''); if (!c) return null;
-  if (AG_BUILTIN[c]) return AG_BUILTIN[c];
-  if (/^https?:$/.test(location.protocol)) { try { const r = await fetch('./firmen.json?ts=' + Date.now(), { cache: 'no-store' }); if (r.ok) { const j = await r.json(); if (j && j[c]) return String(j[c]); } } catch (e) {} }
-  return null;
+/* Arbeitgeber-Codes liegen in Firestore codes/{CODE}. Der Server prüft beim Einlösen, ob Code und Firma zusammenpassen. */
+async function agRedeem(code) {
+  const c = String(code || '').trim().toUpperCase().replace(/\s+/g, ''); if (!/^[A-Z0-9-]{4,40}$/.test(c)) return null;
+  const { db, auth } = await fbCore(); const d = await db.collection('codes').doc(c).get(); if (!d.exists) return null;
+  const company = String(d.data().company || '');
+  await db.collection('members').doc(auth.currentUser.uid).update({ plan: 'employer', company, code: c });
+  return company;
 }
 function agSheet() {
   openSheet(`<div data-notr><h2 id="dlgTitle">🏢 ${L('Premium über Arbeitgeber', 'Premium via employer', 'Premium via l\'employeur', 'İşveren üzerinden Premium')}</h2>
     <p>${L('Bietet dein Arbeitgeber Pausen Workout an? Dann bekommst du Premium kostenlos. Gib dazu den Code ein, den du von deinem Arbeitgeber bekommen hast.', 'Does your employer offer Pausen Workout? Then you get Premium for free. Enter the code you received from your employer.', 'Ton employeur propose Pausen Workout ? Alors Premium est gratuit pour toi. Saisis le code reçu de ton employeur.', 'İşverenin Pausen Workout sunuyor mu? O zaman Premium ücretsiz. İşvereninden aldığın kodu gir.')}</p>
-    <label class="lbl-pw" for="agc">${L('Arbeitgeber-Code', 'Employer code', 'Code employeur', 'İşveren kodu')}</label><input id="agc" class="inp pw full" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="z. B. DEMO-2026">
-    <p class="sub">${L('Zum Testen funktioniert der Code DEMO-2026.', 'For testing, the code DEMO-2026 works.', 'Pour tester, le code DEMO-2026 fonctionne.', 'Test için DEMO-2026 kodu çalışır.')}</p>
+    <label class="lbl-pw" for="agc">${L('Arbeitgeber-Code', 'Employer code', 'Code employeur', 'İşveren kodu')}</label><input id="agc" class="inp pw full" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="">
+    
     <div class="acts"><button type="button" class="btn btn-primary xl" data-act="m-ag-send">${L('CODE EINLÖSEN', 'REDEEM CODE', 'UTILISER LE CODE', 'KODU KULLAN')}</button><button type="button" class="btn btn-ghost" data-act="sheet-close">${L('Abbrechen', 'Cancel', 'Annuler', 'İptal')}</button></div></div>`);
   setTimeout(() => { const i = document.getElementById('agc'); if (i) i.focus(); }, 50);
 }
@@ -4164,20 +4291,22 @@ function avatarFromFile(file) {
 }
 document.addEventListener('change', e => { if (e.target && e.target.id === 'pf_av' && e.target.files && e.target.files[0]) avatarFromFile(e.target.files[0]).then(av => { const P = getProfile(); P.av = av; store.set(profKey(), P); if (typeof CB !== 'undefined' && CB) CB.setProfile(myPublicProfile()).catch(() => {}); setAccountLabel(); render(); toast(L('Profilbild gespeichert', 'Profile picture saved', 'Photo de profil enregistrée', 'Profil fotoğrafı kaydedildi')); }).catch(() => toast(L('Bild konnte nicht geladen werden', 'Could not load image', 'Impossible de charger l\'image', 'Görsel yüklenemedi'))); });
 function memberView() {
-  const P = getProfile(), t = trialInfo(), S = store.get(subKey(), { status: 'trial', method: '' });
+  const P = getProfile(), t = trialInfo(), S0 = store.get(subKey(), { status: 'trial', method: '' });
+  /* Tarif kommt vom Server (members/{uid}); lokal gespeicherte Angaben zählen nur für die Demo-Knöpfe */
+  const S = account.plan === 'employer' ? Object.assign({}, S0, { status: 'employer', company: account.company }) : S0.status === 'employer' ? Object.assign({}, S0, { status: 'trial' }) : S0;
   const fld = (id, lbl, v, type = 'text', ph = '', extra = '') => `<label class="lbl-pw" for="${id}">${lbl}</label><input id="${id}" class="inp pw full" type="${type}" value="${esc(v)}" placeholder="${esc(ph)}" ${extra}>`;
   const stat = S.status === 'employer' ? L(`Premium über Arbeitgeber · ${esc(S.company)}`, `Premium via employer · ${esc(S.company)}`, `Premium via l'employeur · ${esc(S.company)}`, `İşveren üzerinden Premium · ${esc(S.company)}`) : S.status === 'cancelled' ? L(`Gekündigt zum ${new Date(t.end).toLocaleDateString(LOC)}`, `Cancelled as of ${new Date(t.end).toLocaleDateString(LOC)}`, `Résilié au ${new Date(t.end).toLocaleDateString(LOC)}`, `${new Date(t.end).toLocaleDateString(LOC)} itibarıyla iptal edildi`)
     : S.status === 'revoked' ? L('Widerrufen', 'Withdrawn', 'Rétracté', 'Cayıldı')
     : t.left > 0 ? L(`Testmonat · noch ${t.left} Tage`, `Trial month · ${t.left} days left`, `Mois d'essai · encore ${t.left} jours`, `Deneme ayı · ${t.left} gün kaldı`) : L('Testmonat abgelaufen (Demo)', 'Trial ended (demo)', 'Essai terminé (démo)', 'Deneme bitti (demo)');
   return `<div class="stack fade-in member" data-notr>
     <article class="face front" style="--ph:var(--ph-circuit)"><div class="kicker"><span>${L('Mitgliederbereich', 'Members area', 'Espace membre', 'Üye alanı')}</span><span class="r">${esc(account.name)}</span></div>
-      <h2>${L('Mein Konto', 'My account', 'Mon compte', 'Hesabım')}</h2><p class="sub" style="margin:0">${L('Deine Angaben bleiben lokal auf diesem Gerät. Pflicht sind nur Nickname und Passwort.', 'Your details stay on this device. Only nickname and password are required.', 'Tes données restent sur cet appareil. Seuls pseudo et mot de passe sont obligatoires.', 'Bilgilerin bu cihazda kalır. Sadece kullanıcı adı ve şifre zorunludur.')}</p></article>
+      <h2>${L('Mein Konto', 'My account', 'Mon compte', 'Hesabım')}</h2><p class="sub" style="margin:0">${L('Login, Passwort und Tarif verwaltet der Server. Wohnort, Ziel, Bild und Trainingsdaten bleiben auf diesem Gerät.', 'Login, password and plan are managed by the server. Town, goal, picture and training data stay on this device.', 'Connexion, mot de passe et formule sont gérés par le serveur. Ville, objectif, photo et données d\'entraînement restent sur cet appareil.', 'Giriş, şifre ve plan sunucuda yönetilir. Şehir, hedef, fotoğraf ve antrenman verileri bu cihazda kalır.')}</p></article>
 
     <div class="sec-title">👤 ${L('Persönliche Daten', 'Personal details', 'Données personnelles', 'Kişisel bilgiler')}</div>
     <div class="panel">
       <div class="m-av"><label for="pf_av" class="m-av-pic" title="${L('Bild ändern', 'Change picture', 'Changer la photo', 'Fotoğrafı değiştir')}">${P.av ? `<img src="${esc(P.av)}" alt="">` : `<span>${esc(account.name.charAt(0).toUpperCase())}</span>`}<i>📷</i></label><div><b>${L('Profilbild', 'Profile picture', 'Photo de profil', 'Profil fotoğrafı')}</b><label class="chip" style="margin-top:6px">📷 ${P.av ? L('Ändern', 'Change', 'Changer', 'Değiştir') : L('Hochladen', 'Upload', 'Ajouter', 'Yükle')}<input type="file" id="pf_av" accept="image/*" hidden></label>${P.av ? ` <button type="button" class="chip" style="margin-top:6px" data-act="m-av-del">${L('Entfernen', 'Remove', 'Supprimer', 'Kaldır')}</button>` : ''}</div></div>
       <div class="c-2"><div>${fld('pf_first', L('Vorname', 'First name', 'Prénom', 'Ad'), P.first, 'text', '', 'autocomplete="given-name"')}</div><div>${fld('pf_last', L('Nachname', 'Last name', 'Nom', 'Soyad'), P.last, 'text', '', 'autocomplete="family-name"')}</div></div>
-      ${fld('pf_email', L('E-Mail', 'Email', 'E-mail', 'E-posta'), P.email, 'email', 'name@example.com', 'autocomplete="email"')}
+      ${fld('pf_email', L('E-Mail (Login, nur lesbar)', 'Email (login, read-only)', 'E-mail (connexion, lecture seule)', 'E-posta (giriş, salt okunur)'), P.email, 'email', '', 'readonly')}
       ${fld('pf_city', L('Wohnort / Stadt', 'Town / city', 'Ville', 'Şehir'), P.city, 'text', L('z. B. Trier', 'e.g. Trier', 'p. ex. Trèves', 'örn. Trier'), 'autocomplete="address-level2"')}
       <div class="c-2"><div>${fld('pf_birth', L('Geburtsjahr', 'Year of birth', 'Année de naissance', 'Doğum yılı'), P.birth, 'number', '1990', 'inputmode="numeric" min="1920" max="2015"')}</div><div>${fld('pf_height', L('Größe (cm)', 'Height (cm)', 'Taille (cm)', 'Boy (cm)'), P.height, 'number', '175', 'inputmode="numeric" min="100" max="230"')}</div></div>
       ${fld('pf_goal', L('Mein Ziel', 'My goal', 'Mon objectif', 'Hedefim'), P.goal, 'text', L('z. B. fitter werden, 10 km laufen', 'e.g. get fitter, run 10 km', 'p. ex. être en forme, courir 10 km', 'örn. daha fit olmak, 10 km koşmak'))}
@@ -4195,10 +4324,10 @@ function memberView() {
     <div class="sec-title">🔑 ${L('Passwort ändern', 'Change password', 'Changer le mot de passe', 'Şifre değiştir')}</div>
     <div class="panel">
       ${fld('pw_old', L('Aktuelles Passwort', 'Current password', 'Mot de passe actuel', 'Mevcut şifre'), '', 'password', '', 'autocomplete="current-password"')}
-      ${fld('pw_new', L('Neues Passwort (mind. 8 Zeichen, 1 Zahl, 1 Sonderzeichen)', 'New password (min. 8 characters, 1 number, 1 special character)', 'Nouveau mot de passe (min. 8 caractères, 1 chiffre, 1 caractère spécial)', 'Yeni şifre (en az 8 karakter, 1 rakam, 1 özel karakter)'), '', 'password', '', 'autocomplete="new-password"')}
+      ${fld('pw_new', L('Neues Passwort (mind. 10 Zeichen, 1 Zahl, 1 Sonderzeichen)', 'New password (min. 10 characters, 1 number, 1 special character)', 'Nouveau mot de passe (min. 10 caractères, 1 chiffre, 1 caractère spécial)', 'Yeni şifre (en az 10 karakter, 1 rakam, 1 özel karakter)'), '', 'password', '', 'autocomplete="new-password"')}
       ${fld('pw_new2', L('Neues Passwort wiederholen', 'Repeat new password', 'Répéter le mot de passe', 'Yeni şifreyi tekrarla'), '', 'password', '', 'autocomplete="new-password"')}
       <button type="button" class="btn btn-primary" style="width:100%;margin-top:12px" data-act="m-pw">${L('Passwort ändern', 'Change password', 'Changer le mot de passe', 'Şifreyi değiştir')}</button>
-      <p class="sub" style="margin:10px 0 0">${L('Gilt sofort auf diesem Gerät. Für andere Geräte bekommt der Admin automatisch eine Nachricht und übernimmt es.', 'Applies immediately on this device. For other devices the admin is notified automatically.', 'Valable tout de suite sur cet appareil. Pour les autres appareils, l\'admin est prévenu automatiquement.', 'Bu cihazda hemen geçerli. Diğer cihazlar için yöneticiye otomatik bildirim gider.')}</p>
+      <p class="sub" style="margin:10px 0 0">${L('Gilt sofort auf allen Geräten. Zur Sicherheit wird dein aktuelles Passwort abgefragt.', 'Applies on all devices right away. Your current password is required for security.', 'Valable tout de suite sur tous les appareils. Ton mot de passe actuel est demandé par sécurité.', 'Hemen tüm cihazlarda geçerli. Güvenlik için mevcut şifren istenir.')}</p>
     </div>
 
     <div class="sec-title">💳 ${L('Abo & Zahlung', 'Subscription & payment', 'Abonnement & paiement', 'Abonelik & ödeme')} <span class="badge opt">DEMO</span></div>
@@ -4222,6 +4351,7 @@ function memberView() {
       <button type="button" class="btn btn-ghost" data-act="legal">${L('Rechtliches & Datenschutz', 'Legal & privacy', 'Mentions légales & confidentialité', 'Yasal & gizlilik')}</button>
       ${settings.community ? `<button type="button" class="btn btn-ghost" data-act="c-wipe">${L('Meine Community-Daten löschen', 'Delete my community data', 'Supprimer mes données de communauté', 'Topluluk verilerimi sil')}</button>` : ''}
       <button type="button" class="btn btn-ghost" data-act="logout">${L('Abmelden', 'Log out', 'Se déconnecter', 'Çıkış yap')}</button>
+      ${account.uid ? `<button type="button" class="btn btn-dghost" data-act="m-delacc">${L('Konto endgültig löschen', 'Delete account permanently', 'Supprimer définitivement le compte', 'Hesabı kalıcı olarak sil')}</button>` : ''}
       <button type="button" class="btn btn-dghost" data-act="m-wipe">${L('Meine Daten auf diesem Gerät löschen', 'Delete my data on this device', 'Supprimer mes données sur cet appareil', 'Bu cihazdaki verilerimi sil')}</button>
     </div>
   </div>`;
@@ -4237,22 +4367,22 @@ function memberAct(a, b) {
   }
   if (a === 'm-pw') {
     const o = (document.getElementById('pw_old') || {}).value || '', n = (document.getElementById('pw_new') || {}).value || '', n2 = (document.getElementById('pw_new2') || {}).value || '';
-    const acc = findAcc(account.name) || account, ho = pwHash(o);
-    if (ho !== acc.hash && ho !== store.get(pwOverKey(account.id), null)) { toast(L('Aktuelles Passwort stimmt nicht', 'Current password is wrong', 'Mot de passe actuel incorrect', 'Mevcut şifre yanlış')); return; }
-    if (!pwStrong(n)) { toast(L('Neues Passwort: mind. 8 Zeichen, 1 Zahl und 1 Sonderzeichen', 'New password: min. 8 characters, 1 number and 1 special character', 'Nouveau mot de passe : min. 8 caractères, 1 chiffre et 1 caractère spécial', 'Yeni şifre: en az 8 karakter, 1 rakam ve 1 özel karakter')); return; }
-    if (normPw(n) !== normPw(n2)) { toast(L('Die Passwörter stimmen nicht überein', 'Passwords don\'t match', 'Les mots de passe ne correspondent pas', 'Şifreler eşleşmiyor')); return; }
-    const h = pwHash(n); store.set(pwOverKey(account.id), h);
-    ['pw_old', 'pw_new', 'pw_new2'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-    if (!acc.perm) notifyAdmin(`Passwortänderung von ${account.name}`, { Nickname: account.name, 'So übernehmen': 'App öffnen, als admin anmelden, den Code unten bei „Code aus einer Mail übernehmen“ einfügen und speichern. Bis dahin gilt das neue Passwort nur auf dem Gerät der Person.', 'Freigabe-Code': JSON.stringify({ id: account.id, name: account.name, g: account.g || 'm', hash: h, pwchange: true }) }).catch(() => {});
-    { const em = getProfile().email; if (em) sendUserMail(em, 'pwchanged', account.name, LANG).catch(() => {}); }
-    toast(L('Passwort geändert', 'Password changed', 'Mot de passe changé', 'Şifre değiştirildi')); return;
+    if (!pwStrong(n)) { toast(L('Neues Passwort: mind. 10 Zeichen, 1 Zahl und 1 Sonderzeichen', 'New password: min. 10 characters, 1 number and 1 special character', 'Nouveau mot de passe : min. 10 caractères, 1 chiffre et 1 caractère spécial', 'Yeni şifre: en az 10 karakter, 1 rakam ve 1 özel karakter')); return; }
+    if (n !== n2) { toast(L('Die Passwörter stimmen nicht überein', 'Passwords don\'t match', 'Les mots de passe ne correspondent pas', 'Şifreler eşleşmiyor')); return; }
+    changePassword(o, n).then(email => {
+      ['pw_old', 'pw_new', 'pw_new2'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      if (email) sendUserMail(email, 'pwchanged', account.name, LANG).catch(() => {});
+      toast(L('Passwort geändert', 'Password changed', 'Mot de passe changé', 'Şifre değiştirildi'));
+    }).catch(e => toast(/wrong-password|invalid-credential/.test(String(e && e.code)) ? L('Aktuelles Passwort stimmt nicht', 'Current password is wrong', 'Mot de passe actuel incorrect', 'Mevcut şifre yanlış') : authMsg(e)));
+    return;
   }
   if (a === 'm-method') { paySheet(); return; }
   if (a === 'm-av-del') { const P = getProfile(); P.av = ''; store.set(profKey(), P); if (typeof CB !== 'undefined' && CB) CB.setProfile(myPublicProfile()).catch(() => {}); setAccountLabel(); render(); return; }
   if (a === 'm-ag') { agSheet(); return; }
-  if (a === 'm-ag-del') { const S = store.get(subKey(), {}); S.status = 'trial'; delete S.company; store.set(subKey(), S); render(); return; }
-  if (a === 'm-ag-send') { const code = v('agc'); agLookup(code).then(co => { if (!co) { toast(L('Code ungültig. Bitte bei deinem Arbeitgeber nachfragen.', 'Invalid code. Please check with your employer.', 'Code invalide. Renseigne-toi auprès de ton employeur.', 'Geçersiz kod. Lütfen işverenine sor.')); return; }
-    const S = store.get(subKey(), {}); S.status = 'employer'; S.company = co; S.at = Date.now(); store.set(subKey(), S); closeSheet(); if (view !== 'member') view = 'member'; render(); toast(L(`Premium über ${co} aktiviert 🎉`, `Premium via ${co} activated 🎉`, `Premium via ${co} activé 🎉`, `${co} üzerinden Premium etkin 🎉`)); }); return; }
+  if (a === 'm-ag-del') { fbCore().then(({ db, auth }) => db.collection('members').doc(auth.currentUser.uid).update({ plan: 'trial', company: '', code: '' })).then(() => { account.plan = 'trial'; account.company = ''; store.set(KEY_MEMBER, account); render(); }).catch(e => toast(authMsg(e))); return; }
+  if (a === 'm-ag-send') { const code = v('agc'); agRedeem(code).then(co => { if (!co) { toast(L('Code ungültig. Bitte bei deinem Arbeitgeber nachfragen.', 'Invalid code. Please check with your employer.', 'Code invalide. Renseigne-toi auprès de ton employeur.', 'Geçersiz kod. Lütfen işverenine sor.')); return; }
+    account.plan = 'employer'; account.company = co; store.set(KEY_MEMBER, account); closeSheet(); if (view !== 'member') view = 'member'; render(); toast(L(`Premium über ${co} aktiviert 🎉`, `Premium via ${co} activated 🎉`, `Premium via ${co} activé 🎉`, `${co} üzerinden Premium etkin 🎉`)); })
+    .catch(e => toast(authMsg(e))); return; }
   if (a === 'm-cancel') {
     confirmSheet(L('Abo kündigen?', 'Cancel subscription?', 'Résilier l\'abonnement ?', 'Abonelik iptal edilsin mi?'), L('Demo: Das Abo würde zum Ende des Zeitraums enden. In der Testversion ändert sich nichts, du kannst weiter trainieren.', 'Demo: the subscription would end at the end of the period. Nothing changes in the test version.', 'Démo : l\'abonnement prendrait fin à la fin de la période. Rien ne change dans la version d\'essai.', 'Demo: Abonelik dönem sonunda biterdi. Deneme sürümünde hiçbir şey değişmez.'),
       L('JETZT KÜNDIGEN', 'CANCEL NOW', 'RÉSILIER', 'ŞİMDİ İPTAL ET'), () => { const S = store.get(subKey(), {}); S.status = 'cancelled'; S.at = Date.now(); store.set(subKey(), S); render(); toast(L('Kündigung bestätigt (Demo)', 'Cancellation confirmed (demo)', 'Résiliation confirmée (démo)', 'İptal onaylandı (demo)')); }, true, L('Zurück', 'Back', 'Retour', 'Geri'));
@@ -4274,16 +4404,37 @@ function memberAct(a, b) {
   }
   if (a === 'm-wipe') {
     confirmSheet(L('Alle Daten löschen?', 'Delete all data?', 'Tout supprimer ?', 'Tüm veriler silinsin mi?'), L('Verlauf, Einstellungen, Profil und Laufplan dieses Kontos werden auf diesem Gerät gelöscht. Das lässt sich nicht rückgängig machen.', 'History, settings, profile and running plan of this account are deleted on this device. This cannot be undone.', 'Historique, réglages, profil et plan de course de ce compte sont supprimés sur cet appareil. Irréversible.', 'Bu hesabın geçmişi, ayarları, profili ve koşu planı bu cihazdan silinir. Geri alınamaz.'),
-      L('ENDGÜLTIG LÖSCHEN', 'DELETE PERMANENTLY', 'SUPPRIMER DÉFINITIVEMENT', 'KALICI OLARAK SİL'), () => { const pre = `uipause-${account.id}-`; try { Object.keys(localStorage).filter(k => k.startsWith(pre) || k === pwOverKey(account.id)).forEach(k => localStorage.removeItem(k)); } catch (e) {} sess = null; history = []; logout(); }, true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal'));
+      L('ENDGÜLTIG LÖSCHEN', 'DELETE PERMANENTLY', 'SUPPRIMER DÉFINITIVEMENT', 'KALICI OLARAK SİL'), () => { const pre = `uipause-${account.id}-`; try { Object.keys(localStorage).filter(k => k.startsWith(pre) || false).forEach(k => localStorage.removeItem(k)); } catch (e) {} sess = null; history = []; logout(); }, true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal'));
   }
 }
 
+/* Karte „Mein Konto“ ganz oben auf Startseite und in den Einstellungen */
+function accountHomeCard() {
+  if (!account) return '';
+  const P = getProfile(), nm = [P.first, P.last].filter(Boolean).join(' ');
+  return `<button type="button" class="ach-home acc-card" data-act="member" data-notr><span class="acc-card-av">${P.av ? `<img src="${esc(P.av)}" alt="">` : esc(account.name.charAt(0).toUpperCase())}</span>
+    <span class="ach-txt"><b>${L('Mein Konto', 'My account', 'Mon compte', 'Hesabım')} · ${esc(account.name)}</b><small>${nm ? esc(nm) + ' · ' : ''}${L('Profil, Gewicht, Passwort, Abo', 'Profile, weight, password, plan', 'Profil, poids, mot de passe, formule', 'Profil, kilo, şifre, plan')}</small></span><span class="ach-go">›</span></button>`;
+}
+
+function delAccSheet() {
+  openSheet(`<div data-notr><h2 id="dlgTitle">${L('Konto endgültig löschen?', 'Delete account permanently?', 'Supprimer définitivement le compte ?', 'Hesap kalıcı olarak silinsin mi?')}</h2>
+    <p>${L('Gelöscht werden dein Login, dein Mitgliedsprofil, Name und E-Mail auf dem Server, deine Community-Beiträge und die Trainingsdaten auf diesem Gerät. Die E-Mail-Adresse ist danach wieder frei.', 'Your login, member profile, name and email on the server, your community posts and the training data on this device will be deleted. The email address becomes available again.', 'Ton login, ton profil, nom et e-mail sur le serveur, tes messages et les données d\'entraînement de cet appareil seront supprimés.', 'Girişin, üye profilin, sunucudaki ad ve e-postan, topluluk mesajların ve bu cihazdaki antrenman verilerin silinir.')}</p>
+    <label class="lbl-pw" for="da_pw">${L('Passwort zur Bestätigung', 'Password to confirm', 'Mot de passe pour confirmer', 'Onay için şifre')}</label><input id="da_pw" class="inp pw full" type="password" autocomplete="current-password">
+    <p class="msg-err" id="da_err"></p>
+    <div class="acts"><button type="button" class="btn btn-danger xl" data-act="m-delacc-go">${L('ENDGÜLTIG LÖSCHEN', 'DELETE PERMANENTLY', 'SUPPRIMER', 'KALICI SİL')}</button><button type="button" class="btn btn-ghost xl" data-act="sheet-close">${L('Abbrechen', 'Cancel', 'Annuler', 'İptal')}</button></div></div>`);
+}
+
 /* ============================================================
-   FREISCHALTEN PER KLICK (über Firebase)
-   Registrierung legt einen Antrag in Firestore an (nicht lesbar).
-   Der Link in der Admin-Mail schaltet den Account mit einem Klick frei.
+   ANMELDUNG & FREIGABE (ab Version 24)
+   - Konten, Passwörter, Sitzungen, Passwort-Reset: Firebase Authentication
+   - Freigabe, Sperre, Rollen, Tarif: Firestore members/{uid}, nur vom Admin änderbar
+   - Admin-Recht: Firestore admins/{uid}, nur in der Firebase-Konsole anlegbar
+   - Die Prüfungen im Browser dienen nur der Bedienung. Durchgesetzt wird alles
+     von den Firestore-Regeln auf dem Server.
    ============================================================ */
-let FBP = null, accBlocked = new Set();
+const KEY_MEMBER = 'uipause-member-v1';
+let FBP = null, FBU = null, MEMBER = null, IS_ADMIN = false, authReady = false, regBusy = false;
+const RESERVED_NK = ['admin', 'administrator', 'team', 'support', 'pausenworkout', 'pausenworkoutteam', 'moderator', 'system'];
 function fbCore() {
   if (FBP) return FBP;
   FBP = (async () => {
@@ -4297,316 +4448,440 @@ function fbCore() {
     if (!firebase.auth) await loadScript(base + 'firebase-auth-compat.js');
     if (!firebase.firestore) await loadScript(base + 'firebase-firestore-compat.js');
     const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(cfg);
-    if (!app.auth().currentUser) await app.auth().signInAnonymously();
-    return { db: app.firestore() };
+    /* VORBEREITET, NICHT AKTIV: App Check. Wird nur aktiv, wenn in community.json "appCheckSiteKey" eingetragen ist. */
+    if (cfg.appCheckSiteKey) {
+      try { if (!firebase.appCheck) await loadScript(base + 'firebase-app-check-compat.js'); firebase.appCheck().activate(cfg.appCheckSiteKey, true); } catch (e) { try { console.warn('App Check nicht aktiv', e); } catch (x) {} }
+    }
+    try { app.auth().useDeviceLanguage && app.auth().useDeviceLanguage(); } catch (e) {}
+    return { app, db: app.firestore(), auth: app.auth() };
   })();
   FBP.catch(() => { FBP = null; });
   return FBP;
 }
-/* Freigeschaltete Accounts aus Firestore zur Liste ergänzen */
-async function fsMergeAccounts() {
+const withTimeout = (p, ms) => Promise.race([p, new Promise((_, no) => setTimeout(() => no(new Error('timeout')), ms))]);
+const authMsg = e => {
+  const c = String(e && (e.code || e.message) || e);
+  if (/invalid-credential|wrong-password|user-not-found|invalid-login|invalid-email/.test(c)) return 'E-Mail oder Passwort falsch.';
+  if (/too-many-requests/.test(c)) return 'Zu viele Versuche. Bitte später erneut versuchen oder das Passwort zurücksetzen.';
+  if (/user-disabled/.test(c)) return 'Dieser Zugang ist deaktiviert.';
+  if (/email-already-in-use/.test(c)) return 'Mit dieser E-Mail-Adresse gibt es schon ein Konto. Nutze „Anmelden“ oder „Passwort vergessen?“.';
+  if (/weak-password/.test(c)) return 'Das Passwort ist zu schwach.';
+  if (/network|timeout|offline|nocfg|unavailable/.test(c)) return 'Keine Verbindung zum Anmeldedienst. Bitte Internetverbindung prüfen.';
+  if (/requires-recent-login/.test(c)) return 'Bitte zuerst ab- und wieder anmelden.';
+  return 'Das hat nicht geklappt. Bitte erneut versuchen.';
+};
+/* Mitgliedsdaten vom Server laden. Entscheidend ist, was der Server liefert. */
+async function loadMember(u) {
   const { db } = await fbCore();
-  try { await fsMergeAdmin(); } catch (e) {}
-  const q = await db.collection('accounts').get();
-  q.docs.forEach(d => { const a = d.data(); if (!a || !a.id || !a.hash) return;
-    const ex = accList.accounts.find(x => x.id === a.id);
-    if (ex) { ex.name = a.name || ex.name; ex.g = a.g || ex.g; ex.hash = a.hash; return; }
-    if (!accList.accounts.find(x => nickKey(x.name) === nickKey(a.name))) accList.accounts.push({ id: a.id, name: a.name, g: a.g || 'm', hash: a.hash }); });
-  accList.accounts = accList.accounts.filter(a => !accBlocked.has(a.id));
-  store.set(KEY_LIST, accList);
+  const [m, a] = await Promise.all([db.collection('members').doc(u.uid).get(), db.collection('admins').doc(u.uid).get().catch(() => ({ exists: false }))]);
+  IS_ADMIN = !!a.exists;
+  MEMBER = m.exists ? Object.assign({ uid: u.uid }, m.data()) : null;
+  return MEMBER;
 }
-const b64u = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-const unb64u = s => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
-const newToken = () => { const a = new Uint8Array(18); crypto.getRandomValues(a); return [...a].map(x => x.toString(16).padStart(2, '0')).join(''); };
-/* Antrag anlegen; liefert den Freischalt-Link oder null */
-/* Antrag anlegen. Rückgabe: { url } oder { error: 'email' | 'nick' | 'net' } */
-async function fsCreatePending(entry, email, extra) {
-  extra = extra || {};
-  let db;
-  try { ({ db } = await Promise.race([fbCore(), new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 6000))])); }
-  catch (e) { return { error: 'net' }; }
-  const token = newToken(), eh = sha256('mail:' + String(email || '').trim().toLowerCase());
-  const emailRef = db.collection('emails').doc(eh), pendRef = db.collection('pending').doc(entry.id);
+const memberAccount = (m) => ({ id: m.uid, name: m.nick, g: m.g || 'm', uid: m.uid, plan: m.plan || 'trial', company: m.company || '', admin: IS_ADMIN });
+/* Start: Sitzung von Firebase übernehmen */
+function authInit() {
+  fbCore().then(({ auth }) => {
+    auth.onAuthStateChanged(async u => {
+      FBU = u; authReady = true;
+      if (regBusy) return;
+      if (!u) { MEMBER = null; IS_ADMIN = false; store.del(KEY_MEMBER); if (account) { localLogout(); showLogin('', 'Du wurdest abgemeldet.'); } else if (!adminMode && !document.querySelector('.login .auth-tabs')) showLogin(); return; }
+      let m = null;
+      try { m = await withTimeout(loadMember(u), 9000); }
+      catch (e) { const c = store.get(KEY_MEMBER, null); if (c && c.uid === u.uid) { if (!account) enterAccount(c); return; } showLogin(authMsg(e)); return; }
+      await routeMember(u, m);
+    });
+  }).catch(e => { const c = store.get(KEY_MEMBER, null); if (c) { if (!account) enterAccount(c); } else showLogin(e && e.message === 'offline' ? '' : authMsg(e)); });
+}
+async function routeMember(u, m) {
+  if (!m) { if (IS_ADMIN) { const acc = { id: 'admin', name: 'Admin', g: 'm', uid: u.uid, admin: true }; adminOnly(acc); return; } statusScreen('missing'); return; }
+  if (m.status === 'blocked') { statusScreen('blocked'); return; }
+  if (!u.emailVerified) { statusScreen('verify'); return; }
+  if (m.status !== 'approved') { statusScreen('pending'); return; }
+  const acc = memberAccount(m);
+  store.set(KEY_MEMBER, acc);
+  if (account && account.id === acc.id) { account = Object.assign(account, acc); }
+  else {
+    if (account) localLogout();
+    await askLocalMigration(m);
+    enterAccount(acc);
+  }
+  try { await syncPrivateToProfile(u); } catch (e) {}
+  setAccountLabel(); if (!adminMode) render();
+}
+/* Trainingsdaten auf diesem Gerät gehören ab Version 25 zur Konto-UID, nicht mehr zum Nickname.
+   Liegen noch Daten unter demselben Nickname, entscheidet die Person einmalig, ob sie übernommen werden. */
+const localKeysOf = id => Object.keys(localStorage).filter(k => k.startsWith(`uipause-${id}-`));
+function askLocalMigration(m) {
+  return new Promise(done => {
+    const old = m.nk ? localKeysOf(m.nk) : [], now = localKeysOf(m.uid);
+    if (!old.length || now.length || store.get(`uipause-${m.uid}-migr-v1`, null)) { done(); return; }
+    const h = store.get(`uipause-${m.nk}-history-v1`, []), n = Array.isArray(h) ? h.length : 0;
+    window.__migr = choice => {
+      if (choice === 'take') old.forEach(k => { const nk = k.replace(`uipause-${m.nk}-`, `uipause-${m.uid}-`); try { localStorage.setItem(nk, localStorage.getItem(k)); localStorage.removeItem(k); } catch (e) {} });
+      if (choice === 'fresh') old.forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
+      store.set(`uipause-${m.uid}-migr-v1`, { at: Date.now(), choice }); closeSheet(); done();
+    };
+    openSheet(`<div data-notr><h2 id="dlgTitle">Daten auf diesem Gerät</h2>
+      <p>Auf diesem Gerät liegen Trainingsdaten unter dem Nickname <b>${esc(m.nick)}</b>${n ? ` (${n} Workouts)` : ''}, z. B. aus einem früheren Konto.</p>
+      <p class="sub">Sie liegen nur hier auf dem Gerät, nicht auf dem Server.</p>
+      <div class="acts"><button type="button" class="btn btn-primary xl" data-act="au-migr" data-v="take">ÜBERNEHMEN</button>
+      <button type="button" class="btn btn-ghost xl" data-act="au-migr" data-v="fresh">NEU STARTEN (alte Daten löschen)</button></div></div>`, true);
+  });
+}
+/* Nur Admin ohne Mitgliedsprofil: direkt in den Admin-Bereich */
+function adminOnly(acc) { account = null; adminMode = true; admConnect(); }
+/* Vorname, Nachname, E-Mail aus dem privaten Datensatz ins lokale Profil übernehmen */
+async function syncPrivateToProfile(u) {
+  const { db } = await fbCore(); const p = await db.collection('private').doc(u.uid).get(); if (!p.exists || !account) return;
+  const d = p.data(), pk = `uipause-${account.id}-profile-v1`, P = store.get(pk, {});
+  store.set(pk, Object.assign({}, P, { first: d.first || P.first || '', last: d.last || P.last || '', email: d.email || P.email || '' }));
+}
+function statusScreen(kind) {
+  lockUI();
+  const email = FBU && FBU.email ? esc(FBU.email) : '';
+  const T = {
+    verify: ['📧 E-Mail bestätigen', `Wir haben dir eine Bestätigungs-Mail an <b>${email}</b> geschickt. Bitte den Link darin öffnen. Schau auch im Spam-Ordner nach.`, `<button type="button" class="btn btn-primary xl" data-act="au-verified">ICH HABE BESTÄTIGT</button><button type="button" class="btn btn-ghost" data-act="au-resend">Mail erneut senden</button>`],
+    pending: ['⏳ Wartet auf Freischaltung', 'Deine Registrierung ist beim Admin. Sobald du freigeschaltet bist, kannst du loslegen. Du bekommst dann eine E-Mail.', `<button type="button" class="btn btn-primary xl" data-act="au-verified">ERNEUT PRÜFEN</button>`],
+    blocked: ['🚫 Zugang gesperrt', 'Dieser Zugang ist gesperrt. Bei Fragen wende dich an die Person, über die du den Zugang bekommen hast.', ''],
+    missing: ['⚠️ Kein Mitgliedsprofil', 'Zu diesem Login gibt es kein Mitgliedsprofil mehr, z. B. weil es gelöscht wurde. Melde dich ab und registriere dich unter „Registrieren“ noch einmal mit derselben E-Mail und demselben Passwort. Dann wird die Mitgliedschaft neu beantragt.', '']
+  }[kind];
+  $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)" data-notr><h2>${T[0]}</h2><p>${T[1]}</p>
+    <div class="acts" style="display:flex;flex-direction:column;gap:8px">${T[2]}<button type="button" class="btn btn-ghost" data-act="logout">Abmelden</button></div>
+    <p class="msg-err" role="alert"></p></article>`;
+}
+async function authAct(a) {
+  const { auth } = await fbCore();
+  if (a === 'au-resend') { try { await auth.currentUser.sendEmailVerification({ url: APP_URL }); toast('Bestätigungs-Mail gesendet'); } catch (e) { toast(authMsg(e)); } return; }
+  if (a === 'au-verified') { try { await auth.currentUser.reload(); await auth.currentUser.getIdToken(true); const u = auth.currentUser; FBU = u; await routeMember(u, await loadMember(u)); } catch (e) { toast(authMsg(e)); } return; }
+}
+/* ---------- Anmelden ---------- */
+let mfaResolver = null;
+async function doLogin() {
+  const email = val('nick'), pw = (document.getElementById('pw') || {}).value || '';
+  const tb = document.getElementById('terms');
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { authErr('Bitte deine E-Mail-Adresse eingeben.'); return; }
+  if (!pw) { authErr('Bitte Passwort eingeben.'); return; }
+  if (tb && !tb.checked) { authErr('Bitte zuerst den Haftungsausschluss bestätigen.'); return; }
+  const btn = document.querySelector('[data-act="login"]'); if (btn) { btn.disabled = true; btn.textContent = '…'; }
   try {
-    try { const ex = await emailRef.get(); if (ex.exists) return { error: 'email' }; } catch (x) {}
+    const { auth } = await withTimeout(fbCore(), 9000);
+    await auth.signInWithEmailAndPassword(email, pw);
+    if (tb) store.set(KEY_TERMS, Date.now());
+    store.set('uipause-lastnick', email);
+    unlockAudio();
+  } catch (e) {
+    if (e && e.code === 'auth/multi-factor-auth-required' && e.resolver) { mfaResolver = e.resolver; mfaSheet(); }
+    else authErr(authMsg(e));
+  } finally { if (btn) { btn.disabled = false; btn.textContent = 'ANMELDEN'; } }
+}
+/* Zweiter Faktor (TOTP-App) beim Anmelden – greift nur, wenn für das Konto MFA eingerichtet ist */
+function mfaSheet() {
+  openSheet(`<div data-notr><h2 id="dlgTitle">🔐 Bestätigungscode</h2><p>Gib den 6-stelligen Code aus deiner Authenticator-App ein.</p>
+    <input id="mfa_code" class="inp pw full" inputmode="numeric" autocomplete="one-time-code" maxlength="6">
+    <p class="msg-err" id="mfa_err"></p><div class="acts"><button type="button" class="btn btn-primary xl" data-act="au-mfa">BESTÄTIGEN</button><button type="button" class="btn btn-ghost" data-act="sheet-close">Abbrechen</button></div></div>`, true);
+}
+async function mfaSubmit() {
+  const code = val('mfa_code'), r = mfaResolver; if (!r) return;
+  try {
+    const hint = r.hints.find(h => h.factorId === 'totp') || r.hints[0];
+    if (!firebase.auth.TotpMultiFactorGenerator) throw new Error('TOTP wird von dieser Firebase-Version nicht unterstützt');
+    await r.resolveSignIn(firebase.auth.TotpMultiFactorGenerator.assertionForSignIn(hint.uid, code));
+    mfaResolver = null; closeSheet();
+  } catch (e) { const el = document.getElementById('mfa_err'); if (el) el.textContent = /invalid/.test(String(e.code)) ? 'Code falsch.' : authMsg(e); }
+}
+/* ---------- Registrieren ---------- */
+async function doRegister() {
+  const first = val('rfirst'), last = val('rlast'), name = val('rn'), email = val('re'), p1 = (document.getElementById('rp') || {}).value || '', p2 = (document.getElementById('rp2') || {}).value || '';
+  if (first.length < 2 || last.length < 2) { authErr('Bitte Vor- und Nachnamen angeben.'); return; }
+  const nk = nickKey(name);
+  if (!/^[A-Za-z0-9 ._-]{2,24}$/.test(name) || nk.length < 2 || name.toLowerCase().replace(/[^a-z0-9]/g, '') !== nk) { authErr('Nickname: 2 bis 24 Zeichen, nur Buchstaben A–Z ohne Umlaute, Zahlen, Leerzeichen, Punkt, Bindestrich oder Unterstrich.'); return; }
+  if (RESERVED_NK.includes(nk) || /pausenworkout/.test(nk)) { authErr('Dieser Nickname ist reserviert.'); return; }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { authErr('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
+  if (!pwStrong(p1)) { authErr('Passwort: mindestens 10 Zeichen, davon mindestens 1 Zahl und 1 Sonderzeichen.'); return; }
+  if (p1 !== p2) { authErr('Die Passwörter stimmen nicht überein.'); return; }
+  if (!regG) { authErr('Bitte Geschlecht auswählen.'); return; }
+  if (!document.getElementById('rterms').checked || !document.getElementById('rmail').checked || !document.getElementById('rage').checked) { authErr('Bitte alle Häkchen setzen. Die Nutzung ist ab 16 Jahren möglich.'); return; }
+  const btn = document.querySelector('[data-act="register"]'); const reset = () => { if (btn) { btn.disabled = false; btn.textContent = 'REGISTRIERUNG SENDEN'; } };
+  if (btn) { btn.disabled = true; btn.textContent = 'WIRD GESENDET …'; }
+  regBusy = true;
+  try { await doRegisterInner(first, last, name, email, p1, nk, reset); } finally { regBusy = false; }
+}
+async function doRegisterInner(first, last, name, email, p1, nk, reset) {
+  let auth, db, u;
+  let reused = false;
+  try { ({ auth, db } = await withTimeout(fbCore(), 9000)); u = (await auth.createUserWithEmailAndPassword(email, p1)).user; }
+  catch (e) {
+    if (!(e && e.code === 'auth/email-already-in-use')) { reset(); authErr(authMsg(e)); return; }
+    /* Login existiert schon. Mit dem eingegebenen Passwort anmelden; gibt es kein Mitgliedsprofil mehr, wird es neu beantragt. */
+    try { u = (await auth.signInWithEmailAndPassword(email, p1)).user; }
+    catch (e2) { reset(); authErr('Zu dieser E-Mail gibt es schon ein Login, aber das Passwort passt nicht. Nutze „Anmelden“ → „Passwort vergessen?“ und registriere dich danach mit dem neuen Passwort noch einmal.'); return; }
+    const ex = await db.collection('members').doc(u.uid).get().catch(() => null);
+    if (ex && ex.exists) { reset(); authErr('Du bist schon registriert. Bitte unter „Anmelden“ einloggen.'); try { await auth.signOut(); } catch (x) {} return; }
+    reused = true;
+  }
+  try {
     const batch = db.batch();
-    batch.set(emailRef, { ts: Date.now() });
-    batch.set(pendRef, { id: entry.id, name: entry.name, g: entry.g, hash: entry.hash, token, em: String(email || '').slice(0, 120), fi: String(extra.fi || '').slice(0, 40), la: String(extra.la || '').slice(0, 40), lg: LANG, ts: Date.now() });
+    batch.set(db.collection('nicks').doc(nk), { uid: u.uid, ts: Date.now() });
+    batch.set(db.collection('members').doc(u.uid), { nick: name, nk, g: regG, lg: LANG, status: 'pending', plan: 'trial', created: Date.now() });
+    batch.set(db.collection('private').doc(u.uid), { first, last, email: u.email, ts: Date.now() });
     await batch.commit();
-    return { url: location.origin + location.pathname + '#approve=' + b64u(JSON.stringify({ id: entry.id, name: entry.name, g: entry.g, hash: entry.hash, token, em: email || '', fi: extra.fi || '', la: extra.la || '', lg: LANG })) };
   } catch (e) {
-    try { const ex = await emailRef.get(); if (ex.exists) return { error: 'email' }; } catch (x) {}
-    if (!/permission|insufficient/i.test(String(e && (e.code || e.message)))) return { error: 'net' };
-    /* Ältere Firestore-Regeln ohne E-Mail-Prüfung: nur den Antrag anlegen */
-    try { await pendRef.set({ id: entry.id, name: entry.name, g: entry.g, hash: entry.hash, token, ts: Date.now() });
-      return { url: location.origin + location.pathname + '#approve=' + b64u(JSON.stringify({ id: entry.id, name: entry.name, g: entry.g, hash: entry.hash, token, em: email || '', fi: extra.fi || '', la: extra.la || '', lg: LANG })) }; }
-    catch (e2) { return { error: 'nick' }; }
+    /* Nickname vergeben oder Regel verletzt: frisch angelegtes Login wieder entfernen (ein bestehendes Login nur abmelden) */
+    if (reused) { try { await auth.signOut(); } catch (y) {} } else { try { await u.delete(); } catch (x) { try { await auth.signOut(); } catch (y) {} } }
+    reset(); authErr(/permission|insufficient/i.test(String(e && (e.code || e.message))) ? 'Dieser Nickname ist schon vergeben. Bitte einen anderen wählen.' : authMsg(e)); return;
   }
+  if (!u.emailVerified) { try { await u.sendEmailVerification({ url: APP_URL }); } catch (e) {} }
+  notifyAdmin(`Neue Registrierung von ${name}`, { Name: first + ' ' + last, Nickname: name, 'E-Mail': email, Geschlecht: { m: 'Mann', w: 'Frau', d: 'Divers' }[regG], Sprache: LANG.toUpperCase(), Zeitpunkt: new Date().toLocaleString('de-DE'), Alter: 'mindestens 16 Jahre (bestätigt)',
+    'So freischalten': 'App öffnen, mit deinem Admin-Konto anmelden, im Admin-Bereich unter „Warten auf Freigabe“ auf „Freischalten“ tippen. Der Link in dieser Mail öffnet nur die App und schaltet selbst nichts frei.' }, { url: APP_URL, text: 'ADMIN-BEREICH ÖFFNEN' }).catch(() => {});
+  sendUserMail(email, 'received', name, LANG).catch(() => {});
+  store.set(KEY_PEND, { name, at: Date.now() });
+  reset();
+  /* onAuthStateChanged zeigt jetzt „E-Mail bestätigen“ */
+  try { await routeMember(u, await loadMember(u)); } catch (e) {}
 }
-/* Link aus der Mail geöffnet */
-async function checkApproveLink() {
-  const m = location.hash.match(/^#approve=([A-Za-z0-9_-]+)$/); if (!m) return;
-  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-  let d; try { d = JSON.parse(unb64u(m[1])); } catch (e) { d = null; }
-  const box = (title, text, ok) => openSheet(`<div data-notr><h2 id="dlgTitle">${ok ? '✅' : '⚠️'} ${title}</h2><p>${text}</p><div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button></div></div>`);
-  if (!d || !d.id || !d.token) { box('Link ungültig', 'Der Freischalt-Link ist unvollständig. Bitte den kompletten Link aus der Mail öffnen.'); return; }
-  openSheet(`<div data-notr><h2 id="dlgTitle">Freischalten …</h2><p>${esc(d.name)} wird freigeschaltet.</p></div>`);
-  try {
-    const { db } = await fbCore();
-    const ref = db.collection('accounts').doc(d.id);
-    const ex = await ref.get();
-    if (ex.exists) { box(`${esc(d.name)} ist schon freigeschaltet`, 'Der Account war bereits aktiv. Die Person kann sich anmelden.', true); return; }
-    await ref.set({ id: d.id, name: d.name, g: d.g, hash: d.hash, token: d.token, ts: Date.now() });
-    let mailed = false; try { mailed = await sendUserMail(d.em, 'welcome', d.name, d.lg, profLink(d.id, d.fi, d.la, d.em)); } catch (e) {}
-    box(`${esc(d.name)} ist freigeschaltet`, mailed ? 'Fertig. Die Person hat automatisch eine Willkommens-Mail bekommen und kann sich ab sofort anmelden.' : 'Fertig. Die Person kann sich ab sofort mit Nickname und Passwort anmelden. Sag ihr am besten kurz Bescheid.', true);
-    refreshAccounts();
-  } catch (e) {
-    box('Freischalten nicht möglich', 'Der Link passt nicht zu einem offenen Antrag oder Firebase ist nicht erreichbar. Fehler: ' + esc(e && e.message || e));
-  }
+/* ---------- Passwort vergessen (Firebase verschickt den Link, zeitlich begrenzt, einmalig) ---------- */
+function forgotSheet() {
+  openSheet(`<div data-notr><h2 id="dlgTitle">${L('Passwort vergessen?', 'Forgot your password?', 'Mot de passe oublié ?', 'Şifreni mi unuttun?')}</h2>
+    <p class="sub">${L('Gib die E-Mail-Adresse deines Kontos ein. Du bekommst einen Link, über den du ein neues Passwort festlegst.', 'Enter your account email. You will receive a link to set a new password.', 'Indique l\'e-mail de ton compte. Tu recevras un lien pour définir un nouveau mot de passe.', 'Hesabının e-postasını gir. Yeni şifre için bir bağlantı alacaksın.')}</p>
+    <label for="fg_mail" class="lbl-pw">E-Mail</label><input id="fg_mail" class="inp pw full" type="email" autocapitalize="none" spellcheck="false" value="${esc(/@/.test(val('nick')) ? val('nick') : '')}">
+    <p class="msg-err" id="fg_err" role="alert"></p>
+    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="pw-forgot-send">${L('LINK ANFORDERN', 'REQUEST LINK', 'DEMANDER LE LIEN', 'BAĞLANTI İSTE')}</button><button type="button" class="btn btn-ghost xl" data-act="sheet-close">${L('Abbrechen', 'Cancel', 'Annuler', 'İptal')}</button></div></div>`);
 }
-window.addEventListener('hashchange', checkApproveLink);
-
-/* Willkommens-Link: übernimmt Vorname, Nachname und E-Mail ins Profil (auch auf neuen Geräten) */
-const profLink = (id, f, l, e) => APP_URL + '#prof=' + b64u(JSON.stringify({ id, f: f || '', l: l || '', e: e || '' }));
-function checkProfLink() {
-  const m = location.hash.match(/^#prof=([A-Za-z0-9_-]+)$/); if (!m) return;
+async function forgotSend() {
+  const em = val('fg_mail'), err = m => { const e = document.getElementById('fg_err'); if (e) e.textContent = m; };
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { err(L('Bitte eine gültige E-Mail eingeben.', 'Please enter a valid email.', 'Indique un e-mail valide.', 'Geçerli bir e-posta gir.')); return; }
+  try { const { auth } = await withTimeout(fbCore(), 9000); await auth.sendPasswordResetEmail(em, { url: APP_URL }); }
+  catch (e) { if (/too-many-requests|network|timeout|offline|nocfg/.test(String(e && (e.code || e.message)))) { err(authMsg(e)); return; } }
+  /* Immer dieselbe Antwort, damit niemand herausfinden kann, ob eine Adresse registriert ist */
+  openSheet(`<div data-notr><h2 id="dlgTitle">✉️ ${L('Prüfe dein Postfach', 'Check your inbox', 'Vérifie ta boîte mail', 'Gelen kutunu kontrol et')}</h2><p>${L('Wenn es zu dieser Adresse ein Konto gibt, ist ein Link zum Zurücksetzen unterwegs. Schau auch im Spam-Ordner nach.', 'If an account exists for this address, a reset link is on its way. Please also check your spam folder.', 'S\'il existe un compte pour cette adresse, un lien est en route. Vérifie aussi tes spams.', 'Bu adrese ait bir hesap varsa sıfırlama bağlantısı gönderildi. Spam klasörünü de kontrol et.')}</p>
+    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button></div></div>`);
+}
+/* ---------- Abmelden ---------- */
+function localLogout() {
+  stopMusic(); try { cbStop(); document.title = 'Pausen Workout'; } catch (e) {}
+  if (sess) save();
+  wakeOff(); closeSheet();
+  account = null; adminMode = false; sess = null; history = []; settings = clone(DEFAULTS);
+  KEY_SET = 'uipause-none-settings'; KEY_SESS = 'uipause-none-session'; KEY_HIST = 'uipause-none-history';
+  store.del(KEY_AUTH); store.del(KEY_MEMBER); setAccountLabel(); applyTheme();
+}
+function logout() {
+  localLogout(); authTab = 'login'; showLogin();
+  fbCore().then(({ auth }) => auth.signOut()).catch(() => {});
+}
+/* ---------- Passwort ändern (mit erneuter Anmeldung) ---------- */
+async function changePassword(oldPw, newPw) {
+  const { auth } = await fbCore(); const u = auth.currentUser; if (!u) throw new Error('requires-recent-login');
+  await u.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(u.email, oldPw));
+  await u.updatePassword(newPw);
+  return u.email;
+}
+/* ---------- Alte Links (bis Version 23) entschärfen ---------- */
+function checkLegacyLinks() {
+  const h = location.hash || '';
+  if (!/^#(approve|reset|prof)=/.test(h)) return;
   try { window.history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-  let d; try { d = JSON.parse(unb64u(m[1])); } catch (e) { return; }
-  if (!d || !d.id) return;
-  if (account && account.id === d.id) { const pk = `uipause-${d.id}-profile-v1`, P = store.get(pk, {}); store.set(pk, Object.assign({}, P, { first: P.first || d.f || '', last: P.last || d.l || '', email: P.email || d.e || '' })); }
-  else store.set(`uipause-profseed-${d.id}`, { f: d.f, l: d.l, e: d.e });
+  setTimeout(() => openSheet(`<div data-notr><h2 id="dlgTitle">⚠️ Link nicht mehr gültig</h2><p>Freischalt- und Passwort-Links aus älteren App-Versionen funktionieren aus Sicherheitsgründen nicht mehr.</p><p class="sub">Freischaltungen erledigt der Admin jetzt im Admin-Bereich. Ein neues Passwort bekommst du über „Passwort vergessen?“.</p><div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button></div></div>`), 400);
 }
-window.addEventListener('hashchange', checkProfLink);
-setTimeout(checkProfLink, 0);
+window.addEventListener('hashchange', checkLegacyLinks);
+const sha256h = s => sha256(s);
+
+/* Konto selbst löschen (Mein Konto): Mitglied, private Daten, Nickname, Community-Beiträge, Login */
+async function deleteOwnAccount(pw) {
+  const { auth, db } = await fbCore(); const u = auth.currentUser; if (!u) throw new Error('requires-recent-login');
+  await u.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(u.email, pw));
+  try { if (typeof CB !== 'undefined' && CB && CB.deleteMine) await CB.deleteMine([...new Set(DEF_ROOMS.map(r => r.id).concat((cbRooms || []).map(r => r.id), (cbDms || []).map(d => d.id)))]); } catch (e) {}
+  const m = MEMBER || {};
+  const batch = db.batch();
+  batch.delete(db.collection('members').doc(u.uid)); batch.delete(db.collection('private').doc(u.uid));
+  if (m.nk) batch.delete(db.collection('nicks').doc(m.nk));
+  await batch.commit();
+  const id = account && account.id; await u.delete();
+  if (id) localKeysOf(id).forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
+  localLogout(); authTab = 'login'; showLogin('', 'Dein Konto wurde gelöscht.');
+}
 
 /* ============================================================
-   ADMIN: Accounts direkt in Firebase verwalten (Speichern-Button)
-   Admin meldet sich zusätzlich bei Firebase an (E-Mail/Passwort).
-   accounts.json auf GitHub bleibt nur noch als Grundbestand.
+   ADMIN-BEREICH (ab Version 24)
+   Zugang nur mit angemeldetem Firebase-Konto, für das in der Firebase-Konsole
+   ein Dokument admins/{uid} angelegt wurde. Ob jemand Admin ist, entscheidet
+   ausschließlich der Server (Firestore-Regeln). Diese Oberfläche zeigt nur an.
    ============================================================ */
-const ADMIN_FB_EMAIL = 'noreply.pausenworkout@gmail.com';
-let ADM = { st: 'off', err: '', pw: '', fs: [], blocked: new Set(), pend: [], pall: {}, req: [], open: new Set(), busy: false };
-let draftList = null;
-async function admConnect(pw) {
-  ADM = { st: 'loading', err: '', pw, fs: [], blocked: new Set(), pend: [], pall: {}, req: [], open: new Set(), busy: false };
-  showAdmin();
+let ADM = { st: 'off', err: '', members: [], priv: {}, codes: [], legacy: 0, open: new Set(), busy: false, tab: 'acc' };
+const admNew = () => ({ st: 'loading', err: '', members: [], priv: {}, codes: [], legacy: 0, open: new Set(), busy: false, tab: ADM.tab || 'acc' });
+const admDate = t => t ? new Date(t).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+const LEGACY_COLS = ['accounts', 'pending', 'emails', 'resets', 'resetreq', 'blocked', 'config'];
+async function admConnect() {
+  ADM = admNew(); adminMode = true; showAdmin();
   try {
-    const { db } = await fbCore();
-    const auth = firebase.app().auth();
-    const cu = auth.currentUser;
-    if (!cu || cu.email !== ADMIN_FB_EMAIL) await auth.signInWithEmailAndPassword(ADMIN_FB_EMAIL, pw);
+    const { db, auth } = await fbCore();
+    const u = auth.currentUser; if (!u) throw Object.assign(new Error('Nicht angemeldet'), { code: 'not-signed-in' });
+    const a = await db.collection('admins').doc(u.uid).get();
+    if (!a.exists) throw Object.assign(new Error('Dieses Konto hat keine Admin-Rechte.'), { code: 'not-admin' });
     ADM.db = db; ADM.st = 'on';
     await admLoad();
     try { await acmLoad(); } catch (e) {}
-  } catch (e) {
-    ADM.st = 'error'; ADM.err = String(e && (e.code || e.message) || e);
-  }
+  } catch (e) { ADM.st = 'error'; ADM.err = String(e && (e.code || e.message) || e); }
   if (adminMode) showAdmin();
 }
 async function admLoad() {
-  const db = ADM.db;
-  const none = () => ({ docs: [] });
-  const [acc, bl, pe, rq] = await Promise.all([db.collection('accounts').get(), db.collection('blocked').get().catch(none), db.collection('pending').get().catch(none), db.collection('resetreq').get().catch(none)]);
-  ADM.pall = {}; pe.docs.forEach(d => { ADM.pall[d.id] = Object.assign({ id: d.id }, d.data()); });
-  ADM.req = rq.docs.map(d => Object.assign({ id: d.id }, d.data())).sort((a, b) => (b.ts || 0) - (a.ts || 0));
-  ADM.fs = acc.docs.map(d => Object.assign({ id: d.id }, d.data()));
-  ADM.blocked = new Set(bl.docs.map(d => d.id)); ADM.deleted = new Set(bl.docs.filter(d => (d.data() || {}).deleted).map(d => d.id));
-  const known = new Set(ADM.fs.map(a => a.id).concat((draftList || accList).accounts.map(a => a.id)));
-  ADM.pend = Object.values(ADM.pall).filter(p => !known.has(p.id) && p.token).sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  const db = ADM.db, none = () => ({ docs: [], size: 0 });
+  const [m, p, c] = await Promise.all([db.collection('members').get(), db.collection('private').get().catch(none), db.collection('codes').get().catch(none)]);
+  ADM.members = m.docs.map(d => Object.assign({ uid: d.id }, d.data())).sort((a, b) => String(a.nick || '').localeCompare(String(b.nick || ''), 'de'));
+  ADM.priv = {}; p.docs.forEach(d => { ADM.priv[d.id] = d.data(); });
+  ADM.codes = c.docs.map(d => Object.assign({ code: d.id }, d.data())).sort((a, b) => a.code.localeCompare(b.code));
+  let n = 0; for (const col of LEGACY_COLS) { try { n += (await db.collection(col).get()).size; } catch (e) {} }
+  ADM.legacy = n;
 }
-async function admLogoutFb() {
-  try { const auth = firebase.app().auth(); if (auth.currentUser && auth.currentUser.email === ADMIN_FB_EMAIL) { await auth.signOut(); FBP = null; } } catch (e) {}
+const emailOfUid = uid => (ADM.priv[uid] || {}).email || '';
+function admMfaInfo() {
+  try { const u = firebase.app().auth().currentUser; const f = (u && u.multiFactor && u.multiFactor.enrolledFactors) || []; return f.length; } catch (e) { return 0; }
 }
-/* Gesamtliste: Grundbestand (accounts.json) + Firebase, Firebase gewinnt */
-function admRows() {
-  const m = new Map();
-  (draftList || accList).accounts.forEach(a => m.set(a.id, Object.assign({ src: 'json' }, a)));
-  ADM.fs.forEach(a => m.set(a.id, Object.assign({}, m.get(a.id) || {}, a, { src: m.has(a.id) ? 'both' : 'fs' })));
-  return [...m.values()].sort((a, b) => String(a.name).localeCompare(String(b.name), 'de'));
-}
-const emailOf = id => (ADM.pall[id] || {}).em || '';
-const admDate = t => t ? new Date(t).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
 function showAdmin(msg) {
   lockUI();
-  if (!draftList) draftList = clone(accList);
   if (ADM.st === 'off' || ADM.st === 'loading') {
-    $app.innerHTML = `<div class="fade-in"><article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span></div><h2>Accounts verwalten</h2><p>Verbinde mit der Datenbank …</p></article>
+    $app.innerHTML = `<div class="fade-in"><article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span></div><h2>Admin-Bereich</h2><p>Prüfe Berechtigung …</p></article>
       <p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p></div>`;
     return;
   }
   if (ADM.st === 'error') {
-    const noUser = /user-not-found|invalid-credential|wrong-password|invalid-login|operation-not-allowed|configuration/i.test(ADM.err);
-    $app.innerHTML = `<div class="fade-in"><article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span></div><h2>Datenbank nicht verbunden</h2>
-      <p>${noUser ? 'Für das direkte Speichern braucht der Admin einmalig ein Firebase-Login. So richtest du es ein:' : 'Die Verbindung zu Firebase hat nicht geklappt.'}</p>
-      ${noUser ? `<ol class="adm-steps"><li>Firebase → Authentication → Sign-in method → <b>E-Mail/Passwort</b> aktivieren.</li><li>Authentication → Users → <b>Nutzer hinzufügen</b>: E-Mail <b>${ADMIN_FB_EMAIL}</b>, Passwort = <b>dein Admin-Passwort</b> aus der App.</li><li>Die neuen Firestore-Regeln veröffentlichen.</li><li>Hier auf „Erneut versuchen“ tippen.</li></ol>` : ''}
+    const noAdmin = /not-admin|permission/i.test(ADM.err);
+    $app.innerHTML = `<div class="fade-in"><article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span></div><h2>Kein Zugriff</h2>
+      <p>${noAdmin ? 'Dieses Konto hat keine Admin-Rechte. Admin-Rechte werden nur in der Firebase-Konsole vergeben: Firestore → Sammlung <b>admins</b> → Dokument mit der UID deines Kontos anlegen.' : 'Die Verbindung zur Datenbank hat nicht geklappt.'}</p>
       <p class="sub">Fehler: ${esc(ADM.err)}</p>
-      <div class="adm-acts"><button type="button" class="btn btn-lamp" data-act="adm-retry">Erneut versuchen</button><a class="btn btn-ghost" href="https://console.firebase.google.com/project/pausen-workout/authentication/users" target="_blank" rel="noopener">Firebase öffnen</a></div></article>
+      <div class="adm-acts"><button type="button" class="btn btn-lamp" data-act="adm-retry">Erneut versuchen</button></div></article>
       <p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p></div>`;
     return;
   }
-  const rows = admRows();
-  const del = ADM.deleted || new Set(), active = rows.filter(a => !ADM.blocked.has(a.id)), blocked = rows.filter(a => ADM.blocked.has(a.id) && !del.has(a.id));
-  const accCard = a => { const open = ADM.open.has(a.id), em = emailOf(a.id);
+  const M = ADM.members, pend = M.filter(m => m.status === 'pending'), act = M.filter(m => m.status === 'approved'), blk = M.filter(m => m.status === 'blocked');
+  const nRep = (typeof ACM !== 'undefined' && ACM.reports || []).length;
+  const tabs = `<div class="seg adm-tabs" role="tablist">${[['acc', '👤 Accounts' + (pend.length ? ` <span class="c-badge">${pend.length}</span>` : '')], ['com', '💬 Community' + (nRep ? ` <span class="c-badge">${nRep}</span>` : '')]].map(([k, t]) => `<button type="button" role="tab" aria-selected="${(ADM.tab || 'acc') === k}" data-act="adm-tab" data-v="${k}">${t}</button>`).join('')}</div>`;
+  const note = msg ? `<div class="note ok"><b>Erledigt</b>${esc(msg)}</div>` : '';
+  const head = (title, txt) => `<article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span><span class="r">✓ Admin-Sitzung</span></div><h2>${title}</h2><p>${txt}</p>${note}</article>`;
+  const foot = `<p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p>`;
+  if (ADM.tab === 'com') { $app.innerHTML = `<div class="fade-in">${head('Community verwalten', 'Meldungen prüfen, Beiträge und Räume löschen, Profile aufräumen und Ankündigungen posten.')}${tabs}${admComHTML()}${foot}</div>`; return; }
+  const planTxt = m => m.plan === 'employer' ? `Arbeitgeber · ${esc(m.company || '')}` : m.plan === 'premium' ? 'Premium' : 'Testphase';
+  const card = m => { const open = ADM.open.has(m.uid), P = ADM.priv[m.uid] || {};
     return `<div class="panel adm-acc ${open ? 'open' : ''}" style="margin-top:10px">
-      <button type="button" class="adm-head" data-act="adm-toggle" data-id="${a.id}" aria-expanded="${open}"><span class="adm-av">${esc(String(a.name || '?').slice(0, 1).toUpperCase())}</span><span class="adm-hn"><b>${esc(a.name)}</b><small>${em ? esc(em) : 'keine E-Mail hinterlegt'}</small></span><span class="badge">${a.src === 'json' ? 'Grundbestand' : 'Datenbank'}</span><span class="adm-chev">${open ? '▴' : '▾'}</span></button>
+      <button type="button" class="adm-head" data-act="adm-toggle" data-id="${esc(m.uid)}" aria-expanded="${open}"><span class="adm-av">${esc(String(m.nick || '?').slice(0, 1).toUpperCase())}</span><span class="adm-hn"><b>${esc(m.nick || '?')}</b><small>${esc(P.email || 'keine E-Mail gespeichert')}</small></span><span class="badge">${planTxt(m)}</span><span class="adm-chev">${open ? '▴' : '▾'}</span></button>
       ${open ? `<div class="adm-body">
-      ${(ADM.pall[a.id] || {}).fi ? `<p style="margin:4px 0 0"><b>Name:</b> ${esc(ADM.pall[a.id].fi)} ${esc(ADM.pall[a.id].la || '')}</p>` : ''}
-      ${a.ts ? `<p class="sub" style="margin:4px 0 8px">Angelegt am ${admDate(a.ts)}${a.upd ? ` · zuletzt geändert ${admDate(a.upd)}` : ''}</p>` : ''}
-      <div class="set-row"><label for="an_${a.id}">Nickname</label><input class="inp wide" id="an_${a.id}" value="${esc(a.name)}" maxlength="24"></div>
-      <div class="set-row"><label for="ae_${a.id}">E-Mail</label><input class="inp wide" id="ae_${a.id}" type="email" value="${esc(em)}" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="name@beispiel.de"></div>
-      <div class="set-row"><label for="ag_${a.id}">Geschlecht</label><select class="inp" id="ag_${a.id}">${[['m', 'Mann'], ['w', 'Frau'], ['d', 'Divers']].map(([k, n]) => `<option value="${k}" ${(a.g || 'm') === k ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
-      <div class="set-row"><label for="ap_${a.id}">Neues Passwort<small>leer = unverändert</small></label><input class="inp wide" id="ap_${a.id}" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
-      <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-save" data-id="${a.id}">Speichern</button><button type="button" class="btn btn-ghost" data-act="adm-reset" data-id="${a.id}" ${em ? '' : 'disabled'}>Passwort-Link senden</button></div>
-      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-block" data-id="${a.id}">Sperren</button><button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${a.id}">Löschen</button></div>
-      ${em ? '' : '<p class="sub" style="margin:6px 0 0">Keine E-Mail hinterlegt. Bei Accounts, die vor Version 20 freigeschaltet wurden, wurde sie noch nicht gespeichert. Du findest sie in der Registrierungs-Mail. Hier eintragen und speichern, dann geht auch der Passwort-Link.</p>'}
-      </div>` : ''}
-    </div>`; };
-  const nRep = (ACM.reports || []).length;
-  const tabs = `<div class="seg adm-tabs" role="tablist">${[['acc', '👤 Accounts' + (ADM.pend.length + ADM.req.length ? ` <span class="c-badge">${ADM.pend.length + ADM.req.length}</span>` : '')], ['com', '💬 Community' + (nRep ? ` <span class="c-badge">${nRep}</span>` : '')]].map(([k, t]) => `<button type="button" role="tab" aria-selected="${(ADM.tab || 'acc') === k}" data-act="adm-tab" data-v="${k}">${t}</button>`).join('')}</div>`;
-  if (ADM.tab === 'com') {
-    $app.innerHTML = `<div class="fade-in"><article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span><span class="r">✓ Datenbank verbunden</span></div>
-      <h2>Community verwalten</h2><p>Meldungen prüfen, Beiträge und Räume löschen, Profile aufräumen und Ankündigungen posten.</p>
-      ${msg ? `<div class="note ok"><b>Erledigt</b>${esc(msg)}</div>` : ''}</article>${tabs}${admComHTML()}
-      <p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p></div>`;
-    return;
-  }
+        <p style="margin:4px 0 0"><b>Name:</b> ${esc(P.first || '')} ${esc(P.last || '')}</p>
+        <p class="sub" style="margin:2px 0 8px">Registriert ${admDate(m.created)}${m.approvedAt ? ` · freigeschaltet ${admDate(m.approvedAt)}` : ''} · UID ${esc(m.uid.slice(0, 8))}…</p>
+        <div class="set-row"><label for="ag_${esc(m.uid)}">Geschlecht</label><select class="inp" id="ag_${esc(m.uid)}">${[['m', 'Mann'], ['w', 'Frau'], ['d', 'Divers']].map(([k, n]) => `<option value="${k}" ${(m.g || 'm') === k ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
+        <div class="set-row"><label for="ap_${esc(m.uid)}">Tarif</label><select class="inp" id="ap_${esc(m.uid)}">${[['trial', 'Testphase'], ['premium', 'Premium'], ['employer', 'Arbeitgeber']].map(([k, n]) => `<option value="${k}" ${(m.plan || 'trial') === k ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
+        <div class="set-row"><label for="ac_${esc(m.uid)}">Firma<small>nur bei Arbeitgeber</small></label><input class="inp wide" id="ac_${esc(m.uid)}" value="${esc(m.company || '')}" maxlength="60"></div>
+        <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-save" data-id="${esc(m.uid)}">Speichern</button><button type="button" class="btn btn-ghost" data-act="adm-reset" data-id="${esc(m.uid)}" ${P.email ? '' : 'disabled'}>Passwort-Link senden</button></div>
+        <div class="adm-acts">${m.status === 'blocked' ? `<button type="button" class="btn btn-ghost" data-act="adm-unblock" data-id="${esc(m.uid)}">Entsperren</button>` : `<button type="button" class="btn btn-ghost" data-act="adm-block" data-id="${esc(m.uid)}">Sperren</button>`}<button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${esc(m.uid)}">Löschen</button></div>
+        <p class="sub" style="margin:6px 0 0">Nickname und Login-E-Mail kann nur die Person selbst bzw. die Firebase-Konsole ändern.</p>
+      </div>` : ''}</div>`; };
+  const mfa = admMfaInfo();
   $app.innerHTML = `<div class="fade-in">
-    <article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span><span class="r">✓ Datenbank verbunden</span></div>
-      <h2>Accounts verwalten</h2>
-      <p>Änderungen werden mit <b>Speichern</b> sofort in der Datenbank gesichert und gelten auf allen Geräten. Kein GitHub nötig.</p>
-      ${msg ? `<div class="note ok"><b>Erledigt</b>${esc(msg)}</div>` : ''}
-      <div class="adm-stats"><span><b>${active.length}</b> aktiv</span><span><b>${ADM.pend.length}</b> offen</span><span><b>${blocked.length}</b> gesperrt</span><button type="button" class="mini" data-act="adm-reload">↻ Aktualisieren</button></div>
-    </article>
+    ${head('Accounts verwalten', 'Freischalten, sperren und löschen wirken sofort auf dem Server und auf allen Geräten.')}
+    <div class="adm-stats" style="margin:8px 0"><span><b>${act.length}</b> aktiv</span><span><b>${pend.length}</b> wartend</span><span><b>${blk.length}</b> gesperrt</span><button type="button" class="mini" data-act="adm-reload">↻ Aktualisieren</button></div>
     ${tabs}
-    ${ADM.req.length ? `<div class="sec-title">Passwort vergessen <span class="badge off">${ADM.req.length}</span></div>${ADM.req.map(r => { const acc = rows.find(x => x.id === r.id), em = emailOf(r.id), same = em && r.em && em.toLowerCase() === String(r.em).toLowerCase();
-      return `<div class="panel adm-acc" style="margin-top:10px"><div class="adm-h"><b>${esc(r.nick || r.id)}</b><small>${admDate(r.ts)} · angegeben: ${esc(r.em || '–')}</small></div>
-      ${!acc ? '<p class="sub">Zu diesem Nickname gibt es keinen Account.</p>' : !em ? '<p class="sub">Beim Account ist keine E-Mail hinterlegt. Account aufklappen, E-Mail eintragen, dann Link senden.</p>' : same ? '<p class="sub">✓ E-Mail stimmt mit dem Account überein.</p>' : `<p class="sub">⚠️ Angegebene E-Mail weicht ab. Der Link geht an die hinterlegte Adresse ${esc(em)}.</p>`}
-      <div class="adm-acts">${acc && em ? `<button type="button" class="btn btn-lamp" data-act="adm-reset" data-id="${esc(r.id)}">Passwort-Link senden</button>` : ''}<button type="button" class="btn btn-ghost" data-act="adm-rqdel" data-id="${esc(r.id)}">Erledigt</button></div></div>`; }).join('')}` : ''}
-    <div class="sec-title">Offene Registrierungen ${ADM.pend.length ? `<span class="badge off">${ADM.pend.length}</span>` : ''}</div>
-    ${ADM.pend.length ? ADM.pend.map(p => `<div class="panel adm-acc" style="margin-top:10px"><div class="adm-h"><b>${esc(p.name)}</b><span class="badge">${{ m: 'Mann', w: 'Frau', d: 'Divers' }[p.g] || ''}</span><small>${admDate(p.ts)}${p.em ? ' · ' + esc(p.em) : ''}</small></div>
-      <div class="adm-acts"><button type="button" class="btn btn-lamp" data-act="adm-pok" data-id="${esc(p.id)}">Freischalten</button><button type="button" class="btn btn-dghost" data-act="adm-pno" data-id="${esc(p.id)}">Ablehnen</button></div></div>`).join('')
+    ${mfa ? '' : `<div class="note warn"><b>Zwei-Faktor-Anmeldung nicht aktiv</b>Für das Admin-Konto ist noch kein zweiter Faktor eingerichtet. Siehe „Sicherheit des Admin-Kontos“ unten.</div>`}
+    <div class="sec-title">Warten auf Freigabe ${pend.length ? `<span class="badge off">${pend.length}</span>` : ''}</div>
+    ${pend.length ? pend.map(m => { const P = ADM.priv[m.uid] || {}; return `<div class="panel adm-acc" style="margin-top:10px"><div class="adm-h"><b>${esc(m.nick || '?')}</b><span class="badge">${{ m: 'Mann', w: 'Frau', d: 'Divers' }[m.g] || ''}</span><small>${admDate(m.created)} · ${esc(P.first || '')} ${esc(P.last || '')} · ${esc(P.email || '')}</small></div>
+      <p class="sub" style="margin:0 0 6px">Die E-Mail-Bestätigung prüft der Server beim Zugriff. Unbestätigte Konten können auch nach Freischaltung nichts auf dem Server lesen oder schreiben.</p>
+      <div class="adm-acts"><button type="button" class="btn btn-lamp" data-act="adm-pok" data-id="${esc(m.uid)}">Freischalten</button><button type="button" class="btn btn-dghost" data-act="adm-pno" data-id="${esc(m.uid)}">Ablehnen</button></div></div>`; }).join('')
       : '<div class="panel"><p class="sub" style="margin:0">Keine offenen Anträge.</p></div>'}
-    <div class="sec-title">Accounts (${active.length})</div>
-    ${active.map(accCard).join('')}
-    ${blocked.length ? `<div class="sec-title">Gesperrt (${blocked.length})</div>${blocked.map(a => `<div class="panel adm-acc" style="margin-top:10px"><div class="adm-h"><b>${esc(a.name)}</b><span class="badge off">gesperrt</span></div>
-      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-unblock" data-id="${a.id}">Entsperren</button><button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${a.id}">Löschen</button></div></div>`).join('')}` : ''}
-    <div class="panel" style="margin-top:14px"><h3>Account manuell anlegen</h3>
-      <div class="set-row"><label for="nn">Nickname</label><input class="inp wide" id="nn" maxlength="24"></div>
-      <div class="set-row"><label for="ng">Geschlecht</label><select class="inp" id="ng"><option value="m">Mann</option><option value="w">Frau</option><option value="d">Divers</option></select></div>
-      <div class="set-row"><label for="np">Passwort</label><input class="inp wide" id="np" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
-      <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-add">Anlegen & speichern</button></div></div>
-    <div class="panel" style="margin-top:10px"><h3>Code aus einer Mail übernehmen</h3><p class="sub">Für Passwortänderungen von Nutzern oder ältere Freigabe-Codes.</p>
-      <textarea id="code" class="inp code" rows="3" placeholder='{"id":"…","name":"…","hash":"…"}'></textarea>
-      <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-approve">Übernehmen & speichern</button></div></div>
-    <div class="panel" style="margin-top:10px"><h3>Admin-Passwort ändern</h3><p class="sub">Ändert das Passwort in der App und im Firebase-Login gleichzeitig.</p>
-      <div class="set-row"><label for="ad">Neues Admin-Passwort</label><input class="inp wide" id="ad" type="text" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
-      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-admin">Speichern</button></div></div>
-    <p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p>
+    <div class="sec-title">Mitglieder (${act.length})</div>
+    ${act.map(card).join('') || '<div class="panel"><p class="sub" style="margin:0">Noch keine freigeschalteten Mitglieder.</p></div>'}
+    ${blk.length ? `<div class="sec-title">Gesperrt (${blk.length})</div>${blk.map(card).join('')}` : ''}
+    <div class="sec-title">🏢 Arbeitgeber-Codes</div>
+    <div class="panel">${ADM.codes.length ? ADM.codes.map(c => `<div class="dash-row"><span><b>${esc(c.code)}</b> · ${esc(c.company || '')}</span><button type="button" class="mini" data-act="adm-codedel" data-id="${esc(c.code)}">✕</button></div>`).join('') : '<p class="sub" style="margin:0 0 8px">Noch keine Codes.</p>'}
+      <div class="set-row"><label for="cd_code">Code</label><input class="inp wide" id="cd_code" maxlength="40" autocapitalize="characters" placeholder="z. B. FIRMA-2027-X7Q"></div>
+      <div class="set-row"><label for="cd_co">Firma</label><input class="inp wide" id="cd_co" maxlength="60"></div>
+      <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-codeadd">Code anlegen</button></div>
+      <p class="sub" style="margin:6px 0 0">Codes stehen nicht mehr in einer öffentlichen Datei. Wählt lange, schwer erratbare Codes.</p></div>
+    <div class="sec-title">🔐 Sicherheit des Admin-Kontos</div>
+    <div class="panel">
+      <p style="margin:0 0 8px">Zweiter Faktor: <b>${mfa ? `eingerichtet (${mfa})` : 'nicht eingerichtet'}</b></p>
+      ${mfa ? '' : `<p class="sub" style="margin:0 0 8px">Voraussetzung: In Firebase muss „Identity Platform“ mit Mehrfaktor-Authentifizierung (TOTP) aktiviert sein. Danach hier einrichten.</p><div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-mfa">Authenticator-App einrichten</button></div>`}
+      <div class="set-row"><label for="ad_old">Aktuelles Passwort</label><input class="inp wide" id="ad_old" type="password" autocomplete="current-password"></div>
+      <div class="set-row"><label for="ad_new">Neues Passwort<small>mind. 12 Zeichen</small></label><input class="inp wide" id="ad_new" type="password" autocomplete="new-password"></div>
+      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-admin">Passwort ändern</button></div></div>
+    ${ADM.legacy ? `<div class="sec-title">🧹 Altdaten aus Version ≤ 23</div><div class="panel"><p style="margin:0 0 8px">Es liegen noch <b>${ADM.legacy}</b> alte Datensätze vor (alte Konten mit Passwort-Prüfwerten, Freischalt-Anträge mit Token, Reset-Links). Sie werden nicht mehr gebraucht und sollten gelöscht werden.</p><div class="adm-acts"><button type="button" class="btn btn-dghost" data-act="adm-legacy">Altdaten endgültig löschen</button></div></div>` : ''}
+    ${foot}
   </div>`;
 }
 async function admRun(fn, okMsg) {
   if (ADM.busy) return; ADM.busy = true;
   try { await fn(); await admLoad(); showAdmin(okMsg); }
-  catch (e) { toast('Speichern fehlgeschlagen: ' + (e && (e.code || e.message) || e)); }
+  catch (e) { toast('Nicht gespeichert: ' + (e && (e.code || e.message) || e)); }
   finally { ADM.busy = false; }
 }
 function adminAct(a, b) {
-  if (a === 'adm-exit') { ACM = { loaded: false, rooms: [], counts: {}, users: [], reports: [], room: null, msgs: [], busy: false }; adminMode = false; draftList = null; ADM = { st: 'off', err: '', pw: '', fs: [], blocked: new Set(), pend: [], busy: false }; admLogoutFb(); refreshAccounts(); showLogin(); return; }
-  if (a === 'adm-retry') { admConnect(ADM.pw); return; }
+  if (a === 'adm-exit') { ADM = { st: 'off', err: '', members: [], priv: {}, codes: [], legacy: 0, open: new Set(), busy: false, tab: 'acc' }; try { ACM = { loaded: false, rooms: [], counts: {}, users: [], reports: [], room: null, msgs: [], busy: false }; } catch (e) {} adminMode = false;
+    if (account) { document.body.classList.remove('locked'); view = 'train'; safeBoot(); } else logout(); return; }
+  if (a === 'adm-retry') { admConnect(); return; }
   if (ADM.st !== 'on') return;
-  const db = ADM.db, rows = admRows(), FV = firebase.firestore.FieldValue;
-  const taken = () => '';
-  const nickTaken = (name, except) => rows.some(x => x.id !== except && nickKey(x.name) === nickKey(name)) || nickKey(name) === 'admin';
+  const db = ADM.db, mem = id => ADM.members.find(x => x.uid === id);
   if (a === 'adm-reload') { admRun(async () => {}, 'Liste aktualisiert.'); return; }
   if (a === 'adm-tab') { ADM.tab = b.dataset.v; showAdmin(); window.scrollTo(0, 0); return; }
   if (a.startsWith('adm-c-')) { admComAct(a, b); return; }
-  if (a === 'adm-save') {
-    const acc = rows.find(x => x.id === b.dataset.id); if (!acc) return;
-    const name = val('an_' + acc.id), pw = val('ap_' + acc.id), g = val('ag_' + acc.id) || acc.g || 'm';
-    if (!name) { toast('Nickname darf nicht leer sein'); return; }
-    if (nickTaken(name, acc.id)) { toast('Nickname gibt es schon.'); return; }
-    let hash = acc.hash;
-    if (pw) { if (pw.length < 6) { toast('Passwort: mindestens 6 Zeichen'); return; } hash = pwHash(pw); const t = taken(hash, acc.id); if (t) { toast(t); return; } }
-    const em = val('ae_' + acc.id);
-    if (em && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { toast('E-Mail-Adresse prüfen'); return; }
+  if (a === 'adm-toggle') { const id = b.dataset.id; if (ADM.open.has(id)) ADM.open.delete(id); else ADM.open.add(id); showAdmin(); return; }
+  if (a === 'adm-pok') { const m = mem(b.dataset.id); if (!m) return;
     admRun(async () => {
-      await db.collection('accounts').doc(acc.id).set({ id: acc.id, name, g, hash, ts: acc.ts || Date.now(), by: 'admin', upd: Date.now() });
-      if (em !== emailOf(acc.id)) await db.collection('pending').doc(acc.id).set({ id: acc.id, name, g, em, upd: Date.now() }, { merge: true });
-    }, `${name} gespeichert.${pw ? ' Neues Passwort gilt ab sofort.' : ''}`);
-  } else if (a === 'adm-add') {
-    const name = val('nn'), pw = val('np');
-    if (!name || pw.length < 6) { toast('Nickname und Passwort (mind. 6 Zeichen) eingeben'); return; }
-    if (nickTaken(name)) { toast('Nickname gibt es schon.'); return; }
-    const h = pwHash(pw), t = taken(h); if (t) { toast(t); return; }
-    let id = nickKey(name) || 'user'; const base = id; let k = 2; while (rows.some(x => x.id === id)) id = base + k++;
-    admRun(() => db.collection('accounts').doc(id).set({ id, name, g: val('ng') || 'm', hash: h, ts: Date.now(), by: 'admin' }), `${name} angelegt. Die Person kann sich sofort anmelden.`);
-  } else if (a === 'adm-toggle') {
-    const id = b.dataset.id; if (ADM.open.has(id)) ADM.open.delete(id); else ADM.open.add(id); showAdmin(); return;
-  } else if (a === 'adm-rqdel') {
-    const id = b.dataset.id; admRun(() => db.collection('resetreq').doc(id).delete(), 'Anfrage erledigt.');
-  } else if (a === 'adm-reset') {
-    const acc = rows.find(x => x.id === b.dataset.id), em = acc && emailOf(acc.id); if (!acc || !em) { toast('Keine E-Mail hinterlegt'); return; }
-    confirmSheet(`Passwort-Link an ${esc(acc.name)} senden?`, `Die Mail geht an <b>${esc(em)}</b>. Über den Link legt die Person selbst ein neues Passwort fest. Der Link gilt 24 Stunden.`, 'LINK SENDEN', () => admRun(async () => {
-      const token = newToken(), lg = (ADM.pall[acc.id] || {}).lg || 'de';
-      await db.collection('resets').doc(acc.id).set({ token, exp: firebase.firestore.Timestamp.fromMillis(Date.now() + 864e5), ts: Date.now() });
-      const url = location.origin + location.pathname + '#reset=' + b64u(JSON.stringify({ id: acc.id, t: token, n: acc.name, lg }));
-      const ok = await sendUserMail(em, 'reset', acc.name, lg, url);
-      if (!ok) throw new Error('Mail konnte nicht gesendet werden');
-      try { await db.collection('resetreq').doc(acc.id).delete(); } catch (e) {}
-    }, `Passwort-Link an ${em} gesendet.`), false);
-  } else if (a === 'adm-block') {
-    const acc = rows.find(x => x.id === b.dataset.id); if (!acc) return;
-    if (rows.filter(x => !ADM.blocked.has(x.id)).length <= 1) { toast('Mindestens ein Account muss bleiben'); return; }
-    confirmSheet(`${acc.name} sperren?`, 'Die Person kann sich danach nicht mehr anmelden und wird beim nächsten Start abgemeldet. Entsperren ist jederzeit möglich.', 'SPERREN', () => admRun(() => db.collection('blocked').doc(acc.id).set({ id: acc.id, name: acc.name, ts: Date.now() }), `${acc.name} ist gesperrt.`));
-  } else if (a === 'adm-unblock') {
-    const id = b.dataset.id; admRun(() => db.collection('blocked').doc(id).delete(), 'Account entsperrt.');
-  } else if (a === 'adm-del') {
-    const acc = rows.find(x => x.id === b.dataset.id); if (!acc) return;
-    if (rows.filter(x => !ADM.blocked.has(x.id) && x.id !== acc.id).length < 1) { toast('Mindestens ein Account muss bleiben'); return; }
-    const em = emailOf(acc.id);
-    confirmSheet(`${esc(acc.name)} löschen?`, `Der Account wird gelöscht und kann sich nicht mehr anmelden.${em ? ` Die E-Mail ${esc(em)} ist danach wieder für eine neue Registrierung frei.` : ''} Trainingsdaten auf dem Gerät der Person bleiben dort, sind aber nicht mehr erreichbar.</p><label class="terms"><input type="checkbox" id="delCom" checked><span>Auch alle Chat-Beiträge, Direktnachrichten und das Community-Profil löschen</span></label><p>`, 'LÖSCHEN', () => { const wipeCom = !!(document.getElementById('delCom') || {}).checked; admRun(async () => {
-      const del = async ref => { try { await ref.delete(); } catch (e) {} };
-      if (wipeCom) { try { if (!ACM.loaded) await acmLoad(); await acmWipeNick(acc.name); ACM.loaded = false; } catch (e) {} }
-      if (acc.src !== 'json') await db.collection('accounts').doc(acc.id).delete();
-      if (acc.src !== 'fs') await db.collection('blocked').doc(acc.id).set({ id: acc.id, name: acc.name, deleted: true, ts: Date.now() });
-      else await del(db.collection('blocked').doc(acc.id));
-      if (em) await del(db.collection('emails').doc(sha256('mail:' + em.trim().toLowerCase())));
-      await del(db.collection('pending').doc(acc.id)); await del(db.collection('resets').doc(acc.id)); await del(db.collection('resetreq').doc(acc.id));
-      ADM.open.delete(acc.id);
-    }, `${acc.name} gelöscht.${wipeCom ? ' Community-Daten ebenfalls entfernt.' : ''}`); });
-  } else if (a === 'adm-pok') {
-    const p = ADM.pend.find(x => x.id === b.dataset.id); if (!p) return;
-    if (nickTaken(p.name, p.id)) { toast('Nickname gibt es schon.'); return; }
-    admRun(async () => {
-      await db.collection('accounts').doc(p.id).set({ id: p.id, name: p.name, g: p.g || 'm', hash: p.hash, token: p.token || '', ts: Date.now(), by: 'admin' });
-      if (ADM.blocked.has(p.id)) { try { await db.collection('blocked').doc(p.id).delete(); } catch (e) {} }
-      if (p.em) { try { await sendUserMail(p.em, 'welcome', p.name, p.lg || 'de', profLink(p.id, p.fi, p.la, p.em)); } catch (e) {} }
-    }, `${p.name} ist freigeschaltet.${p.em ? ' Die Willkommens-Mail ist raus.' : ''}`);
-  } else if (a === 'adm-pno') {
-    const p = ADM.pend.find(x => x.id === b.dataset.id); if (!p) return;
-    confirmSheet(`Antrag von ${p.name} ablehnen?`, 'Der Antrag wird gelöscht. Der Nickname wird wieder frei.', 'ABLEHNEN', () => admRun(() => db.collection('pending').doc(p.id).delete(), `Antrag von ${p.name} abgelehnt.`));
-  } else if (a === 'adm-approve') {
-    let e; try { e = JSON.parse(val('code')); } catch (x) { toast('Code nicht lesbar. Bitte komplett einfügen.'); return; }
-    if (!e || !e.id || !e.name || !/^[0-9a-f]{64}$/.test(e.hash || '')) { toast('Code unvollständig.'); return; }
-    const ex = rows.find(x => x.id === e.id) || rows.find(x => nickKey(x.name) === nickKey(e.name));
-    if (ex && !(e.pwchange && ex.id === e.id)) { toast('Nickname gibt es schon.'); return; }
-    if (ex) admRun(() => db.collection('accounts').doc(ex.id).set({ id: ex.id, name: ex.name, g: ex.g || 'm', hash: e.hash, ts: ex.ts || Date.now(), by: 'admin', upd: Date.now() }), `Neues Passwort von ${ex.name} gespeichert.`);
-    else admRun(() => db.collection('accounts').doc(e.id).set({ id: e.id, name: e.name, g: ['m', 'w', 'd'].includes(e.g) ? e.g : 'm', hash: e.hash, ts: Date.now(), by: 'admin' }), `${e.name} ist freigeschaltet.`);
-  } else if (a === 'adm-admin') {
-    const pw = val('ad'); if (pw.length < 6) { toast('Admin-Passwort: mindestens 6 Zeichen'); return; }
-    const h = pwHash(pw);
-    admRun(async () => {
-      await firebase.app().auth().currentUser.updatePassword(pw);
-      await db.collection('config').doc('admin').set({ hash: h, ts: Date.now() });
-      accList.admin = h; store.set(KEY_LIST, accList); ADM.pw = pw;
-    }, 'Admin-Passwort geändert. Es gilt ab sofort für die App und für Firebase.');
-  }
+      await db.collection('members').doc(m.uid).update({ status: 'approved', approvedAt: Date.now() });
+      const em = emailOfUid(m.uid); if (em) { try { await sendUserMail(em, 'welcome', m.nick, m.lg || 'de'); } catch (e) {} }
+    }, `${m.nick} ist freigeschaltet.${emailOfUid(m.uid) ? ' Die Willkommens-Mail ist raus.' : ''}`); return; }
+  if (a === 'adm-pno' || a === 'adm-del') { const m = mem(b.dataset.id); if (!m) return; const reject = a === 'adm-pno';
+    confirmSheet(reject ? `Antrag von ${esc(m.nick)} ablehnen?` : `${esc(m.nick)} löschen?`,
+      `Mitgliedsprofil, private Daten und Nickname-Reservierung werden gelöscht. Danach kann die Person nichts mehr auf dem Server lesen oder schreiben.</p>${reject ? '' : '<label class="terms"><input type="checkbox" id="delCom" checked><span>Auch alle Chat-Beiträge, Direktnachrichten und das Community-Profil löschen</span></label>'}<p class="sub">Das Login selbst (E-Mail/Passwort) bleibt bei Firebase bestehen und hat danach keine Rechte mehr. Endgültig entfernen: Firebase-Konsole → Authentication → Nutzer löschen.`,
+      reject ? 'ABLEHNEN' : 'LÖSCHEN', () => { const wipe = !reject && !!(document.getElementById('delCom') || {}).checked;
+        admRun(async () => {
+          if (wipe) { try { if (!ACM.loaded) await acmLoad(); await acmWipeNick(m.nick); ACM.loaded = false; } catch (e) {} }
+          const batch = db.batch();
+          batch.delete(db.collection('members').doc(m.uid)); batch.delete(db.collection('private').doc(m.uid));
+          if (m.nk) batch.delete(db.collection('nicks').doc(m.nk));
+          await batch.commit();
+          ADM.open.delete(m.uid);
+        }, reject ? `Antrag von ${m.nick} abgelehnt.` : `${m.nick} gelöscht.${wipe ? ' Community-Daten ebenfalls entfernt.' : ''}`); });
+    return; }
+  if (a === 'adm-block') { const m = mem(b.dataset.id); if (!m) return;
+    confirmSheet(`${esc(m.nick)} sperren?`, 'Der Server verweigert ab sofort jeden Zugriff dieses Kontos. Entsperren ist jederzeit möglich.', 'SPERREN', () => admRun(() => db.collection('members').doc(m.uid).update({ status: 'blocked' }), `${m.nick} ist gesperrt.`)); return; }
+  if (a === 'adm-unblock') { const m = mem(b.dataset.id); if (!m) return; admRun(() => db.collection('members').doc(m.uid).update({ status: 'approved' }), `${m.nick} ist entsperrt.`); return; }
+  if (a === 'adm-save') { const m = mem(b.dataset.id); if (!m) return; const id = m.uid;
+    const plan = val('ap_' + id) || 'trial', company = val('ac_' + id), g = val('ag_' + id) || m.g || 'm';
+    if (plan === 'employer' && !company) { toast('Bitte eine Firma eintragen'); return; }
+    admRun(() => db.collection('members').doc(id).update({ g, plan, company: plan === 'employer' ? company : '', code: m.code || '' }), `${m.nick} gespeichert.`); return; }
+  if (a === 'adm-reset') { const m = mem(b.dataset.id), em = m && emailOfUid(m.uid); if (!em) return;
+    confirmSheet(`Passwort-Link an ${esc(m.nick)} senden?`, `Firebase schickt einen zeitlich begrenzten Link an <b>${esc(em)}</b>. Damit legt die Person selbst ein neues Passwort fest.`, 'LINK SENDEN',
+      () => admRun(async () => { const { auth } = await fbCore(); await auth.sendPasswordResetEmail(em, { url: APP_URL }); }, `Passwort-Link an ${em} gesendet.`), false); return; }
+  if (a === 'adm-codeadd') { const code = val('cd_code').toUpperCase().replace(/\s+/g, ''), co = val('cd_co');
+    if (!/^[A-Z0-9-]{8,40}$/.test(code)) { toast('Code: 8 bis 40 Zeichen, nur A–Z, 0–9 und Bindestrich'); return; }
+    if (!co) { toast('Bitte Firma eintragen'); return; }
+    admRun(() => db.collection('codes').doc(code).set({ company: co, ts: Date.now() }), `Code ${code} angelegt.`); return; }
+  if (a === 'adm-codedel') { const code = b.dataset.id; confirmSheet(`Code ${esc(code)} löschen?`, 'Neue Einlösungen sind danach nicht mehr möglich. Bereits zugeordnete Mitglieder behalten ihren Tarif, bis du ihn änderst.', 'LÖSCHEN', () => admRun(() => db.collection('codes').doc(code).delete(), `Code ${code} gelöscht.`)); return; }
+  if (a === 'adm-legacy') { confirmSheet('Altdaten löschen?', 'Alle alten Konten, Freischalt-Anträge, E-Mail-Prüfwerte und Reset-Links aus Version 23 und älter werden gelöscht. Das betrifft keine Mitglieder des neuen Systems.', 'ENDGÜLTIG LÖSCHEN',
+    () => admRun(async () => { for (const col of LEGACY_COLS) { const q = await db.collection(col).get(); for (const d of q.docs) await d.ref.delete(); } }, 'Altdaten gelöscht.')); return; }
+  if (a === 'adm-admin') { const o = (document.getElementById('ad_old') || {}).value || '', n = (document.getElementById('ad_new') || {}).value || '';
+    if (n.length < 12) { toast('Admin-Passwort: mindestens 12 Zeichen'); return; }
+    admRun(async () => { await changePassword(o, n); }, 'Admin-Passwort geändert.'); return; }
+  if (a === 'adm-mfa') { admMfaEnroll(); return; }
+  if (a === 'adm-mfa-ok') { admMfaFinish(); return; }
 }
-/* Gesperrte Accounts und geändertes Admin-Passwort aus der Datenbank übernehmen */
-async function fsMergeAdmin() {
-  const { db } = await fbCore();
-  try { const bl = await db.collection('blocked').get(); bl.docs.forEach(d => accBlocked.add(d.id)); } catch (e) {}
-  try { const c = await db.collection('config').doc('admin').get(); if (c.exists && /^[0-9a-f]{64}$/.test((c.data() || {}).hash || '')) accList.admin = c.data().hash; } catch (e) {}
+/* ---------- Zwei-Faktor (TOTP) für das Admin-Konto: VORBEREITET, erfordert Identity Platform ---------- */
+let mfaSecret = null;
+async function admMfaEnroll() {
+  try {
+    const u = firebase.app().auth().currentUser;
+    if (!firebase.auth.TotpMultiFactorGenerator) throw new Error('Die geladene Firebase-Version bietet TOTP nicht an.');
+    const session = await u.multiFactor.getSession();
+    mfaSecret = await firebase.auth.TotpMultiFactorGenerator.generateSecret(session);
+    openSheet(`<div data-notr><h2 id="dlgTitle">🔐 Authenticator einrichten</h2><p>Lege in deiner Authenticator-App einen neuen Eintrag mit diesem Schlüssel an:</p>
+      <p><code style="word-break:break-all">${esc(mfaSecret.secretKey)}</code></p>
+      <label class="lbl-pw" for="mfa_new">Code aus der App</label><input id="mfa_new" class="inp pw full" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+      <div class="acts"><button type="button" class="btn btn-primary xl" data-act="adm-mfa-ok">AKTIVIEREN</button><button type="button" class="btn btn-ghost" data-act="sheet-close">Abbrechen</button></div></div>`, true);
+  } catch (e) { toast('Nicht möglich: ' + (e && (e.code || e.message) || e) + '. Identity Platform mit TOTP muss in Firebase aktiviert sein.'); }
+}
+async function admMfaFinish() {
+  try { const u = firebase.app().auth().currentUser;
+    await u.multiFactor.enroll(firebase.auth.TotpMultiFactorGenerator.assertionForEnrollment(mfaSecret, val('mfa_new')), 'Authenticator');
+    mfaSecret = null; closeSheet(); showAdmin('Zwei-Faktor-Anmeldung ist aktiv. Ab jetzt wird beim Anmelden ein Code abgefragt.');
+  } catch (e) { toast('Code falsch oder abgelaufen'); }
 }
 
 /* ============================================================
@@ -4703,77 +4978,10 @@ function admComAct(a, b) {
 }
 
 /* ============================================================
-   PASSWORT VERGESSEN & NEUES PASSWORT PER LINK
-   1. Nutzer fragt an (Nickname + E-Mail) → Anfrage in Firebase + Mail an Admin
-   2. Admin schickt im Admin-Bereich den Link an die hinterlegte E-Mail
-   3. Nutzer legt über den Link selbst ein neues Passwort fest
-   ============================================================ */
-function forgotSheet() {
-  openSheet(`<div data-notr><h2 id="dlgTitle">${L('Passwort vergessen?', 'Forgot your password?', 'Mot de passe oublié ?', 'Şifreni mi unuttun?')}</h2>
-    <p class="sub">${L('Gib deinen Nickname und die E-Mail-Adresse deiner Registrierung ein. Du bekommst dann eine Mail mit einem Link, über den du ein neues Passwort festlegst.', 'Enter your nickname and the email address you registered with. You will receive an email with a link to set a new password.', 'Indique ton pseudo et l\'adresse e-mail de ton inscription. Tu recevras un e-mail avec un lien pour définir un nouveau mot de passe.', 'Kullanıcı adını ve kayıt e-postanı gir. Yeni şifre belirlemen için bağlantılı bir e-posta alacaksın.')}</p>
-    <label for="fg_nick" class="lbl-pw">Nickname</label><input id="fg_nick" class="inp pw full" type="text" autocapitalize="none" spellcheck="false" value="${esc(val('nick') || store.get('uipause-lastnick', '') || '')}">
-    <label for="fg_mail" class="lbl-pw">E-Mail</label><input id="fg_mail" class="inp pw full" type="email" autocapitalize="none" spellcheck="false">
-    <p class="msg-err" id="fg_err" role="alert"></p>
-    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="pw-forgot-send">${L('LINK ANFORDERN', 'REQUEST LINK', 'DEMANDER LE LIEN', 'BAĞLANTI İSTE')}</button><button type="button" class="btn btn-ghost xl" data-act="sheet-close">${L('Abbrechen', 'Cancel', 'Annuler', 'İptal')}</button></div></div>`);
-}
-async function forgotSend() {
-  const nick = val('fg_nick'), em = val('fg_mail'), err = m => { const e = document.getElementById('fg_err'); if (e) e.textContent = m; };
-  if (!nick || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { err(L('Bitte Nickname und eine gültige E-Mail eingeben.', 'Please enter your nickname and a valid email.', 'Indique ton pseudo et un e-mail valide.', 'Kullanıcı adını ve geçerli bir e-posta gir.')); return; }
-  const btn = document.querySelector('[data-act="pw-forgot-send"]'); if (btn) { btn.disabled = true; btn.textContent = '…'; }
-  const id = (findAcc(nick) || {}).id || nickKey(nick);
-  try { const { db } = await Promise.race([fbCore(), new Promise((_, no) => setTimeout(() => no(new Error('timeout')), 6000))]);
-    await db.collection('resetreq').doc(id).set({ id, nick: nick.slice(0, 30), em: em.slice(0, 120), lg: LANG, ts: Date.now() }); } catch (e) {}
-  try { await notifyAdmin(`Passwort vergessen: ${nick}`, { Nickname: nick, 'Angegebene E-Mail': em, Sprache: LANG.toUpperCase(), Zeitpunkt: new Date().toLocaleString('de-DE'),
-    'So geht es weiter': 'App öffnen, als admin anmelden. Oben unter „Passwort vergessen“ auf „Passwort-Link senden“ tippen. Der Link geht nur an die beim Account hinterlegte E-Mail.' }, { url: APP_URL, text: 'ADMIN-BEREICH ÖFFNEN' }); } catch (e) {}
-  openSheet(`<div data-notr><h2 id="dlgTitle">✉️ ${L('Anfrage gesendet', 'Request sent', 'Demande envoyée', 'İstek gönderildi')}</h2><p>${L('Sobald deine Anfrage bestätigt ist, bekommst du eine Mail mit dem Link zum neuen Passwort. Schau auch im Spam-Ordner nach.', 'Once your request is confirmed, you will receive an email with the link to your new password. Please also check your spam folder.', 'Dès que ta demande est confirmée, tu reçois un e-mail avec le lien. Vérifie aussi tes spams.', 'İsteğin onaylanınca yeni şifre bağlantısını içeren bir e-posta alacaksın. Spam klasörünü de kontrol et.')}</p>
-    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button></div></div>`);
-}
-let RST = null;
-function checkResetLink() {
-  const m = location.hash.match(/^#reset=([A-Za-z0-9_-]+)$/); if (!m) return;
-  try { window.history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
-  try { RST = JSON.parse(unb64u(m[1])); } catch (e) { RST = null; }
-  if (!RST || !RST.id || !RST.t) { openSheet(`<div data-notr><h2 id="dlgTitle">⚠️ Link ungültig</h2><p>Bitte den kompletten Link aus der Mail öffnen.</p><div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button></div></div>`); return; }
-  openSheet(`<div data-notr><h2 id="dlgTitle">${L('Neues Passwort festlegen', 'Set a new password', 'Nouveau mot de passe', 'Yeni şifre belirle')}</h2>
-    <p class="sub">${L('Für', 'For', 'Pour', 'Hesap')}: <b>${esc(RST.n || RST.id)}</b>. ${L('Mindestens 8 Zeichen, davon 1 Zahl und 1 Sonderzeichen.', 'At least 8 characters, incl. 1 number and 1 special character.', 'Au moins 8 caractères, dont 1 chiffre et 1 caractère spécial.', 'En az 8 karakter, 1 rakam ve 1 özel karakter.')}</p>
-    <label for="rs_1" class="lbl-pw">${L('Neues Passwort', 'New password', 'Nouveau mot de passe', 'Yeni şifre')}</label><input id="rs_1" class="inp pw full" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false">
-    <label for="rs_2" class="lbl-pw">${L('Wiederholen', 'Repeat', 'Répéter', 'Tekrar')}</label><input id="rs_2" class="inp pw full" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false">
-    <p class="msg-err" id="rs_err" role="alert"></p>
-    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="pw-reset-save">${L('SPEICHERN', 'SAVE', 'ENREGISTRER', 'KAYDET')}</button></div></div>`, true);
-}
-async function resetSave() {
-  if (!RST) return;
-  const p1 = (document.getElementById('rs_1') || {}).value || '', p2 = (document.getElementById('rs_2') || {}).value || '';
-  const err = m => { const e = document.getElementById('rs_err'); if (e) e.textContent = m; };
-  if (!pwStrong(p1)) { err(L('Mindestens 8 Zeichen, davon 1 Zahl und 1 Sonderzeichen.', 'At least 8 characters, incl. 1 number and 1 special character.', 'Au moins 8 caractères, dont 1 chiffre et 1 caractère spécial.', 'En az 8 karakter, 1 rakam ve 1 özel karakter.')); return; }
-  if (normPw(p1) !== normPw(p2)) { err(L('Die Passwörter stimmen nicht überein.', 'Passwords don\'t match.', 'Les mots de passe ne correspondent pas.', 'Şifreler eşleşmiyor.')); return; }
-  const btn = document.querySelector('[data-act="pw-reset-save"]'); if (btn) { btn.disabled = true; btn.textContent = '…'; }
-  try {
-    const { db } = await fbCore();
-    const ref = db.collection('accounts').doc(RST.id), ex = await ref.get(), h = pwHash(p1), now = Date.now();
-    const batch = db.batch();
-    if (ex.exists) batch.update(ref, { hash: h, rt: RST.t, upd: now });
-    else { const base = (accList.accounts.find(a => a.id === RST.id) || {}); batch.set(ref, { id: RST.id, name: base.name || RST.n || RST.id, g: base.g || 'm', hash: h, rt: RST.t, upd: now, ts: now }); }
-    batch.update(db.collection('resets').doc(RST.id), { token: '', proof: RST.t, used: now });
-    await batch.commit();
-    store.del('uipause-pw-' + RST.id);
-    const name = RST.n || RST.id; RST = null;
-    await refreshAccounts();
-    if (!account) { authTab = 'login'; showLogin('', L(`Neues Passwort gespeichert. Du kannst dich jetzt als ${name} anmelden.`, `New password saved. You can now log in as ${name}.`, `Nouveau mot de passe enregistré. Tu peux te connecter en tant que ${name}.`, `Yeni şifre kaydedildi. Artık ${name} olarak giriş yapabilirsin.`)); }
-    openSheet(`<div data-notr><h2 id="dlgTitle">✅ ${L('Passwort geändert', 'Password changed', 'Mot de passe changé', 'Şifre değiştirildi')}</h2><p>${L('Dein neues Passwort gilt ab sofort auf allen Geräten.', 'Your new password works on all devices right away.', 'Ton nouveau mot de passe est valable tout de suite sur tous les appareils.', 'Yeni şifren hemen tüm cihazlarda geçerli.')}</p><div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button></div></div>`);
-  } catch (e) {
-    if (btn) { btn.disabled = false; btn.textContent = L('SPEICHERN', 'SAVE', 'ENREGISTRER', 'KAYDET'); }
-    err(/permission|insufficient/i.test(String(e && (e.code || e.message))) ? L('Der Link ist abgelaufen oder wurde schon benutzt. Bitte neu anfordern.', 'The link has expired or was already used. Please request a new one.', 'Le lien a expiré ou a déjà été utilisé. Demande-en un nouveau.', 'Bağlantının süresi doldu veya kullanıldı. Lütfen yenisini iste.') : L('Speichern nicht möglich. Bitte Internetverbindung prüfen.', 'Could not save. Please check your connection.', 'Enregistrement impossible. Vérifie ta connexion.', 'Kaydedilemedi. Bağlantını kontrol et.'));
-  }
-}
-window.addEventListener('hashchange', checkResetLink);
-setTimeout(checkResetLink, 350);
-
-/* ============================================================
    E-MAILS: EmailJS (bevorzugt, Konfiguration in email.json)
-   Fallback: FormSubmit (nur Mails an den Admin)
+   Kein Fallback mehr über FormSubmit
    ============================================================ */
-const ADMIN_EMAIL_F = () => NOTIFY_URL.split('/').pop();
+const ADMIN_EMAIL_F = () => 'noreply.pausenworkout@gmail.com';
 const APP_URL = 'https://trieum-beep.github.io/UI-PAUSE/';
 let MCP = null;
 function mailCfg() {
@@ -4814,19 +5022,11 @@ async function sendMail({ to, subject, html, button_url = '', button_text = '', 
   if (!r.ok) throw new Error('EmailJS ' + r.status + ' ' + (await r.text().catch(() => '')));
   return true;
 }
-/* Mail an den Admin: EmailJS, sonst FormSubmit */
+/* Mail an den Admin (nur über EmailJS; der frühere FormSubmit-Weg ist entfernt) */
 async function notifyAdmin(subject, rows, button) {
-  const c = await mailCfg();
-  if (c) {
-    const html = `<table style="border-collapse:collapse;font-size:15px">${Object.entries(rows).map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#667;vertical-align:top;white-space:nowrap">${mEsc(k)}</td><td style="padding:6px 0;vertical-align:top;word-break:break-word">${mEsc(v)}</td></tr>`).join('')}</table>`;
-    return sendMail({ to: c.adminEmail || ADMIN_EMAIL_F(), subject: 'Pausen Workout: ' + subject, html, button_url: button ? button.url : '', button_text: button ? button.text : '', reply_to: rows['E-Mail'] || '' });
-  }
-  const r = await fetch(NOTIFY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(Object.assign({ _subject: 'Pausen Workout: ' + subject, _template: 'box', _captcha: 'false' }, button ? { [button.text]: button.url } : {}, rows)) });
-  if (!r.ok) throw new Error('HTTP ' + r.status);
-  const j = await r.json().catch(() => ({}));
-  if (String(j.success) !== 'true') throw new Error(j.message || 'nicht zugestellt');
-  return true;
+  const c = await mailCfg(); if (!c) throw new Error('nomail');
+  const html = `<table style="border-collapse:collapse;font-size:15px">${Object.entries(rows).map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#667;vertical-align:top;white-space:nowrap">${mEsc(k)}</td><td style="padding:6px 0;vertical-align:top;word-break:break-word">${mEsc(v)}</td></tr>`).join('')}</table>`;
+  return sendMail({ to: c.adminEmail || ADMIN_EMAIL_F(), subject: 'Pausen Workout: ' + subject, html, button_url: button ? button.url : '', button_text: button ? button.text : '', reply_to: '' });
 }
 /* Automatische Mails an Nutzer (nur mit EmailJS möglich) */
 const MAIL_TXT = {
@@ -4837,10 +5037,10 @@ const MAIL_TXT = {
     tr: n => ({ s: 'Kaydın ulaştı', h: `<p>Merhaba ${n},</p><p><b>Pausen Workout</b>'a kaydolduğun için teşekkürler! Kaydını kısa sürede kontrol edip hesabını açacağız. Başlayabileceğin anda e-posta alacaksın.</p><p>Görüşmek üzere!</p>` })
   },
   welcome: {
-    de: n => ({ s: 'Dein Zugang ist freigeschaltet', b: 'ZUR APP', h: `<p>Hallo ${n},</p><p>dein Zugang zu <b>Pausen Workout</b> ist jetzt aktiv. Du kannst dich ab sofort anmelden.</p><p>So legst du los:</p><ul><li>App öffnen und mit deinem Nickname <b>${n}</b> und deinem Passwort anmelden</li><li>Auf der Startseite ein Training aus einer der vier Gruppen wählen</li><li>Tipp: App zum Home-Bildschirm hinzufügen, dann startet sie wie eine echte App</li></ul><p>Viel Freude beim Training.</p>` }),
-    en: n => ({ s: 'Your account is now active', b: 'OPEN APP', h: `<p>Hi ${n},</p><p><b>congratulations, you are now registered with Pausen Workout!</b> Enjoy your workout.</p><p>How to start:</p><ul><li>Open the app and log in with your nickname <b>${n}</b> and your password</li><li>Pick a workout from one of the four groups on the home screen</li><li>Tip: add the app to your home screen to launch it like a real app</li></ul><p>Enjoy your training.</p>` }),
-    fr: n => ({ s: 'Ton compte est activé', b: 'OUVRIR L\'APP', h: `<p>Bonjour ${n},</p><p><b>félicitations, tu es maintenant inscrit à Pausen Workout !</b> Bon entraînement.</p><p>Pour commencer :</p><ul><li>Ouvre l'app et connecte-toi avec ton pseudo <b>${n}</b> et ton mot de passe</li><li>Choisis un entraînement dans l'un des quatre groupes</li><li>Astuce : ajoute l'app à l'écran d'accueil</li></ul><p>Bon entraînement.</p>` }),
-    tr: n => ({ s: 'Hesabın etkinleştirildi', b: 'UYGULAMAYI AÇ', h: `<p>Merhaba ${n},</p><p><b>tebrikler, artık Pausen Workout'a kayıtlısın!</b> İyi antrenmanlar.</p><p>Nasıl başlarsın:</p><ul><li>Uygulamayı aç, <b>${n}</b> kullanıcı adın ve şifrenle giriş yap</li><li>Ana ekrandaki dört gruptan birinden bir antrenman seç</li><li>İpucu: uygulamayı ana ekrana ekle</li></ul><p>İyi antrenmanlar.</p>` })
+    de: n => ({ s: 'Dein Zugang ist freigeschaltet', b: 'ZUR APP', h: `<p>Hallo ${n},</p><p>dein Zugang zu <b>Pausen Workout</b> ist jetzt aktiv. Du kannst dich ab sofort anmelden.</p><p>So legst du los:</p><ul><li>App öffnen und mit deiner E-Mail-Adresse und deinem Passwort anmelden</li><li>Auf der Startseite ein Training aus einer der vier Gruppen wählen</li><li>Tipp: App zum Home-Bildschirm hinzufügen, dann startet sie wie eine echte App</li></ul><p>Viel Freude beim Training.</p>` }),
+    en: n => ({ s: 'Your account is now active', b: 'OPEN APP', h: `<p>Hi ${n},</p><p><b>congratulations, you are now registered with Pausen Workout!</b> Enjoy your workout.</p><p>How to start:</p><ul><li>Open the app and log in with your email address and password</li><li>Pick a workout from one of the four groups on the home screen</li><li>Tip: add the app to your home screen to launch it like a real app</li></ul><p>Enjoy your training.</p>` }),
+    fr: n => ({ s: 'Ton compte est activé', b: 'OUVRIR L\'APP', h: `<p>Bonjour ${n},</p><p><b>félicitations, tu es maintenant inscrit à Pausen Workout !</b> Bon entraînement.</p><p>Pour commencer :</p><ul><li>Ouvre l'app et connecte-toi avec ton adresse e-mail et ton mot de passe</li><li>Choisis un entraînement dans l'un des quatre groupes</li><li>Astuce : ajoute l'app à l'écran d'accueil</li></ul><p>Bon entraînement.</p>` }),
+    tr: n => ({ s: 'Hesabın etkinleştirildi', b: 'UYGULAMAYI AÇ', h: `<p>Merhaba ${n},</p><p><b>tebrikler, artık Pausen Workout'a kayıtlısın!</b> İyi antrenmanlar.</p><p>Nasıl başlarsın:</p><ul><li>Uygulamayı aç, e-posta adresin ve şifrenle giriş yap</li><li>Ana ekrandaki dört gruptan birinden bir antrenman seç</li><li>İpucu: uygulamayı ana ekrana ekle</li></ul><p>İyi antrenmanlar.</p>` })
   },
   reset: {
     de: n => ({ s: 'Neues Passwort festlegen', b: 'NEUES PASSWORT FESTLEGEN', h: `<p>Hallo ${n},</p><p>für deinen Zugang zu <b>Pausen Workout</b> wurde ein neues Passwort angefordert. Über den Button legst du es fest. Der Link gilt 24 Stunden.</p><p>Du hast nichts angefordert? Dann ignoriere diese Mail einfach, dein bisheriges Passwort bleibt gültig.</p>` }),
@@ -5000,12 +5200,12 @@ function legalSheet() {
     </ul>
     <h3 id="datenschutz">Datenschutz</h3>
     <ul>
-      <li>Alle Trainingsdaten, Einstellungen und Accounts werden ausschließlich lokal im Speicher deines Browsers (localStorage) auf deinem Gerät abgelegt. Es gibt keinen Server, keine Datenbank, kein Konto beim Betreiber.</li>
+      <li>Trainingsdaten, Einstellungen, Profilangaben und Fotos werden lokal im Speicher deines Browsers (localStorage) auf deinem Gerät abgelegt. Für Konto und Freischaltung nutzt die App Google Firebase (Authentication und Firestore, Standort Frankfurt).</li>
       <li>Es werden keine Cookies, kein Tracking, keine Analyse-Tools, keine Werbung und keine externen Schriften eingesetzt. Einzige Ausnahme ist der E-Mail-Versand bei der Registrierung.</li>
-      <li>Der Betreiber hat keinen Zugriff auf deine Daten. Du kannst sie jederzeit löschen: in den Einstellungen, durch Abmelden und Löschen des Accounts oder durch Löschen der Website-Daten im Browser.</li>
-      <li>Registrierung: Name, Nickname und E-Mail werden einmalig per E-Mail an den Admin geschickt, damit er den Zugang freischalten kann. Der Versand läuft über den Dienst EmailJS (emailjs.com) und ein Gmail-Postfach (Google). Über denselben Weg bekommst du automatische Mails zu deiner Registrierung, Freischaltung und Passwortänderung. Die Daten werden nur für die Freischaltung genutzt und nicht weitergegeben. Für die Freischaltung werden Nickname, Farbwelt, E-Mail-Adresse, Sprache und der verschlüsselte Passwort-Hash (nicht das Passwort) als Antrag in Google Firebase (Standort Frankfurt) abgelegt. Den Antrag kann nur der Admin lesen. Er wird bei Freischaltung oder Ablehnung im Admin-Bereich gelöscht. Damit jede E-Mail-Adresse nur einmal genutzt werden kann, wird dort außerdem ein nicht umkehrbarer Prüfwert (Hash) der E-Mail-Adresse gespeichert, nicht die Adresse selbst. Freigegebene Accounts stehen nur mit Nickname und verschlüsseltem Passwort-Hash in der Datei accounts.json.</li>
+      <li>Auf deine lokal gespeicherten Trainingsdaten hat der Betreiber keinen Zugriff. Du kannst sie jederzeit löschen: in den Einstellungen, unter Mein Konto oder durch Löschen der Website-Daten im Browser.</li>
+      <li>Konto und Registrierung: Dein Login (E-Mail-Adresse und Passwort) verwaltet Firebase Authentication (Google). Das Passwort wird dort geschützt gespeichert; der Betreiber kann es nicht einsehen. Vorname, Nachname und E-Mail-Adresse liegen in Firebase und sind nur für dich und den Admin lesbar. Nickname, Freischaltungsstatus und Tarif liegen ebenfalls dort. Bei der Registrierung erhält der Admin außerdem eine E-Mail mit Name, Nickname und E-Mail-Adresse; der Versand läuft über EmailJS (emailjs.com) und ein Gmail-Postfach (Google). Bestätigungs- und Passwort-Links verschickt Firebase. Die Daten werden nur für Betrieb und Freischaltung genutzt und nicht weitergegeben. Wird dein Konto gelöscht, entfernt der Admin diese Daten.</li>
       <li>Community (nur nach ausdrücklicher Zustimmung in der App): Nickname, Nachrichten, Abstimmungen und Treffen werden über Google Firebase (Google Ireland Ltd. / Google LLC, USA) gespeichert und sind für alle Community-Mitglieder sichtbar. Die Anmeldung erfolgt anonym, ohne E-Mail. Ohne Zustimmung wird keine Verbindung zu Firebase aufgebaut. Eigene Beiträge können jederzeit gelöscht und die Community in den Einstellungen wieder ausgeschaltet werden. Für Inhalte, die Mitglieder einstellen, ist der jeweilige Verfasser verantwortlich.</li>
-      <li>Mitgliederbereich: Profilangaben (Name, E-Mail, Wohnort, Geburtsjahr, Größe, Ziel, Profilbild) sind freiwillig und werden nur lokal auf deinem Gerät gespeichert. Ist die Community aktiviert, sind Nickname, Profilbild und Wohnort für andere Mitglieder sichtbar. Bei einer Passwortänderung erhält der Admin per E-Mail nur den verschlüsselten Passwort-Hash.</li>
+      <li>Mitgliederbereich: Zusätzliche Profilangaben (Wohnort, Geburtsjahr, Größe, Ziel, Profilbild) sind freiwillig und werden nur lokal auf deinem Gerät gespeichert. Ist die Community aktiviert, sind Nickname, Profilbild und Wohnort für andere Mitglieder sichtbar.</li>
       <li>Fotos für die Teilen-Funktion werden nur lokal im Browser verarbeitet und nicht hochgeladen oder gespeichert. Was du teilst, entscheidest du selbst.</li>
       <li>Hosting: Die Dateien werden über GitHub Pages (GitHub Inc., USA) ausgeliefert. Beim Aufruf verarbeitet GitHub technisch notwendige Verbindungsdaten wie die IP-Adresse. Details: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</li>
     </ul>
@@ -5116,6 +5316,8 @@ function act(a, b) {
     case 'start-workout': homeOpen = false; startWorkout(); break;
     case 'share-nophoto': case 'share-style': case 'share-go': case 'share-save': shareAct(a, b); break;
     case 'recap-p': case 'recap-nav': case 'recap-share': recapAct(a, b); break;
+    case 'bell': case 'n-open': case 'n-clear': notifAct(a, b); break;
+    case 'c-mention': communityAct(a, b); break;
     case 'c-open': case 'c-consent': case 'c-off': case 'c-retry': case 'c-room': case 'c-back': case 'c-send': case 'c-poll': case 'c-meet': case 'c-newroom': case 'c-room-send': case 'c-poll-send': case 'c-meet-send': case 'c-vote': case 'c-join': case 'c-del': case 'c-tab': case 'c-dm': case 'c-poke': case 'c-rules': case 'c-wipe': case 'c-block': case 'c-unblock': case 'c-report': case 'c-report-send': communityAct(a, b); break;
     case 'member': case 'm-save': case 'm-pw': case 'm-method': case 'm-cancel': case 'm-uncancel': case 'm-revoke': case 'm-revoke-do': case 'm-export': case 'm-wipe': case 'm-av-del': case 'm-ag': case 'm-ag-del': case 'm-ag-send': memberAct(a, b); break;
     case 'lang-menu': langSheet(); break;
@@ -5181,11 +5383,16 @@ function act(a, b) {
     case 'sheet-close': pendingYes = null; closeSheet(); break;
     case 'safety': safetySheet(); break;
     case 'legal': legalSheet(); break;
+    case 'au-resend': case 'au-verified': authAct(a); break;
+    case 'au-mfa': mfaSubmit(); break;
+    case 'au-migr': if (window.__migr) window.__migr(b.dataset.v); break;
+    case 'm-delacc': delAccSheet(); break;
+    case 'm-delacc-go': { const pw = (document.getElementById('da_pw') || {}).value || ''; deleteOwnAccount(pw).catch(e => { const el = document.getElementById('da_err'); if (el) el.textContent = /wrong-password|invalid-credential/.test(String(e && e.code)) ? 'Passwort falsch.' : authMsg(e); }); break; }
+    case 'admin-open': if (account && account.admin) admConnect(); break;
     case 'm-dash': erfTab = 'dash'; view = 'history'; render(); window.scrollTo(0, 0); break;
     case 'erf-tab': case 'w-log': case 'w-save': case 'w-del': case 'ph-del': case 'ph-view': dashAct(a, b); break;
     case 'pw-forgot': forgotSheet(); break;
     case 'pw-forgot-send': forgotSend(); break;
-    case 'pw-reset-save': resetSave(); break;
     case 'onb-next': case 'onb-back': case 'onb-pick': onbAct(a, b); break;
     case 'onb-start': onbStart(true); break;
     case 'pay': paySheet(); break;
@@ -5289,44 +5496,14 @@ function sha256(str) {
 }
 /* Groß/klein egal, ü = ue = u */
 const normPw = s => String(s).trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/ae/g, 'a').replace(/oe/g, 'o').replace(/ue/g, 'u');
-const pwHash = s => sha256('uipause:' + normPw(s));
-const KEY_TERMS = 'uipause-terms-v1', KEY_LIST = 'uipause-acclist-v2', KEY_AUTH = 'uipause-auth-v1', KEY_PEND = 'uipause-pending-v1';
-/* Benachrichtigung per E-Mail an den Admin (über FormSubmit, ohne eigenen Server) */
-const NOTIFY_URL = 'https://formsubmit.co/ajax/noreply.pausenworkout@gmail.com';
+const KEY_TERMS = 'uipause-terms-v1', KEY_AUTH = 'uipause-auth-v1', KEY_PEND = 'uipause-pending-v1';
 /* Konditionen und Impressum. Impressum vor Start der kostenpflichtigen Nutzung ausfüllen. */
 const PRICE = { trialDays: 30, text: 'x € pro Monat' };
 
-/* Fallback, falls accounts.json nicht geladen werden kann (z. B. offline beim allerersten Start) */
-const BUILTIN = {
-  admin: 'dc5bcd9c7c55465a0fd090429a1d7c0004265f919cfcf1a7ab6192625ffa71c3',
-  accounts: [
-    { id: 'marc', name: 'Marc', g: 'm', hash: '008a4542c3a5765a9596d7e070dfb1370e90fac3c3957788b6205138c12a5a79' },
-    { id: 'hueseyin', name: 'Hüseyin', g: 'm', hash: '24085c0d9db95bc5d38621e9dc2b75a7fbef7e27d09085bd22cb5fb0b1b1180f' }
-  ]
-};
-/* Standard-Zugang: funktioniert immer, auch wenn er in accounts.json fehlt */
-const PERMANENT = [{ id: 'standard', name: 'Standard', g: 'm', hash: 'e8f86d58baa9b83033c02cbd3cfc7cf6b08b818b87385d8598ce49a9d56628da', perm: true }];
-const withPerm = l => { l.accounts = l.accounts.filter(a => !PERMANENT.some(p => p.id === a.id)).concat(PERMANENT); return l; };
-let accList = (() => { const l = store.get(KEY_LIST, null); return withPerm(l && Array.isArray(l.accounts) ? l : clone(BUILTIN)); })();
-let listSource = 'cache';
-async function refreshAccounts() {
-  if (!/^https?:$/.test(location.protocol)) { listSource = 'builtin'; return; }
-  try {
-    const r = await fetch('./accounts.json?ts=' + Date.now(), { cache: 'no-store' });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    const j = await r.json();
-    if (!j || !Array.isArray(j.accounts)) throw new Error('Format');
-    accBlocked = new Set(j.accounts.filter(a => a && a.blocked).map(a => a.id));
-    accList = { admin: j.admin || BUILTIN.admin, accounts: j.accounts.filter(a => a && a.id && a.hash && !a.blocked) }; withPerm(accList);
-    store.set(KEY_LIST, accList); listSource = 'online';
-  } catch (e) { listSource = 'cache'; }
-  try { await fsMergeAccounts(); } catch (e) {}
-}
 const nickKey = s => normPw(s).replace(/[^a-z0-9]/g, '');
-const findAcc = login => { const k = nickKey(login); return accList.accounts.find(a => nickKey(a.id) === k || nickKey(a.name) === k); };
 let account = null, adminMode = false, authTab = 'login', regG = '';
 
-const pwStrong = p => String(p).length >= 8 && /[0-9]/.test(p) && /[^A-Za-z0-9ÄÖÜäöüß\s]/.test(p);
+const pwStrong = p => String(p).length >= 10 && /[0-9]/.test(p) && /[^A-Za-z0-9ÄÖÜäöüß\s]/.test(p);
 function enterAccount(acc) {
   account = acc; adminMode = false;
   KEY_SET = `uipause-${acc.id}-settings-v1`; KEY_SESS = `uipause-${acc.id}-session-v1`; KEY_HIST = `uipause-${acc.id}-history-v1`;
@@ -5355,18 +5532,11 @@ function enterAccount(acc) {
   if (onbNeeded()) setTimeout(() => { try { if (account && !onb) onbStart(false); } catch (e) {} }, 400);
 }
 function setAccountLabel() {
+  try { bellUpdate(); } catch (e) {}
   const ab = document.getElementById('accBtn');
   if (ab) { if (account) { const P = store.get(`uipause-${account.id}-profile-v1`, {}); ab.hidden = false; ab.innerHTML = `<span class="av">${P.av ? `<img src="${esc(P.av)}" alt="">` : esc(account.name.charAt(0).toUpperCase())}</span><span class="nm">${esc(account.name)}</span>`; } else { ab.hidden = true; ab.innerHTML = ''; } }
   const el = document.getElementById('accLbl');
-  if (el) el.innerHTML = account ? `Angemeldet als <b>${esc(account.name)}</b> · <button type="button" data-act="member">Mein Konto</button> · <button type="button" data-act="pay">Abo (Demo)</button> · <button type="button" data-act="logout">Abmelden</button>` : '';
-}
-function logout() {
-  stopMusic(); cbStop(); try { cbStop(); document.title = 'Pausen Workout'; } catch (e) {}
-  if (sess) save();
-  wakeOff(); closeSheet();
-  account = null; adminMode = false; sess = null; history = []; settings = clone(DEFAULTS);
-  KEY_SET = 'uipause-none-settings'; KEY_SESS = 'uipause-none-session'; KEY_HIST = 'uipause-none-history';
-  store.del(KEY_AUTH); setAccountLabel(); authTab = 'login'; applyTheme(); showLogin();
+  if (el) el.innerHTML = account ? `Angemeldet als <b>${esc(account.name)}</b> · <button type="button" data-act="member">Mein Konto</button> · <button type="button" data-act="pay">Abo (Demo)</button> · ${account.admin ? '<button type="button" data-act="admin-open">Admin-Bereich</button> · ' : ''}<button type="button" data-act="logout">Abmelden</button>` : '';
 }
 function lockUI() {
   document.body.classList.add('locked');
@@ -5380,100 +5550,42 @@ function showLogin(err, info) {
   const tabs = `<div class="auth-tabs" role="tablist"><button type="button" role="tab" aria-selected="${authTab === 'login'}" data-act="auth-tab" data-v="login">Anmelden</button><button type="button" role="tab" aria-selected="${authTab === 'register'}" data-act="auth-tab" data-v="register">Registrieren</button></div>`;
   const body = authTab === 'login' ? `
     <h2>Willkommen</h2>
-    <p>Melde dich mit Nickname und Passwort an. Groß- und Kleinschreibung spielen keine Rolle.</p>
+    <p>Melde dich mit deiner E-Mail-Adresse und deinem Passwort an.</p>
     <p class="sub">Noch kein Zugang? Unter „Registrieren“ anmelden. <b>Testversion:</b> komplett kostenlos, es gibt nichts zu bezahlen.</p>
-    <label for="nick" class="lbl-pw">Nickname</label>
-    <input id="nick" class="inp pw full" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" value="${esc((pend && pend.name) || store.get('uipause-lastnick', '') || '')}">
+    <label for="nick" class="lbl-pw">E-Mail</label>
+    <input id="nick" class="inp pw full" type="email" autocomplete="username" autocapitalize="none" spellcheck="false" value="${esc(/@/.test(store.get('uipause-lastnick', '') || '') ? store.get('uipause-lastnick', '') : '')}">
     <label for="pw" class="lbl-pw">Passwort</label>
     <div class="pw-row"><input id="pw" class="inp pw" type="password" autocomplete="current-password" autocapitalize="none" spellcheck="false" enterkeyhint="go">
       <button type="button" class="chip" data-act="pw-toggle" aria-label="Passwort anzeigen">👁</button></div>
     ${store.get(KEY_TERMS, false) ? '' : termsBox('terms')}
     <button type="button" class="btn btn-primary xl" style="margin-top:14px" data-act="login">ANMELDEN</button>
     <p style="margin:10px 0 0;text-align:center"><button type="button" class="mini" data-act="pw-forgot">Passwort vergessen?</button></p>
-    ${pend ? `<div class="note blue"><b>Registrierung gesendet</b>„${esc(pend.name)}“ wartet auf Freigabe. Sobald der Admin dich freigeschaltet hat, kannst du dich hier anmelden.</div>` : ''}`
+    ${pend ? `<div class="note blue"><b>Registrierung gesendet</b>„${esc(pend.name)}“: Bitte E-Mail bestätigen und auf die Freischaltung warten.</div>` : ''}`
   : `
     <h2>Registrieren</h2>
     <div class="offer"><span class="demo">TESTVERSION · DEMO</span><b>1 Monat kostenlos testen</b><span>danach ${PRICE.text}</span><span class="demo-note">Nur ein Platzhalter: In dieser Testversion ist alles kostenlos. Du kannst und musst nichts bezahlen.</span></div>
-    <p>Wähle einen Nickname und ein Passwort. Der Admin bekommt eine E-Mail und schaltet dich frei. Ab der Freischaltung läuft dein kostenloser Testmonat.</p>
+    <p>Wähle einen Nickname und ein Passwort. Danach bestätigst du deine E-Mail-Adresse, und der Admin schaltet dich frei. Ab der Freischaltung läuft dein kostenloser Testmonat.</p>
     <div class="c-2"><div><label for="rfirst" class="lbl-pw">Vorname *</label><input id="rfirst" class="inp pw full" maxlength="40" autocomplete="given-name"></div><div><label for="rlast" class="lbl-pw">Nachname *</label><input id="rlast" class="inp pw full" maxlength="40" autocomplete="family-name"></div></div>
     <label for="rn" class="lbl-pw">Nickname *</label><input id="rn" class="inp pw full" maxlength="24" autocomplete="nickname" autocapitalize="none" spellcheck="false">
     <label for="re" class="lbl-pw">E-Mail *</label><input id="re" class="inp pw full" type="email" autocomplete="email" autocapitalize="none" spellcheck="false">
     <span class="lbl-pw">Geschlecht *</span>
     <div class="seg" role="radiogroup" aria-label="Geschlecht" id="rg">${[['m', 'Mann'], ['w', 'Frau'], ['d', 'Divers']].map(([k, n]) => `<button type="button" role="radio" aria-checked="${regG === k}" data-act="reg-g" data-v="${k}">${n}</button>`).join('')}</div>
-    <label for="rp" class="lbl-pw">Passwort * <small style="font-weight:500;color:var(--muted)">(mind. 8 Zeichen, davon 1 Zahl und 1 Sonderzeichen)</small></label><input id="rp" class="inp pw full" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false">
+    <label for="rp" class="lbl-pw">Passwort * <small style="font-weight:500;color:var(--muted)">(mind. 10 Zeichen, davon 1 Zahl und 1 Sonderzeichen)</small></label><input id="rp" class="inp pw full" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false">
     <label for="rp2" class="lbl-pw">Passwort wiederholen *</label><input id="rp2" class="inp pw full" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false">
     ${termsBox('rterms')}
     <p class="sub" style="margin:8px 0 0">* Pflichtangaben</p>
     <label class="terms"><input type="checkbox" id="rage"><span>Ich bin mindestens 16 Jahre alt.</span></label>
-    <label class="terms"><input type="checkbox" id="rmail"><span>Ich bin einverstanden, dass Name, Nickname und E-Mail zur Freigabe per E-Mail an den Admin gesendet werden.</span></label>
+    <label class="terms"><input type="checkbox" id="rmail"><span>Ich bin einverstanden, dass Name, Nickname und E-Mail für die Freigabe gespeichert und per E-Mail an den Admin gesendet werden.</span></label>
     <button type="button" class="btn btn-lamp xl" style="margin-top:14px" data-act="register">REGISTRIERUNG SENDEN</button>`;
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 22 · 1-Klick-Freischaltung</p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 25 · Firebase-Anmeldung</p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
 const authErr = m => { const el = document.querySelector('.msg-err'); if (el) el.textContent = m; };
 const val = id => ((document.getElementById(id) || {}).value || '').trim();
-async function doLogin() {
-  const nick = val('nick'), pw = (document.getElementById('pw') || {}).value || '';
-  if (!pw.trim()) { authErr('Bitte Passwort eingeben.'); return; }
-  const tb = document.getElementById('terms');
-  if (tb && !tb.checked) { authErr('Bitte zuerst den Haftungsausschluss bestätigen.'); return; }
-  const h = pwHash(pw);
-  await refreshAccounts();
-  if (h === accList.admin && (!nick || nickKey(nick) === 'admin')) { if (tb) store.set(KEY_TERMS, Date.now()); adminMode = true; draftList = null; admConnect(pw); return; }
-  if (!nick) { authErr('Bitte Nickname eingeben.'); return; }
-  const acc = findAcc(nick);
-  const pend = store.get(KEY_PEND, null);
-  if (!acc) { authErr(pend && nickKey(pend.name) === nickKey(nick) ? 'Noch nicht freigeschaltet. Bitte etwas Geduld.' : 'Nickname unbekannt. Noch nicht registriert?'); return; }
-  if (acc.hash !== h && store.get('uipause-pw-' + acc.id, null) !== h) { authErr('Passwort falsch.'); return; }
-  if (tb) store.set(KEY_TERMS, Date.now());
-  if (pend && nickKey(pend.name) === nickKey(acc.name)) store.del(KEY_PEND);
-  store.set('uipause-lastnick', acc.name);
-  unlockAudio(); enterAccount(acc);
-}
-async function doRegister() {
-  const first = val('rfirst'), last = val('rlast'), name = val('rn'), email = val('re'), p1 = (document.getElementById('rp') || {}).value || '', p2 = (document.getElementById('rp2') || {}).value || '';
-  if (first.length < 2 || last.length < 2) { authErr('Bitte Vor- und Nachnamen angeben.'); return; }
-  if (name.length < 2 || !/[a-z0-9]/i.test(name)) { authErr('Nickname: mindestens 2 Zeichen.'); return; }
-  if (nickKey(name) === 'admin' || /pausenworkout|^team$|^admin/.test(nickKey(name))) { authErr('Dieser Nickname ist reserviert.'); return; }
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { authErr('Bitte eine gültige E-Mail-Adresse eingeben.'); return; }
-  if (!pwStrong(p1)) { authErr('Passwort: mindestens 8 Zeichen, davon mindestens 1 Zahl und 1 Sonderzeichen (z. B. ! ? # @ $ % & *).'); return; }
-  if (normPw(p1) !== normPw(p2)) { authErr('Die Passwörter stimmen nicht überein.'); return; }
-  if (!regG) { authErr('Bitte Geschlecht auswählen.'); return; }
-  if (!document.getElementById('rterms').checked || !document.getElementById('rmail').checked || !document.getElementById('rage').checked) { authErr('Bitte alle Häkchen setzen. Die Nutzung ist ab 16 Jahren möglich.'); return; }
-  await refreshAccounts();
-  if (findAcc(name)) { authErr('Dieser Nickname ist schon vergeben.'); return; }
-  let id = nickKey(name) || 'user';
-  const entry = { id, name, g: regG, hash: pwHash(p1) };
-  const btn = document.querySelector('[data-act="register"]'); if (btn) { btn.disabled = true; btn.textContent = 'WIRD GESENDET …'; }
-  const pr = await fsCreatePending(entry, email, { fi: first, la: last });
-  if (pr.error === 'email') { if (btn) { btn.disabled = false; btn.textContent = 'REGISTRIERUNG SENDEN'; } authErr('Mit dieser E-Mail-Adresse gibt es schon eine Registrierung. Jede E-Mail-Adresse kann nur einmal verwendet werden.'); return; }
-  if (pr.error === 'nick') { if (btn) { btn.disabled = false; btn.textContent = 'REGISTRIERUNG SENDEN'; } authErr('Dieser Nickname ist schon vergeben oder wartet auf Freischaltung. Bitte einen anderen wählen.'); return; }
-  const approveUrl = pr.url || null;
-  try {
-    await notifyAdmin(`Neue Registrierung von ${name}`, {
-        Name: first + ' ' + last, Nickname: name, 'E-Mail': email, Geschlecht: { m: 'Mann', w: 'Frau', d: 'Divers' }[regG], Sprache: LANG.toUpperCase(), Zeitpunkt: new Date().toLocaleString('de-DE'), Alter: 'mindestens 16 Jahre (bestätigt)',
-        'So freischalten': approveUrl ? 'Einfach auf den Button bzw. Link „JETZT FREISCHALTEN“ tippen. Fertig. Die Person bekommt dann automatisch eine Willkommens-Mail.' : 'App öffnen, als admin anmelden, den Freigabe-Code unten einfügen, dann accounts.json auf GitHub speichern.',
-        'Freigabe-Code': JSON.stringify(entry) }, approveUrl ? { url: approveUrl, text: 'JETZT FREISCHALTEN (1 Klick)' } : null);
-    sendUserMail(email, 'received', name, LANG).catch(() => {});
-    store.set(KEY_PEND, { name, first, last, email, at: Date.now() });
-    authTab = 'login'; showLogin('', `Danke, ${name}! Deine Registrierung ist beim Admin. Du kannst dich anmelden, sobald du freigeschaltet bist.`);
-  } catch (e) {
-    if (btn) { btn.disabled = false; btn.textContent = 'REGISTRIERUNG SENDEN'; }
-    const msg = String(e && e.message || '');
-    const act = /activat/i.test(msg);
-    authErr(act ? 'Der Mail-Dienst wird gerade eingerichtet und muss vom Admin einmalig bestätigt werden. Bitte später erneut versuchen oder die Registrierung direkt per E-Mail senden.' : 'Senden hat nicht geklappt. Bitte Internetverbindung prüfen und erneut versuchen oder die Registrierung direkt per E-Mail senden.');
-    const el = document.querySelector('.msg-err');
-    if (el) { const mail = NOTIFY_URL.split('/').pop(); const body = `${approveUrl ? 'Jetzt freischalten (1 Klick):\n' + approveUrl + '\n\n' : ''}Name: ${first} ${last}\nNickname: ${name}\nE-Mail: ${email}\nGeschlecht: ${{ m: 'Mann', w: 'Frau', d: 'Divers' }[regG]}\nAlter: mindestens 16 Jahre (bestätigt)\n\nFreigabe-Code:\n${JSON.stringify(entry)}`;
-      el.insertAdjacentHTML('afterend', `<a class="btn btn-ghost" style="width:100%;margin-top:10px;display:flex;align-items:center;justify-content:center" href="mailto:${mail}?subject=${encodeURIComponent('Pausen Workout: Neue Registrierung von ' + name)}&body=${encodeURIComponent(body)}">✉ Registrierung per E-Mail senden</a>`);
-      store.set(KEY_PEND, { name, first, last, email, at: Date.now() }); }
-  }
-}
-
-/* Admin-Bereich: pflegt accounts.json, die auf GitHub liegt und für alle Geräte gilt */
 function safeBoot() {
 try { boot(); }
 catch (err) {
@@ -5487,11 +5599,13 @@ catch (err) {
 /* Start: angemeldet bleiben, sonst Login */
 (function startApp() {
   applyTheme();
-  setTimeout(checkApproveLink, 300);
-  const go = () => { const id = store.get(KEY_AUTH, null), acc = id && accList.accounts.find(a => a.id === id); if (acc) enterAccount(acc); else showLogin(); };
-  go();
-  /* Liste im Hintergrund aktualisieren; ein gesperrter oder entfernter Account wird abgemeldet */
-  refreshAccounts().then(() => { if (account && !accList.accounts.find(a => a.id === account.id)) { logout(); showLogin('Dieser Zugang ist nicht mehr freigeschaltet.'); } });
+  checkLegacyLinks();
+  /* Offline-Vorschau nur beim Öffnen als Datei (file://): kein Server, keine Konten, nur lokales Training */
+  if (location.protocol === 'file:') { const id = store.get(KEY_AUTH, null); if (id) enterAccount({ id, name: id.charAt(0).toUpperCase() + id.slice(1), g: 'm', plan: 'trial', local: true }); else showLogin(); return; }
+  /* Zuletzt bestätigtes Mitglied sofort anzeigen (auch offline). Rechte auf dem Server prüft Firebase bei jedem Zugriff. */
+  const c = store.get(KEY_MEMBER, null);
+  if (c && c.id) enterAccount(c); else showLogin('', '');
+  authInit();
 })();
 setInterval(function () { try { loop(); } catch (e) { try { console.error(e); } catch (x) {} } }, 250);
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
