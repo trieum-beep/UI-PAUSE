@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-hpgePWR4bZ4hnRv4vzbRFZes1JK8YLr2+yydvid+aN0=' 'sha256-464/lgEH8mNjIhTQqvaCYVGW9G+LiGkna/S/hswjne0=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-hpgePWR4bZ4hnRv4vzbRFZes1JK8YLr2+yydvid+aN0=' 'sha256-WjsJ5KaIAbK75REn8VYVS1IUoDONotSPNZTTco2Yvug=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
@@ -366,6 +366,84 @@ td small.up { color: var(--ok); } td small.down { color: var(--muted); }
 .pgroup .prog { background: var(--bg); }
 .opt-hint { margin: -2px 0 10px; padding: 8px 12px; border-radius: 10px; background: var(--accent-bg); color: var(--paper-text); font-size: 14px; line-height: 1.35; }
 .fig .pr-chair { stroke: var(--paper-line); stroke-width: 5; fill: none; stroke-linecap: round; }
+.c-tabs4 button { font-size: 12.5px; padding: 10px 2px; }
+.ev-card { padding: 14px 16px; }
+.ev-top { display: flex; gap: 10px; align-items: flex-start; }
+.ev-top > div { flex: 1; min-width: 0; }
+.ev-top b { display: block; color: var(--paper-ink); font-size: 16px; line-height: 1.25; }
+.ev-top small { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+.ev-ic { font-size: 26px; line-height: 1; }
+.ev-cd { flex: none; text-align: center; background: var(--green); color: #fff; border-radius: 10px; padding: 6px 8px; min-width: 52px; }
+.ev-cd b { color: #fff; font-size: 18px; }
+.ev-cd small { color: #fff; opacity: .9; margin: 0; font-size: 11px; }
+.ev-dist { margin: 10px 0 0; font-size: 14px; line-height: 1.4; }
+.ev-go { margin: 8px 0 0; font-size: 13.5px; color: var(--paper-ink); }
+.ev-card .adm-acts, .ev-mini .adm-acts { display: flex !important; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.ev-card .adm-acts .btn, .ev-mini .adm-acts .btn { flex: 1 1 auto; width: auto; white-space: nowrap; padding: 8px 12px; min-height: 40px; font-size: 13px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
+.ev-mini b, .ev-goal b { display: block; color: var(--paper-ink); }
+.ev-mini small, .ev-goal small { display: block; color: var(--muted); font-size: 13px; margin: 2px 0 6px; }
+.ev-goal { border: 2px solid var(--green); }
+.ev-goal span { display: block; font-size: 14px; }
+.ev-home { background: var(--paper); color: var(--paper-ink); border: 2px solid var(--green); margin-top: 8px; }
+.rl-row { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 12px 14px; margin-top: 6px; border-radius: 12px; border: 1px solid var(--paper-line); background: var(--paper); color: var(--paper-text); cursor: pointer; font-family: var(--sans); }
+.rl-row .rl-d { flex: none; font: 800 14px var(--sans); color: var(--green-ink); width: 46px; }
+.rl-row .rl-m { flex: 1; min-width: 0; }
+.rl-row b { display: block; color: var(--paper-ink); font-size: 15px; }
+.rl-row small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.rl-row .go { font-size: 22px; color: var(--muted); }
+.rl-fb p { display: flex; gap: 10px; align-items: flex-start; margin: 0; padding: 10px 0; border-top: 1px solid var(--paper-line); line-height: 1.4; }
+.rl-fb p:first-child { border-top: 0; }
+.rl-fb p span { flex: none; width: 24px; text-align: center; }
+.dash-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.dash-title .mini { text-transform: none; letter-spacing: 0; font-size: 12.5px; }
+.dash-list { display: grid; gap: 6px; }
+.dash-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 12px; background: var(--paper); border: 1px solid var(--paper-line); color: var(--paper-ink); font-weight: 700; cursor: pointer; }
+.dash-row input { width: 22px; height: 22px; accent-color: var(--green); flex: none; }
+.celebrate { text-align: center; position: relative; }
+.cel-cv { position: absolute; left: 0; top: 0; width: 100%; pointer-events: none; z-index: 2; }
+.cel-burst { font-size: 54px; line-height: 1; animation: celPop .7s cubic-bezier(.2,1.6,.4,1) both; }
+@keyframes celPop { from { transform: scale(.2) rotate(-20deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .cel-burst { animation: none; } }
+.celebrate h2 { margin: 8px 0 4px; }
+.cel-sub { margin: 0; color: var(--muted); }
+.cel-list { text-align: left; }
+.fd-post { padding: 14px 16px; }
+.fd-head { display: flex; align-items: center; gap: 10px; }
+.fd-head > div { flex: 1; min-width: 0; }
+.fd-head b { display: block; color: var(--paper-ink); }
+.fd-head small { display: block; color: var(--muted); font-size: 12.5px; }
+.fd-kind { font-size: 22px; }
+.fd-title { margin: 10px 0 6px; font-size: 17px; color: var(--paper-ink); }
+.fd-stats { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; font-weight: 700; color: var(--paper-ink); }
+.fd-txt { margin: 8px 0 0; line-height: 1.4; }
+.fd-reacts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.fd-r { border: 1px solid var(--ghost-line); background: transparent; color: var(--paper-ink); border-radius: 99px; padding: 6px 11px; font: 700 15px var(--sans); cursor: pointer; min-height: 38px; }
+.fd-r.on { background: var(--green); border-color: var(--green); color: #fff; }
+.fd-r small { font-size: 12.5px; }
+.fd-who { margin: 8px 0 0; font-size: 12.5px; color: var(--muted); }
+.fd-cmts { margin-top: 12px; border-top: 1px solid var(--paper-line); padding-top: 8px; }
+.fd-c { padding: 6px 0; font-size: 14px; line-height: 1.4; }
+.fd-c small { color: var(--muted); font-size: 11.5px; }
+.fd-ask { border: 2px dashed var(--green); margin-top: 12px; }
+.fd-ask b { color: var(--paper-ink); }
+.fd-prev .fd-post { margin: 0; }
+.bd-me { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px; border: 2px solid var(--green); margin-top: 12px; }
+.bd-me b { color: var(--paper-ink); font-size: 16px; }
+.bd-me span { font: 800 20px var(--sans); color: var(--green-ink); }
+.bd-me small { width: 100%; color: var(--muted); }
+.bd-list { display: grid; gap: 6px; margin: 12px 0; }
+.bd-row { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; background: var(--paper); border: 1px solid var(--paper-line); color: var(--paper-ink); }
+.bd-row.me { border: 2px solid var(--green); }
+.bd-row b { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bd-pos { width: 32px; font-weight: 800; text-align: center; }
+.bd-v { font: 800 16px var(--sans); }
+.pts-info summary { cursor: pointer; font-weight: 800; color: var(--paper-ink); }
+.res-pts { text-align: center; font: 800 18px var(--sans); color: var(--green-ink); margin-top: 12px; }
+.usg-row { padding: 12px 14px; }
+.usg-row.off { opacity: .6; }
+.usg-nums { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13.5px; margin-top: 4px; }
+.usg-nums b { color: var(--paper-ink); }
+.adm-tabs { grid-template-columns: repeat(3, 1fr) !important; }
 .lang-chips { display: flex; gap: 6px; justify-content: flex-end; margin: -4px 0 10px; }
 .lang-chips .chip { margin-top: 0; min-height: 34px; padding: 6px 10px; font-size: 12px; }
 
@@ -745,6 +823,7 @@ footer button { background: none; border: 0; color: var(--ink-soft); font: inher
 .acc-card-av { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex: none; display: grid; place-items: center; background: linear-gradient(135deg, #F0D98E, #C9A13B); color: #061025; font: 800 17px var(--sans); }
 .acc-card-av img { width: 100%; height: 100%; object-fit: cover; }
 /* Glocke */
+.bell-btn[hidden], .acc-btn[hidden] { display: none !important; }
 .bell-btn { position: relative; flex: none; width: 38px; height: 38px; margin-right: 6px; border-radius: 50%; border: 1.5px solid #C9A13B; background: transparent; color: inherit; display: grid; place-items: center; cursor: pointer; }
 .bell-btn .bell-n { position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--signal, #C0392B); color: #fff; font: 800 11px/18px var(--sans); text-align: center; }
 .n-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; max-height: 60vh; overflow-y: auto; }
@@ -2526,12 +2605,12 @@ function homeView() {
   const progMin = p => { const cc = effCfg(Object.assign({}, settings, { program: p.id })); return mins(buildPlan(cc).reduce((a, s) => a + estRaw(s) + (s.rest ? restSec(s.rest, cc) * 1000 : 0), 0)); };
   const finName = c.finisher && plan.find(s => s.phase === 'finisher') ? EX[plan.find(s => s.phase === 'finisher').ex].name : null;
   return `<div class="stack fade-in">
-    ${accountHomeCard()}
-    ${homeOpen && sess && sess.state === 'ACTIVE' ? pausedBanner() : runHomeCard() + communityHomeCard()}
-    ${weightHomeCard()}
-    ${achieveCardHome()}
-    <div class="sec-title">Training wählen</div>
-    <div class="pgroups">${PROGRAM_GROUPS.map(g => { const open = openGroup() === g.id, list = g.ids.map(id => PROGRAMS.find(p => p.id === id)).filter(Boolean), has = g.ids.includes(prog.id);
+    ${dashOn('account') ? accountHomeCard() : ''}
+    ${homeOpen && sess && sess.state === 'ACTIVE' ? pausedBanner() : (dashOn('run') ? runHomeCard() : '') + (dashOn('community') ? communityHomeCard() : '') + (dashOn('event') ? eventsHomeCard() : '') + (dashOn('board') ? boardHomeCard() : '')}
+    ${dashOn('weight') ? weightHomeCard() : ''}
+    ${dashOn('achieve') ? achieveCardHome() : ''}
+    <div class="sec-title dash-title"><span>Training wählen</span><button type="button" class="mini" data-act="dash-open" data-notr>✏️ ${L('Startseite anpassen', 'Customise', 'Personnaliser', 'Özelleştir')}</button></div>
+    <div class="pgroups">${visibleGroups().map(g => { const open = openGroup() === g.id, list = g.ids.map(id => PROGRAMS.find(p => p.id === id)).filter(Boolean), has = g.ids.includes(prog.id);
       return `<section class="pgroup ${open ? 'open' : ''}"><button type="button" class="pg-head" data-act="pgroup" data-v="${g.id}" aria-expanded="${open}"><span class="pg-name">${esc(g.name)}${has && !open ? `<small class="pg-sel">✓ ${esc(prog.name)}</small>` : ''}</span><span class="pg-cnt">${list.length}</span><span class="pg-chev" aria-hidden="true">›</span></button>
         ${open ? `<div class="progs" role="radiogroup" aria-label="${esc(g.name)}">${list.map(p => `<button type="button" role="radio" aria-checked="${p.id === prog.id}" class="prog ${p.id === prog.id ? 'sel' : ''}" data-act="program" data-id="${p.id}"><b>${esc(p.name)}</b><span>${esc(p.short)}</span><em>≈ ${progMin(p)} min${p.custom ? '' : ' · ' + p.rounds + ' Runden'}</em></button>`).join('')}</div>` : ''}</section>`; }).join('')}</div>
     ${prog.levels ? `<div class="sec-title" style="margin:6px 0 8px">Schwierigkeit</div><div class="seg" role="radiogroup" aria-label="Schwierigkeit">${Object.entries(prog.levels).map(([k, L]) => `<button type="button" role="radio" aria-checked="${c.level === k}" data-act="level" data-v="${k}">${esc(L.name)}</button>`).join('')}</div>
@@ -2572,6 +2651,7 @@ function resultView() {
     ${rewardHTML(s)}
     ${motivationHTML(s)}
     ${shareCardHTML(s)}
+    ${resultSocialHTML(s)}
     <div class="panel" style="margin-top:14px"><h3>Deine Bilanz</h3><p class="sub">Alle Werte lokal auf diesem Gerät.</p>
       <dl>
         <dt>Total Time</dt><dd>${fmt(s.ms)}</dd>
@@ -2930,8 +3010,10 @@ function runAnalysis(q) {
 }
 function runView() {
   const R = store.get(runKey(), null);
-  if (!R || runDraft) return runForm();
-  return runPlanView(R);
+  const tabs = `<div class="seg run-tabs" role="tablist" style="grid-template-columns:repeat(2,1fr);margin-bottom:14px" data-notr>${[['log', '📝 ' + L('Läufe & Auswertung', 'Runs & analysis', 'Sorties & analyse', 'Koşular & analiz')], ['plan', '🗓️ ' + L('Trainingsplan', 'Training plan', 'Plan', 'Antrenman planı')]].map(([k, n]) => `<button type="button" role="tab" aria-checked="${runTab === k}" data-act="run-tab" data-v="${k}">${n}</button>`).join('')}</div>`;
+  if (runTab === 'log') return tabs + rlLogView();
+  if (!R || runDraft) return tabs + runForm();
+  return tabs + runPlanView(R);
 }
 function runForm() {
   const q = runDraft || (runDraft = Object.assign({}, RUN_DEF, (store.get(runKey(), null) || {}).q || {}));
@@ -2992,9 +3074,9 @@ function runPlanView(R) {
   </div>`;
 }
 function runAct(a, b) {
-  if (a === 'run-open') { view = 'run'; runDraft = null; render(); window.scrollTo(0, 0); return; }
+  if (a === 'run-open') { view = 'run'; runDraft = null; if (b && b.dataset.v) runTab = b.dataset.v; render(); window.scrollTo(0, 0); return; }
   if (a === 'rq') { const k = b.dataset.k, v = b.dataset.v; const t5 = document.getElementById('r5k'); if (t5) runDraft.t5 = t5.value; const kn = document.getElementById('rknee'); if (kn) runDraft.knee = kn.checked; runDraft[k] = k === 'goal' ? v : +v; render(); return; }
-  if (a === 'run-make') {
+  if (a === 'run-make') { runTab = 'plan';
     const q = runDraft; const t5 = document.getElementById('r5k'); q.t5 = t5 ? t5.value.trim() : ''; q.knee = false;
     if (q.t5 && !parseMin(q.t5)) { toast(L('5-km-Zeit bitte als mm:ss eingeben, z. B. 28:30', 'Please enter the 5 km time as mm:ss, e.g. 28:30', 'Saisis le temps 5 km au format mm:ss, p. ex. 28:30', '5 km süresini dd:ss olarak gir, örn. 28:30')); return; }
     runUndo = store.get(runKey(), null);
@@ -3003,11 +3085,11 @@ function runAct(a, b) {
     toast(L('Trainingsplan erstellt', 'Training plan created', 'Plan d\'entraînement créé', 'Antrenman planı oluşturuldu'), !!runUndo, 'run-undo'); return;
   }
   if (a === 'run-undo') { if (runUndo) { store.set(runKey(), runUndo); runUndo = null; render(); } return; }
-  if (a === 'run-edit') { runDraft = null; runForm(); render(); window.scrollTo(0, 0); return; }
+  if (a === 'run-edit') { runTab = 'plan'; runDraft = null; runForm(); render(); window.scrollTo(0, 0); return; }
   if (a === 'run-cancel') { runDraft = null; render(); return; }
   if (a === 'run-done') { const R = store.get(runKey(), null); if (!R) return; const s = R.plan[+b.dataset.w].sessions[+b.dataset.i]; s.done = !s.done; store.set(runKey(), R); render(); if (s.done) toast(L('Stark, Lauf erledigt!', 'Great, run done!', 'Bravo, sortie faite !', 'Harika, koşu tamam!')); }
 }
-const runHomeCard = () => { const R = store.get(runKey(), null); const sub = R ? `${RUN_GOALS[R.q.goal].name} · ${L('Woche', 'week', 'semaine', 'hafta')} ${clamp(Math.floor((Date.now() - R.start) / 6048e5), 0, R.plan.length - 1) + 1}/${R.plan.length}` : L('Analyse & persönlicher Trainingsplan', 'Analysis & personal training plan', 'Analyse & plan personnel', 'Analiz & kişisel plan');
+const runHomeCard = () => { const R = store.get(runKey(), null); const sub = R ? `${RUN_GOALS[R.q.goal].name} · ${L('Woche', 'week', 'semaine', 'hafta')} ${clamp(Math.floor((Date.now() - R.start) / 6048e5), 0, R.plan.length - 1) + 1}/${R.plan.length}` : L('Läufe eintragen, Auswertung & Trainingsplan', 'Log runs, analysis & training plan', 'Sorties, analyse & plan', 'Koşu gir, analiz & plan');
   return `<button type="button" class="run-card" data-act="run-open" data-notr><span class="ic" aria-hidden="true">🏃</span><span><b>${L('Lauftrainer', 'Running coach', 'Coach running', 'Koşu koçu')}</b><small>${sub}</small></span><span class="go">›</span></button>`; };
 
 const HEAT_COLS = ['var(--paper-line)', 'var(--heat1, #B9E3B2)', 'var(--heat2, #7FCB73)', 'var(--heat3, #45A538)', 'var(--heat4, #2C7A22)'];
@@ -3829,10 +3911,11 @@ const FB_VER = '10.12.2';
 const DEF_ROOMS = [
   { id: 'laufen', name: L('Laufen', 'Running', 'Course', 'Koşu'), ic: '🏃' },
   { id: 'workout', name: L('Kraft & Workout', 'Strength & workout', 'Force & entraînement', 'Kuvvet & antrenman'), ic: '💪' },
-  { id: 'yoga', name: L('Yoga & Erholung', 'Yoga & recovery', 'Yoga & récupération', 'Yoga & toparlanma'), ic: '🧘' }
+  { id: 'yoga', name: L('Yoga & Erholung', 'Yoga & recovery', 'Yoga & récupération', 'Yoga & toparlanma'), ic: '🧘' },
+  { id: 'padel', name: L('Padel: Mitspieler & Matches', 'Padel: partners & matches', 'Padel : partenaires & matchs', 'Padel: partner & maç'), ic: '🎾' }
 ];
 let CB = null, cbState = 'off', cbRoom = null, cbMsgs = [], cbRooms = [], cbUnsub = null, cbUnsubRooms = null, cbErr = '';
-let cbUsers = {}, cbDms = [], cbTab = 'rooms', cbUnsubUsers = null, cbUnsubDms = null, cbStartTs = Date.now();
+let cbUsers = {}, cbDms = [], cbTab = 'feed', cbUnsubUsers = null, cbUnsubDms = null, cbStartTs = Date.now();
 const cNick = () => account ? account.name : '?';
 const loadScript = src => new Promise((ok, no) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => no(new Error('load ' + src)); document.head.appendChild(s); });
 
@@ -3898,6 +3981,8 @@ function firebaseBackend(cfg) {
       let n = 0;
       for (const r of rooms) { const q = await msgsCol(r).where('uid', '==', uid).get(); for (const d of q.docs) { await d.ref.delete(); n++; } }
       try { await db.collection('users').doc(uid).delete(); } catch (e) {}
+      try { await socialWipe(db, uid); } catch (x) {}
+      for (const e of EVENTS_ALL()) { try { await db.collection('events').doc(e.id).collection('going').doc(uid).delete(); } catch (x) {} }
       try { const q = await db.collection('dms').where('members', 'array-contains', nickKey(cNick())).get(); for (const d of q.docs) await d.ref.delete(); } catch (e) {}
       return n;
     }
@@ -3922,7 +4007,7 @@ async function cbStart() {
   }
   render();
 }
-function cbStop() { try { notifStop(); } catch (e) {} unwatchRooms(); try { cbUnsub && cbUnsub(); cbUnsubRooms && cbUnsubRooms(); cbUnsubUsers && cbUnsubUsers(); cbUnsubDms && cbUnsubDms(); } catch (e) {} cbUnsub = cbUnsubRooms = cbUnsubUsers = cbUnsubDms = null; cbUsers = {}; cbDms = []; CB = null; cbState = 'off'; cbRoom = null; cbMsgs = []; }
+function cbStop() { cbTab = 'feed'; try { FEED.list = []; FEED.loaded = 0; BOARD.list = []; BOARD.loaded = 0; evLoaded = 0; evGoing = {}; } catch (e) {} try { notifStop(); } catch (e) {} unwatchRooms(); try { cbUnsub && cbUnsub(); cbUnsubRooms && cbUnsubRooms(); cbUnsubUsers && cbUnsubUsers(); cbUnsubDms && cbUnsubDms(); } catch (e) {} cbUnsub = cbUnsubRooms = cbUnsubUsers = cbUnsubDms = null; cbUsers = {}; cbDms = []; CB = null; cbState = 'off'; cbRoom = null; cbMsgs = []; }
 function cbOpenRoom(id) {
   try { cbUnsub && cbUnsub(); } catch (e) {}
   cbRoom = id; cbMsgs = []; render();
@@ -3934,13 +4019,13 @@ const cityKey = s => normPw(s || '').replace(/[^a-z0-9]/g, '');
 function roomListHTML() {
   const my = cityKey(getProfile().city), extra = cbRooms.filter(r => !DEF_ROOMS.some(d => d.id === r.id));
   const btn = r => `<button type="button" class="c-room" data-act="c-room" data-id="${esc(r.id)}"><span class="ic">${esc(r.ic || '💬')}</span><span class="nm"><b>${esc(r.name)}${roomUnread[r.id] ? ` <span class="c-badge">${roomUnread[r.id]}</span>` : ''}</b>${r.city ? `<small>📍 ${esc(r.city)}</small>` : ''}</span><span class="go">›</span></button>`;
-  const near = extra.filter(r => r.city && my && cityKey(r.city) === my), glob = DEF_ROOMS.concat(extra.filter(r => !r.city)), other = extra.filter(r => r.city && !(my && cityKey(r.city) === my));
+  const near = extra.filter(r => r.city && my && cityKey(r.city) === my), glob = DEF_ROOMS.filter(r => roomVisible(r.id)).concat(extra.filter(r => !r.city)), other = extra.filter(r => r.city && !(my && cityKey(r.city) === my));
   const sec = (t, list) => list.length ? `<div class="sec-title" style="margin:14px 0 8px">${t}</div><div class="c-rooms">${list.map(btn).join('')}</div>` : '';
   return (my ? sec(L(`In deiner Nähe · ${esc(getProfile().city)}`, `Near you · ${esc(getProfile().city)}`, `Près de chez toi · ${esc(getProfile().city)}`, `Yakınında · ${esc(getProfile().city)}`), near) || `<div class="note blue">${L('Noch kein Raum in deiner Stadt. Leg einen an, z. B. „Lauftreff ' + esc(getProfile().city) + '“.', 'No room in your town yet. Create one, e.g. “Run club ' + esc(getProfile().city) + '”.', 'Pas encore de salon dans ta ville. Crée-en un.', 'Şehrinde henüz oda yok. Bir tane oluştur.')}</div>`
     : `<div class="note blue">${L('Tipp: Trag unter „Mein Konto“ deinen Wohnort ein, dann siehst du Räume in deiner Nähe zuerst.', 'Tip: add your town under “My account” to see rooms near you first.', 'Astuce : indique ta ville dans « Mon compte » pour voir d\'abord les salons proches.', 'İpucu: “Hesabım” altında şehrini gir, yakındaki odaları önce gör.')} <button type="button" class="mini" data-act="member">${L('Mein Konto', 'My account', 'Mon compte', 'Hesabım')}</button></div>`)
     + sec(L('Überall', 'Everywhere', 'Partout', 'Her yer'), glob) + sec(L('Andere Orte', 'Other places', 'Autres lieux', 'Diğer yerler'), other);
 }
-const allRooms = () => DEF_ROOMS.concat(cbRooms.filter(r => !DEF_ROOMS.some(d => d.id === r.id)));
+const allRooms = () => DEF_ROOMS.concat(cbRooms.filter(r => !DEF_ROOMS.some(d => d.id === r.id)), EVENTS_ALL().map(e => ({ id: evRoomId(e), name: e.name, ic: e.ic || '🏁' })));
 const tStr = ts => { const d = new Date(ts), today = dayKey(Date.now()) === dayKey(ts); return (today ? '' : d.toLocaleDateString(LOC, { day: '2-digit', month: '2-digit' }) + ' ') + d.toLocaleTimeString(LOC, { hour: '2-digit', minute: '2-digit' }); };
 const mapsUrl = p => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p);
 function msgHTML(m) {
@@ -3981,8 +4066,8 @@ function communityView() {
   const demo = CB.demo ? `<div class="note warn" style="margin-top:0"><b>Demo</b>${L('Firebase ist noch nicht eingerichtet. Nachrichten bleiben nur auf diesem Gerät.', 'Firebase is not set up yet. Messages stay on this device only.', 'Firebase n\'est pas encore configuré. Les messages restent sur cet appareil.', 'Firebase henüz kurulmadı. Mesajlar yalnızca bu cihazda kalır.')}</div>` : '';
   if (!cbRoom) return `<div class="stack fade-in" data-notr>${demo}
     <article class="face front" style="--ph:var(--ph-circuit)"><div class="kicker"><span>Community</span><span class="r">${esc(cNick())}</span></div><h2 class="c-me">${avHTML(cNick(), 40)}${L('Community', 'Community', 'Communauté', 'Topluluk')}</h2><p>${L('Verabrede dich zum Training, starte eine Abstimmung oder schlag Termin und Ort vor.', 'Meet up for training, start a poll or suggest a date and place.', 'Donne rendez-vous pour t\'entraîner, lance un sondage ou propose une date et un lieu.', 'Antrenman için buluş, anket başlat ya da tarih ve yer öner.')}</p></article>
-    <div class="seg" role="tablist" style="grid-template-columns:repeat(3,1fr)">${[['rooms', L('Räume', 'Rooms', 'Salons', 'Odalar')], ['people', L('Mitglieder', 'Members', 'Membres', 'Üyeler')], ['dms', L('Nachrichten', 'Messages', 'Messages', 'Mesajlar') + (unreadDms() ? ` <span class="c-badge">${unreadDms()}</span>` : '')]].map(([k, n]) => `<button type="button" role="tab" aria-checked="${cbTab === k}" data-act="c-tab" data-v="${k}">${n}</button>`).join('')}</div>
-    ${cbTab === 'people' ? peopleHTML() : cbTab === 'dms' ? dmsHTML() : roomListHTML() + `<button type="button" class="btn btn-ghost" style="width:100%" data-act="c-newroom">+ ${L('Neuer Raum', 'New room', 'Nouveau salon', 'Yeni oda')}</button>`}
+    <div class="seg c-tabs4" role="tablist" style="grid-template-columns:repeat(3,1fr)">${[['feed', '📣 Feed'], ['rooms', '💬 ' + L('Räume', 'Rooms', 'Salons', 'Odalar')], ['events', '🏁 Events'], ['board', '🏆 ' + L('Rangliste', 'Ranking', 'Classement', 'Sıralama')], ['people', L('Mitglieder', 'Members', 'Membres', 'Üyeler')], ['dms', L('Nachrichten', 'Messages', 'Messages', 'Mesajlar') + (unreadDms() ? ` <span class="c-badge">${unreadDms()}</span>` : '')]].map(([k, n]) => `<button type="button" role="tab" aria-checked="${cbTab === k}" data-act="c-tab" data-v="${k}">${n}</button>`).join('')}</div>
+    ${cbTab === 'people' ? peopleHTML() : cbTab === 'dms' ? dmsHTML() : cbTab === 'events' ? eventsHTML() : cbTab === 'feed' ? feedHTML() : cbTab === 'board' ? boardHTML() : roomListHTML() + `<button type="button" class="btn btn-ghost" style="width:100%" data-act="c-newroom">+ ${L('Neuer Raum', 'New room', 'Nouveau salon', 'Yeni oda')}</button>`}
     <p class="sub c-legal"><button type="button" class="mini" data-act="c-rules">${L('Community-Regeln', 'Community rules', 'Règles', 'Topluluk kuralları')}</button> · <button type="button" class="mini" data-act="legal">${L('Datenschutz', 'Privacy', 'Confidentialité', 'Gizlilik')}</button> · <button type="button" class="mini" data-act="c-wipe">${L('Meine Community-Daten löschen', 'Delete my community data', 'Supprimer mes données', 'Topluluk verilerimi sil')}</button></p>
     ${cbErr ? `<p class="sub">${esc(cbErr)}</p>` : ''}</div>`;
   const isDm = cbRoom.startsWith('dm_'), other = isDm ? dmOther(cbRoom) : null;
@@ -4041,7 +4126,7 @@ function communityAct(a, b) {
   if (a === 'c-dm') { cbOpenRoom(dmId(b.dataset.u)); return; }
   if (a === 'c-poke') { const u = b.dataset.u, id = dmId(u), txt = L('Lust auf ein Training?', 'Fancy a workout?', 'Partant pour une séance ?', 'Antrenman yapalım mı?');
     CB.send(id, { type: 'poke', text: txt }).then(() => { notifyAdd(u, 'poke', id, txt); return CB.touchDm(id, dmMembers(id), '👉 ' + txt, nickKey(cNick())); }).then(() => { toast(L(`${(cbUsers[u] || {}).nick || u} angestupst 👉`, `Poked ${(cbUsers[u] || {}).nick || u} 👉`, `Signe envoyé à ${(cbUsers[u] || {}).nick || u} 👉`, `${(cbUsers[u] || {}).nick || u} dürtüldü 👉`)); if (cbRoom === id) setTimeout(scrollChat, 100); }).catch(cFail); return; }
-  if (a === 'c-back') { try { cbUnsub && cbUnsub(); } catch (e) {} if (cbRoom) { markSeen(cbRoom); roomUnread[cbRoom] = 0; if (cbRoom.startsWith('dm_')) cbTab = 'dms'; } watchRooms(); cbUnsub = null; cbRoom = null; render(); return; }
+  if (a === 'c-back') { try { cbUnsub && cbUnsub(); } catch (e) {} if (cbRoom) { markSeen(cbRoom); roomUnread[cbRoom] = 0; if (cbRoom.startsWith('dm_')) cbTab = 'dms'; else if (cbRoom.startsWith('ev-')) cbTab = 'events'; } watchRooms(); cbUnsub = null; cbRoom = null; render(); return; }
   if (a === 'c-mention') { mentionPick(b.dataset.v); return; }
   if (a === 'c-send') { const t = val2('cText'); if (!t) return; document.getElementById('cText').value = ''; mentionHide();
     const room = cbRoom, ments = findMentions(t);
@@ -4134,7 +4219,7 @@ function reportSend(i) {
   closeSheet(); renderChatOnly(); toast(L('Gemeldet. Danke! Der Admin prüft das.', 'Reported. Thanks! The admin will review it.', 'Signalé. Merci ! L\'admin va vérifier.', 'Bildirildi. Teşekkürler! Yönetici inceleyecek.'));
 }
 async function cbWipe(alsoOff) {
-  const rooms = [...new Set(DEF_ROOMS.map(r => r.id).concat(cbRooms.map(r => r.id), cbDms.map(d => d.id)))];
+  const rooms = [...new Set(DEF_ROOMS.map(r => r.id).concat(cbRooms.map(r => r.id), cbDms.map(d => d.id), EVENTS_ALL().map(evRoomId)))];
   try { if (CB && CB.deleteMine) await CB.deleteMine(rooms); } catch (e) { toast(L('Löschen teilweise fehlgeschlagen: ', 'Deletion partly failed: ', 'Suppression partielle : ', 'Silme kısmen başarısız: ') + (e && e.message || e)); }
   try { const k = `uipause-${account.id}-dmseen-v1`; store.del(k); } catch (e) {}
   settings.community = false; saveSettings(); cbStop(); render();
@@ -4191,6 +4276,8 @@ function notifLine(n) {
   const who = n.from || '?';
   if (n.type === 'mention') return L(`${who} hat dich erwähnt`, `${who} mentioned you`, `${who} t'a mentionné`, `${who} senden bahsetti`) + (n.rname ? ` · ${n.rname}` : '');
   if (n.type === 'poke') return L(`${who} hat dich angestupst`, `${who} poked you`, `${who} t'a fait signe`, `${who} seni dürttü`);
+  if (n.type === 'kudos') return L(`${who} hat dir Kudos gegeben`, `${who} gave you kudos`, `${who} t'a félicité`, `${who} seni tebrik etti`);
+  if (n.type === 'cmt') return L(`${who} hat dein Training kommentiert`, `${who} commented on your session`, `${who} a commenté ta séance`, `${who} antrenmanına yorum yaptı`);
   return L(`Neue Nachricht von ${who}`, `New message from ${who}`, `Nouveau message de ${who}`, `${who} kişisinden yeni mesaj`);
 }
 function bellUpdate() {
@@ -4203,7 +4290,7 @@ function bellUpdate() {
 }
 function bellSheet() {
   const t = store.get(nSeenKey(), 0), list = NOTIFS.filter(n => !isBlocked(n.from)).slice(0, 40);
-  const ic = n => n.type === 'mention' ? '@' : n.type === 'poke' ? '👉' : '✉️';
+  const ic = n => n.type === 'mention' ? '@' : n.type === 'poke' ? '👉' : n.type === 'kudos' ? '👏' : n.type === 'cmt' ? '💬' : '✉️';
   openSheet(`<div data-notr><h2 id="dlgTitle">🔔 ${L('Benachrichtigungen', 'Notifications', 'Notifications', 'Bildirimler')}</h2>
     ${list.length ? `<div class="n-list">${list.map(n => `<button type="button" class="n-item ${n.ts > t ? 'new' : ''}" data-act="n-open" data-id="${esc(n.id)}"><span class="n-ic">${ic(n)}</span><span class="n-tx"><b>${esc(notifLine(n))}</b>${n.text ? `<small>„${esc(n.text)}“</small>` : ''}<em>${tStr(n.ts)}</em></span></button>`).join('')}</div>`
       : `<p class="sub">${L('Noch keine Benachrichtigungen. Hier erscheint es, wenn dich jemand mit @Name erwähnt, dir schreibt oder dich anstupst.', 'No notifications yet. You will see it here when someone mentions you with @name, messages you or pokes you.', 'Aucune notification. Elles apparaissent ici quand quelqu\'un te mentionne avec @nom, t\'écrit ou te fait signe.', 'Henüz bildirim yok. Biri seni @isim ile andığında, yazdığında veya dürttüğünde burada görünür.')}</p>`}
@@ -4214,6 +4301,7 @@ function notifAct(a, b) {
   if (a === 'bell') { bellSheet(); return; }
   if (a === 'n-clear') { if (CB && CB.clearNotifs) CB.clearNotifs(nickKey(cNick())).catch(() => {}); NOTIFS = []; closeSheet(); bellUpdate(); updTitle(); return; }
   if (a === 'n-open') { const n = NOTIFS.find(x => x.id === b.dataset.id); closeSheet(); if (!n || !n.room) return;
+    if (n.room.startsWith('feed:')) { view = 'community'; cbTab = 'feed'; cbRoom = null; FEED.loaded = 0; render(); window.scrollTo(0, 0); const pid = n.room.slice(5); feedLoad(true).then(() => feedSheet(pid)); return; }
     view = 'community'; cbTab = n.room.startsWith('dm_') ? 'dms' : 'rooms'; render(); cbOpenRoom(n.room); window.scrollTo(0, 0); }
 }
 /* Erwähnungen erkennen: @ gefolgt von einem bekannten Nickname (auch mit Leerzeichen) */
@@ -4433,6 +4521,7 @@ function delAccSheet() {
      von den Firestore-Regeln auf dem Server.
    ============================================================ */
 const KEY_MEMBER = 'uipause-member-v1';
+let VERIFY_ERR = '';
 let FBP = null, FBU = null, MEMBER = null, IS_ADMIN = false, authReady = false, regBusy = false;
 const RESERVED_NK = ['admin', 'administrator', 'team', 'support', 'pausenworkout', 'pausenworkoutteam', 'moderator', 'system'];
 function fbCore() {
@@ -4468,7 +4557,7 @@ const authMsg = e => {
   if (/weak-password/.test(c)) return 'Das Passwort ist zu schwach.';
   if (/network|timeout|offline|nocfg|unavailable/.test(c)) return 'Keine Verbindung zum Anmeldedienst. Bitte Internetverbindung prüfen.';
   if (/requires-recent-login/.test(c)) return 'Bitte zuerst ab- und wieder anmelden.';
-  return 'Das hat nicht geklappt. Bitte erneut versuchen.';
+  return 'Das hat nicht geklappt. Bitte erneut versuchen. (' + c + ')';
 };
 /* Mitgliedsdaten vom Server laden. Entscheidend ist, was der Server liefert. */
 async function loadMember(u) {
@@ -4486,6 +4575,7 @@ function authInit() {
       FBU = u; authReady = true;
       if (regBusy) return;
       if (!u) { MEMBER = null; IS_ADMIN = false; store.del(KEY_MEMBER); if (account) { localLogout(); showLogin('', 'Du wurdest abgemeldet.'); } else if (!adminMode && !document.querySelector('.login .auth-tabs')) showLogin(); return; }
+      /* Firebase merkt sich „nicht bestätigt“ auf dem Gerät. Deshalb beim Start immer frisch beim Server nachfragen. */
       let m = null;
       try { m = await withTimeout(loadMember(u), 9000); }
       catch (e) { const c = store.get(KEY_MEMBER, null); if (c && c.uid === u.uid) { if (!account) enterAccount(c); return; } showLogin(authMsg(e)); return; }
@@ -4496,7 +4586,8 @@ function authInit() {
 async function routeMember(u, m) {
   if (!m) { if (IS_ADMIN) { const acc = { id: 'admin', name: 'Admin', g: 'm', uid: u.uid, admin: true }; adminOnly(acc); return; } statusScreen('missing'); return; }
   if (m.status === 'blocked') { statusScreen('blocked'); return; }
-  if (!u.emailVerified) { statusScreen('verify'); return; }
+  /* Ab Version 29: Neue Mitglieder sind sofort dabei. Ältere Anträge („pending“) schalten sich selbst frei, sofern der Admin nicht gesperrt hat. */
+  if (m.status === 'pending') { try { const { db } = await fbCore(); await db.collection('members').doc(u.uid).update({ status: 'approved' }); m.status = 'approved'; } catch (e) { statusScreen('pending'); return; } }
   if (m.status !== 'approved') { statusScreen('pending'); return; }
   const acc = memberAccount(m);
   store.set(KEY_MEMBER, acc);
@@ -4507,6 +4598,7 @@ async function routeMember(u, m) {
     enterAccount(acc);
   }
   try { await syncPrivateToProfile(u); } catch (e) {}
+  usageTrack('open');
   setAccountLabel(); if (!adminMode) render();
 }
 /* Trainingsdaten auf diesem Gerät gehören ab Version 25 zur Konto-UID, nicht mehr zum Nickname.
@@ -4537,23 +4629,52 @@ async function syncPrivateToProfile(u) {
   const d = p.data(), pk = `uipause-${account.id}-profile-v1`, P = store.get(pk, {});
   store.set(pk, Object.assign({}, P, { first: d.first || P.first || '', last: d.last || P.last || '', email: d.email || P.email || '' }));
 }
+/* Status neu vom Server holen (nach Klick auf den Bestätigungslink oder die Freischaltung) */
+let recheckBusy = false, recheckT = null;
+async function recheckUser(manual) {
+  if (recheckBusy) return; recheckBusy = true;
+  const btn = document.querySelector('[data-act="au-verified"]'), err = document.querySelector('.msg-err'), label = btn && btn.textContent;
+  if (manual && btn) { btn.disabled = true; btn.textContent = 'PRÜFE …'; }
+  try {
+    const { auth } = await fbCore(); const u0 = auth.currentUser; if (!u0) { showLogin('', 'Bitte erneut anmelden.'); return; }
+    await u0.reload(); await u0.getIdToken(true);
+    const u = auth.currentUser; FBU = u;
+    const m = await loadMember(u);
+    const before = document.querySelector('.login h2') && document.querySelector('.login h2').textContent;
+    await routeMember(u, m);
+    const after = document.querySelector('.login h2') && document.querySelector('.login h2').textContent;
+    if (manual && before === after) { const e2 = document.querySelector('.msg-err'); if (e2) e2.textContent = !u.emailVerified ? 'Noch nicht bestätigt. Bitte zuerst den Link in der Mail von noreply@pausen-workout.firebaseapp.com öffnen, dann erneut tippen.' : 'Noch nicht freigeschaltet. Der Admin wurde benachrichtigt.'; }
+  } catch (e) {
+    if (manual && err) err.textContent = authMsg(e) + ' (' + String(e && (e.code || e.message)) + ')';
+  } finally {
+    recheckBusy = false; const b2 = document.querySelector('[data-act="au-verified"]'); if (b2 && b2 === btn) { b2.disabled = false; b2.textContent = label; }
+  }
+}
+/* Auf den Status-Seiten regelmäßig und beim Zurückwechseln in den Tab automatisch prüfen */
+function autoRecheck(on) {
+  clearInterval(recheckT); recheckT = null;
+  if (on) recheckT = setInterval(() => { if (document.visibilityState === 'visible' && document.querySelector('[data-act="au-verified"]')) recheckUser(false); else if (!document.querySelector('[data-act="au-verified"]')) autoRecheck(false); }, 15000);
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && document.querySelector('[data-act="au-verified"]')) recheckUser(false); });
 function statusScreen(kind) {
   lockUI();
   const email = FBU && FBU.email ? esc(FBU.email) : '';
   const T = {
-    verify: ['📧 E-Mail bestätigen', `Wir haben dir eine Bestätigungs-Mail an <b>${email}</b> geschickt. Bitte den Link darin öffnen. Schau auch im Spam-Ordner nach.`, `<button type="button" class="btn btn-primary xl" data-act="au-verified">ICH HABE BESTÄTIGT</button><button type="button" class="btn btn-ghost" data-act="au-resend">Mail erneut senden</button>`],
-    pending: ['⏳ Wartet auf Freischaltung', 'Deine Registrierung ist beim Admin. Sobald du freigeschaltet bist, kannst du loslegen. Du bekommst dann eine E-Mail.', `<button type="button" class="btn btn-primary xl" data-act="au-verified">ERNEUT PRÜFEN</button>`],
+    verify: ['📧 E-Mail bestätigen', `Wir haben dir eine <b>separate</b> Bestätigungs-Mail an <b>${email}</b> geschickt. Absender: <b>noreply@pausen-workout.firebaseapp.com</b>, Betreff etwa „Bestätigen Sie Ihre E-Mail-Adresse“. Darin den Link öffnen und danach hier „Ich habe bestätigt“ tippen.</p><p class="sub">Die andere Mail „Deine Registrierung ist angekommen“ ist nur eine Eingangsbestätigung ohne Link. ⏱ Die Bestätigungs-Mail kann <b>bis zu 5 Minuten</b> brauchen. Bitte so lange warten, bevor du „Mail erneut senden“ tippst. Nichts angekommen? Spam- bzw. Werbe-Ordner prüfen.`, `<button type="button" class="btn btn-primary xl" data-act="au-verified">ICH HABE BESTÄTIGT</button><button type="button" class="btn btn-ghost" data-act="au-resend">Mail erneut senden</button>`],
+    pending: ['⏳ Wartet auf Freischaltung', '✅ Deine E-Mail-Adresse ist bestätigt. Deine Registrierung ist jetzt beim Admin. Sobald du freigeschaltet bist, kannst du loslegen. Du bekommst dann eine E-Mail.', `<button type="button" class="btn btn-primary xl" data-act="au-verified">ERNEUT PRÜFEN</button>`],
     blocked: ['🚫 Zugang gesperrt', 'Dieser Zugang ist gesperrt. Bei Fragen wende dich an die Person, über die du den Zugang bekommen hast.', ''],
     missing: ['⚠️ Kein Mitgliedsprofil', 'Zu diesem Login gibt es kein Mitgliedsprofil mehr, z. B. weil es gelöscht wurde. Melde dich ab und registriere dich unter „Registrieren“ noch einmal mit derselben E-Mail und demselben Passwort. Dann wird die Mitgliedschaft neu beantragt.', '']
   }[kind];
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)" data-notr><h2>${T[0]}</h2><p>${T[1]}</p>
-    <div class="acts" style="display:flex;flex-direction:column;gap:8px">${T[2]}<button type="button" class="btn btn-ghost" data-act="logout">Abmelden</button></div>
-    <p class="msg-err" role="alert"></p></article>`;
+    <div class="acts" style="display:flex;flex-direction:column;gap:8px">${T[2]}<button type="button" class="btn btn-ghost" data-act="logout">Abmelden</button><button type="button" class="mini" data-act="au-diag">Diagnose anzeigen</button></div>
+    <p class="msg-err" role="alert">${kind === 'verify' && VERIFY_ERR ? esc(VERIFY_ERR) : ''}</p>
+    ${kind === 'verify' || kind === 'pending' ? '<p class="sub" style="margin:6px 0 0">Die App prüft alle 15 Sekunden automatisch.</p>' : ''}</article>`;
+  autoRecheck(kind === 'verify' || kind === 'pending');
 }
 async function authAct(a) {
   const { auth } = await fbCore();
-  if (a === 'au-resend') { try { await auth.currentUser.sendEmailVerification({ url: APP_URL }); toast('Bestätigungs-Mail gesendet'); } catch (e) { toast(authMsg(e)); } return; }
-  if (a === 'au-verified') { try { await auth.currentUser.reload(); await auth.currentUser.getIdToken(true); const u = auth.currentUser; FBU = u; await routeMember(u, await loadMember(u)); } catch (e) { toast(authMsg(e)); } return; }
+  if (a === 'au-resend') { const r = await sendVerify(auth.currentUser); const el = document.querySelector('.msg-err'); if (el) el.textContent = r.ok ? '' : r.msg; toast(r.ok ? 'Bestätigungs-Mail gesendet. Absender: noreply@pausen-workout.firebaseapp.com' : 'Senden nicht möglich'); return; }
+  if (a === 'au-verified') { await recheckUser(true); return; }
 }
 /* ---------- Anmelden ---------- */
 let mfaResolver = null;
@@ -4571,6 +4692,7 @@ async function doLogin() {
     store.set('uipause-lastnick', email);
     unlockAudio();
   } catch (e) {
+    LAST_AUTH_ERR = String(e && (e.code || e.message));
     if (e && e.code === 'auth/multi-factor-auth-required' && e.resolver) { mfaResolver = e.resolver; mfaSheet(); }
     else authErr(authMsg(e));
   } finally { if (btn) { btn.disabled = false; btn.textContent = 'ANMELDEN'; } }
@@ -4623,7 +4745,7 @@ async function doRegisterInner(first, last, name, email, p1, nk, reset) {
   try {
     const batch = db.batch();
     batch.set(db.collection('nicks').doc(nk), { uid: u.uid, ts: Date.now() });
-    batch.set(db.collection('members').doc(u.uid), { nick: name, nk, g: regG, lg: LANG, status: 'pending', plan: 'trial', created: Date.now() });
+    batch.set(db.collection('members').doc(u.uid), { nick: name, nk, g: regG, lg: LANG, status: 'approved', plan: 'trial', created: Date.now() });
     batch.set(db.collection('private').doc(u.uid), { first, last, email: u.email, ts: Date.now() });
     await batch.commit();
   } catch (e) {
@@ -4631,13 +4753,11 @@ async function doRegisterInner(first, last, name, email, p1, nk, reset) {
     if (reused) { try { await auth.signOut(); } catch (y) {} } else { try { await u.delete(); } catch (x) { try { await auth.signOut(); } catch (y) {} } }
     reset(); authErr(/permission|insufficient/i.test(String(e && (e.code || e.message))) ? 'Dieser Nickname ist schon vergeben. Bitte einen anderen wählen.' : authMsg(e)); return;
   }
-  if (!u.emailVerified) { try { await u.sendEmailVerification({ url: APP_URL }); } catch (e) {} }
-  notifyAdmin(`Neue Registrierung von ${name}`, { Name: first + ' ' + last, Nickname: name, 'E-Mail': email, Geschlecht: { m: 'Mann', w: 'Frau', d: 'Divers' }[regG], Sprache: LANG.toUpperCase(), Zeitpunkt: new Date().toLocaleString('de-DE'), Alter: 'mindestens 16 Jahre (bestätigt)',
-    'So freischalten': 'App öffnen, mit deinem Admin-Konto anmelden, im Admin-Bereich unter „Warten auf Freigabe“ auf „Freischalten“ tippen. Der Link in dieser Mail öffnet nur die App und schaltet selbst nichts frei.' }, { url: APP_URL, text: 'ADMIN-BEREICH ÖFFNEN' }).catch(() => {});
-  sendUserMail(email, 'received', name, LANG).catch(() => {});
-  store.set(KEY_PEND, { name, at: Date.now() });
+  notifyAdmin(`Neues Mitglied: ${name}`, { Name: first + ' ' + last, Nickname: name, 'E-Mail': email, Geschlecht: { m: 'Mann', w: 'Frau', d: 'Divers' }[regG], Sprache: LANG.toUpperCase(), Zeitpunkt: new Date().toLocaleString('de-DE'), Alter: 'mindestens 16 Jahre (bestätigt)',
+    Status: 'Automatisch freigeschaltet. Die Person kann die App sofort nutzen.', 'Falls nötig sperren': 'App öffnen, mit deinem Admin-Konto anmelden, Admin-Bereich → Accounts → Person aufklappen → „Sperren“.' }, { url: APP_URL, text: 'ADMIN-BEREICH ÖFFNEN' }).catch(() => {});
+  sendUserMail(email, 'welcome', name, LANG).catch(() => {});
   reset();
-  /* onAuthStateChanged zeigt jetzt „E-Mail bestätigen“ */
+  /* Direkt in die App */
   try { await routeMember(u, await loadMember(u)); } catch (e) {}
 }
 /* ---------- Passwort vergessen (Firebase verschickt den Link, zeitlich begrenzt, einmalig) ---------- */
@@ -4691,16 +4811,74 @@ const sha256h = s => sha256(s);
 async function deleteOwnAccount(pw) {
   const { auth, db } = await fbCore(); const u = auth.currentUser; if (!u) throw new Error('requires-recent-login');
   await u.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(u.email, pw));
-  try { if (typeof CB !== 'undefined' && CB && CB.deleteMine) await CB.deleteMine([...new Set(DEF_ROOMS.map(r => r.id).concat((cbRooms || []).map(r => r.id), (cbDms || []).map(d => d.id)))]); } catch (e) {}
+  try { if (typeof CB !== 'undefined' && CB && CB.deleteMine) await CB.deleteMine([...new Set(DEF_ROOMS.map(r => r.id).concat((cbRooms || []).map(r => r.id), (cbDms || []).map(d => d.id), EVENTS_ALL().map(evRoomId)))]); } catch (e) {}
+  try { const { db } = await fbCore(), u = firebase.auth().currentUser; if (u) { try { await socialWipe(db, u.uid); } catch (x) {} } if (u) for (const e of EVENTS_ALL()) { try { await db.collection('events').doc(e.id).collection('going').doc(u.uid).delete(); } catch (x) {} } } catch (e) {}
   const m = MEMBER || {};
   const batch = db.batch();
-  batch.delete(db.collection('members').doc(u.uid)); batch.delete(db.collection('private').doc(u.uid));
+  batch.delete(db.collection('members').doc(u.uid)); batch.delete(db.collection('private').doc(u.uid)); batch.delete(db.collection('usage').doc(u.uid));
   if (m.nk) batch.delete(db.collection('nicks').doc(m.nk));
   await batch.commit();
   const id = account && account.id; await u.delete();
   if (id) localKeysOf(id).forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
   localLogout(); authTab = 'login'; showLogin('', 'Dein Konto wurde gelöscht.');
 }
+
+/* Bestätigungs-Mail von Firebase. Klappt der Rücksprung-Link nicht (Domain nicht freigegeben), wird ohne Rücksprung gesendet.
+   Fehler werden angezeigt statt verschluckt. */
+async function sendVerify(u) {
+  if (!u) return { ok: false, msg: 'Nicht angemeldet.' };
+  try { await u.sendEmailVerification({ url: APP_URL }); return { ok: true }; }
+  catch (e) {
+    const c = String(e && (e.code || e.message));
+    if (/continue-uri|unauthorized|domain/i.test(c)) { try { await u.sendEmailVerification(); return { ok: true }; } catch (e2) { return { ok: false, msg: verifyMsg(e2) }; } }
+    return { ok: false, msg: verifyMsg(e) };
+  }
+}
+function verifyMsg(e) {
+  const c = String(e && (e.code || e.message));
+  if (/too-many-requests/.test(c)) return 'Es wurden gerade zu viele Mails angefordert. Bitte in einigen Minuten erneut versuchen.';
+  return 'Die Bestätigungs-Mail konnte nicht gesendet werden (' + c + '). Bitte dem Admin Bescheid geben.';
+}
+/* ---------- Diagnose: …/UI-PAUSE/#diag zeigt Version, Verbindung, Anmeldestatus und letzten Fehler ---------- */
+let LAST_AUTH_ERR = '';
+async function showDiag() {
+  const row = (k, v, ok) => `<tr><td style="padding:5px 10px 5px 0;color:var(--muted);vertical-align:top">${k}</td><td style="padding:5px 0;word-break:break-all">${ok === true ? '✅ ' : ok === false ? '❌ ' : ''}${esc(String(v))}</td></tr>`;
+  openSheet(`<div data-notr><h2 id="dlgTitle">🔧 Diagnose</h2><p class="sub">Bitte einen Screenshot davon schicken.</p><table id="diagT" style="font-size:13px;border-collapse:collapse"><tr><td>Prüfe …</td></tr></table>
+    <div class="acts"><button type="button" class="btn btn-ghost" data-act="au-diag-reset">App-Cache leeren und neu laden</button><button type="button" class="btn btn-primary xl" data-act="sheet-close">Schließen</button></div></div>`);
+  const R = [];
+  R.push(row('App-Version', (document.querySelector('.login p.sub[data-notr]') || {}).textContent || 'v26'));
+  try { const ks = await caches.keys(); R.push(row('Offline-Speicher', ks.join(', ') || 'leer')); } catch (e) { R.push(row('Offline-Speicher', 'nicht verfügbar')); }
+  try { const regs = navigator.serviceWorker ? await navigator.serviceWorker.getRegistrations() : []; R.push(row('Service Worker', regs.length + ' registriert')); } catch (e) {}
+  R.push(row('Gespeichertes Konto', (store.get(KEY_MEMBER, null) || {}).name || '–'));
+  R.push(row('Angemeldet in der App', account ? account.name : 'nein'));
+  let core = null;
+  try { core = await withTimeout(fbCore(), 9000); R.push(row('Firebase erreichbar', 'ja', true)); } catch (e) { R.push(row('Firebase erreichbar', String(e && (e.code || e.message)), false)); }
+  if (core) {
+    const u = core.auth.currentUser;
+    R.push(row('Firebase-Login', u ? u.email : 'nicht angemeldet', !!u));
+    if (u) {
+      try { await u.reload(); await u.getIdToken(true); } catch (e) { R.push(row('Token-Erneuerung', String(e && (e.code || e.message)), false)); }
+      R.push(row('E-Mail bestätigt', u.emailVerified ? 'ja' : 'nein', u.emailVerified));
+      R.push(row('UID', u.uid));
+      try { const m = await core.db.collection('members').doc(u.uid).get(); R.push(row('Mitgliedsprofil', m.exists ? `${m.data().nick} · Status: ${m.data().status}` : 'fehlt', m.exists && m.data().status === 'approved')); }
+      catch (e) { R.push(row('Mitgliedsprofil lesen', String(e && (e.code || e.message)), false)); }
+      try { const a = await core.db.collection('admins').doc(u.uid).get(); R.push(row('Admin-Eintrag', a.exists ? 'vorhanden' : 'keiner')); }
+      catch (e) { R.push(row('Admin-Eintrag lesen', String(e && (e.code || e.message)), false)); }
+    }
+  }
+  if (LAST_AUTH_ERR) R.push(row('Letzter Anmeldefehler', LAST_AUTH_ERR, false));
+  R.push(row('Browser', navigator.userAgent.slice(0, 90)));
+  const t = document.getElementById('diagT'); if (t) t.innerHTML = R.join('');
+}
+async function diagReset() {
+  try { const regs = navigator.serviceWorker ? await navigator.serviceWorker.getRegistrations() : []; for (const r of regs) await r.unregister(); } catch (e) {}
+  try { for (const k of await caches.keys()) await caches.delete(k); } catch (e) {}
+  store.del(KEY_MEMBER);
+  location.href = location.pathname + '?v=' + Date.now();
+}
+function checkDiagHash() { if ((location.hash || '').toLowerCase() === '#diag') { try { window.history.replaceState(null, '', location.pathname + location.search); } catch (e) {} setTimeout(showDiag, 1200); } }
+window.addEventListener('hashchange', checkDiagHash);
+setTimeout(checkDiagHash, 0);
 
 /* ============================================================
    ADMIN-BEREICH (ab Version 24)
@@ -4756,10 +4934,11 @@ function showAdmin(msg) {
   }
   const M = ADM.members, pend = M.filter(m => m.status === 'pending'), act = M.filter(m => m.status === 'approved'), blk = M.filter(m => m.status === 'blocked');
   const nRep = (typeof ACM !== 'undefined' && ACM.reports || []).length;
-  const tabs = `<div class="seg adm-tabs" role="tablist">${[['acc', '👤 Accounts' + (pend.length ? ` <span class="c-badge">${pend.length}</span>` : '')], ['com', '💬 Community' + (nRep ? ` <span class="c-badge">${nRep}</span>` : '')]].map(([k, t]) => `<button type="button" role="tab" aria-selected="${(ADM.tab || 'acc') === k}" data-act="adm-tab" data-v="${k}">${t}</button>`).join('')}</div>`;
+  const tabs = `<div class="seg adm-tabs" role="tablist">${[['acc', '👤 Accounts' + (pend.length ? ` <span class="c-badge">${pend.length}</span>` : '')], ['use', '📊 Nutzung'], ['com', '💬 Community' + (nRep ? ` <span class="c-badge">${nRep}</span>` : '')]].map(([k, t]) => `<button type="button" role="tab" aria-selected="${(ADM.tab || 'acc') === k}" data-act="adm-tab" data-v="${k}">${t}</button>`).join('')}</div>`;
   const note = msg ? `<div class="note ok"><b>Erledigt</b>${esc(msg)}</div>` : '';
   const head = (title, txt) => `<article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span><span class="r">✓ Admin-Sitzung</span></div><h2>${title}</h2><p>${txt}</p>${note}</article>`;
   const foot = `<p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p>`;
+  if (ADM.tab === 'use') { $app.innerHTML = `<div class="fade-in">${head('Nutzung', 'Wer nutzt die App wann und wie viel. Nur Zähler, keine Inhalte.')}${tabs}${admUsageHTML()}${foot}</div>`; return; }
   if (ADM.tab === 'com') { $app.innerHTML = `<div class="fade-in">${head('Community verwalten', 'Meldungen prüfen, Beiträge und Räume löschen, Profile aufräumen und Ankündigungen posten.')}${tabs}${admComHTML()}${foot}</div>`; return; }
   const planTxt = m => m.plan === 'employer' ? `Arbeitgeber · ${esc(m.company || '')}` : m.plan === 'premium' ? 'Premium' : 'Testphase';
   const card = m => { const open = ADM.open.has(m.uid), P = ADM.priv[m.uid] || {};
@@ -4783,7 +4962,7 @@ function showAdmin(msg) {
     ${mfa ? '' : `<div class="note warn"><b>Zwei-Faktor-Anmeldung nicht aktiv</b>Für das Admin-Konto ist noch kein zweiter Faktor eingerichtet. Siehe „Sicherheit des Admin-Kontos“ unten.</div>`}
     <div class="sec-title">Warten auf Freigabe ${pend.length ? `<span class="badge off">${pend.length}</span>` : ''}</div>
     ${pend.length ? pend.map(m => { const P = ADM.priv[m.uid] || {}; return `<div class="panel adm-acc" style="margin-top:10px"><div class="adm-h"><b>${esc(m.nick || '?')}</b><span class="badge">${{ m: 'Mann', w: 'Frau', d: 'Divers' }[m.g] || ''}</span><small>${admDate(m.created)} · ${esc(P.first || '')} ${esc(P.last || '')} · ${esc(P.email || '')}</small></div>
-      <p class="sub" style="margin:0 0 6px">Die E-Mail-Bestätigung prüft der Server beim Zugriff. Unbestätigte Konten können auch nach Freischaltung nichts auf dem Server lesen oder schreiben.</p>
+      <p class="sub" style="margin:0 0 6px">Alter Antrag aus einer früheren Version. Die Person wird beim nächsten Öffnen der App automatisch freigeschaltet, außer du lehnst ab.</p>
       <div class="adm-acts"><button type="button" class="btn btn-lamp" data-act="adm-pok" data-id="${esc(m.uid)}">Freischalten</button><button type="button" class="btn btn-dghost" data-act="adm-pno" data-id="${esc(m.uid)}">Ablehnen</button></div></div>`; }).join('')
       : '<div class="panel"><p class="sub" style="margin:0">Keine offenen Anträge.</p></div>'}
     <div class="sec-title">Mitglieder (${act.length})</div>
@@ -4819,6 +4998,8 @@ function adminAct(a, b) {
   if (ADM.st !== 'on') return;
   const db = ADM.db, mem = id => ADM.members.find(x => x.uid === id);
   if (a === 'adm-reload') { admRun(async () => {}, 'Liste aktualisiert.'); return; }
+  if (a === 'adm-usort') { USG.sort = b.dataset.v; showAdmin(); return; }
+  if (a === 'adm-ureload') { USG.loaded = 0; showAdmin(); return; }
   if (a === 'adm-tab') { ADM.tab = b.dataset.v; showAdmin(); window.scrollTo(0, 0); return; }
   if (a.startsWith('adm-c-')) { admComAct(a, b); return; }
   if (a === 'adm-toggle') { const id = b.dataset.id; if (ADM.open.has(id)) ADM.open.delete(id); else ADM.open.add(id); showAdmin(); return; }
@@ -4834,15 +5015,15 @@ function adminAct(a, b) {
         admRun(async () => {
           if (wipe) { try { if (!ACM.loaded) await acmLoad(); await acmWipeNick(m.nick); ACM.loaded = false; } catch (e) {} }
           const batch = db.batch();
-          batch.delete(db.collection('members').doc(m.uid)); batch.delete(db.collection('private').doc(m.uid));
+          batch.delete(db.collection('members').doc(m.uid)); batch.delete(db.collection('private').doc(m.uid)); batch.delete(db.collection('usage').doc(m.uid));
           if (m.nk) batch.delete(db.collection('nicks').doc(m.nk));
           await batch.commit();
           ADM.open.delete(m.uid);
         }, reject ? `Antrag von ${m.nick} abgelehnt.` : `${m.nick} gelöscht.${wipe ? ' Community-Daten ebenfalls entfernt.' : ''}`); });
     return; }
   if (a === 'adm-block') { const m = mem(b.dataset.id); if (!m) return;
-    confirmSheet(`${esc(m.nick)} sperren?`, 'Der Server verweigert ab sofort jeden Zugriff dieses Kontos. Entsperren ist jederzeit möglich.', 'SPERREN', () => admRun(() => db.collection('members').doc(m.uid).update({ status: 'blocked' }), `${m.nick} ist gesperrt.`)); return; }
-  if (a === 'adm-unblock') { const m = mem(b.dataset.id); if (!m) return; admRun(() => db.collection('members').doc(m.uid).update({ status: 'approved' }), `${m.nick} ist entsperrt.`); return; }
+    confirmSheet(`${esc(m.nick)} sperren?`, 'Der Server verweigert ab sofort jeden Zugriff dieses Kontos. Entsperren ist jederzeit möglich.', 'SPERREN', () => admRun(() => Promise.all([db.collection('members').doc(m.uid).update({ status: 'blocked' }), db.collection('blocks').doc(m.uid).set({ nick: m.nick || '', ts: Date.now() })]), `${m.nick} ist gesperrt.`)); return; }
+  if (a === 'adm-unblock') { const m = mem(b.dataset.id); if (!m) return; admRun(() => Promise.all([db.collection('blocks').doc(m.uid).delete(), db.collection('members').doc(m.uid).update({ status: 'approved' })]), `${m.nick} ist entsperrt.`); return; }
   if (a === 'adm-save') { const m = mem(b.dataset.id); if (!m) return; const id = m.uid;
     const plan = val('ap_' + id) || 'trial', company = val('ac_' + id), g = val('ag_' + id) || m.g || 'm';
     if (plan === 'employer' && !company) { toast('Bitte eine Firma eintragen'); return; }
@@ -4895,7 +5076,7 @@ async function acmLoad() {
   const db = ADM.db, none = () => ({ docs: [] });
   const [rq, uq, pq] = await Promise.all([db.collection('rooms').get().catch(none), db.collection('users').get().catch(none), db.collection('reports').get().catch(none)]);
   const custom = rq.docs.map(d => Object.assign({ id: d.id, custom: true }, d.data())).filter(r => !r.id.startsWith('dm_'));
-  ACM.rooms = DEF_ROOMS.map(r => Object.assign({ custom: false }, r)).concat(custom.filter(r => !DEF_ROOMS.some(d => d.id === r.id)));
+  ACM.rooms = DEF_ROOMS.map(r => Object.assign({ custom: false }, r)).concat(custom.filter(r => !DEF_ROOMS.some(d => d.id === r.id)), EVENTS_ALL().map(e => ({ id: evRoomId(e), name: e.name, ic: e.ic || '🏁', custom: false })));
   ACM.users = uq.docs.map(d => Object.assign({ id: d.id }, d.data(), { ts: acmTs(d.data().ts) })).sort((a, b) => String(a.nick || '').localeCompare(String(b.nick || ''), 'de'));
   ACM.reports = pq.docs.map(d => Object.assign({ id: d.id }, d.data())).sort((a, b) => (b.ts || 0) - (a.ts || 0));
   ACM.counts = {};
@@ -5031,10 +5212,10 @@ async function notifyAdmin(subject, rows, button) {
 /* Automatische Mails an Nutzer (nur mit EmailJS möglich) */
 const MAIL_TXT = {
   received: {
-    de: n => ({ s: 'Deine Registrierung ist angekommen', h: `<p>Hallo ${n},</p><p>danke für deine Registrierung bei <b>Pausen Workout</b>! Wir prüfen sie kurz und schalten dich frei. Sobald das passiert ist, bekommst du eine Mail und kannst loslegen.</p><p>Bis gleich!</p>` }),
-    en: n => ({ s: 'Your registration has arrived', h: `<p>Hi ${n},</p><p>thanks for registering with <b>Pausen Workout</b>! We will review it shortly and activate your account. You will get an email as soon as you can start.</p><p>See you soon!</p>` }),
-    fr: n => ({ s: 'Ton inscription est bien arrivée', h: `<p>Bonjour ${n},</p><p>merci pour ton inscription à <b>Pausen Workout</b> ! Nous la vérifions rapidement et activons ton compte. Tu recevras un e-mail dès que tu pourras commencer.</p><p>À très vite !</p>` }),
-    tr: n => ({ s: 'Kaydın ulaştı', h: `<p>Merhaba ${n},</p><p><b>Pausen Workout</b>'a kaydolduğun için teşekkürler! Kaydını kısa sürede kontrol edip hesabını açacağız. Başlayabileceğin anda e-posta alacaksın.</p><p>Görüşmek üzere!</p>` })
+    de: n => ({ s: 'Deine Registrierung ist angekommen', h: `<p>Hallo ${n},</p><p>danke für deine Registrierung bei <b>Pausen Workout</b>! Bitte bestätige zuerst deine E-Mail-Adresse: Dafür bekommst du eine <b>separate Mail</b> von <b>noreply@pausen-workout.firebaseapp.com</b> mit einem Bestätigungslink. Das kann bis zu 5 Minuten dauern. Schau auch im Spam-Ordner nach.</p><p>Danach schalten wir dich frei. Sobald das passiert ist, bekommst du eine Mail und kannst loslegen.</p>` }),
+    en: n => ({ s: 'Your registration has arrived', h: `<p>Hi ${n},</p><p>thanks for registering with <b>Pausen Workout</b>! Please confirm your email address first: you will receive a <b>separate email</b> from <b>noreply@pausen-workout.firebaseapp.com</b> with a confirmation link. This can take up to 5 minutes. Please also check your spam folder.</p><p>After that we will activate your account and let you know by email.</p>` }),
+    fr: n => ({ s: 'Ton inscription est bien arrivée', h: `<p>Bonjour ${n},</p><p>merci pour ton inscription à <b>Pausen Workout</b> ! Confirme d'abord ton adresse e-mail : tu reçois un <b>e-mail séparé</b> de <b>noreply@pausen-workout.firebaseapp.com</b> avec un lien de confirmation. Cela peut prendre jusqu'à 5 minutes. Vérifie aussi tes spams.</p><p>Ensuite nous activons ton compte et te prévenons par e-mail.</p>` }),
+    tr: n => ({ s: 'Kaydın ulaştı', h: `<p>Merhaba ${n},</p><p><b>Pausen Workout</b>'a kaydolduğun için teşekkürler! Önce e-posta adresini onayla: <b>noreply@pausen-workout.firebaseapp.com</b> adresinden onay bağlantılı <b>ayrı bir e-posta</b> alacaksın. Bu 5 dakikaya kadar sürebilir. Spam klasörünü de kontrol et.</p><p>Ardından hesabını açıp sana e-postayla haber veriyoruz.</p>` }),
   },
   welcome: {
     de: n => ({ s: 'Dein Zugang ist freigeschaltet', b: 'ZUR APP', h: `<p>Hallo ${n},</p><p>dein Zugang zu <b>Pausen Workout</b> ist jetzt aktiv. Du kannst dich ab sofort anmelden.</p><p>So legst du los:</p><ul><li>App öffnen und mit deiner E-Mail-Adresse und deinem Passwort anmelden</li><li>Auf der Startseite ein Training aus einer der vier Gruppen wählen</li><li>Tipp: App zum Home-Bildschirm hinzufügen, dann startet sie wie eine echte App</li></ul><p>Viel Freude beim Training.</p>` }),
@@ -5075,6 +5256,612 @@ function legalFromHash() {
 }
 window.addEventListener('hashchange', legalFromHash);
 setTimeout(legalFromHash, 0);
+
+/* ============================================================
+   LAUFTAGEBUCH: Läufe eintragen, Auswertung & Einschätzung
+   Alles lokal auf dem Gerät. Prognosen sind Schätzungen (Riegel-Formel),
+   Pulszonen nach Max-Puls (eigener Wert oder Schätzung 208 − 0,7 × Alter).
+   ============================================================ */
+let runTab = 'log', rlDraft = null;
+const rlKey = () => `uipause-${account ? account.id : 'none'}-runlog-v1`;
+const rlCfgKey = () => `uipause-${account ? account.id : 'none'}-runcfg-v1`;
+const rlList = () => { const a = store.get(rlKey(), []); return Array.isArray(a) ? a.slice().sort((x, y) => y.t - x.t) : []; };
+const rlCfg = () => Object.assign({ hrmax: '', goalEv: '' }, store.get(rlCfgKey(), {}));
+const RUN_TYPES = [['easy', L('Locker', 'Easy', 'Facile', 'Rahat')], ['long', L('Lang', 'Long', 'Longue', 'Uzun')], ['tempo', L('Tempo', 'Tempo', 'Tempo', 'Tempo')], ['int', L('Intervall', 'Intervals', 'Fractionné', 'İnterval')], ['race', L('Wettkampf', 'Race', 'Course', 'Yarış')], ['other', L('Sonstiges', 'Other', 'Autre', 'Diğer')]];
+const parseDur = s => { s = String(s || '').trim(); if (!s) return null; const p = s.split(':').map(x => +x); if (p.some(x => isNaN(x) || x < 0)) return null;
+  if (p.length === 3) return p[0] * 3600 + p[1] * 60 + p[2]; if (p.length === 2) return p[0] * 60 + p[1]; if (p.length === 1) return p[0] * 60; return null; };
+const fmtDur = s => { s = Math.round(s); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return (h ? h + ':' + pad2(m) : m) + ':' + pad2(x); };
+const paceOf = r => r.sec / r.km; /* Sekunden pro km */
+const rlAge = () => { const b = +(store.get(`uipause-${account.id}-profile-v1`, {}).birth || 0); return b > 1920 && b < 2015 ? new Date().getFullYear() - b : null; };
+function rlHrMax() { const c = rlCfg(); if (+c.hrmax >= 140 && +c.hrmax <= 230) return { v: +c.hrmax, est: false };
+  const a = rlAge(); if (a) return { v: Math.round(208 - 0.7 * a), est: true }; const mx = Math.max(0, ...rlList().map(r => +r.hrmax || 0)); if (mx >= 150) return { v: mx, est: true }; return null; }
+const ZONES = [[0.6, L('Zone 1 · sehr locker', 'Zone 1 · very easy', 'Zone 1 · très facile', 'Bölge 1 · çok rahat')], [0.7, L('Zone 2 · Grundlage', 'Zone 2 · base', 'Zone 2 · fondamental', 'Bölge 2 · temel')], [0.8, L('Zone 3 · zügig', 'Zone 3 · steady', 'Zone 3 · soutenu', 'Bölge 3 · tempolu')], [0.9, L('Zone 4 · Schwelle', 'Zone 4 · threshold', 'Zone 4 · seuil', 'Bölge 4 · eşik')], [1.01, L('Zone 5 · maximal', 'Zone 5 · max', 'Zone 5 · max', 'Bölge 5 · maksimum')]];
+function hrZone(hr) { const m = rlHrMax(); if (!m || !hr) return null; const p = hr / m.v; let i = ZONES.findIndex(z => p < z[0]); if (i < 0) i = 4; return { i, name: ZONES[i][1], pct: Math.round(p * 100), est: m.est }; }
+const riegel = (sec, km, km2) => sec * Math.pow(km2 / km, 1.06);
+/* Beste Leistung der letzten 8 Wochen (mind. 3 km) als Grundlage für Prognosen */
+function rlBest() { const since = Date.now() - 56 * DAY; const c = rlList().filter(r => r.t >= since && r.km >= 3 && r.sec > 0);
+  if (!c.length) return null; return c.reduce((b, r) => riegel(r.sec, r.km, 10) < riegel(b.sec, b.km, 10) ? r : b); }
+function rlLevel(t10) { const m = t10 / 60;
+  return m > 70 ? L('Einstieg: Du baust gerade deine Grundlage auf.', 'Beginner: you are building your base.', 'Débutant : tu construis ta base.', 'Başlangıç: temelini oluşturuyorsun.')
+    : m > 58 ? L('Hobbyläufer: solide Grundlage, Luft nach oben.', 'Recreational runner: solid base, room to grow.', 'Coureur loisir : bonne base, marge de progression.', 'Hobi koşucu: sağlam temel, gelişime açık.')
+    : m > 50 ? L('Fortgeschritten: über dem Durchschnitt der Hobbyläufer.', 'Advanced: above the average recreational runner.', 'Confirmé : au-dessus de la moyenne.', 'İleri: hobi koşucu ortalamasının üstünde.')
+    : m > 43 ? L('Stark: ambitioniertes Vereinsniveau.', 'Strong: ambitious club level.', 'Fort : niveau club ambitieux.', 'Güçlü: iddialı kulüp seviyesi.')
+    : L('Sehr stark: Wettkampfniveau.', 'Very strong: competitive level.', 'Très fort : niveau compétition.', 'Çok güçlü: yarış seviyesi.'); }
+const weekKm = (list, w0) => list.filter(r => r.t >= w0 && r.t < w0 + 7 * DAY).reduce((s, r) => s + r.km, 0);
+/* Rückmeldung zu einem Lauf */
+function rlFeedback(r) {
+  const all = rlList(), prev = all.filter(x => x.t < r.t), same = prev.filter(x => x.type === r.type && Math.abs(x.km - r.km) / r.km < 0.35).slice(0, 5);
+  const pace = paceOf(r), out = [];
+  out.push(['📏', L(`${num(r.km, 2)} km in ${fmtDur(r.sec)} · Ø ${paceTxt(pace)} min/km · ${num(3600 / pace, 1)} km/h`, `${num(r.km, 2)} km in ${fmtDur(r.sec)} · avg ${paceTxt(pace)} min/km · ${num(3600 / pace, 1)} km/h`, `${num(r.km, 2)} km en ${fmtDur(r.sec)} · moy. ${paceTxt(pace)} min/km · ${num(3600 / pace, 1)} km/h`, `${num(r.km, 2)} km, ${fmtDur(r.sec)} · ort. ${paceTxt(pace)} dk/km · ${num(3600 / pace, 1)} km/sa`)]);
+  if (same.length) { const avg = same.reduce((s, x) => s + paceOf(x), 0) / same.length, d = avg - pace;
+    out.push([d > 3 ? '🚀' : d < -3 ? '🐢' : '➡️', d > 3 ? L(`${Math.round(d)} s/km schneller als deine letzten vergleichbaren Läufe.`, `${Math.round(d)} s/km faster than your recent comparable runs.`, `${Math.round(d)} s/km plus rapide que tes sorties comparables.`, `Benzer koşularından ${Math.round(d)} sn/km daha hızlı.`)
+      : d < -3 ? L(`${Math.round(-d)} s/km langsamer als vergleichbare Läufe. Kein Problem, wenn es ein lockerer Tag war.`, `${Math.round(-d)} s/km slower than comparable runs. Fine if it was an easy day.`, `${Math.round(-d)} s/km plus lent que d'habitude. Pas grave si c'était un jour facile.`, `Benzer koşulardan ${Math.round(-d)} sn/km yavaş. Rahat bir günse sorun yok.`)
+      : L('Tempo auf dem Niveau deiner vergleichbaren Läufe. Schön konstant.', 'Pace in line with comparable runs. Nicely consistent.', 'Allure stable par rapport à tes sorties comparables.', 'Tempo benzer koşularınla aynı seviyede. Güzel ve istikrarlı.')]); }
+  if (r.hr) { const z = hrZone(r.hr);
+    if (z) { out.push(['❤️', L(`Ø-Puls ${r.hr} = ${z.pct} % vom Max-Puls → ${z.name}${z.est ? ' (Max-Puls geschätzt)' : ''}.`, `Avg HR ${r.hr} = ${z.pct}% of max → ${z.name}${z.est ? ' (max HR estimated)' : ''}.`, `FC moy. ${r.hr} = ${z.pct} % du max → ${z.name}${z.est ? ' (FC max estimée)' : ''}.`, `Ort. nabız ${r.hr} = maks. %${z.pct} → ${z.name}${z.est ? ' (tahmini)' : ''}.`)]);
+      if (r.type === 'easy' || r.type === 'long') { if (z.i >= 2) out.push(['💡', L('Für einen lockeren bzw. langen Lauf war der Puls recht hoch. Langsamer laufen bringt hier oft mehr: Die Grundlage wächst in Zone 2.', 'Quite a high heart rate for an easy/long run. Slower usually works better here: your base grows in zone 2.', 'FC assez élevée pour une sortie facile/longue. Ralentir est souvent plus efficace : l\'endurance se construit en zone 2.', 'Rahat/uzun koşu için nabız yüksek. Daha yavaş koşmak burada genelde daha etkili: temel bölge 2\'de gelişir.')]);
+        else out.push(['✅', L('Puls passend für einen ruhigen Lauf. Genau so wächst die Ausdauer.', 'Heart rate fits an easy run. That\'s how endurance grows.', 'FC adaptée à une sortie calme. C\'est ainsi que l\'endurance progresse.', 'Nabız sakin koşuya uygun. Dayanıklılık böyle gelişir.')]); } }
+    const eff = (1000 / pace * 60) / r.hr; /* Meter pro Herzschlag */
+    const effPrev = prev.filter(x => x.hr && x.type === r.type).slice(0, 5).map(x => (1000 / paceOf(x) * 60) / x.hr);
+    if (effPrev.length >= 2) { const a = effPrev.reduce((s, x) => s + x, 0) / effPrev.length, d = (eff - a) / a * 100;
+      out.push(['📈', Math.abs(d) < 3 ? L(`Effizienz ${num(eff, 2)} m pro Herzschlag, wie zuletzt.`, `Efficiency ${num(eff, 2)} m per heartbeat, same as recently.`, `Efficacité ${num(eff, 2)} m par battement, comme récemment.`, `Verim kalp atışı başına ${num(eff, 2)} m, son zamanlardaki gibi.`)
+        : d > 0 ? L(`Effizienz ${num(eff, 2)} m pro Herzschlag, ${Math.round(d)} % besser als zuletzt. Ein gutes Zeichen für steigende Fitness.`, `Efficiency ${num(eff, 2)} m per heartbeat, ${Math.round(d)}% better than recently. A good sign of rising fitness.`, `Efficacité ${num(eff, 2)} m par battement, ${Math.round(d)} % mieux qu'avant. Bon signe de progrès.`, `Verim ${num(eff, 2)} m/atış, öncekinden %${Math.round(d)} daha iyi. Formun yükseliyor.`)
+        : L(`Effizienz ${num(eff, 2)} m pro Herzschlag, ${Math.round(-d)} % unter deinem Schnitt. Wärme, Müdigkeit oder Höhenmeter können das erklären.`, `Efficiency ${num(eff, 2)} m per heartbeat, ${Math.round(-d)}% below your average. Heat, fatigue or climbing can explain it.`, `Efficacité ${num(eff, 2)} m par battement, ${Math.round(-d)} % sous ta moyenne. Chaleur, fatigue ou dénivelé peuvent l'expliquer.`, `Verim ortalamanın %${Math.round(-d)} altında. Sıcaklık, yorgunluk veya rakım etkili olabilir.`)]); } }
+  if (r.rpe) { const load = Math.round(r.sec / 60 * r.rpe); out.push(['🧭', L(`Belastung ${load} Punkte (Dauer × Gefühl ${r.rpe}/10).${r.rpe >= 8 && r.type !== 'race' && r.type !== 'int' ? ' Das war hart. Morgen locker oder Pause einplanen.' : ''}`, `Load ${load} points (duration × effort ${r.rpe}/10).${r.rpe >= 8 && r.type !== 'race' && r.type !== 'int' ? ' That was hard. Plan an easy day or rest tomorrow.' : ''}`, `Charge ${load} points (durée × ressenti ${r.rpe}/10).${r.rpe >= 8 && r.type !== 'race' && r.type !== 'int' ? ' C\'était dur. Prévois une journée facile demain.' : ''}`, `Yük ${load} puan (süre × his ${r.rpe}/10).${r.rpe >= 8 && r.type !== 'race' && r.type !== 'int' ? ' Zorluydu. Yarın rahat gün veya dinlenme planla.' : ''}`)]); }
+  /* Wochenumfang */
+  const w0 = weekStart(r.t), wk = weekKm(all, w0), prev4 = [1, 2, 3, 4].map(i => weekKm(all, w0 - i * 7 * DAY)), avg4 = prev4.reduce((s, x) => s + x, 0) / 4;
+  if (avg4 > 0) out.push([wk > avg4 * 1.3 ? '⚠️' : '🗓️', wk > avg4 * 1.3 ? L(`Diese Woche ${num(wk, 1)} km, deutlich mehr als dein Schnitt (${num(avg4, 1)} km). Steigere den Umfang lieber langsam, sonst steigt das Verletzungsrisiko.`, `This week ${num(wk, 1)} km, clearly more than your average (${num(avg4, 1)} km). Increase volume gradually to limit injury risk.`, `Cette semaine ${num(wk, 1)} km, nettement plus que ta moyenne (${num(avg4, 1)} km). Augmente progressivement pour limiter le risque de blessure.`, `Bu hafta ${num(wk, 1)} km, ortalamandan (${num(avg4, 1)} km) belirgin fazla. Sakatlık riskini azaltmak için yavaş artır.`)
+    : L(`Diese Woche ${num(wk, 1)} km (Schnitt der letzten 4 Wochen: ${num(avg4, 1)} km).`, `This week ${num(wk, 1)} km (4-week average: ${num(avg4, 1)} km).`, `Cette semaine ${num(wk, 1)} km (moyenne sur 4 semaines : ${num(avg4, 1)} km).`, `Bu hafta ${num(wk, 1)} km (4 haftalık ort.: ${num(avg4, 1)} km).`)]);
+  if (r.type === 'race' || (r.km >= 3 && rlBest() && rlBest().id === r.id)) out.push(['🏅', L('Neue Bestleistung der letzten 8 Wochen. Deine Prognosen wurden aktualisiert.', 'New best of the last 8 weeks. Your predictions have been updated.', 'Nouveau record des 8 dernières semaines. Prévisions mises à jour.', 'Son 8 haftanın en iyisi. Tahminlerin güncellendi.')]);
+  return out;
+}
+function rlPredHTML() {
+  const b = rlBest(); if (!b) return `<p class="sub" style="margin:0">${L('Trag einen Lauf ab 3 km ein, dann schätzt die App deine Zeiten für 5 km bis Marathon.', 'Log a run of 3 km or more and the app will estimate your times from 5 km to marathon.', 'Enregistre une sortie d\'au moins 3 km pour obtenir des estimations du 5 km au marathon.', '3 km veya daha uzun bir koşu gir, uygulama 5 km\'den maratona sürelerini tahmin etsin.')}</p>`;
+  const D = [['5 km', 5], ['10 km', 10], [L('Halbmarathon', 'Half marathon', 'Semi', 'Yarı maraton'), 21.0975], ['Marathon', 42.195]];
+  const t10 = riegel(b.sec, b.km, 10);
+  return `<div class="tiles">${D.map(([n, km]) => { const t = riegel(b.sec, b.km, km); return `<div class="tile"><small>${n}</small><b>${fmtDur(t)}</b><small style="text-transform:none;letter-spacing:0">${paceTxt(t / km)} min/km</small></div>`; }).join('')}</div>
+    <p style="margin:10px 0 4px"><b>${L('Einschätzung', 'Assessment', 'Évaluation', 'Değerlendirme')}:</b> ${rlLevel(t10)}</p>
+    <p class="sub" style="margin:0">${L(`Grundlage: dein Lauf vom ${new Date(b.t).toLocaleDateString(LOC)} (${num(b.km, 1)} km in ${fmtDur(b.sec)}). Prognosen sind grobe Schätzungen; Halbmarathon und Marathon gelingen nur mit passendem Umfang.`, `Based on your run on ${new Date(b.t).toLocaleDateString(LOC)} (${num(b.km, 1)} km in ${fmtDur(b.sec)}). Predictions are rough estimates; half and full marathon need suitable volume.`, `Basé sur ta sortie du ${new Date(b.t).toLocaleDateString(LOC)} (${num(b.km, 1)} km en ${fmtDur(b.sec)}). Estimations approximatives ; semi et marathon demandent un volume adapté.`, `${new Date(b.t).toLocaleDateString(LOC)} koşuna göre (${num(b.km, 1)} km, ${fmtDur(b.sec)}). Tahminler kabadır; yarı maraton ve maraton yeterli hacim ister.`)}</p>`;
+}
+function rlForm() {
+  const d = rlDraft || (rlDraft = { date: dayKeyS(Date.now()), type: 'easy', rpe: 5 });
+  const chips = (k, opts) => `<div class="onb-chips">${opts.map(([v, n]) => `<button type="button" class="chip ${String(d[k]) === String(v) ? 'on' : ''}" data-act="rl-pick" data-k="${k}" data-v="${v}">${esc(n)}</button>`).join('')}</div>`;
+  const inp = (id, lbl, ph, val, mode = 'decimal', small = '') => `<div class="onb-row"><label for="${id}">${lbl}${small ? `<small style="display:block;font-weight:500;color:var(--muted)">${small}</small>` : ''}</label><input id="${id}" class="inp" type="text" inputmode="${mode}" placeholder="${ph}" value="${esc(val || '')}"><span></span></div>`;
+  return `<div class="panel">
+    <h3 style="margin-top:0">📝 ${L('Lauf eintragen', 'Log a run', 'Enregistrer une sortie', 'Koşu gir')}</h3>
+    <div class="onb-row"><label for="rl_date">${L('Datum', 'Date', 'Date', 'Tarih')}</label><input id="rl_date" class="inp" type="date" value="${esc(d.date)}"><span></span></div>
+    ${inp('rl_km', L('Distanz', 'Distance', 'Distance', 'Mesafe') + ' (km) *', 'z. B. 7,5', d.km)}
+    ${inp('rl_dur', L('Dauer', 'Duration', 'Durée', 'Süre') + ' *', 'h:mm:ss / mm:ss', d.dur, 'text')}
+    ${inp('rl_hr', L('Ø-Puls', 'Avg HR', 'FC moy.', 'Ort. nabız'), 'z. B. 148', d.hr, 'numeric', L('optional, aus der Uhr', 'optional, from your watch', 'optionnel, de ta montre', 'isteğe bağlı'))}
+    ${inp('rl_hrmax', L('Max-Puls im Lauf', 'Max HR in run', 'FC max sortie', 'Koşuda maks. nabız'), 'z. B. 172', d.hrmax, 'numeric', L('optional', 'optional', 'optionnel', 'isteğe bağlı'))}
+    ${inp('rl_elev', L('Anstieg (m)', 'Climb (m)', 'D+ (m)', 'Tırmanış (m)'), 'z. B. 80', d.elev, 'numeric', L('optional', 'optional', 'optionnel', 'isteğe bağlı'))}
+    <div class="onb-q"><b>${L('Art des Laufs', 'Type of run', 'Type de sortie', 'Koşu türü')}</b>${chips('type', RUN_TYPES)}</div>
+    <div class="onb-q"><b>${L('Wie anstrengend war es? (1 = sehr leicht, 10 = maximal)', 'How hard was it? (1 = very easy, 10 = max)', 'Difficulté ressentie ? (1 = très facile, 10 = max)', 'Ne kadar zordu? (1 = çok kolay, 10 = maksimum)')}</b>${chips('rpe', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => [n, String(n)]))}</div>
+    <label class="lbl-pw" for="rl_note">${L('Notiz', 'Note', 'Note', 'Not')}</label><input id="rl_note" class="inp pw full" maxlength="140" value="${esc(d.note || '')}" placeholder="${L('z. B. Strecke, Wetter, Schuhe', 'e.g. route, weather, shoes', 'p. ex. parcours, météo, chaussures', 'örn. parkur, hava, ayakkabı')}">
+    <p class="msg-err" id="rl_err"></p>
+    <button type="button" class="btn btn-primary xl" style="width:100%" data-act="rl-save">${L('LAUF SPEICHERN & AUSWERTEN', 'SAVE & ANALYSE RUN', 'ENREGISTRER & ANALYSER', 'KAYDET & ANALİZ ET')}</button>
+  </div>`;
+}
+function rlReadForm() { if (!rlDraft) return; ['date', 'km', 'dur', 'hr', 'hrmax', 'elev', 'note'].forEach(k => { const e = document.getElementById('rl_' + k); if (e) rlDraft[k] = e.value; }); }
+function rlLogView() {
+  const list = rlList(), now = Date.now(), w0 = weekStart(now);
+  const W = []; for (let i = 7; i >= 0; i--) W.push({ s: w0 - i * 7 * DAY, km: weekKm(list, w0 - i * 7 * DAY) });
+  const last4 = list.filter(r => r.t >= now - 28 * DAY), pace4 = last4.length ? last4.reduce((s, r) => s + r.sec, 0) / last4.reduce((s, r) => s + r.km, 0) : 0;
+  const pv = list.filter(r => r.km >= 3).slice(0, 12).reverse();
+  const cfg = rlCfg(), hm = rlHrMax();
+  const ev = typeof nextEvents === 'function' ? nextEvents().slice(0, 3) : [];
+  const goalEv = ev.length && typeof EVENTS_ALL === 'function' ? EVENTS_ALL().find(e => e.id === cfg.goalEv) : null;
+  return `<div data-notr>
+    ${goalEv ? `<div class="panel ev-goal"><b>🎯 ${esc(goalEv.name)}</b><small>${L(`noch ${evDays(goalEv)} Tage`, `${evDays(goalEv)} days to go`, `encore ${evDays(goalEv)} jours`, `${evDays(goalEv)} gün kaldı`)} · ${esc(evDateTxt(goalEv))}</small>${rlBest() && goalEv.km ? `<span>${L('Prognose', 'Prediction', 'Prévision', 'Tahmin')} ${esc(goalEv.kmName || num(goalEv.km, 1) + ' km')}: <b>${fmtDur(riegel(rlBest().sec, rlBest().km, goalEv.km))}</b></span>` : ''}</div>` : ''}
+    ${rlForm()}
+    <div class="sec-title">📊 ${L('Dein Stand', 'Your status', 'Ton niveau', 'Durumun')}</div>
+    <div class="tiles">
+      <div class="tile"><small>${L('Läufe', 'Runs', 'Sorties', 'Koşular')}</small><b>${list.length}</b></div>
+      <div class="tile"><small>${L('km gesamt', 'km total', 'km total', 'toplam km')}</small><b>${num(list.reduce((s, r) => s + r.km, 0), 1)}</b></div>
+      <div class="tile"><small>${L('km diese Woche', 'km this week', 'km cette semaine', 'bu hafta km')}</small><b>${num(weekKm(list, w0), 1)}</b></div>
+      <div class="tile"><small>${L('Ø Pace 4 Wochen', 'Avg pace 4 wks', 'Allure moy. 4 sem.', 'Ort. tempo 4 hf')}</small><b>${pace4 ? paceTxt(pace4) : '–'}</b></div>
+    </div>
+    <div class="sec-title">🔮 ${L('Prognose & Einschätzung', 'Prediction & assessment', 'Prévision & évaluation', 'Tahmin & değerlendirme')}</div>
+    <div class="panel">${rlPredHTML()}</div>
+    ${list.length ? `<div class="sec-title">🗓️ ${L('Kilometer pro Woche', 'Kilometres per week', 'Kilomètres par semaine', 'Haftalık kilometre')}</div><div class="panel">${svgBars(W.map(w => Math.round(w.km * 10) / 10), W.map(w => new Date(w.s).toLocaleDateString(LOC, { day: '2-digit', month: '2-digit' })), v => num(v, 0))}</div>` : ''}
+    ${pv.length >= 2 ? `<div class="sec-title">⏱️ ${L('Pace-Verlauf (min/km, niedriger = schneller)', 'Pace trend (min/km, lower = faster)', 'Évolution de l\'allure (min/km)', 'Tempo gelişimi (dk/km)')}</div><div class="panel">${svgLine(pv.map(r => Math.round(paceOf(r))), pv.map(r => new Date(r.t).toLocaleDateString(LOC, { day: '2-digit', month: '2-digit' })), v => paceTxt(v))}</div>` : ''}
+    <div class="sec-title">❤️ ${L('Puls-Einstellungen', 'Heart rate settings', 'Réglages FC', 'Nabız ayarları')}</div>
+    <div class="panel"><div class="onb-row"><label for="rl_cfgmax">${L('Max-Puls', 'Max HR', 'FC max', 'Maks. nabız')}</label><input id="rl_cfgmax" class="inp" type="text" inputmode="numeric" placeholder="${hm ? hm.v : 'z. B. 185'}" value="${esc(cfg.hrmax)}"><span></span></div>
+      <p class="sub" style="margin:0 0 8px">${hm ? (hm.est ? L(`Aktuell geschätzt: ${hm.v} (aus Geburtsjahr oder höchstem Puls). Kennst du deinen echten Max-Puls, trag ihn ein.`, `Currently estimated: ${hm.v}. Enter your real max HR if you know it.`, `Estimation actuelle : ${hm.v}. Indique ta vraie FC max si tu la connais.`, `Şu an tahmini: ${hm.v}. Gerçek maks. nabzını biliyorsan gir.`) : L(`Verwendet: ${hm.v}`, `Used: ${hm.v}`, `Utilisée : ${hm.v}`, `Kullanılan: ${hm.v}`)) : L('Ohne Max-Puls keine Pulszonen. Tipp: Geburtsjahr unter Mein Konto eintragen oder Max-Puls hier angeben.', 'No zones without max HR. Tip: add your birth year under My account or enter max HR here.', 'Pas de zones sans FC max. Astuce : indique ton année de naissance ou ta FC max.', 'Maks. nabız olmadan bölge yok. İpucu: doğum yılını gir veya maks. nabzı buraya yaz.')}</p>
+      <button type="button" class="btn btn-ghost" data-act="rl-cfg">${L('Speichern', 'Save', 'Enregistrer', 'Kaydet')}</button></div>
+    ${ev.length ? `<div class="sec-title">🏁 ${L('Nächste Laufevents', 'Upcoming races', 'Prochaines courses', 'Yaklaşan koşular')}</div>${ev.map(e => `<div class="panel ev-mini"><b>${esc(e.name)}</b><small>${esc(evDateTxt(e))} · ${esc(e.city || '')} · ${L(`noch ${evDays(e)} Tage`, `${evDays(e)} days`, `${evDays(e)} jours`, `${evDays(e)} gün`)}</small>
+      <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="rl-goal" data-id="${esc(e.id)}">${cfg.goalEv === e.id ? '✓ ' + L('Mein Ziel', 'My goal', 'Mon objectif', 'Hedefim') : '🎯 ' + L('Als Ziel setzen', 'Set as goal', 'Définir comme objectif', 'Hedef yap')}</button><button type="button" class="btn btn-ghost" data-act="ev-open">${L('Alle Events', 'All events', 'Tous les événements', 'Tüm etkinlikler')}</button></div></div>`).join('')}` : ''}
+    ${list.length ? `<div class="sec-title">📒 ${L('Deine Läufe', 'Your runs', 'Tes sorties', 'Koşuların')}</div>${list.slice(0, 25).map(r => `<button type="button" class="rl-row" data-act="rl-show" data-id="${esc(r.id)}"><span class="rl-d">${new Date(r.t).toLocaleDateString(LOC, { day: '2-digit', month: '2-digit' })}</span><span class="rl-m"><b>${num(r.km, 2)} km · ${fmtDur(r.sec)}</b><small>${esc((RUN_TYPES.find(x => x[0] === r.type) || ['', ''])[1])} · ${paceTxt(paceOf(r))} min/km${r.hr ? ' · ❤️ ' + r.hr : ''}</small></span><span class="go">›</span></button>`).join('')}` : ''}
+  </div>`;
+}
+function rlShow(r, fresh) {
+  const fb = rlFeedback(r);
+  const shared = store.get(`uipause-${account.id}-shared-v1`, []).includes('r_' + r.id);
+  openSheet(`<div data-notr>${fresh ? runCelebrateHTML(r) + `<div class="sec-title" style="margin:16px 0 4px">🔍 ${L('Deine Auswertung', 'Your analysis', 'Ton analyse', 'Analizin')}</div>` : `<h2 id="dlgTitle">🏃 ${new Date(r.t).toLocaleDateString(LOC)}</h2>`}
+    <div class="rl-fb">${fb.map(([i, t]) => `<p><span>${i}</span>${esc(t)}</p>`).join('')}</div>
+    ${r.note ? `<p class="sub">„${esc(r.note)}“</p>` : ''}
+    ${!shared ? shareAskHTML('run', r.id) : ''}
+    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button>${fresh ? '' : `<button type="button" class="btn btn-dghost" data-act="rl-del" data-id="${esc(r.id)}">${L('Lauf löschen', 'Delete run', 'Supprimer', 'Sil')}</button>`}</div></div>`);
+}
+function runlogAct(a, b) {
+  if (a === 'run-tab') { rlReadForm(); runTab = b.dataset.v; render(); return; }
+  if (a === 'rl-pick') { rlReadForm(); rlDraft[b.dataset.k] = b.dataset.k === 'rpe' ? +b.dataset.v : b.dataset.v; render(); return; }
+  if (a === 'rl-save') { rlReadForm(); const d = rlDraft, err = m => { const e = document.getElementById('rl_err'); if (e) e.textContent = m; };
+    const km = parseFloat(String(d.km || '').replace(',', '.')), sec = parseDur(d.dur), hr = +d.hr || 0, hrmax = +d.hrmax || 0, elev = +d.elev || 0;
+    if (!(km > 0.2 && km < 300)) { err(L('Bitte die Distanz in km eingeben, z. B. 7,5', 'Please enter distance in km, e.g. 7.5', 'Indique la distance en km, p. ex. 7,5', 'Mesafeyi km olarak gir, örn. 7,5')); return; }
+    if (!sec || sec < 60) { err(L('Bitte die Dauer eingeben, z. B. 42:30 oder 1:05:00', 'Please enter the duration, e.g. 42:30 or 1:05:00', 'Indique la durée, p. ex. 42:30', 'Süreyi gir, örn. 42:30')); return; }
+    const pace = sec / km; if (pace < 150 || pace > 1200) { err(L('Distanz und Dauer passen nicht zusammen. Bitte prüfen.', 'Distance and duration don\'t match. Please check.', 'Distance et durée incohérentes.', 'Mesafe ve süre uyuşmuyor.')); return; }
+    if (hr && (hr < 60 || hr > 230)) { err(L('Puls bitte zwischen 60 und 230.', 'HR between 60 and 230 please.', 'FC entre 60 et 230.', 'Nabız 60–230 arası.')); return; }
+    const today = dayKeyS(Date.now()), t = !d.date || d.date === today ? Date.now() : new Date(d.date + 'T12:00:00').getTime();
+    const r = { id: 'r' + Date.now().toString(36), t: Math.min(t, Date.now()), km, sec, hr: hr || null, hrmax: hrmax || null, elev: elev || null, type: d.type || 'easy', rpe: +d.rpe || null, note: String(d.note || '').slice(0, 140) };
+    const all = store.get(rlKey(), []); all.push(r); if (!store.set(rlKey(), all.slice(-1000))) { err('Speicher voll'); return; }
+    /* Passenden Lauf im Trainingsplan dieser Woche abhaken */
+    try { const R = store.get(runKey(), null); if (R && R.plan) { const cur = clamp(Math.floor((Date.now() - R.start) / 6048e5), 0, R.plan.length - 1), s = R.plan[cur].sessions.find(x => !x.done && x.t !== 'goal'); if (s) { s.done = true; store.set(runKey(), R); } } } catch (e) {}
+    rlDraft = null; render(); rlShow(r, true); try { sfx('melody'); buzz([200, 100, 200]); } catch (e) {} boardSync().catch(() => {}); usageTrack('run', r); return; }
+  if (a === 'rl-show') { const r = rlList().find(x => x.id === b.dataset.id); if (r) rlShow(r, false); return; }
+  if (a === 'rl-del') { const id = b.dataset.id; store.set(rlKey(), rlList().filter(x => x.id !== id)); closeSheet(); render(); return; }
+  if (a === 'rl-cfg') { const v = +val('rl_cfgmax'); const c = rlCfg(); c.hrmax = v >= 140 && v <= 230 ? v : ''; store.set(rlCfgKey(), c); render(); toast(L('Gespeichert', 'Saved', 'Enregistré', 'Kaydedildi')); return; }
+  if (a === 'rl-goal') { const c = rlCfg(); c.goalEv = c.goalEv === b.dataset.id ? '' : b.dataset.id; store.set(rlCfgKey(), c); render(); return; }
+}
+
+/* ============================================================
+   EVENT-COMMUNITY: anstehende Laufevents, Countdown, „Ich bin dabei“,
+   eigener Chatraum pro Event, Trainingsplan passend zum Event.
+   Feste Liste (Stand Oktober 2026, Quellen siehe Link je Event) +
+   optionale, vom Admin gepflegte Events in Firestore (events/{id}).
+   Teilnahme: events/{id}/going/{uid}, jede Person nur sich selbst.
+   ============================================================ */
+const EVENTS = [
+  { id: 'silvester26', ic: '🎆', name: 'Bitburger 0,0% Silvesterlauf Trier', date: '2026-12-31', time: '16:00', city: 'Trier', place: L('Hauptmarkt, 1-km-Runden durch die Altstadt', 'Main market, 1 km laps through the old town', 'Hauptmarkt, boucles de 1 km', 'Hauptmarkt, 1 km turlar'), km: 5, kmName: '5 km',
+    dist: L('Volksläufe 5 km (16:00, 16:40, 17:15) · Kinder- und Jugendläufe ab 13:00 · Elitelauf', 'Fun runs 5 km (16:00, 16:40, 17:15) · kids races from 13:00 · elite race', 'Courses populaires 5 km (16h00, 16h40, 17h15) · enfants dès 13h00 · élite', 'Halk koşuları 5 km (16:00, 16:40, 17:15) · çocuk koşuları 13:00 · elit'),
+    info: L('Anmeldung über cologne-timing.de, Meldeschluss laut Veranstalter um den 20.–23.12. (bitte auf der Seite prüfen).', 'Registration via cologne-timing.de, deadline around 20–23 Dec according to the organiser (please check).', 'Inscription via cologne-timing.de, clôture vers le 20–23 déc. (à vérifier).', 'Kayıt cologne-timing.de üzerinden, son tarih 20–23 Aralık civarı (kontrol et).'), url: 'https://silvesterlauf.de/event/silvesterlauf/' },
+  { id: 'firmentrier27', ic: '🏢', name: 'Bitburger 0,0% Firmenlauf Trier', date: '2027-05-05', time: '19:30', city: 'Trier', place: 'ARENA Trier', km: 5.3, kmName: '5,3 km',
+    dist: L('ca. 5,3 km, ideal als Team mit Kolleginnen und Kollegen', 'approx. 5.3 km, ideal as a team with colleagues', 'env. 5,3 km, idéal en équipe', 'yakl. 5,3 km, iş arkadaşlarıyla takım halinde'), url: 'https://silvesterlauf.de/em-aktuelles/was-in-trier-2027-laeuft/' },
+  { id: 'ingnight27', ic: '🌙', name: 'ING Night Marathon Luxembourg', date: '2027-05-08', time: '19:00', city: 'Luxembourg', place: 'Luxexpo The Box, Kirchberg', km: 42.195, kmName: 'Marathon',
+    dist: L('Marathon, Halbmarathon und Team-Run (Start 19:00) · 5 km „Run for Success“ (20:10)', 'Marathon, half marathon and team run (start 19:00) · 5 km “Run for Success” (20:10)', 'Marathon, semi et relais (départ 19h00) · 5 km « Run for Success » (20h10)', 'Maraton, yarı maraton, takım koşusu (19:00) · 5 km “Run for Success” (20:10)'),
+    alt: [['Halbmarathon', 21.0975], ['5 km', 5]], url: 'https://www.visitluxembourg.com/fr/evenement/ing-night-marathon-luxembourg' },
+  { id: 'frauentrier27', ic: '🌸', name: 'Frauenlauf Trier', date: '2027-06-20', city: 'Trier', km: 5, kmName: '5 km', dist: L('Lauf für Frauen', 'Women\'s run', 'Course féminine', 'Kadın koşusu'), url: 'https://silvesterlauf.de/em-aktuelles/was-in-trier-2027-laeuft/' },
+  { id: 'bizrun27', ic: '💼', name: 'Luxembourg Times BusinessRun', date: '2027-09-16', tbd: true, city: 'Luxembourg', km: 4.6, kmName: '4,6 km',
+    dist: L('Firmenlauf, 2026 rund 4,6 km mit etwa 8.000 Teilnehmenden', 'Corporate run, about 4.6 km and approx. 8,000 runners in 2026', 'Course d\'entreprise, env. 4,6 km et 8 000 coureurs en 2026', 'Şirket koşusu, 2026\'da yakl. 4,6 km, ~8.000 kişi'),
+    info: L('Termin 2027 noch nicht veröffentlicht, voraussichtlich September (2026 war es Donnerstag, 17.09.).', '2027 date not yet published, expected in September (2026: Thursday 17 Sep).', 'Date 2027 pas encore publiée, probablement en septembre (2026 : jeudi 17/09).', '2027 tarihi henüz açıklanmadı, muhtemelen Eylül (2026: 17 Eylül Perşembe).'), url: 'https://business-run.lu/news' },
+  { id: 'stadttrier27', ic: '🏙️', name: 'Trierer Stadtlauf', date: '2027-09-19', city: 'Trier', km: 10, kmName: '10 km', dist: L('Halbmarathon, 10 km und 5 km', 'Half marathon, 10 km and 5 km', 'Semi, 10 km et 5 km', 'Yarı maraton, 10 km ve 5 km'), alt: [['Halbmarathon', 21.0975], ['5 km', 5]], url: 'https://silvesterlauf.de/em-aktuelles/was-in-trier-2027-laeuft/' }
+];
+let evExtra = [], evGoing = {}, evLoaded = 0, evBusy = false;
+const evTs = e => new Date(e.date + 'T' + (e.time || '12:00') + ':00').getTime();
+const EVENTS_ALL = () => EVENTS.concat(evExtra.filter(x => x && x.date && !EVENTS.some(e => e.id === x.id))).sort((a, b) => evTs(a) - evTs(b));
+const nextEvents = () => EVENTS_ALL().filter(e => evTs(e) > Date.now() - DAY);
+const evDays = e => Math.max(0, Math.ceil((evTs(e) - Date.now()) / DAY));
+const evDateTxt = e => (e.tbd ? L('vorauss. ', 'expected ', 'prévu ', 'tahmini ') + new Date(evTs(e)).toLocaleDateString(LOC, { month: 'long', year: 'numeric' }) : new Date(evTs(e)).toLocaleDateString(LOC, { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' }) + (e.time ? ', ' + e.time : ''));
+const evRoomId = e => 'ev-' + e.id;
+const evLocalKey = () => `uipause-${account ? account.id : 'none'}-evgo-v1`;
+const evLive = () => CB && !CB.demo;
+async function evLoad(force) {
+  if (evBusy || (!force && Date.now() - evLoaded < 60000)) return;
+  evBusy = true;
+  try {
+    if (evLive()) {
+      const { db } = await fbCore();
+      try { const q = await db.collection('events').limit(50).get(); evExtra = q.docs.map(d => Object.assign({ id: d.id, ic: '🏁', custom: true }, d.data())).filter(x => /^\d{4}-\d{2}-\d{2}$/.test(x.date || '')); } catch (e) { evExtra = []; }
+      const G = {};
+      await Promise.all(nextEvents().map(async e => { try { const q = await db.collection('events').doc(e.id).collection('going').limit(200).get(); G[e.id] = q.docs.map(d => ({ uid: d.id, nick: String(d.data().nick || '') })); } catch (x) { G[e.id] = []; } }));
+      evGoing = G;
+    } else { const L0 = store.get(evLocalKey(), []); evGoing = {}; L0.forEach(id => { evGoing[id] = [{ uid: account.id, nick: cNick() }]; }); }
+    evLoaded = Date.now();
+  } finally { evBusy = false; }
+  if (view === 'community' && cbTab === 'events' && !cbRoom) render();
+}
+const evIGo = e => (evGoing[e.id] || []).some(g => g.uid === (account && account.uid || account.id));
+function eventsHTML() {
+  if (Date.now() - evLoaded > 60000) setTimeout(() => evLoad(), 0);
+  const list = nextEvents(), goal = rlCfg().goalEv;
+  return `<div class="note blue" style="margin-top:12px">${L('Anstehende Läufe in der Region. Sag, dass du dabei bist, tausch dich im Event-Chat aus und hol dir einen Trainingsplan, der genau bis zum Lauftag reicht.', 'Upcoming races in the region. Say you are in, chat in the event room and get a training plan that ends right on race day.', 'Courses à venir dans la région. Inscris-toi ici, échange dans le salon et obtiens un plan qui se termine le jour J.', 'Bölgedeki yaklaşan koşular. Katıldığını söyle, etkinlik sohbetinde konuş ve yarış gününe kadar süren bir plan al.')}</div>
+  ${list.map(e => { const go = evGoing[e.id] || [], me = evIGo(e), d = evDays(e);
+    return `<article class="panel ev-card">
+      <div class="ev-top"><span class="ev-ic" aria-hidden="true">${esc(e.ic || '🏁')}</span><div><b>${esc(e.name)}</b><small>${esc(evDateTxt(e))}${e.city ? ' · 📍 ' + esc(e.city) : ''}</small></div><span class="ev-cd"><b>${d}</b><small>${L('Tage', 'days', 'jours', 'gün')}</small></span></div>
+      ${e.dist ? `<p class="ev-dist">🏃 ${esc(e.dist)}${e.place ? ' · ' + esc(e.place) : ''}</p>` : ''}
+      ${e.info ? `<p class="sub" style="margin:4px 0 0">ℹ️ ${esc(e.info)}</p>` : ''}
+      ${e.tbd ? `<p class="sub" style="margin:4px 0 0">⚠️ ${L('Datum noch nicht bestätigt, Countdown ist eine Schätzung.', 'Date not confirmed yet, countdown is an estimate.', 'Date non confirmée, compte à rebours estimé.', 'Tarih kesin değil, geri sayım tahmini.')}</p>` : ''}
+      <p class="ev-go">${go.length ? `👟 ${go.length} ${L('dabei', 'going', 'participant(s)', 'katılıyor')}: ${go.slice(0, 8).map(g => esc(g.nick)).join(', ')}${go.length > 8 ? ' …' : ''}` : L('Noch niemand eingetragen. Sei die erste Person!', 'Nobody signed up yet. Be the first!', 'Personne encore. Sois le/la premier·ère !', 'Henüz kimse yok. İlk sen ol!')}</p>
+      <div class="adm-acts">
+        <button type="button" class="btn ${me ? 'btn-primary' : 'btn-ghost'}" data-act="ev-go" data-id="${esc(e.id)}" aria-pressed="${me}">${me ? '✓ ' + L('Ich bin dabei', 'I\'m in', 'J\'y serai', 'Katılıyorum') : '🙋 ' + L('Ich bin dabei', 'I\'m in', 'J\'y serai', 'Katılıyorum')}</button>
+        <button type="button" class="btn btn-ghost" data-act="ev-chat" data-id="${esc(e.id)}">💬 Chat${roomUnread[evRoomId(e)] ? ` <span class="c-badge">${roomUnread[evRoomId(e)]}</span>` : ''}</button>
+        <button type="button" class="btn btn-ghost" data-act="ev-plan" data-id="${esc(e.id)}">🗓️ ${L('Plan dafür', 'Plan for it', 'Plan', 'Plan')}</button>
+        <button type="button" class="btn btn-ghost" data-act="rl-goal" data-id="${esc(e.id)}">${goal === e.id ? '🎯 ' + L('Mein Ziel', 'My goal', 'Mon objectif', 'Hedefim') : '🎯 ' + L('Als Ziel', 'Set goal', 'Objectif', 'Hedef')}</button>
+        ${e.url && /^https:\/\//.test(e.url) ? `<a class="btn btn-ghost" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">🔗 ${L('Infos', 'Info', 'Infos', 'Bilgi')}</a>` : ''}
+        ${IS_ADMIN && e.custom ? `<button type="button" class="btn btn-dghost" data-act="ev-del" data-id="${esc(e.id)}">${L('Löschen', 'Delete', 'Supprimer', 'Sil')}</button>` : ''}
+      </div></article>`; }).join('')}
+  <p class="sub">${L('Alle Angaben ohne Gewähr. Termine, Strecken und Anmeldung bitte immer beim Veranstalter prüfen.', 'No guarantee. Always check dates, courses and registration with the organiser.', 'Sans garantie. Vérifie toujours auprès de l\'organisateur.', 'Garanti yoktur. Tarih ve kaydı organizatörden kontrol et.')}</p>
+  ${IS_ADMIN && evLive() ? `<button type="button" class="btn btn-ghost" style="width:100%" data-act="ev-new">+ ${L('Event hinzufügen (Admin)', 'Add event (admin)', 'Ajouter (admin)', 'Etkinlik ekle (yönetici)')}</button>` : ''}`;
+}
+function evPlan(e) {
+  const wl = Math.floor(evDays(e) / 7), opts = [6, 8, 10, 12, 16, 20, 24], weeks = opts.filter(w => w <= wl).pop() || 6;
+  const km = e.km || 5, goal = km >= 30 ? 'm' : km >= 15 ? 'hm' : km >= 7 ? '10k' : '5k';
+  runDraft = Object.assign({}, RUN_DEF, (store.get(runKey(), null) || {}).q || {}, { goal, weeks });
+  const c = rlCfg(); c.goalEv = e.id; store.set(rlCfgKey(), c);
+  runTab = 'plan'; view = 'run'; render(); window.scrollTo(0, 0);
+  toast(wl < 6 ? L(`Nur noch ${wl} Wochen: Der Plan ist kurz, lauf das Event entspannt.`, `Only ${wl} weeks left: short plan, take the race easy.`, `Plus que ${wl} semaines : plan court, cours tranquille.`, `Sadece ${wl} hafta kaldı: kısa plan, rahat koş.`) : L(`Plan über ${weeks} Wochen vorbereitet. Prüf die Angaben und tipp auf „Plan erstellen“.`, `${weeks}-week plan prepared. Check and tap “Create plan”.`, `Plan de ${weeks} semaines préparé. Vérifie puis « Créer le plan ».`, `${weeks} haftalık plan hazır. Kontrol et ve “Plan oluştur”a dokun.`));
+}
+async function evToggle(e) {
+  const me = evIGo(e), uid = account.uid || account.id;
+  if (!evLive()) { let L0 = store.get(evLocalKey(), []); L0 = me ? L0.filter(x => x !== e.id) : L0.concat(e.id); store.set(evLocalKey(), L0); evLoaded = 0; await evLoad(true); return; }
+  const { db } = await fbCore(), ref = db.collection('events').doc(e.id).collection('going').doc(uid);
+  if (me) await ref.delete(); else await ref.set({ nick: cNick(), ts: Date.now() });
+  evGoing[e.id] = me ? (evGoing[e.id] || []).filter(g => g.uid !== uid) : (evGoing[e.id] || []).concat({ uid, nick: cNick() });
+  render();
+  if (!me) toast(L('Eingetragen! Viel Spaß bei der Vorbereitung 💪', 'You\'re in! Enjoy the preparation 💪', 'C\'est noté ! Bonne préparation 💪', 'Kaydoldun! İyi hazırlıklar 💪'));
+}
+function evNewSheet() {
+  const f = (id, l, t = 'text', ph = '') => `<label class="lbl-pw" for="${id}">${l}</label><input id="${id}" class="inp pw full" type="${t}" placeholder="${ph}" maxlength="120">`;
+  openSheet(`<div data-notr><h2 id="dlgTitle">${L('Event hinzufügen', 'Add event', 'Ajouter un événement', 'Etkinlik ekle')}</h2>
+    ${f('ev_name', 'Name *', 'text', 'z. B. Lauf um den See')}${f('ev_date', L('Datum *', 'Date *', 'Date *', 'Tarih *'), 'date')}${f('ev_time', L('Uhrzeit', 'Time', 'Heure', 'Saat'), 'time')}
+    ${f('ev_city', L('Ort', 'Place', 'Lieu', 'Yer'), 'text', 'Trier')}${f('ev_dist', L('Strecken', 'Distances', 'Distances', 'Mesafeler'), 'text', '10 km, 5 km')}${f('ev_km', L('Hauptdistanz in km', 'Main distance km', 'Distance principale km', 'Ana mesafe km'), 'text', '10')}${f('ev_url', 'Link (https://…)', 'url', 'https://')}
+    <p class="msg-err" id="ev_err"></p>
+    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="ev-save">${L('SPEICHERN', 'SAVE', 'ENREGISTRER', 'KAYDET')}</button><button type="button" class="btn btn-ghost" data-act="sheet-close">${L('Abbrechen', 'Cancel', 'Annuler', 'İptal')}</button></div></div>`);
+}
+async function eventsAct(a, b) {
+  const e = b && b.dataset.id ? EVENTS_ALL().find(x => x.id === b.dataset.id) : null;
+  try {
+    if (a === 'ev-open') { view = 'community'; cbTab = 'events'; cbRoom = null; render(); window.scrollTo(0, 0); return; }
+    if (a === 'ev-go' && e) { await evToggle(e); return; }
+    if (a === 'ev-chat' && e) { cbOpenRoom(evRoomId(e)); return; }
+    if (a === 'ev-plan' && e) { evPlan(e); return; }
+    if (a === 'ev-new') { evNewSheet(); return; }
+    if (a === 'ev-save') {
+      const name = val('ev_name'), date = val('ev_date'), url = val('ev_url'), km = parseFloat(val('ev_km').replace(',', '.')) || 0;
+      const err = m => { const x = document.getElementById('ev_err'); if (x) x.textContent = m; };
+      if (name.length < 3 || !/^\d{4}-\d{2}-\d{2}$/.test(date)) { err(L('Name und Datum sind Pflicht.', 'Name and date are required.', 'Nom et date obligatoires.', 'Ad ve tarih zorunlu.')); return; }
+      if (url && !/^https:\/\//.test(url)) { err(L('Link muss mit https:// beginnen.', 'Link must start with https://', 'Le lien doit commencer par https://', 'Bağlantı https:// ile başlamalı.')); return; }
+      const { db } = await fbCore();
+      await db.collection('events').add({ name: name.slice(0, 80), date, time: val('ev_time').slice(0, 5), city: val('ev_city').slice(0, 40), dist: val('ev_dist').slice(0, 120), km: km > 0 && km < 300 ? km : 0, url: url.slice(0, 300), ts: Date.now() });
+      closeSheet(); await evLoad(true); toast(L('Event gespeichert', 'Event saved', 'Événement enregistré', 'Etkinlik kaydedildi')); return;
+    }
+    if (a === 'ev-del' && e && e.custom) { const { db } = await fbCore(); await db.collection('events').doc(e.id).delete(); await evLoad(true); return; }
+  } catch (x) { toast(L('Das hat nicht geklappt: ', 'That did not work: ', 'Échec : ', 'Olmadı: ') + (x && (x.code || x.message) || x)); }
+}
+const eventsHomeCard = () => { const e = nextEvents()[0]; if (!e) return '';
+  return `<button type="button" class="run-card ev-home" data-act="ev-open" data-notr><span class="ic" aria-hidden="true">🏁</span><span><b>${L('Nächstes Laufevent', 'Next race', 'Prochaine course', 'Sonraki koşu')}: ${esc(e.name)}</b><small>${esc(evDateTxt(e))} · ${L(`noch ${evDays(e)} Tage`, `${evDays(e)} days to go`, `encore ${evDays(e)} jours`, `${evDays(e)} gün kaldı`)}</small></span><span class="go">›</span></button>`; };
+
+/* ============================================================
+   SOCIAL: Punkte, Feed (Training teilen), Kudos & Kommentare, Rangliste
+   - Punkte werden lokal aus Workouts und Läufen berechnet.
+   - Teilen ist freiwillig: nur nach Klick auf „In der Community teilen“.
+   - Rangliste nur nach ausdrücklicher Teilnahme (Opt-in), jederzeit austreten.
+   Firestore: feed/{id}, feed/{id}/kudos/{uid}, feed/{id}/cmts/{id}, board/{uid}
+   ============================================================ */
+const PTS_RUN = r => clamp(Math.round((+r.km || 0) * 8 + (+r.elev || 0) / 100 * 2), 5, 150);
+const PTS_WO = h => !h || !(h.exDone > 0) ? 0 : clamp(Math.round((h.ms || 0) / 60000 * (h.exTotal ? Math.max(0.5, h.exDone / h.exTotal) : 1) + 10), 5, 90);
+const REACTS = ['👏', '🔥', '💪', '❤️', '😂'];
+const monthKey = t => { const d = new Date(t); return d.getFullYear() + '-' + pad2(d.getMonth() + 1); };
+const dayKeyS = t => { const d = new Date(t); return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); };
+/* Alle Aktivitäten mit Punkten */
+function activities() {
+  const w = (typeof history !== 'undefined' && Array.isArray(history) ? history : []).filter(h => h.exDone > 0).map(h => ({ id: 'w_' + h.id, t: h.date, kind: 'workout', pts: PTS_WO(h), title: h.program || 'Workout', h }));
+  const r = (account ? rlList() : []).map(x => ({ id: 'r_' + x.id, t: x.t, kind: 'run', pts: PTS_RUN(x), title: L('Lauf', 'Run', 'Course', 'Koşu'), r: x }));
+  return w.concat(r).sort((a, b) => b.t - a.t);
+}
+function ptsSum(from) { return activities().filter(a => a.t >= (from || 0)).reduce((s, a) => s + a.pts, 0); }
+const monthStart = () => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1).getTime(); };
+const socLive = () => !!(settings && settings.community && /^https?:$/.test(location.protocol));
+async function socDb() { const { db } = await fbCore(); return db; }
+const myUid = () => account && (account.uid || account.id);
+
+/* ---------------- Rangliste ---------------- */
+const boardKey = () => `uipause-${account ? account.id : 'none'}-board-v1`;
+const boardState = () => Object.assign({ join: 0, cred: [], carry: 0 }, store.get(boardKey(), {}));
+let BOARD = { list: [], loaded: 0, busy: false, tab: 'month', err: '' };
+async function boardLoad(force) {
+  if (BOARD.busy || (!force && Date.now() - BOARD.loaded < 30000)) return;
+  BOARD.busy = true;
+  try { const db = await socDb(), q = await db.collection('board').limit(300).get(); BOARD.list = q.docs.map(d => Object.assign({ uid: d.id }, d.data())); BOARD.err = ''; }
+  catch (e) { BOARD.err = e && (e.code || e.message) || String(e); }
+  BOARD.loaded = Date.now(); BOARD.busy = false;
+  if (view === 'community' && cbTab === 'board' && !cbRoom) render();
+}
+/* Neue Punkte seit Beitritt an den Server melden. Pro Meldung max. 300, pro Tag max. 400 (Regeln). */
+async function boardSync() {
+  const st = boardState(); if (!st.join || !socLive()) return;
+  const fresh = activities().filter(a => !st.cred.includes(a.id));
+  fresh.forEach(a => { st.cred.push(a.id); st.carry += a.pts; });
+  st.cred = st.cred.slice(-2000); store.set(boardKey(), st);
+  if (st.carry <= 0) return;
+  const db = await socDb(), ref = db.collection('board').doc(myUid()), snap = await ref.get();
+  const o = snap.exists ? snap.data() : null; if (!o) return;
+  const now = Date.now(), d = dayKeyS(now), m = monthKey(now);
+  const dpOld = o.d === d ? (o.dp || 0) : 0, room = Math.max(0, 400 - dpOld), delta = Math.min(st.carry, 300, room);
+  if (delta <= 0) return;
+  await ref.set({ nick: cNick(), pts: (o.pts || 0) + delta, m, mp: (o.m === m ? (o.mp || 0) : 0) + delta, d, dp: dpOld + delta, ts: now });
+  st.carry -= delta; store.set(boardKey(), st);
+}
+async function boardJoin() {
+  const db = await socDb(), now = Date.now();
+  await db.collection('board').doc(myUid()).set({ nick: cNick(), pts: 0, m: monthKey(now), mp: 0, d: dayKeyS(now), dp: 0, ts: now });
+  store.set(boardKey(), { join: now, cred: activities().map(a => a.id), carry: 0 });
+  await boardLoad(true);
+}
+async function boardLeave() {
+  const db = await socDb(); await db.collection('board').doc(myUid()).delete(); store.del(boardKey()); await boardLoad(true);
+}
+function boardHTML() {
+  if (Date.now() - BOARD.loaded > 30000) setTimeout(() => boardLoad(), 0);
+  const st = boardState(), joined = !!st.join && BOARD.list.some(x => x.uid === myUid()), m = monthKey(Date.now());
+  const rows = BOARD.list.map(x => ({ uid: x.uid, nick: x.nick, v: BOARD.tab === 'month' ? (x.m === m ? x.mp || 0 : 0) : x.pts || 0 })).sort((a, b) => b.v - a.v || String(a.nick).localeCompare(String(b.nick)));
+  const medal = i => i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1) + '.';
+  const info = `<details class="panel pts-info"><summary>ℹ️ ${L('So gibt es Punkte', 'How points work', 'Comment gagner des points', 'Puanlar nasıl verilir')}</summary>
+    <ul class="motiv-list"><li><span>🏃</span>${L('Lauf: 8 Punkte pro km, +2 pro 100 Höhenmeter (5 km = 40 Punkte)', 'Run: 8 points per km, +2 per 100 m climb (5 km = 40 points)', 'Course : 8 points/km, +2 par 100 m D+ (5 km = 40 points)', 'Koşu: km başına 8 puan, 100 m tırmanış başına +2 (5 km = 40 puan)')}</li>
+    <li><span>💪</span>${L('Workout: 10 Punkte + 1 pro Trainingsminute (30 Min = 40 Punkte, 10 Min am Arbeitsplatz = 20)', 'Workout: 10 points + 1 per minute (30 min = 40 points, 10-min desk workout = 20)', 'Séance : 10 points + 1 par minute (30 min = 40 points)', 'Antrenman: 10 puan + dakika başına 1 (30 dk = 40 puan)')}</li>
+    <li><span>⚖️</span>${L('Es zählt die Anstrengung, nicht das Gewicht oder Tempo. Pro Tag zählen höchstens 400 Punkte, der Rest wird an den Folgetagen gutgeschrieben.', 'Effort counts, not weight or pace. Max 400 points per day count; the rest is credited on the following days.', 'C\'est l\'effort qui compte. Max. 400 points par jour, le reste est crédité les jours suivants.', 'Çaba sayılır, ağırlık veya hız değil. Günde en fazla 400 puan; kalanı sonraki günlere aktarılır.')}</li>
+    <li><span>🗓️</span>${L('Die Monatswertung startet jeden 1. neu. Punkte zählen ab deiner Teilnahme.', 'The monthly ranking restarts on the 1st. Points count from when you join.', 'Le classement mensuel repart le 1er. Les points comptent dès ton inscription.', 'Aylık sıralama her ayın 1\'inde yeniden başlar.')}</li></ul></details>`;
+  const optin = `<article class="panel"><h3 style="margin-top:0">🏆 ${L('Mitmachen bei der Rangliste?', 'Join the leaderboard?', 'Participer au classement ?', 'Sıralamaya katıl?')}</h3>
+    <p style="margin:0 0 8px">${L('Du kannst die Rangliste ansehen, bist aber nicht automatisch dabei. Wenn du mitmachst, sehen alle freigeschalteten Mitglieder deinen Nickname und deine Punktzahl. Keine Kilometer, Zeiten, Gewichte oder Gesundheitsdaten.', 'You can view the leaderboard but are not automatically part of it. If you join, all approved members see your nickname and points. No distances, times, weights or health data.', 'Tu peux consulter le classement sans y figurer. Si tu participes, les membres voient ton pseudo et tes points. Aucune distance, durée ou donnée de santé.', 'Sıralamayı görebilirsin ama otomatik olarak dahil değilsin. Katılırsan üyeler takma adını ve puanını görür. Mesafe, süre veya sağlık verisi yok.')}</p>
+    <label class="terms"><input type="checkbox" id="bd_ok"><span>${L('Ich willige ein, dass Nickname und Punktzahl dafür bei Google Firebase gespeichert werden (Art. 6 Abs. 1 lit. a DSGVO). Austreten geht jederzeit, dann wird mein Eintrag gelöscht.', 'I consent to my nickname and points being stored at Google Firebase for this (Art. 6(1)(a) GDPR). I can leave at any time and my entry will be deleted.', 'J\'accepte que pseudo et points soient stockés chez Google Firebase (art. 6, par. 1, let. a RGPD). Je peux quitter à tout moment.', 'Takma adım ve puanımın Google Firebase\'de saklanmasına onay veriyorum (GDPR 6/1-a). İstediğim zaman ayrılabilirim.')} <button type="button" data-act="legal">${L('Datenschutz', 'Privacy', 'Confidentialité', 'Gizlilik')}</button></span></label>
+    <button type="button" class="btn btn-primary xl" style="width:100%;margin-top:10px" data-act="bd-join">${L('JA, ICH MACHE MIT', 'YES, COUNT ME IN', 'OUI, JE PARTICIPE', 'EVET, KATILIYORUM')}</button></article>`;
+  const me = rows.findIndex(r => r.uid === myUid());
+  return `<div class="seg" role="tablist" style="grid-template-columns:repeat(2,1fr);margin-top:12px">${[['month', L('Dieser Monat', 'This month', 'Ce mois-ci', 'Bu ay')], ['all', L('Gesamt', 'All time', 'Total', 'Toplam')]].map(([k, n]) => `<button type="button" role="tab" aria-checked="${BOARD.tab === k}" data-act="bd-tab" data-v="${k}">${n}</button>`).join('')}</div>
+    ${joined ? `<div class="panel bd-me"><b>${me >= 0 ? medal(me) : '–'} ${L('Dein Platz', 'Your rank', 'Ton rang', 'Sıran')}</b><span>${me >= 0 ? rows[me].v : 0} ${L('Punkte', 'points', 'points', 'puan')}</span>${st.carry > 0 ? `<small>+${st.carry} ${L('werden noch gutgeschrieben', 'pending', 'en attente', 'beklemede')}</small>` : ''}</div>` : optin}
+    ${BOARD.err ? `<p class="sub">${esc(BOARD.err)}</p>` : ''}
+    <div class="bd-list">${rows.length ? rows.slice(0, 100).map((r, i) => `<div class="bd-row ${r.uid === myUid() ? 'me' : ''}"><span class="bd-pos">${medal(i)}</span>${typeof avHTML === 'function' ? avHTML(r.nick, 30) : ''}<b>${esc(r.nick)}</b><span class="bd-v">${r.v}</span></div>`).join('') : `<p class="sub">${L('Noch niemand dabei. Starte die Rangliste!', 'Nobody yet. Start the leaderboard!', 'Personne encore. Lance le classement !', 'Henüz kimse yok. Sıralamayı başlat!')}</p>`}</div>
+    ${info}
+    ${joined ? `<button type="button" class="btn btn-ghost" style="width:100%" data-act="bd-leave">${L('Aus der Rangliste austreten', 'Leave leaderboard', 'Quitter le classement', 'Sıralamadan ayrıl')}</button>` : ''}`;
+}
+
+/* ---------------- Feed ---------------- */
+let FEED = { list: [], loaded: 0, busy: false, err: '' };
+async function feedLoad(force) {
+  if (FEED.busy || (!force && Date.now() - FEED.loaded < 20000)) return;
+  FEED.busy = true;
+  try {
+    const db = await socDb(), q = await db.collection('feed').orderBy('ts').limitToLast(40).get();
+    const posts = q.docs.map(d => Object.assign({ id: d.id }, d.data())).reverse();
+    await Promise.all(posts.map(async p => {
+      try { const k = await db.collection('feed').doc(p.id).collection('kudos').get(); p.kudos = k.docs.map(d => Object.assign({ uid: d.id }, d.data())); } catch (e) { p.kudos = []; }
+      try { const c = await db.collection('feed').doc(p.id).collection('cmts').get(); p.cmts = c.docs.map(d => Object.assign({ id: d.id }, d.data())).sort((a, b) => a.ts - b.ts); } catch (e) { p.cmts = []; }
+    }));
+    FEED.list = posts.filter(p => !isBlocked(p.nick)); FEED.err = '';
+  } catch (e) { FEED.err = e && (e.code || e.message) || String(e); }
+  FEED.loaded = Date.now(); FEED.busy = false;
+  if (view === 'community' && cbTab === 'feed' && !cbRoom) render();
+}
+const agoTxt = t => { const m = Math.round((Date.now() - t) / 60000); return m < 1 ? L('gerade eben', 'just now', 'à l\'instant', 'şimdi') : m < 60 ? L(`vor ${m} Min.`, `${m} min ago`, `il y a ${m} min`, `${m} dk önce`) : m < 1440 ? L(`vor ${Math.round(m / 60)} Std.`, `${Math.round(m / 60)} h ago`, `il y a ${Math.round(m / 60)} h`, `${Math.round(m / 60)} sa önce`) : new Date(t).toLocaleDateString(LOC, { day: 'numeric', month: 'short' }); };
+function postStats(p) { const s = p.st || {}, out = [];
+  if (s.km) out.push(['📏', num(s.km, 2) + ' km']); if (s.min) out.push(['⏱️', s.min + ' Min']); if (s.pace) out.push(['⚡', s.pace + ' /km']);
+  if (s.kcal) out.push(['🔥', '≈ ' + s.kcal + ' kcal']); if (s.pts) out.push(['⭐', '+' + s.pts + ' ' + L('Punkte', 'pts', 'pts', 'puan')]);
+  return out.map(([i, v]) => `<span>${i} ${esc(v)}</span>`).join(''); }
+function postHTML(p, full) {
+  const mine = p.uid === myUid(), my = (p.kudos || []).find(k => k.uid === myUid());
+  const cnt = {}; (p.kudos || []).forEach(k => { cnt[k.e] = (cnt[k.e] || 0) + 1; });
+  return `<article class="panel fd-post" data-pid="${esc(p.id)}">
+    <div class="fd-head">${typeof avHTML === 'function' ? avHTML(p.nick, 36) : ''}<div><b>${esc(p.nick)}</b><small>${agoTxt(p.ts)}</small></div><span class="fd-kind">${p.kind === 'run' ? '🏃' : '💪'}</span></div>
+    <h4 class="fd-title">${esc(p.title)}</h4>
+    <div class="fd-stats">${postStats(p)}</div>
+    ${p.txt ? `<p class="fd-txt">${esc(p.txt)}</p>` : ''}
+    <div class="fd-reacts">${REACTS.map(e => `<button type="button" class="fd-r ${my && my.e === e ? 'on' : ''}" data-act="fd-react" data-id="${esc(p.id)}" data-v="${e}" aria-pressed="${!!(my && my.e === e)}">${e}${cnt[e] ? ` <small>${cnt[e]}</small>` : ''}</button>`).join('')}
+      <button type="button" class="fd-r" data-act="fd-open" data-id="${esc(p.id)}">💬${(p.cmts || []).length ? ` <small>${p.cmts.length}</small>` : ''}</button></div>
+    ${(p.kudos || []).length ? `<p class="fd-who">${L('Kudos von', 'Kudos from', 'Bravos de', 'Tebrik eden')} ${(p.kudos || []).slice(0, 6).map(k => esc(k.nick)).join(', ')}${p.kudos.length > 6 ? ' …' : ''}</p>` : ''}
+    ${full ? `<div class="fd-cmts">${(p.cmts || []).map(c => `<div class="fd-c"><b>${esc(c.nick)}</b> ${esc(c.text)} <small>${agoTxt(c.ts)}</small>${c.uid === myUid() || mine || IS_ADMIN ? ` <button type="button" class="mini" data-act="fd-cdel" data-id="${esc(p.id)}" data-c="${esc(c.id)}">✕</button>` : ''}</div>`).join('') || `<p class="sub">${L('Noch keine Kommentare.', 'No comments yet.', 'Pas encore de commentaires.', 'Henüz yorum yok.')}</p>`}</div>
+      <label class="lbl-pw" for="fd_c">${L('Kommentar', 'Comment', 'Commentaire', 'Yorum')}</label><input id="fd_c" class="inp pw full" maxlength="300" placeholder="${L('z. B. Stark! 💪', 'e.g. Strong! 💪', 'p. ex. Bravo ! 💪', 'örn. Harika! 💪')}">
+      <div class="acts"><button type="button" class="btn btn-primary xl" data-act="fd-csend" data-id="${esc(p.id)}">${L('SENDEN', 'SEND', 'ENVOYER', 'GÖNDER')}</button>${mine || IS_ADMIN ? `<button type="button" class="btn btn-dghost" data-act="fd-del" data-id="${esc(p.id)}">${L('Beitrag löschen', 'Delete post', 'Supprimer', 'Sil')}</button>` : ''}<button type="button" class="btn btn-ghost" data-act="sheet-close">${L('Schließen', 'Close', 'Fermer', 'Kapat')}</button></div>` : ''}
+  </article>`;
+}
+function feedHTML() {
+  if (Date.now() - FEED.loaded > 20000) setTimeout(() => feedLoad(), 0);
+  return `<div class="note blue" style="margin-top:12px">${L('Hier siehst du, was die anderen trainiert haben. Verteil Kudos 👏 und Kommentare. Eigene Trainings erscheinen nur, wenn du sie nach dem Training teilst.', 'See what others trained. Give kudos 👏 and comments. Your own sessions only appear if you share them after training.', 'Vois ce que les autres ont fait. Donne des bravos 👏 et commente. Tes séances n\'apparaissent que si tu les partages.', 'Diğerlerinin antrenmanlarını gör. Tebrik 👏 ve yorum bırak. Kendi antrenmanların yalnızca paylaşırsan görünür.')}</div>
+    ${FEED.err ? `<p class="sub">${esc(FEED.err)}</p>` : ''}
+    ${FEED.list.length ? FEED.list.map(p => postHTML(p, false)).join('') : `<div class="panel"><p class="sub" style="margin:0">${FEED.loaded ? L('Noch keine geteilten Trainings. Teil dein nächstes Workout oder deinen nächsten Lauf!', 'No shared sessions yet. Share your next workout or run!', 'Aucune séance partagée. Partage ta prochaine !', 'Henüz paylaşım yok. Bir sonrakini paylaş!') : L('Lade …', 'Loading …', 'Chargement …', 'Yükleniyor …')}</p></div>`}`;
+}
+function feedSheet(id) { const p = FEED.list.find(x => x.id === id); if (!p) return; openSheet(`<div data-notr><h2 id="dlgTitle" class="sr-only">${esc(p.title)}</h2>${postHTML(p, true)}</div>`); }
+/* Teilen-Dialog (nach Workout oder Lauf) */
+let SHARE_ITEM = null;
+function shareAskHTML(kind, id) {
+  return `<div class="panel fd-ask" data-notr><b>📣 ${L('Mit der Community teilen?', 'Share with the community?', 'Partager avec la communauté ?', 'Toplulukla paylaş?')}</b>
+    <p class="sub" style="margin:4px 0 8px">${L('Freiwillig. Ohne Klick bleibt dein Training privat.', 'Optional. Without a tap your session stays private.', 'Facultatif. Sans clic, ta séance reste privée.', 'İsteğe bağlı. Dokunmazsan antrenmanın gizli kalır.')}</p>
+    <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="fd-share" data-k="${kind}" data-id="${esc(id)}">${L('Teilen', 'Share', 'Partager', 'Paylaş')}</button><button type="button" class="btn btn-ghost" data-act="fd-private">🔒 ${L('Privat lassen', 'Keep private', 'Garder privé', 'Gizli tut')}</button></div></div>`;
+}
+function shareSheet(kind, id) {
+  const a = activities().find(x => x.id === (kind === 'run' ? 'r_' : 'w_') + id); if (!a) return;
+  if (!settings.community) { openSheet(`<div data-notr><h2 id="dlgTitle">📣 ${L('Teilen', 'Share', 'Partager', 'Paylaş')}</h2><p>${L('Zum Teilen bitte zuerst die Community aktivieren.', 'Please activate the community first.', 'Active d\'abord la communauté.', 'Önce topluluğu etkinleştir.')}</p><div class="acts"><button type="button" class="btn btn-primary xl" data-act="c-open">${L('ZUR COMMUNITY', 'GO TO COMMUNITY', 'VERS LA COMMUNAUTÉ', 'TOPLULUĞA GİT')}</button><button type="button" class="btn btn-ghost" data-act="sheet-close">${L('Später', 'Later', 'Plus tard', 'Sonra')}</button></div></div>`); return; }
+  SHARE_ITEM = a;
+  const prev = { id: 'x', uid: myUid(), nick: cNick(), ts: Date.now(), kind: a.kind, title: shareTitle(a), st: shareStats(a), kudos: [], cmts: [] };
+  openSheet(`<div data-notr><h2 id="dlgTitle">📣 ${L('In der Community teilen', 'Share in the community', 'Partager', 'Toplulukta paylaş')}</h2>
+    <p class="sub">${L('So sehen es die anderen Mitglieder:', 'This is what other members will see:', 'Voici ce que verront les autres :', 'Diğer üyeler bunu görecek:')}</p>
+    <div class="fd-prev">${postHTML(prev, false)}</div>
+    <label class="lbl-pw" for="fd_txt">${L('Ein Satz dazu (optional)', 'A line about it (optional)', 'Un mot (facultatif)', 'Bir cümle (isteğe bağlı)')}</label><input id="fd_txt" class="inp pw full" maxlength="200" placeholder="${L('z. B. Schweinehund besiegt! 🐷', 'e.g. Beat the inner couch potato!', 'p. ex. Flemme vaincue !', 'örn. Tembelliği yendim!')}">
+    <p class="sub">${L('Geteilt werden nur Titel, die angezeigten Werte, dein Text und dein Nickname. Kein Puls, kein Ort, kein Gewicht.', 'Only the title, the values shown, your text and nickname are shared. No heart rate, location or weight.', 'Seuls le titre, les valeurs affichées, ton texte et ton pseudo sont partagés.', 'Yalnızca başlık, gösterilen değerler, metnin ve takma adın paylaşılır.')}</p>
+    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="fd-post">${L('JETZT TEILEN', 'SHARE NOW', 'PARTAGER', 'PAYLAŞ')}</button><button type="button" class="btn btn-ghost" data-act="sheet-close">🔒 ${L('Privat lassen', 'Keep private', 'Garder privé', 'Gizli tut')}</button></div></div>`);
+}
+const shareTitle = a => a.kind === 'run' ? (RUN_TYPES.find(x => x[0] === a.r.type) || ['', L('Lauf', 'Run', 'Course', 'Koşu')])[1] + ' · ' + num(a.r.km, 1) + ' km' : String(a.title || 'Workout').slice(0, 60);
+function shareStats(a) {
+  if (a.kind === 'run') return { km: Math.round(a.r.km * 100) / 100, min: Math.round(a.r.sec / 60), pace: paceTxt(a.r.sec / a.r.km), pts: a.pts };
+  return { min: Math.round((a.h.ms || 0) / 60000), kcal: a.h.kcal || 0, pts: a.pts };
+}
+async function notifyOwner(p, type, text) {
+  if (!p || p.uid === myUid()) return;
+  try { const db = await socDb(); await db.collection('notifs').add({ to: nickKey(p.nick), type, from: cNick(), room: 'feed:' + p.id, rname: 'Feed', text: String(text || '').slice(0, 140), ts: Date.now() }); } catch (e) {}
+}
+async function socialAct(a, b) {
+  const id = b && b.dataset ? b.dataset.id : null, P = id ? FEED.list.find(x => x.id === id) : null;
+  try {
+    if (a === 'bd-tab') { BOARD.tab = b.dataset.v; render(); return; }
+    if (a === 'bd-join') { const c = document.getElementById('bd_ok'); if (!c || !c.checked) { toast(L('Bitte zuerst die Einwilligung bestätigen.', 'Please confirm the consent first.', 'Confirme d\'abord ton accord.', 'Önce onayı işaretle.')); return; } await boardJoin(); toast('🏆 ' + L('Willkommen in der Rangliste!', 'Welcome to the leaderboard!', 'Bienvenue au classement !', 'Sıralamaya hoş geldin!')); return; }
+    if (a === 'bd-leave') { confirmSheet(L('Aus der Rangliste austreten?', 'Leave the leaderboard?', 'Quitter le classement ?', 'Sıralamadan ayrıl?'), L('Dein Eintrag mit Nickname und Punkten wird gelöscht.', 'Your entry with nickname and points will be deleted.', 'Ton entrée sera supprimée.', 'Kaydın silinecek.'), L('AUSTRETEN', 'LEAVE', 'QUITTER', 'AYRIL'), () => boardLeave().catch(e => toast(String(e && (e.code || e.message)))), true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal')); return; }
+    if (a === 'fd-private') { const x = b.closest('.fd-ask'); if (x) x.remove(); toast('🔒 ' + L('Bleibt privat', 'Stays private', 'Reste privé', 'Gizli kalır')); return; }
+    if (a === 'fd-share') { shareSheet(b.dataset.k, id); return; }
+    if (a === 'fd-post') { const s = SHARE_ITEM; if (!s) return; const db = await socDb();
+      await db.collection('feed').add({ uid: myUid(), nick: cNick(), kind: s.kind, title: shareTitle(s), txt: val('fd_txt').slice(0, 200), st: shareStats(s), ts: Date.now() });
+      const sh = store.get(`uipause-${account.id}-shared-v1`, []); sh.push(s.id); store.set(`uipause-${account.id}-shared-v1`, sh.slice(-500));
+      SHARE_ITEM = null; closeSheet(); document.querySelectorAll('.fd-ask').forEach(x => x.remove()); FEED.loaded = 0;
+      toast('📣 ' + L('Geteilt! Mal sehen, wer Kudos gibt 👏', 'Shared! Let\'s see who gives kudos 👏', 'Partagé ! 👏', 'Paylaşıldı! 👏')); return; }
+    if (a === 'fd-react' && P) { const db = await socDb(), ref = db.collection('feed').doc(P.id).collection('kudos').doc(myUid()), my = (P.kudos || []).find(k => k.uid === myUid());
+      if (my && my.e === b.dataset.v) { await ref.delete(); P.kudos = P.kudos.filter(k => k.uid !== myUid()); }
+      else { if (my) await ref.delete(); await ref.set({ nick: cNick(), e: b.dataset.v, ts: Date.now() }); P.kudos = (P.kudos || []).filter(k => k.uid !== myUid()).concat({ uid: myUid(), nick: cNick(), e: b.dataset.v, ts: Date.now() }); if (!my) notifyOwner(P, 'kudos', b.dataset.v + ' ' + P.title); }
+      const dl = document.getElementById('dlg'); if (dl && dl.open && dl.querySelector('.fd-post')) feedSheet(P.id); else render(); return; }
+    if (a === 'fd-open' && P) { feedSheet(P.id); return; }
+    if (a === 'fd-csend' && P) { const t = val('fd_c'); if (!t) return; const db = await socDb();
+      const r = await db.collection('feed').doc(P.id).collection('cmts').add({ uid: myUid(), nick: cNick(), text: t.slice(0, 300), ts: Date.now() });
+      P.cmts = (P.cmts || []).concat({ id: r.id, uid: myUid(), nick: cNick(), text: t.slice(0, 300), ts: Date.now() }); notifyOwner(P, 'cmt', t); feedSheet(P.id); render(); return; }
+    if (a === 'fd-cdel' && P) { const db = await socDb(); await db.collection('feed').doc(P.id).collection('cmts').doc(b.dataset.c).delete(); P.cmts = P.cmts.filter(c => c.id !== b.dataset.c); feedSheet(P.id); render(); return; }
+    if (a === 'fd-del' && P) { const db = await socDb();
+      for (const sub of ['kudos', 'cmts']) { try { const q = await db.collection('feed').doc(P.id).collection(sub).get(); for (const d of q.docs) { try { await d.ref.delete(); } catch (e) {} } } catch (e) {} }
+      await db.collection('feed').doc(P.id).delete(); FEED.list = FEED.list.filter(x => x.id !== P.id); closeSheet(); render(); return; }
+  } catch (e) { toast(L('Das hat nicht geklappt: ', 'That did not work: ', 'Échec : ', 'Olmadı: ') + (e && (e.code || e.message) || e)); }
+}
+/* Eigene Social-Daten löschen (bei Community-Daten löschen / Konto löschen) */
+async function socialWipe(db, uid) {
+  try { await db.collection('board').doc(uid).delete(); } catch (e) {}
+  try { const q = await db.collection('feed').where('uid', '==', uid).get(); for (const d of q.docs) { for (const sub of ['kudos', 'cmts']) { try { const s = await d.ref.collection(sub).get(); for (const x of s.docs) { try { await x.ref.delete(); } catch (e) {} } } catch (e) {} } try { await d.ref.delete(); } catch (e) {} } } catch (e) {}
+  try { const q = await db.collection('feed').limit(300).get(); for (const d of q.docs) { try { await d.ref.collection('kudos').doc(uid).delete(); } catch (e) {} try { const c = await d.ref.collection('cmts').where('uid', '==', uid).get(); for (const x of c.docs) await x.ref.delete(); } catch (e) {} } } catch (e) {}
+  try { store.del(boardKey()); } catch (e) {}
+}
+const boardHomeCard = () => `<button type="button" class="run-card ev-home" data-act="bd-open" data-notr><span class="ic" aria-hidden="true">🏆</span><span><b>${L('Rangliste & Feed', 'Leaderboard & feed', 'Classement & fil', 'Sıralama & akış')}</b><small>${L(`Diesen Monat: ${ptsSum(monthStart())} Punkte`, `This month: ${ptsSum(monthStart())} points`, `Ce mois-ci : ${ptsSum(monthStart())} points`, `Bu ay: ${ptsSum(monthStart())} puan`)}</small></span><span class="go">›</span></button>`;
+/* Ergebnis-Seite nach dem Workout: Punkte + Teilen-Frage */
+let resSynced = '';
+function resultSocialHTML(s) {
+  if (!sess || !s || !(s.exDone > 0) || !account) return '';
+  const h = history.find(x => x.id === sess.id), pts = h ? PTS_WO(h) : 0;
+  if (resSynced !== sess.id) { resSynced = sess.id; setTimeout(() => { boardSync().catch(() => {}); usageTrack('wo', h); }, 300); }
+  const shared = store.get(`uipause-${account.id}-shared-v1`, []).includes('w_' + sess.id);
+  return `<p class="res-pts" data-notr>⭐ +${pts} ${L('Punkte', 'points', 'points', 'puan')}</p>${h && !shared ? shareAskHTML('workout', sess.id) : ''}`;
+}
+
+/* ============================================================
+   FEIERN nach dem Lauf + STARTSEITE ANPASSEN
+   ============================================================ */
+const CHEERS = [
+  L('Mega! Schweinehund besiegt 🐷💥', 'Awesome! You beat the inner couch potato 🛋️💥', 'Génial ! Flemme vaincue 💥', 'Harika! Tembelliği yendin 💥'),
+  L('Stark! Du warst draußen, während andere noch überlegt haben. 🚀', 'Strong! You were out there while others were still thinking about it. 🚀', 'Bravo ! Tu es sorti pendant que d\'autres hésitaient. 🚀', 'Güçlü! Başkaları düşünürken sen dışarıdaydın. 🚀'),
+  L('Läuft bei dir! Wortwörtlich. 🏃‍♂️🔥', 'You\'re on a roll! Literally. 🏃🔥', 'Ça roule pour toi ! 🏃🔥', 'Harika gidiyorsun! 🏃🔥'),
+  L('Jeder Kilometer zählt. Heute hast du geliefert! 💪', 'Every kilometre counts. Today you delivered! 💪', 'Chaque kilomètre compte. Aujourd\'hui tu as assuré ! 💪', 'Her kilometre önemli. Bugün başardın! 💪'),
+  L('Ausrede? Nicht heute. Richtig gut gemacht! 🎉', 'Excuses? Not today. Really well done! 🎉', 'Une excuse ? Pas aujourd\'hui. Bravo ! 🎉', 'Bahane mi? Bugün değil. Çok iyi! 🎉')
+];
+/* Erfolge rund um einen gerade gespeicherten Lauf */
+function runAchievements(r) {
+  const all = rlList(), prev = all.filter(x => x.id !== r.id && x.t <= r.t), out = [];
+  const tot = all.reduce((s, x) => s + x.km, 0), totPrev = tot - r.km;
+  out.push(['⭐', L(`+${PTS_RUN(r)} Punkte gesammelt`, `+${PTS_RUN(r)} points earned`, `+${PTS_RUN(r)} points gagnés`, `+${PTS_RUN(r)} puan kazandın`)]);
+  out.push(['🏃', L(`Dein ${all.length}. Lauf`, `Your run no. ${all.length}`, `Ta ${all.length}e sortie`, `${all.length}. koşun`) + (all.length === 1 ? L(': der erste Schritt ist gemacht!', ': the first step is done!', ' : le premier pas est fait !', ': ilk adım atıldı!') : '')]);
+  [10, 25, 50, 100, 250, 500, 1000, 2000].forEach(m => { if (totPrev < m && tot >= m) out.push(['🏅', L(`Meilenstein: ${m} km insgesamt!`, `Milestone: ${m} km in total!`, `Cap des ${m} km au total !`, `Dönüm noktası: toplam ${m} km!`)]); });
+  if (prev.length && r.km > Math.max(...prev.map(x => x.km))) out.push(['📏', L(`Längster Lauf bisher: ${num(r.km, 1)} km`, `Longest run so far: ${num(r.km, 1)} km`, `Plus longue sortie : ${num(r.km, 1)} km`, `Şimdiye kadarki en uzun koşu: ${num(r.km, 1)} km`)]);
+  const fast = prev.filter(x => x.km >= Math.min(3, r.km));
+  if (r.km >= 3 && fast.length && paceOf(r) < Math.min(...fast.map(paceOf))) out.push(['⚡', L(`Schnellstes Tempo bisher: ${paceTxt(paceOf(r))} min/km`, `Fastest pace so far: ${paceTxt(paceOf(r))} min/km`, `Allure la plus rapide : ${paceTxt(paceOf(r))} min/km`, `En hızlı tempo: ${paceTxt(paceOf(r))} dk/km`)]);
+  const w0 = weekStart(r.t), wk = weekKm(all, w0), best = Math.max(0, ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(i => weekKm(all, w0 - i * 7 * DAY)));
+  if (wk > best && best > 0) out.push(['📈', L(`Stärkste Woche seit Langem: ${num(wk, 1)} km`, `Best week in a long time: ${num(wk, 1)} km`, `Meilleure semaine depuis longtemps : ${num(wk, 1)} km`, `Uzun zamandır en iyi hafta: ${num(wk, 1)} km`)]);
+  let streak = 0; for (let i = 0; i < 52; i++) { if (weekKm(all, w0 - i * 7 * DAY) > 0) streak++; else break; }
+  if (streak >= 2) out.push(['🔥', L(`${streak} Wochen in Folge gelaufen`, `${streak} weeks in a row`, `${streak} semaines d\'affilée`, `Üst üste ${streak} hafta`)]);
+  out.push(['🌍', L(`Insgesamt ${num(tot, 1)} km. Das sind ${Math.max(1, Math.round(tot / 0.4))} Stadionrunden.`, `${num(tot, 1)} km in total. That's ${Math.max(1, Math.round(tot / 0.4))} track laps.`, `${num(tot, 1)} km au total, soit ${Math.max(1, Math.round(tot / 0.4))} tours de piste.`, `Toplam ${num(tot, 1)} km. ${Math.max(1, Math.round(tot / 0.4))} pist turu.`)]);
+  return out;
+}
+function runCelebrateHTML(r) {
+  const head = CHEERS[Math.floor(Math.random() * CHEERS.length)];
+  setTimeout(celBurst, 60);
+  return `<div class="celebrate"><canvas id="celCv" class="cel-cv" aria-hidden="true"></canvas><div class="cel-burst" aria-hidden="true">🎆</div><h2 id="dlgTitle">${esc(head)}</h2>
+    <p class="cel-sub">${L('Das hast du heute erreicht:', 'Here is what you achieved today:', 'Voici ce que tu as accompli :', 'Bugün başardıkların:')}</p>
+    <ul class="motiv-list cel-list">${runAchievements(r).map(([i, t]) => `<li><span>${i}</span>${esc(t)}</li>`).join('')}</ul></div>`;
+}
+
+/* ---------------- Startseite anpassen ---------------- */
+const dashKey = () => `uipause-${account ? account.id : 'none'}-dash-v1`;
+const DASH_CARDS = [
+  ['account', '👤', L('Mein Konto', 'My account', 'Mon compte', 'Hesabım')],
+  ['run', '🏃', L('Lauftrainer', 'Running coach', 'Coach running', 'Koşu koçu')],
+  ['community', '👥', 'Community'],
+  ['event', '🏁', L('Nächstes Laufevent', 'Next race', 'Prochaine course', 'Sonraki koşu')],
+  ['board', '🏆', L('Rangliste & Feed', 'Leaderboard & feed', 'Classement & fil', 'Sıralama & akış')],
+  ['weight', '⚖️', L('Gewicht', 'Weight', 'Poids', 'Kilo')],
+  ['achieve', '🎖️', L('Erfolge', 'Achievements', 'Succès', 'Başarılar')]
+];
+const dashCfg = () => Object.assign({ hide: {} }, account ? store.get(dashKey(), {}) : {});
+const dashOn = k => !dashCfg().hide[k];
+const visibleGroups = () => { const g = PROGRAM_GROUPS.filter(x => dashOn('g_' + x.id)); return g.length ? g : PROGRAM_GROUPS.slice(0, 1); };
+const roomVisible = id => dashOn('room_' + id);
+function dashSheet() {
+  const H = dashCfg().hide, sw = (k, ic, n) => `<label class="dash-row"><span>${ic} ${esc(n)}</span><input type="checkbox" class="dash-sw" data-k="${esc(k)}" ${H[k] ? '' : 'checked'}></label>`;
+  openSheet(`<div data-notr><h2 id="dlgTitle">✏️ ${L('Startseite anpassen', 'Customise home', 'Personnaliser l\'accueil', 'Ana sayfayı özelleştir')}</h2>
+    <p class="sub">${L('Blende aus, was dich nicht interessiert. Nichts wird gelöscht, du kannst alles jederzeit wieder einschalten.', 'Hide what you are not interested in. Nothing is deleted; switch it back on any time.', 'Masque ce qui ne t\'intéresse pas. Rien n\'est supprimé.', 'İlgilenmediklerini gizle. Hiçbir şey silinmez.')}</p>
+    <div class="sec-title" style="margin:10px 0 6px">${L('Karten', 'Cards', 'Cartes', 'Kartlar')}</div>
+    <div class="dash-list">${DASH_CARDS.map(([k, ic, n]) => sw(k, ic, n)).join('')}</div>
+    <div class="sec-title" style="margin:14px 0 6px">${L('Trainingsbereiche', 'Training areas', 'Domaines d\'entraînement', 'Antrenman alanları')}</div>
+    <div class="dash-list">${PROGRAM_GROUPS.map(g => sw('g_' + g.id, '💪', g.name)).join('')}</div>
+    <div class="sec-title" style="margin:14px 0 6px">${L('Community-Räume', 'Community rooms', 'Salons', 'Topluluk odaları')}</div>
+    <div class="dash-list">${DEF_ROOMS.map(r => sw('room_' + r.id, r.ic, r.name)).join('')}</div>
+    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">${L('FERTIG', 'DONE', 'TERMINÉ', 'TAMAM')}</button><button type="button" class="btn btn-ghost" data-act="dash-reset">${L('Alles wieder einblenden', 'Show everything again', 'Tout réafficher', 'Hepsini göster')}</button></div></div>`);
+}
+function dashToggle(k, on) { const c = dashCfg(); if (on) delete c.hide[k]; else c.hide[k] = 1; store.set(dashKey(), c); render(); }
+document.addEventListener('change', e => { if (e.target && e.target.classList && e.target.classList.contains('dash-sw')) dashToggle(e.target.dataset.k, e.target.checked); });
+function dashAct(a) {
+  if (a === 'dash-open') { dashSheet(); return; }
+  if (a === 'dash-reset') { store.set(dashKey(), { hide: {} }); closeSheet(); render(); dashSheet(); return; }
+}
+
+/* Feuerwerk direkt im Dialog (der Dialog liegt über allem anderen) */
+function celBurst() {
+  const cv = document.getElementById('celCv'); if (!cv || REDUCED) return;
+  const box = cv.parentElement.getBoundingClientRect(), W = box.width, H = Math.max(260, box.height), dpr = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = W * dpr; cv.height = H * dpr; cv.style.height = H + 'px'; const ctx = cv.getContext && cv.getContext('2d'); if (!ctx) return; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const cs = getComputedStyle(document.documentElement), cols = ['--green', '--brand', '--purple', '--ph-warmup', '--rest-accent'].map(n => (cs.getPropertyValue(n) || '').trim()).filter(Boolean).concat(['#F2C14E', '#FFFFFF', '#FF6B6B']);
+  const P = [], t0 = performance.now(), DUR = 4200;
+  const boom = () => { const x = W * (0.15 + Math.random() * 0.7), y = H * (0.12 + Math.random() * 0.35), c = cols[Math.floor(Math.random() * cols.length)];
+    for (let i = 0; i < 46; i++) { const a = Math.PI * 2 * i / 46, v = 1.6 + Math.random() * 2.6; P.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1, c }); } };
+  let next = 0;
+  const step = now => { const t = now - t0; if (!document.getElementById('celCv')) return;
+    if (t > next && t < DUR - 1200) { boom(); next = t + 420 + Math.random() * 380; }
+    ctx.clearRect(0, 0, W, H);
+    for (let i = P.length - 1; i >= 0; i--) { const q = P[i]; q.x += q.vx; q.y += q.vy; q.vy += 0.045; q.vx *= 0.985; q.life -= 0.012; if (q.life <= 0) { P.splice(i, 1); continue; }
+      ctx.globalAlpha = q.life; ctx.fillStyle = q.c; ctx.beginPath(); ctx.arc(q.x, q.y, 2.4, 0, 7); ctx.fill(); }
+    ctx.globalAlpha = 1; if (t < DUR || P.length) requestAnimationFrame(step); else ctx.clearRect(0, 0, W, H); };
+  requestAnimationFrame(step);
+}
+
+/* ============================================================
+   NUTZUNG (ab Version 29): nur Zähler, keine Inhalte
+   usage/{uid}: nick, first, last, opens, wo, runs, min, km, days {JJJJ-MM-TT: Anzahl}
+   Lesen nur Admin und die Person selbst. Schreiben nur die Person selbst.
+   ============================================================ */
+let usageOpenDone = '';
+async function usageTrack(kind, x) {
+  try {
+    if (!account || !account.uid || !/^https?:$/.test(location.protocol)) return;
+    if (kind === 'open') { if (usageOpenDone === account.uid) return; usageOpenDone = account.uid; }
+    const { db } = await fbCore(), ref = db.collection('usage').doc(account.uid), s = await ref.get();
+    const o = s.exists ? s.data() : {}, now = Date.now(), day = dayKeyS(now), days = Object.assign({}, o.days || {});
+    days[day] = (days[day] || 0) + 1;
+    Object.keys(days).sort().slice(0, -90).forEach(k => delete days[k]);
+    const n = { nick: cNick(), first: o.first || now, last: now, opens: (o.opens || 0) + (kind === 'open' ? 1 : 0), wo: (o.wo || 0) + (kind === 'wo' ? 1 : 0), runs: (o.runs || 0) + (kind === 'run' ? 1 : 0),
+      min: (o.min || 0) + Math.round(kind === 'wo' && x ? (x.ms || 0) / 60000 : kind === 'run' && x ? (x.sec || 0) / 60 : 0), km: Math.round(((o.km || 0) + (kind === 'run' && x ? +x.km || 0 : 0)) * 10) / 10, days };
+    await ref.set(n);
+  } catch (e) {}
+}
+/* Admin: Übersicht */
+let USG = { list: [], loaded: 0, err: '', sort: 'last' };
+async function usgLoad() {
+  try { const q = await ADM.db.collection('usage').get(); USG.list = q.docs.map(d => Object.assign({ uid: d.id }, d.data())); USG.err = ''; } catch (e) { USG.err = String(e && (e.code || e.message) || e); }
+  USG.loaded = Date.now();
+}
+function admUsageHTML() {
+  if (!USG.loaded) { setTimeout(() => usgLoad().then(() => { if (adminMode && ADM.tab === 'use') showAdmin(); }), 0); return '<div class="panel"><p class="sub" style="margin:0">Nutzung wird geladen …</p></div>'; }
+  const okIds = new Set(ADM.members.filter(m => m.status === 'approved').map(m => m.uid)), live = USG.list.filter(u => okIds.has(u.uid));
+  const now = Date.now(), dk = n => dayKeyS(now - n * DAY), act = n => { const ks = Array.from({ length: n }, (_, i) => dk(i)); return live.filter(u => ks.some(k => (u.days || {})[k])).length; };
+  const days14 = Array.from({ length: 14 }, (_, i) => dk(13 - i)), dau = days14.map(k => live.filter(u => (u.days || {})[k]).length);
+  const d30 = u => Array.from({ length: 30 }, (_, i) => dk(i)).filter(k => (u.days || {})[k]).length;
+  const byUid = {}; USG.list.forEach(u => { byUid[u.uid] = u; });
+  const rows = ADM.members.filter(m => m.status !== 'pending').map(m => Object.assign({ uid: m.uid, nick: m.nick, status: m.status }, byUid[m.uid] || {}));
+  const key = { last: r => -(r.last || 0), active: r => -d30(r), wo: r => -((r.wo || 0) + (r.runs || 0)), min: r => -(r.min || 0) }[USG.sort] || (r => -(r.last || 0));
+  rows.sort((a, b) => key(a) - key(b) || String(a.nick).localeCompare(String(b.nick)));
+  const ago = t => !t ? 'noch nie' : agoTxt(t);
+  return `<div class="tiles" style="margin-top:12px">
+      <div class="tile"><small>Mitglieder</small><b>${ADM.members.filter(m => m.status === 'approved').length}</b></div>
+      <div class="tile"><small>Aktiv heute</small><b>${act(1)}</b></div>
+      <div class="tile"><small>Aktiv 7 Tage</small><b>${act(7)}</b></div>
+      <div class="tile"><small>Aktiv 30 Tage</small><b>${act(30)}</b></div></div>
+    <div class="sec-title">Aktive Nutzer pro Tag (14 Tage)</div>
+    <div class="panel">${svgBars(dau, days14.map(k => k.slice(8) + '.' + k.slice(5, 7) + '.'), v => String(v))}</div>
+    <div class="sec-title">Wer nutzt wann wie viel</div>
+    <div class="seg" role="radiogroup" style="grid-template-columns:repeat(4,1fr);margin-bottom:8px">${[['last', 'Zuletzt'], ['active', 'Aktive Tage'], ['wo', 'Trainings'], ['min', 'Minuten']].map(([k, n]) => `<button type="button" role="radio" aria-checked="${USG.sort === k}" data-act="adm-usort" data-v="${k}">${n}</button>`).join('')}</div>
+    ${USG.err ? `<p class="sub">${esc(USG.err)}</p>` : ''}
+    <div class="usg-list">${rows.map(r => `<div class="panel usg-row ${r.status === 'blocked' ? 'off' : ''}"><div class="adm-h"><b>${esc(r.nick)}${r.status === 'blocked' ? ' · gesperrt' : ''}</b><small>zuletzt ${ago(r.last)}</small></div>
+      <div class="usg-nums"><span><b>${d30(r)}</b> ${d30(r) === 1 ? 'Tag' : 'Tage'} aktiv (30 T.)</span><span><b>${r.wo || 0}</b> Workouts</span><span><b>${r.runs || 0}</b> Läufe</span><span><b>${r.min || 0}</b> Min.</span>${r.km ? `<span><b>${num(r.km, 1)}</b> km</span>` : ''}<span><b>${r.opens || 0}</b>× geöffnet</span></div>
+      ${r.first ? `<p class="sub" style="margin:4px 0 0">dabei seit ${new Date(r.first).toLocaleDateString('de-DE')}</p>` : ''}</div>`).join('') || '<div class="panel"><p class="sub" style="margin:0">Noch keine Nutzungsdaten.</p></div>'}</div>
+    <p class="sub">Erfasst wird nur, an welchen Tagen jemand die App öffnet und wie viele Workouts, Läufe und Minuten zusammenkommen. Keine Inhalte, kein Puls, kein Ort. Daten gibt es erst ab App-Version 29.</p>
+    <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-ureload">Aktualisieren</button></div>`;
+}
 
 let lastRKey = '';
 function render() {
@@ -5206,6 +5993,11 @@ function legalSheet() {
       <li>Konto und Registrierung: Dein Login (E-Mail-Adresse und Passwort) verwaltet Firebase Authentication (Google). Das Passwort wird dort geschützt gespeichert; der Betreiber kann es nicht einsehen. Vorname, Nachname und E-Mail-Adresse liegen in Firebase und sind nur für dich und den Admin lesbar. Nickname, Freischaltungsstatus und Tarif liegen ebenfalls dort. Bei der Registrierung erhält der Admin außerdem eine E-Mail mit Name, Nickname und E-Mail-Adresse; der Versand läuft über EmailJS (emailjs.com) und ein Gmail-Postfach (Google). Bestätigungs- und Passwort-Links verschickt Firebase. Die Daten werden nur für Betrieb und Freischaltung genutzt und nicht weitergegeben. Wird dein Konto gelöscht, entfernt der Admin diese Daten.</li>
       <li>Community (nur nach ausdrücklicher Zustimmung in der App): Nickname, Nachrichten, Abstimmungen und Treffen werden über Google Firebase (Google Ireland Ltd. / Google LLC, USA) gespeichert und sind für alle Community-Mitglieder sichtbar. Die Anmeldung erfolgt anonym, ohne E-Mail. Ohne Zustimmung wird keine Verbindung zu Firebase aufgebaut. Eigene Beiträge können jederzeit gelöscht und die Community in den Einstellungen wieder ausgeschaltet werden. Für Inhalte, die Mitglieder einstellen, ist der jeweilige Verfasser verantwortlich.</li>
       <li>Mitgliederbereich: Zusätzliche Profilangaben (Wohnort, Geburtsjahr, Größe, Ziel, Profilbild) sind freiwillig und werden nur lokal auf deinem Gerät gespeichert. Ist die Community aktiviert, sind Nickname, Profilbild und Wohnort für andere Mitglieder sichtbar.</li>
+      <li>Lauftagebuch: Eingetragene Läufe (Distanz, Dauer, Puls, Gefühl, Notiz) werden nur lokal auf deinem Gerät gespeichert. Auswertungen und Prognosen sind Schätzungen und keine medizinische Beratung.</li>
+      <li>Event-Community: Wenn du bei einem Event „Ich bin dabei“ wählst, werden dein Nickname und der Zeitpunkt bei Google Firebase gespeichert und sind für freigeschaltete Mitglieder sichtbar. Du kannst das jederzeit wieder abwählen.</li>
+      <li>Feed: Ein Training erscheint nur in der Community, wenn du es nach dem Training ausdrücklich teilst (Titel, angezeigte Werte, dein Text, Nickname). Kudos und Kommentare sind für freigeschaltete Mitglieder sichtbar. Eigene Beiträge kannst du jederzeit löschen.</li>
+      <li>Rangliste: Teilnahme nur nach Einwilligung. Gespeichert werden Nickname und Punktzahl. Austreten löscht den Eintrag.</li>
+      <li>Nutzungsübersicht für den Admin: Gespeichert werden Nickname, erster und letzter Nutzungstag, an welchen Tagen die App geöffnet wurde (letzte 90 Tage) sowie die Anzahl der Workouts und Läufe, Minuten und Kilometer. Keine Trainingsinhalte, kein Puls, kein Ort. Zweck: Betrieb und Verbesserung der App. Beim Löschen des Kontos wird auch dieser Eintrag gelöscht.</li>
       <li>Fotos für die Teilen-Funktion werden nur lokal im Browser verarbeitet und nicht hochgeladen oder gespeichert. Was du teilst, entscheidest du selbst.</li>
       <li>Hosting: Die Dateien werden über GitHub Pages (GitHub Inc., USA) ausgeliefert. Beim Aufruf verarbeitet GitHub technisch notwendige Verbindungsdaten wie die IP-Adresse. Details: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</li>
     </ul>
@@ -5293,7 +6085,7 @@ function fireworks() {
    EREIGNISSE – Delegation, Schutz vor Doppelklicks
    ============================================================ */
 const TOK_ACTS = ['done', 'next', 'skip', 'back', 'skip-rest', 'next-ex', 'add15', 'timer-start'];
-const FREE_ACTS = ['reps-', 'reps+', 'w-', 'w+', 'login', 'register', 'auth-tab', 'reg-g', 'pw-toggle', 'adm-save', 'adm-add', 'adm-admin', 'adm-approve', 'adm-copy', 'lang', 'rq', 'run-done', 'c-vote', 'c-join', 'c-send', 'c-consent', 'onb-next', 'onb-back', 'onb-pick'];
+const FREE_ACTS = ['reps-', 'reps+', 'w-', 'w+', 'login', 'register', 'auth-tab', 'reg-g', 'pw-toggle', 'adm-save', 'adm-add', 'adm-admin', 'adm-approve', 'adm-copy', 'lang', 'rq', 'run-done', 'c-vote', 'c-join', 'c-send', 'c-consent', 'onb-next', 'onb-back', 'onb-pick', 'rl-pick', 'run-tab'];
 let lastAct = { k: '', t: 0 };
 document.addEventListener('pointerdown', () => { if (!AC || AC.state !== 'running') unlockAudio(); }, { passive: true });
 document.addEventListener('click', e => {
@@ -5320,6 +6112,11 @@ function act(a, b) {
     case 'c-mention': communityAct(a, b); break;
     case 'c-open': case 'c-consent': case 'c-off': case 'c-retry': case 'c-room': case 'c-back': case 'c-send': case 'c-poll': case 'c-meet': case 'c-newroom': case 'c-room-send': case 'c-poll-send': case 'c-meet-send': case 'c-vote': case 'c-join': case 'c-del': case 'c-tab': case 'c-dm': case 'c-poke': case 'c-rules': case 'c-wipe': case 'c-block': case 'c-unblock': case 'c-report': case 'c-report-send': communityAct(a, b); break;
     case 'member': case 'm-save': case 'm-pw': case 'm-method': case 'm-cancel': case 'm-uncancel': case 'm-revoke': case 'm-revoke-do': case 'm-export': case 'm-wipe': case 'm-av-del': case 'm-ag': case 'm-ag-del': case 'm-ag-send': memberAct(a, b); break;
+    case 'run-tab': case 'rl-pick': case 'rl-save': case 'rl-show': case 'rl-del': case 'rl-cfg': case 'rl-goal': runlogAct(a, b); break;
+    case 'ev-open': case 'ev-go': case 'ev-chat': case 'ev-plan': case 'ev-new': case 'ev-save': case 'ev-del': eventsAct(a, b); break;
+    case 'dash-open': case 'dash-reset': dashAct(a); break;
+    case 'bd-open': view = 'community'; cbTab = 'board'; cbRoom = null; render(); window.scrollTo(0, 0); break;
+    case 'bd-tab': case 'bd-join': case 'bd-leave': case 'fd-private': case 'fd-share': case 'fd-post': case 'fd-react': case 'fd-open': case 'fd-csend': case 'fd-cdel': case 'fd-del': socialAct(a, b); break;
     case 'lang-menu': langSheet(); break;
     case 'go-home': if (!account) break; closeSheet(); if (sess && sess.state === 'COMPLETED') { homeOpen = false; view = 'train'; newWorkout(); break; } if (sess && sess.state === 'ACTIVE') { if (!sess.paused) pauseWorkout(); homeOpen = true; } view = 'train'; render(); window.scrollTo(0, 0); break;
     case 'resume-home': homeOpen = false; if (sess && sess.paused) resumeWorkout(); else render(); window.scrollTo(0, 0); break;
@@ -5385,6 +6182,8 @@ function act(a, b) {
     case 'legal': legalSheet(); break;
     case 'au-resend': case 'au-verified': authAct(a); break;
     case 'au-mfa': mfaSubmit(); break;
+    case 'au-diag': showDiag(); break;
+    case 'au-diag-reset': diagReset(); break;
     case 'au-migr': if (window.__migr) window.__migr(b.dataset.v); break;
     case 'm-delacc': delAccSheet(); break;
     case 'm-delacc-go': { const pw = (document.getElementById('da_pw') || {}).value || ''; deleteOwnAccount(pw).catch(e => { const el = document.getElementById('da_err'); if (el) el.textContent = /wrong-password|invalid-credential/.test(String(e && e.code)) ? 'Passwort falsch.' : authMsg(e); }); break; }
@@ -5575,12 +6374,12 @@ function showLogin(err, info) {
     ${termsBox('rterms')}
     <p class="sub" style="margin:8px 0 0">* Pflichtangaben</p>
     <label class="terms"><input type="checkbox" id="rage"><span>Ich bin mindestens 16 Jahre alt.</span></label>
-    <label class="terms"><input type="checkbox" id="rmail"><span>Ich bin einverstanden, dass Name, Nickname und E-Mail für die Freigabe gespeichert und per E-Mail an den Admin gesendet werden.</span></label>
+    <label class="terms"><input type="checkbox" id="rmail"><span>Ich bin einverstanden, dass Name, Nickname und E-Mail gespeichert und per E-Mail an den Admin gesendet werden. Der Admin sieht außerdem, an welchen Tagen ich die App nutze und wie viele Workouts, Läufe und Minuten zusammenkommen (keine Inhalte, kein Puls, kein Ort).</span></label>
     <button type="button" class="btn btn-lamp xl" style="margin-top:14px" data-act="register">REGISTRIERUNG SENDEN</button>`;
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 25 · Firebase-Anmeldung</p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 29 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
