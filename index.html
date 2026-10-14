@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-hpgePWR4bZ4hnRv4vzbRFZes1JK8YLr2+yydvid+aN0=' 'sha256-oYeC9+FEyRF88Z8x3M1go5/f34o85GntfZX+/jHXUJ8=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-hpgePWR4bZ4hnRv4vzbRFZes1JK8YLr2+yydvid+aN0=' 'sha256-udXZ6gWEAJiiH8avX0f6Sip5mpAZdgeX0VWfei3UHt0=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
@@ -10,6 +10,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Pausen Workout">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="description" content="Pausen Workout · Body Activity App: 40-Minuten-Full-Body-Training mit Timern, Pausen und Statistiken.">
 <title>Pausen Workout · Body Activity App</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-60 -60 120 120'%3E%3Ccircle r='55' fill='%23FFFFFF' stroke='%230B3D91' stroke-width='6'/%3E%3Cg stroke='%2345A538' stroke-width='7' stroke-linecap='round'%3E%3Cpath d='M-20 0H20M-26-12V12M26-12V12M-17-8V8M17-8V8'/%3E%3C/g%3E%3C/svg%3E">
@@ -486,6 +488,7 @@ body.has-bnav .toast { bottom: 150px; }
 .st-edit { text-align: center; margin: 4px 0 0; }
 .acc-menu { display: grid; gap: 8px; }
 .page-h { margin: 0 0 4px; font-size: 24px; }
+.share-apps { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 0; opacity: .8; margin-top: 2px; text-transform: none; }
 .lang-chips { display: flex; gap: 6px; justify-content: flex-end; margin: -4px 0 10px; }
 .lang-chips .chip { margin-top: 0; min-height: 34px; padding: 6px 10px; font-size: 12px; }
 
@@ -1380,7 +1383,7 @@ const MET = {
 const DEFAULTS = {
   v: 4, kneeMode: false, program: 'fullbody', bodyWeight: 72, targetMin: 40, rounds: 3, dbWeight: 10, kbWeight: 12,
   restEx: 10, restRound: 90, restSet: 60,
-  skin: 'auto', sound: true, vibration: true, autoAdvance: false, autoRest: 'short', levels: { women: 'leicht' },
+  skin: 'auto', sound: true, vibration: true, autoAdvance: false, autoWarmup: true, autoRest: 'short', levels: { women: 'leicht' },
   warmup: true, cooldown: true, finisher: true, theme: 'auto',
   warmupDur: { arm_circles: 30, rotation: 30, march: 45, hip_hinge: 45, wall_pushup: 30, hip_circles: 30, wrist_ankle: 30, kb_halo: 30 },
   warmupOn: { arm_circles: true, rotation: true, march: true, hip_hinge: true, wall_pushup: true, hip_circles: false, wrist_ankle: false, kb_halo: false },
@@ -2056,7 +2059,10 @@ function enterStep(j) {
   sess.stepT0 = elapsed();
   if (!sess.paused) openSeg();
   if (sess.cfg.autoNext && sess.timer && !sess.timer.done && !sess.paused) runTimer(sess.timer);
+  /* Warm-up läuft automatisch durch: Zeit startet sofort von selbst */
+  else if (autoWarm(st) && sess.timer && !sess.timer.done && !sess.paused) runTimer(sess.timer);
 }
+const autoWarm = st => !!st && st.phase === 'warmup' && st.kind === 'time' && settings.autoWarmup !== false;
 function enterRest(kind) {
   closeSeg();
   sess.mode = 'rest'; sess.restKind = kind;
@@ -2297,7 +2303,7 @@ function loop() {
         else { sfx('exEnd'); buzz([250, 100, 250]); }
       }
       save();
-      if (sess.mode === 'exercise' && sess.cfg && (settings.autoAdvance || sess.cfg.autoNext)) { complete(); return; }
+      if (sess.mode === 'exercise' && sess.cfg && (settings.autoAdvance || sess.cfg.autoNext || autoWarm(step()))) { const wasW = autoWarm(step()); complete(); if (wasW && sess && sess.state === 'ACTIVE' && step().phase === 'warmup') toast(L('Gleich geht’s weiter: ', 'Up next: ', 'Ensuite : ', 'Sıradaki: ') + EX[step().ex].name); return; }
       /* Nach Pausen automatisch weiter: Standard nur bei kurzen Übungspausen */
       const ar = settings.autoRest || 'short';
       if (sess.mode === 'rest' && (sess.cfg.autoNext || ar === 'all' || (ar === 'short' && sess.restKind === 'ex'))) { nextFromRest(); toast('Weiter geht’s', true); return; }
@@ -2871,6 +2877,7 @@ function settingsView() {
       ${swRow('sound', 'Sound', c.sound, 'Countdown-Signale, Übungsende, Rundenende, Abschlussmelodie')}
       ${swRow('vibration', 'Vibration', c.vibration, canVibrate() ? 'Wird von diesem Browser unterstützt' : 'Dieser Browser unterstützt keine Vibration (z. B. Safari auf dem iPhone)')}
       ${selRow('autoRest', 'Nach Pausen automatisch weiter', c.autoRest || 'short', [['short', 'Bei kurzen Pausen'], ['all', 'Bei allen Pausen'], ['off', 'Nie (NEXT drücken)']], 'Kurze Pausen = zwischen zwei Übungen. Runden- und Satzpausen warten sonst auf dich.')}
+      ${swRow('autoWarmup', 'Warm-up läuft automatisch', c.autoWarmup !== false, 'Zeit startet von selbst, nach jeder Übung geht es direkt weiter')}
       ${swRow('autoAdvance', 'Automatischer Wechsel bei Zeitübungen', c.autoAdvance, 'Nach Ablauf einer Zeitübung direkt weiter')}
       ${swRow('warmup', 'Warm-up', c.warmup)}
       ${swRow('finisher', 'Bizeps-Finisher', c.finisher)}
@@ -3742,7 +3749,7 @@ function langSheet() {
    Das Foto wird nur lokal im Browser verarbeitet.
    ============================================================ */
 const ACC = () => currentSkin() === 'm' ? '#D6C28C' : '#5FD34A', ACC2 = () => currentSkin() === 'm' ? '#D6C28C' : '#45A538', ACCT = () => currentSkin() === 'm' ? '#061025' : '#fff';
-let shareImg = null, shareStyle = 0, shareBlob = null;
+let shareImg = null, shareStyle = 0, shareBlob = null, shareRun = null;
 const SHARE_W = 1080, SHARE_H = 1350;
 const FUN_KCAL = [
   [90, '🍦', L('Kugeln Eis', 'scoops of ice cream', 'boules de glace', 'top dondurma')],
@@ -3767,7 +3774,21 @@ function funPick(list, val, seed) {
   return { n: val / u, ic, name };
 }
 const funNum = n => n >= 10 ? num(Math.round(n)) : num(Math.round(n * 2) / 2, n % 1 && Math.round(n * 2) % 2 ? 1 : 0);
+const FUN_KM = [
+  [0.4, '🏟️', L('Stadionrunden', 'track laps', 'tours de piste', 'pist turu')],
+  [0.105, '⚽', L('Fußballfelder', 'football pitches', 'terrains de foot', 'futbol sahası')],
+  [0.33, '🗼', L('Eiffeltürme hoch', 'Eiffel Towers high', 'tours Eiffel en hauteur', 'Eyfel Kulesi boyu')]
+];
+function runShareData(r) {
+  const bw = +(store.get(`uipause-${account.id}-profile-v1`, {}).weight || settings.bodyWeight || 75), kcal = Math.round(r.km * bw * 1.0);
+  const seed = [...String(r.id)].reduce((a, c) => a + c.charCodeAt(0), 0), min = Math.max(1, Math.round(r.sec / 60));
+  const tt = fmtDur(r.sec), pace = paceTxt(r.sec / r.km);
+  return { run: true, s: {}, kgMoved: 0, kcal, min, km: r.km, prog: L('Lauf', 'Run', 'Course', 'Koşu') + ' · ' + num(r.km, 1) + ' km', date: new Date(r.t).toLocaleDateString(LOC, { day: 'numeric', month: 'long', year: 'numeric' }),
+    cols: [[num(r.km, r.km < 10 ? 2 : 1), 'km', L('Distanz', 'distance', 'distance', 'mesafe')], [tt, '', L('Zeit', 'time', 'temps', 'süre')], [pace, '/km', L('Tempo', 'pace', 'allure', 'tempo')]],
+    fk: kcal >= 60 ? funPick(FUN_KCAL, kcal, seed) : null, fw: funPick(FUN_KM, r.km, seed >> 1) };
+}
 function shareData() {
+  if (shareRun && !shareDemoMode) return runShareData(shareRun);
   if (shareDemoMode) { const kcal = 325, kgMoved = 2400; return { s: {}, kgMoved, kcal, min: 28, prog: 'Full-Body Classic', date: new Date().toLocaleDateString(LOC, { day: 'numeric', month: 'long', year: 'numeric' }), fk: funPick(FUN_KCAL, kcal, 1), fw: funPick(FUN_KG, kgMoved, 1) }; }
   const s = sess.summary || summarize(sess);
   const kgMoved = Math.round((s.vol || 0) + (s.bwVol || 0));
@@ -3808,8 +3829,8 @@ function renderShare() {
     /* Bilanz: drei große Kacheln */
     shade(SHARE_H * 0.42, 0.92);
     pill(D.prog.toUpperCase(), 50, SHARE_H - 470, ACC2(), ACCT(), 28);
-    c.fillStyle = '#fff'; c.font = `900 84px ${FONT}`; c.textBaseline = 'alphabetic'; c.fillText(L('Workout erledigt!', 'Workout done!', 'Séance terminée !', 'Antrenman tamam!'), 50, SHARE_H - 300);
-    const cols = [[D.min, 'min', L('Trainingszeit', 'training time', 'entraînement', 'antrenman')], [num(D.kcal), 'kcal', L('verbrannt', 'burned', 'brûlées', 'yakıldı')], D.kgMoved ? [num(D.kgMoved), 'kg', L('bewegt', 'moved', 'déplacés', 'kaldırıldı')] : [D.s.exDone, '', L('Übungen', 'exercises', 'exercices', 'egzersiz')]];
+    c.fillStyle = '#fff'; c.font = `900 84px ${FONT}`; c.textBaseline = 'alphabetic'; c.fillText(D.run ? L('Lauf erledigt!', 'Run done!', 'Course terminée !', 'Koşu tamam!') : L('Workout erledigt!', 'Workout done!', 'Séance terminée !', 'Antrenman tamam!'), 50, SHARE_H - 300);
+    const cols = D.run ? D.cols : [[D.min, 'min', L('Trainingszeit', 'training time', 'entraînement', 'antrenman')], [num(D.kcal), 'kcal', L('verbrannt', 'burned', 'brûlées', 'yakıldı')], D.kgMoved ? [num(D.kgMoved), 'kg', L('bewegt', 'moved', 'déplacés', 'kaldırıldı')] : [D.s.exDone, '', L('Übungen', 'exercises', 'exercices', 'egzersiz')]];
     const cw = (SHARE_W - 100) / 3;
     cols.forEach(([v, u, l], i) => {
       const x = 50 + i * cw;
@@ -3826,9 +3847,9 @@ function renderShare() {
     c.textBaseline = 'alphabetic'; c.fillStyle = '#fff'; c.font = `900 60px ${FONT}`;
     c.fillText(L('Heute verbrannt:', 'Burned today:', 'Brûlé aujourd\'hui :', 'Bugün yakılan:'), 50, SHARE_H - 420);
     c.font = `900 96px ${FONT}`; c.fillText(D.fk ? `${D.fk.ic} ${funNum(D.fk.n)} ${D.fk.name}` : `🔥 ${num(D.kcal)} kcal`, 50, SHARE_H - 318, SHARE_W - 100);
-    if (D.fw) { c.font = `900 60px ${FONT}`; c.fillText(L('Und bewegt:', 'And moved:', 'Et soulevé :', 'Ve kaldırılan:'), 50, SHARE_H - 210);
+    if (D.fw) { c.font = `900 60px ${FONT}`; c.fillText((D.run ? L('Und gelaufen:', 'And ran:', 'Et couru :', 'Ve koşulan:') : L('Und bewegt:', 'And moved:', 'Et soulevé :', 'Ve kaldırılan:')), 50, SHARE_H - 210);
       c.font = `900 96px ${FONT}`; c.fillText(`${D.fw.ic} ${funNum(D.fw.n)} ${D.fw.name}`, 50, SHARE_H - 108, SHARE_W - 100); }
-    c.font = `600 26px ${FONT}`; c.fillStyle = 'rgba(255,255,255,.7)'; c.fillText(`≈ ${num(D.kcal)} kcal${D.kgMoved ? ' · ≈ ' + num(D.kgMoved) + ' kg' : ''}`, 50, SHARE_H - 52);
+    c.font = `600 26px ${FONT}`; c.fillStyle = 'rgba(255,255,255,.7)'; c.fillText(`≈ ${num(D.kcal)} kcal${D.run ? ' · ' + num(D.km, 1) + ' km' : D.kgMoved ? ' · ≈ ' + num(D.kgMoved) + ' kg' : ''}`, 50, SHARE_H - 52);
   } else if (shareStyle === 2) {
     /* Döner-Bilanz */
     shade(SHARE_H * 0.34, 0.95);
@@ -3851,7 +3872,7 @@ function renderShare() {
     let x = 50; const y = SHARE_H - 120;
     x += pill(`⏱ ${D.min} min`, x, y, 'rgba(255,255,255,.92)', '#0B3D91', 34) + 14;
     x += pill(`🔥 ${num(D.kcal)} kcal`, x, y, 'rgba(255,255,255,.92)', '#0B3D91', 34) + 14;
-    if (D.kgMoved) pill(`💪 ${num(D.kgMoved)} kg`, x, y, ACC2(), ACCT(), 34);
+    if (D.run) pill(`🏃 ${num(D.km, 1)} km`, x, y, ACC2(), ACCT(), 34); else if (D.kgMoved) pill(`💪 ${num(D.kgMoved)} kg`, x, y, ACC2(), ACCT(), 34);
   }
   return cv;
 }
@@ -3863,20 +3884,20 @@ function sharePreview() {
     <img class="share-prev" src="${cv.toDataURL('image/jpeg', 0.85)}" alt="${L('Vorschau', 'Preview', 'Aperçu', 'Önizleme')}">
     <div class="seg" role="radiogroup" style="margin-top:10px">${styles.map((n, i) => `<button type="button" role="radio" aria-checked="${shareStyle === i}" data-act="share-style" data-v="${i}">${n}</button>`).join('')}</div>
     <div class="acts">
-      <button type="button" class="btn btn-primary xl" data-act="share-go">${L('TEILEN', 'SHARE', 'PARTAGER', 'PAYLAŞ')}</button>
+      <button type="button" class="btn btn-primary xl" data-act="share-go">📤 ${L('TEILEN', 'SHARE', 'PARTAGER', 'PAYLAŞ')}<small class="share-apps">Instagram · WhatsApp · Facebook · …</small></button>
       <div class="row"><button type="button" class="btn btn-ghost" data-act="share-save">${L('Speichern', 'Save', 'Enregistrer', 'Kaydet')}</button><label class="btn btn-ghost">${L('Anderes Foto', 'Other photo', 'Autre photo', 'Başka fotoğraf')}<input type="file" accept="image/*" id="sharePhoto" hidden></label></div>
       <button type="button" class="btn btn-ghost" data-act="sheet-close">${L('Schließen', 'Close', 'Fermer', 'Kapat')}</button>
     </div>
     <p class="sub">${L('Das Foto bleibt auf deinem Gerät. Es wird nichts hochgeladen.', 'The photo stays on your device. Nothing is uploaded.', 'La photo reste sur ton appareil. Rien n\'est envoyé.', 'Fotoğraf cihazında kalır. Hiçbir şey yüklenmez.')}</p></div>`);
 }
-function shareFile() { return shareBlob ? new File([shareBlob], 'pausen-workout.jpg', { type: 'image/jpeg' }) : null; }
+function shareFile() { return shareBlob ? new File([shareBlob], shareRun ? 'pausen-workout-lauf.jpg' : 'pausen-workout.jpg', { type: 'image/jpeg' }) : null; }
 function shareSave() {
   const f = shareFile(); if (!f) return;
   const u = URL.createObjectURL(f), a = document.createElement('a'); a.href = u; a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000);
 }
 async function shareGo() {
   const f = shareFile(); if (!f) return;
-  const txt = L('Workout erledigt mit Pausen Workout 💪', 'Workout done with Pausen Workout 💪', 'Séance terminée avec Pausen Workout 💪', 'Pausen Workout ile antrenman tamam 💪');
+  const txt = shareRun ? L(`${num(shareRun.km, 1)} km gelaufen mit Pausen Workout 🏃`, `Ran ${num(shareRun.km, 1)} km with Pausen Workout 🏃`, `${num(shareRun.km, 1)} km courus avec Pausen Workout 🏃`, `Pausen Workout ile ${num(shareRun.km, 1)} km koştum 🏃`) : L('Workout erledigt mit Pausen Workout 💪', 'Workout done with Pausen Workout 💪', 'Séance terminée avec Pausen Workout 💪', 'Pausen Workout ile antrenman tamam 💪');
   try {
     if (navigator.canShare && navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], text: txt }); return; }
   } catch (e) { if (e && e.name === 'AbortError') return; }
@@ -3891,6 +3912,7 @@ function loadSharePhoto(file) {
 }
 document.addEventListener('change', e => { if (e.target && e.target.id === 'sharePhoto') loadSharePhoto(e.target.files && e.target.files[0]); });
 function shareAct(a, b) {
+  if (a === 'share-run' || a === 'share-run-photo') { const r = rlList().find(x => x.id === b.dataset.id); if (!r) return; shareRun = r; shareImg = null; if (a === 'share-run') sharePreview(); return; }
   if (a === 'share-nophoto') { shareImg = null; sharePreview(); }
   else if (a === 'share-style') { shareStyle = +b.dataset.v; sharePreview(); }
   else if (a === 'share-go') shareGo();
@@ -3929,6 +3951,7 @@ function shareDemoPreview() {
 }
 function shareCardHTML(s) {
   if (!s.exDone) return '';
+  shareRun = null;
   return `<div class="panel share-card" data-notr style="margin-top:14px">
     <h3>📸 ${L('Zeig, was du geschafft hast', 'Show what you achieved', 'Montre ce que tu as accompli', 'Başardığını göster')}</h3>
     ${(() => { const u = shareDemoPreview(); return u ? `<div class="share-demo"><img src="${u}" alt="${L('Beispielbild', 'Example', 'Exemple', 'Örnek')}"><span>${L('So sieht dein Bild aus, z. B. mit Döner-Bilanz. Dein Foto kommt in den Hintergrund.', 'This is how your picture looks, e.g. with the kebab tally. Your photo goes in the background.', 'Voici à quoi ressemble ton image, p. ex. avec le bilan kebab. Ta photo va en arrière-plan.', 'Fotoğrafın böyle görünür, örn. döner bilançosuyla. Senin fotoğrafın arka plana gelir.')}</span></div>` : ''; })()}
@@ -3936,6 +3959,13 @@ function shareCardHTML(s) {
     <label class="btn btn-primary xl" style="display:flex">${L('FOTO WÄHLEN', 'CHOOSE PHOTO', 'CHOISIR UNE PHOTO', 'FOTOĞRAF SEÇ')}<input type="file" accept="image/*" id="sharePhoto" hidden></label>
     <button type="button" class="btn btn-ghost" style="width:100%;margin-top:8px" data-act="share-nophoto">${L('Ohne Foto erstellen', 'Create without photo', 'Créer sans photo', 'Fotoğrafsız oluştur')}</button>
   </div>`;
+}
+
+/* Lauf: Bild erstellen (im Feier- und Detaildialog) */
+function runShareHTML(r) {
+  return `<div class="panel share-card" style="margin-top:12px"><b>📸 ${L('Bild für Instagram, WhatsApp & Co.', 'Picture for Instagram, WhatsApp & co.', 'Image pour Instagram, WhatsApp & co.', 'Instagram, WhatsApp vb. için görsel')}</b>
+    <p class="sub" style="margin:4px 0 10px">${L('Foto wählen oder ohne Foto. Distanz, Zeit und Tempo kommen automatisch drauf.', 'Pick a photo or go without. Distance, time and pace are added automatically.', 'Choisis une photo ou non. Distance, temps et allure sont ajoutés.', 'Fotoğraf seç ya da seçme. Mesafe, süre ve tempo otomatik eklenir.')}</p>
+    <div class="adm-acts"><label class="btn btn-primary" data-act="share-run-photo" data-id="${esc(r.id)}">${L('Foto wählen', 'Choose photo', 'Choisir une photo', 'Fotoğraf seç')}<input type="file" accept="image/*" id="sharePhoto" hidden></label><button type="button" class="btn btn-ghost" data-act="share-run" data-id="${esc(r.id)}">${L('Ohne Foto', 'Without photo', 'Sans photo', 'Fotoğrafsız')}</button></div></div>`;
 }
 
 /* ============================================================
@@ -4945,7 +4975,8 @@ async function admConnect() {
 }
 async function admLoad() {
   const db = ADM.db, none = () => ({ docs: [], size: 0 });
-  const [m, p, c] = await Promise.all([db.collection('members').get(), db.collection('private').get().catch(none), db.collection('codes').get().catch(none)]);
+  const [m, p, c, ad] = await Promise.all([db.collection('members').get(), db.collection('private').get().catch(none), db.collection('codes').get().catch(none), db.collection('admins').get().catch(none)]);
+  ADM.admins = new Set(ad.docs.map(d => d.id)); ADM.owners = new Set(ad.docs.filter(d => !('by' in (d.data() || {}))).map(d => d.id));
   ADM.members = m.docs.map(d => Object.assign({ uid: d.id }, d.data())).sort((a, b) => String(a.nick || '').localeCompare(String(b.nick || ''), 'de'));
   ADM.priv = {}; p.docs.forEach(d => { ADM.priv[d.id] = d.data(); });
   ADM.codes = c.docs.map(d => Object.assign({ code: d.id }, d.data())).sort((a, b) => a.code.localeCompare(b.code));
@@ -4957,7 +4988,7 @@ function admMfaInfo() {
   try { const u = firebase.app().auth().currentUser; const f = (u && u.multiFactor && u.multiFactor.enrolledFactors) || []; return f.length; } catch (e) { return 0; }
 }
 function showAdmin(msg) {
-  lockUI();
+  lockUI(); try { bnavRender(); } catch (e) {}
   if (ADM.st === 'off' || ADM.st === 'loading') {
     $app.innerHTML = `<div class="fade-in"><article class="face front" style="--ph:var(--purple)"><div class="kicker"><span>Admin</span></div><h2>Admin-Bereich</h2><p>Prüfe Berechtigung …</p></article>
       <p style="margin-top:16px"><button type="button" class="btn btn-ghost xl" data-act="adm-exit">Admin verlassen</button></p></div>`;
@@ -4983,15 +5014,16 @@ function showAdmin(msg) {
   const planTxt = m => m.plan === 'employer' ? `Arbeitgeber · ${esc(m.company || '')}` : m.plan === 'premium' ? 'Premium' : 'Testphase';
   const card = m => { const open = ADM.open.has(m.uid), P = ADM.priv[m.uid] || {};
     return `<div class="panel adm-acc ${open ? 'open' : ''}" style="margin-top:10px">
-      <button type="button" class="adm-head" data-act="adm-toggle" data-id="${esc(m.uid)}" aria-expanded="${open}"><span class="adm-av">${esc(String(m.nick || '?').slice(0, 1).toUpperCase())}</span><span class="adm-hn"><b>${esc(m.nick || '?')}</b><small>${esc(P.email || 'keine E-Mail gespeichert')}</small></span><span class="badge">${planTxt(m)}</span><span class="adm-chev">${open ? '▴' : '▾'}</span></button>
+      <button type="button" class="adm-head" data-act="adm-toggle" data-id="${esc(m.uid)}" aria-expanded="${open}"><span class="adm-av">${esc(String(m.nick || '?').slice(0, 1).toUpperCase())}</span><span class="adm-hn"><b>${esc(m.nick || '?')}</b><small>${esc(P.email || 'keine E-Mail gespeichert')}</small></span><span class="badge">${planTxt(m)}</span>${ADM.owners && ADM.owners.has(m.uid) ? '<span class="badge ok">Inhaber</span>' : ADM.admins && ADM.admins.has(m.uid) ? '<span class="badge ok">Admin</span>' : ''}<span class="adm-chev">${open ? '▴' : '▾'}</span></button>
       ${open ? `<div class="adm-body">
         <p style="margin:4px 0 0"><b>Name:</b> ${esc(P.first || '')} ${esc(P.last || '')}</p>
         <p class="sub" style="margin:2px 0 8px">Registriert ${admDate(m.created)}${m.approvedAt ? ` · freigeschaltet ${admDate(m.approvedAt)}` : ''} · UID ${esc(m.uid.slice(0, 8))}…</p>
+        <div class="set-row"><label for="ar_${esc(m.uid)}">Rolle<small>${m.uid === admMyUid() ? 'eigene Rolle nicht änderbar' : admOwner(m.uid) ? 'Inhaber, nicht änderbar' : 'Admin: voller Zugriff auf diesen Bereich'}</small></label><select class="inp" id="ar_${esc(m.uid)}" ${m.uid === admMyUid() || admOwner(m.uid) ? 'disabled' : ''}>${[['user', 'User'], ['admin', 'Admin']].map(([k, n]) => `<option value="${k}" ${(ADM.admins && ADM.admins.has(m.uid) ? 'admin' : 'user') === k ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
         <div class="set-row"><label for="ag_${esc(m.uid)}">Geschlecht</label><select class="inp" id="ag_${esc(m.uid)}">${[['m', 'Mann'], ['w', 'Frau'], ['d', 'Divers']].map(([k, n]) => `<option value="${k}" ${(m.g || 'm') === k ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
         <div class="set-row"><label for="ap_${esc(m.uid)}">Tarif</label><select class="inp" id="ap_${esc(m.uid)}">${[['trial', 'Testphase'], ['premium', 'Premium'], ['employer', 'Arbeitgeber']].map(([k, n]) => `<option value="${k}" ${(m.plan || 'trial') === k ? 'selected' : ''}>${n}</option>`).join('')}</select></div>
         <div class="set-row"><label for="ac_${esc(m.uid)}">Firma<small>nur bei Arbeitgeber</small></label><input class="inp wide" id="ac_${esc(m.uid)}" value="${esc(m.company || '')}" maxlength="60"></div>
         <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="adm-save" data-id="${esc(m.uid)}">Speichern</button><button type="button" class="btn btn-ghost" data-act="adm-reset" data-id="${esc(m.uid)}" ${P.email ? '' : 'disabled'}>Passwort-Link senden</button></div>
-        <div class="adm-acts">${m.status === 'blocked' ? `<button type="button" class="btn btn-ghost" data-act="adm-unblock" data-id="${esc(m.uid)}">Entsperren</button>` : `<button type="button" class="btn btn-ghost" data-act="adm-block" data-id="${esc(m.uid)}">Sperren</button>`}<button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${esc(m.uid)}">Löschen</button></div>
+        ${admOwner(m.uid) && m.uid !== admMyUid() ? '<p class="sub" style="margin:6px 0 0">Inhaber-Konto: kann in der App nicht gesperrt oder gelöscht werden.</p>' : m.uid === admMyUid() ? '' : `<div class="adm-acts">${m.status === 'blocked' ? `<button type="button" class="btn btn-ghost" data-act="adm-unblock" data-id="${esc(m.uid)}">Entsperren</button>` : `<button type="button" class="btn btn-ghost" data-act="adm-block" data-id="${esc(m.uid)}">Sperren</button>`}<button type="button" class="btn btn-dghost" data-act="adm-del" data-id="${esc(m.uid)}">Löschen</button></div>`}
         <p class="sub" style="margin:6px 0 0">Nickname und Login-E-Mail kann nur die Person selbst bzw. die Firebase-Konsole ändern.</p>
       </div>` : ''}</div>`; };
   const mfa = admMfaInfo();
@@ -5055,7 +5087,7 @@ function adminAct(a, b) {
         admRun(async () => {
           if (wipe) { try { if (!ACM.loaded) await acmLoad(); await acmWipeNick(m.nick); ACM.loaded = false; } catch (e) {} }
           const batch = db.batch();
-          batch.delete(db.collection('members').doc(m.uid)); batch.delete(db.collection('private').doc(m.uid)); batch.delete(db.collection('usage').doc(m.uid));
+          batch.delete(db.collection('members').doc(m.uid)); batch.delete(db.collection('private').doc(m.uid)); batch.delete(db.collection('usage').doc(m.uid)); if (ADM.admins && ADM.admins.has(m.uid) && m.uid !== admMyUid()) batch.delete(db.collection('admins').doc(m.uid));
           if (m.nk) batch.delete(db.collection('nicks').doc(m.nk));
           await batch.commit();
           ADM.open.delete(m.uid);
@@ -5067,7 +5099,15 @@ function adminAct(a, b) {
   if (a === 'adm-save') { const m = mem(b.dataset.id); if (!m) return; const id = m.uid;
     const plan = val('ap_' + id) || 'trial', company = val('ac_' + id), g = val('ag_' + id) || m.g || 'm';
     if (plan === 'employer' && !company) { toast('Bitte eine Firma eintragen'); return; }
-    admRun(() => db.collection('members').doc(id).update({ g, plan, company: plan === 'employer' ? company : '', code: m.code || '' }), `${m.nick} gespeichert.`); return; }
+    const wasAdm = !!(ADM.admins && ADM.admins.has(id)), role = id === admMyUid() || admOwner(id) ? (wasAdm ? 'admin' : 'user') : (val('ar_' + id) || 'user'), toAdm = role === 'admin';
+    const save = () => admRun(async () => {
+      if (toAdm && !wasAdm) await db.collection('admins').doc(id).set({ role: 'admin', by: admMyUid(), ts: Date.now() });
+      if (!toAdm && wasAdm) await db.collection('admins').doc(id).delete();
+      await db.collection('members').doc(id).update({ g, plan, company: plan === 'employer' ? company : '', code: m.code || '' });
+    }, `${m.nick} gespeichert.${toAdm && !wasAdm ? ' Ist jetzt Admin (wirkt nach erneutem Öffnen der App).' : !toAdm && wasAdm ? ' Ist jetzt wieder User.' : ''}`);
+    if (toAdm && !wasAdm) confirmSheet(`${esc(m.nick)} zum Admin machen?`, 'Admins sehen alle Accounts mit E-Mail-Adressen und die Nutzungsübersicht, können sperren, löschen, Rollen vergeben und die Community verwalten. Nur Personen geben, denen du voll vertraust.', 'ZUM ADMIN MACHEN', save);
+    else save();
+    return; }
   if (a === 'adm-reset') { const m = mem(b.dataset.id), em = m && emailOfUid(m.uid); if (!em) return;
     confirmSheet(`Passwort-Link an ${esc(m.nick)} senden?`, `Firebase schickt einen zeitlich begrenzten Link an <b>${esc(em)}</b>. Damit legt die Person selbst ein neues Passwort fest.`, 'LINK SENDEN',
       () => admRun(async () => { const { auth } = await fbCore(); await auth.sendPasswordResetEmail(em, { url: APP_URL }); }, `Passwort-Link an ${em} gesendet.`), false); return; }
@@ -5104,6 +5144,9 @@ async function admMfaFinish() {
     mfaSecret = null; closeSheet(); showAdmin('Zwei-Faktor-Anmeldung ist aktiv. Ab jetzt wird beim Anmelden ein Code abgefragt.');
   } catch (e) { toast('Code falsch oder abgelaufen'); }
 }
+
+const admMyUid = () => { try { const u = firebase.app().auth().currentUser; return u ? u.uid : ''; } catch (e) { return ''; } };
+const admOwner = uid => !!(ADM.owners && ADM.owners.has(uid));
 
 /* ============================================================
    ADMIN: COMMUNITY VERWALTEN
@@ -5420,6 +5463,7 @@ function rlShow(r, fresh) {
   openSheet(`<div data-notr>${fresh ? runCelebrateHTML(r) + `<div class="sec-title" style="margin:16px 0 4px">🔍 ${L('Deine Auswertung', 'Your analysis', 'Ton analyse', 'Analizin')}</div>` : `<h2 id="dlgTitle">🏃 ${new Date(r.t).toLocaleDateString(LOC)}</h2>`}
     <div class="rl-fb">${fb.map(([i, t]) => `<p><span>${i}</span>${esc(t)}</p>`).join('')}</div>
     ${r.note ? `<p class="sub">„${esc(r.note)}“</p>` : ''}
+    ${runShareHTML(r)}
     ${!shared ? shareAskHTML('run', r.id) : ''}
     <div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">OK</button>${fresh ? '' : `<button type="button" class="btn btn-dghost" data-act="rl-del" data-id="${esc(r.id)}">${L('Lauf löschen', 'Delete run', 'Supprimer', 'Sil')}</button>`}</div></div>`);
 }
@@ -6229,7 +6273,7 @@ function act(a, b) {
     case 'lang': setLang(b.dataset.v); break;
     case 'view': if (!account) break; view = b.dataset.v; closeSheet(); render(); window.scrollTo(0, 0); break;
     case 'start-workout': homeOpen = false; startWorkout(); break;
-    case 'share-nophoto': case 'share-style': case 'share-go': case 'share-save': shareAct(a, b); break;
+    case 'share-nophoto': case 'share-style': case 'share-go': case 'share-save': case 'share-run': case 'share-run-photo': shareAct(a, b); break;
     case 'recap-p': case 'recap-nav': case 'recap-share': recapAct(a, b); break;
     case 'bell': case 'n-open': case 'n-clear': notifAct(a, b); break;
     case 'c-mention': communityAct(a, b); break;
@@ -6504,7 +6548,7 @@ function showLogin(err, info) {
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 31 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 36 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
