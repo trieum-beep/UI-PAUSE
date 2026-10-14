@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fkwBA/H4i5cSs0z3ulQ3UQCZ+miv6/vbJLP55H+iVTI=' 'sha256-PYI/im4TP5uXnjvWU1z7oB1wc1Zv/r9yvE3eKcwFk7w=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fkwBA/H4i5cSs0z3ulQ3UQCZ+miv6/vbJLP55H+iVTI=' 'sha256-xe+fCeSeWTi6D6nNAaicRxg2KXBHMaYWhM0zexQ3bWM=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
@@ -562,6 +562,14 @@ body.has-bnav .toast { bottom: 150px; }
 .mr2-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
 .mr2-verdict { font: 800 14px var(--sans); }
 .mr2-pts { font: 700 12.5px var(--sans); opacity: .8; }
+.usg-feed { padding: 8px 14px; max-height: 340px; overflow: auto; }
+.usg-ev { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; border-top: 1px solid var(--paper-line); font-size: 13.5px; }
+.usg-ev:first-child { border-top: 0; }
+.usg-ev b { color: var(--paper-ink); }
+.usg-et { flex: 1; min-width: 0; }
+.usg-ev small { flex: none; color: var(--muted); font-size: 12px; }
+.usg-det { margin-top: 6px; }
+.usg-det summary { cursor: pointer; font: 700 13px var(--sans); color: var(--brand); }
 .lang-chips { display: flex; gap: 6px; justify-content: flex-end; margin: -4px 0 10px; }
 .lang-chips .chip { margin-top: 0; min-height: 34px; padding: 6px 10px; font-size: 12px; }
 
@@ -5327,7 +5335,7 @@ function admComHTML() {
     <div class="sec-title">💬 Räume (${ACM.rooms.length})</div>
     <div class="c-rooms">${ACM.rooms.map(r => { const c = ACM.counts[r.id] || { n: 0, last: 0 }; return `<button type="button" class="c-room" data-act="adm-c-room" data-id="${esc(r.id)}"><span class="ic">${esc(r.ic || '💬')}</span><span class="nm"><b>${esc(r.name)}</b><small>${c.n} Beiträge${c.last ? ' · zuletzt ' + admDate(c.last) : ''}${r.city ? ' · 📍 ' + esc(r.city) : ''}${r.custom ? ' · eigener Raum' : ''}</small></span><span class="go">›</span></button>`; }).join('')}</div>
     <div class="sec-title">👥 Community-Profile (${ACM.users.length})</div>
-    ${ACM.users.length ? ACM.users.map(u => `<div class="panel acm-user"><div class="adm-head" style="cursor:default">${u.av ? `<img class="adm-av" src="${esc(u.av)}" alt="" style="object-fit:cover">` : `<span class="adm-av">${esc(String(u.nick || '?').slice(0, 1).toUpperCase())}</span>`}<span class="adm-hn"><b>${esc(u.nick || '?')}</b><small>${u.city ? '📍 ' + esc(u.city) + ' · ' : ''}${u.ts ? 'aktiv ' + admDate(u.ts) : ''}</small></span></div>
+    ${ACM.users.length ? ACM.users.map(u => `<div class="panel acm-user"><div class="adm-head" style="cursor:default">${u.av ? `<img class="adm-av" src="${esc(u.av)}" alt="" style="object-fit:cover">` : `<span class="adm-av">${esc(String(u.nick || '?').slice(0, 1).toUpperCase())}</span>`}<span class="adm-hn"><b>${esc(u.nick || '?')}${ADM.members && !ADM.members.some(m => m.uid === u.id) ? ' <span class="badge off">kein Konto</span>' : ''}</b><small>${u.city ? '📍 ' + esc(u.city) + ' · ' : ''}${u.ts ? 'aktiv ' + admDate(acmTs(u.ts)) : ''}</small></span></div>
       <div class="adm-acts">${u.av ? `<button type="button" class="btn btn-ghost" data-act="adm-c-noav" data-id="${esc(u.id)}">Bild entfernen</button>` : ''}<button type="button" class="btn btn-dghost" data-act="adm-c-delnick" data-v="${esc(u.nick || '')}">Alles von ${esc(u.nick || '?')} löschen</button></div></div>`).join('')
       : '<div class="panel"><p class="sub" style="margin:0">Noch niemand hat die Community aktiviert.</p></div>'}
     <div class="adm-acts" style="margin-top:12px"><button type="button" class="btn btn-ghost" data-act="adm-c-reload">↻ Aktualisieren</button></div>`;
@@ -5350,6 +5358,8 @@ async function acmWipeNick(nick) {
       for (const m of q.docs) { if (nickKey(m.data().nick || '') === k) { await m.ref.delete(); n++; } } } catch (e) {}
   }
   try { const uq = await db.collection('users').get(); for (const u of uq.docs) if (nickKey(u.data().nick || '') === k) await u.ref.delete(); } catch (e) {}
+  try { const fq = await db.collection('feed').get(); for (const f of fq.docs) { if (nickKey(f.data().nick || '') === k) { for (const sub of ['kudos', 'cmts']) { try { const q = await f.ref.collection(sub).get(); for (const x of q.docs) await x.ref.delete(); } catch (e) {} } await f.ref.delete(); n++; } } } catch (e) {}
+  try { const bq = await db.collection('board').get(); for (const x of bq.docs) if (nickKey(x.data().nick || '') === k) await x.ref.delete(); } catch (e) {}
   return n;
 }
 function admComAct(a, b) {
@@ -5359,7 +5369,7 @@ function admComAct(a, b) {
   if (a === 'adm-c-back') { ACM.room = null; ACM.msgs = []; showAdmin(); return; }
   if (a === 'adm-c-delmsg') { const id = b.dataset.id; confirmSheet('Beitrag löschen?', 'Der Beitrag wird für alle entfernt.', 'LÖSCHEN', () => acmRun(() => db.collection('rooms').doc(ACM.room).collection('msgs').doc(id).delete(), 'Beitrag gelöscht.')); return; }
   if (a === 'adm-c-delnick') { const nick = b.dataset.v; if (!nick) return;
-    confirmSheet(`Alles von ${esc(nick)} löschen?`, 'Alle Beiträge in allen Räumen, alle Direktnachrichten und das Community-Profil mit Bild werden entfernt. Der Account selbst bleibt bestehen.', 'ALLES LÖSCHEN', () => { let n = 0; acmRun(async () => { n = await acmWipeNick(nick); }, `Community-Daten von ${nick} gelöscht.`); }); return; }
+    confirmSheet(`Alles von ${esc(nick)} löschen?`, 'Alle Beiträge in allen Räumen, Direktnachrichten, Feed-Beiträge, Ranglisten-Eintrag und das Community-Profil mit Bild werden entfernt. Ein Mitgliedskonto (falls vorhanden) bleibt bestehen.', 'ALLES LÖSCHEN', () => { let n = 0; acmRun(async () => { n = await acmWipeNick(nick); }, `Community-Daten von ${nick} gelöscht.`); }); return; }
   if (a === 'adm-c-noav') { const id = b.dataset.id; acmRun(() => db.collection('users').doc(id).update({ av: '' }), 'Profilbild entfernt.'); return; }
   if (a === 'adm-c-delroom') { const id = ACM.room, r = ACM.rooms.find(x => x.id === id) || {};
     confirmSheet(`Raum „${esc(r.name || id)}“ löschen?`, 'Der Raum und alle Beiträge darin werden für alle entfernt.', 'RAUM LÖSCHEN', () => acmRun(async () => {
@@ -6044,16 +6054,24 @@ async function usageTrack(kind, x) {
   try {
     if (!account || !account.uid || !/^https?:$/.test(location.protocol)) return;
     if (kind === 'open') { if (usageOpenDone === account.uid) return; usageOpenDone = account.uid; }
+    if (kind === 'dur' && !(x > 5)) return;
     const { db } = await fbCore(), ref = db.collection('usage').doc(account.uid), s = await ref.get();
     const o = s.exists ? s.data() : {}, now = Date.now(), day = dayKeyS(now), days = Object.assign({}, o.days || {});
     days[day] = (days[day] || 0) + 1;
     Object.keys(days).sort().slice(0, -90).forEach(k => delete days[k]);
     const n = { nick: cNick(), first: o.first || now, last: now, opens: (o.opens || 0) + (kind === 'open' ? 1 : 0), wo: (o.wo || 0) + (kind === 'wo' ? 1 : 0), runs: (o.runs || 0) + (kind === 'run' ? 1 : 0),
-      min: (o.min || 0) + Math.round(kind === 'wo' && x ? (x.ms || 0) / 60000 : kind === 'run' && x ? (x.sec || 0) / 60 : 0), km: Math.round(((o.km || 0) + (kind === 'run' && x ? +x.km || 0 : 0)) * 10) / 10, days };
+      min: (o.min || 0) + Math.round(kind === 'wo' && x ? (x.ms || 0) / 60000 : kind === 'run' && x ? (x.sec || 0) / 60 : 0), km: Math.round(((o.km || 0) + (kind === 'run' && x ? +x.km || 0 : 0)) * 10) / 10, days,
+      dur: (o.dur || 0) + (kind === 'dur' ? Math.round(x) : 0), sn: (o.sn || 0) + (kind === 'dur' ? 1 : 0), log: Array.isArray(o.log) ? o.log.slice(-49) : [] };
+    if (kind === 'dur') { n.last = o.last || now; n.days = o.days || {}; if (o.days && !o.days[day]) n.days = days; }
+    else n.log.push(kind === 'open' ? { t: now, k: 'open' } : kind === 'wo' ? { t: now, k: 'wo', p: String(x && x.program || 'Workout').slice(0, 40), m: Math.round((x && x.ms || 0) / 60000) } : { t: now, k: 'run', km: Math.round((x && +x.km || 0) * 10) / 10, m: Math.round((x && x.sec || 0) / 60) });
     await ref.set(n);
   } catch (e) {}
 }
 /* Admin: Übersicht */
+const fmtVd = sec => sec >= 60 ? Math.round(sec / 60) + ' Min' : Math.round(sec) + ' s';
+const tShort = t => new Date(t).toLocaleString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+const evIcon = e => e.k === 'open' ? '📱' : e.k === 'run' ? '🏃' : '💪';
+const evTxt = e => e.k === 'open' ? 'App geöffnet' : e.k === 'run' ? `Lauf ${num(e.km || 0, 1)} km · ${e.m || 0} Min` : `${e.p || 'Workout'} · ${e.m || 0} Min`;
 let USG = { list: [], loaded: 0, err: '', sort: 'last' };
 async function usgLoad() {
   try { const q = await ADM.db.collection('usage').get(); USG.list = q.docs.map(d => Object.assign({ uid: d.id }, d.data())); USG.err = ''; } catch (e) { USG.err = String(e && (e.code || e.message) || e); }
@@ -6069,24 +6087,39 @@ function admUsageHTML() {
   const rows = ADM.members.filter(m => m.status !== 'pending').map(m => Object.assign({ uid: m.uid, nick: m.nick, status: m.status }, byUid[m.uid] || {}));
   const key = { last: r => -(r.last || 0), active: r => -d30(r), wo: r => -((r.wo || 0) + (r.runs || 0)), min: r => -(r.min || 0) }[USG.sort] || (r => -(r.last || 0));
   rows.sort((a, b) => key(a) - key(b) || String(a.nick).localeCompare(String(b.nick)));
-  const ago = t => !t ? 'noch nie' : agoTxt(t);
+  const ago = t => !t ? 'noch nie' : new Date(t).toLocaleString('de-DE', { weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+  const avg = r => r.sn ? Math.round(r.dur / r.sn / 60 * 10) / 10 : null;
   return `<div class="tiles" style="margin-top:12px">
       <div class="tile"><small>Mitglieder</small><b>${ADM.members.filter(m => m.status === 'approved').length}</b></div>
       <div class="tile"><small>Aktiv heute</small><b>${act(1)}</b></div>
       <div class="tile"><small>Aktiv 7 Tage</small><b>${act(7)}</b></div>
-      <div class="tile"><small>Aktiv 30 Tage</small><b>${act(30)}</b></div></div>
+      <div class="tile"><small>Aktiv 30 Tage</small><b>${act(30)}</b></div>
+      <div class="tile"><small>Ø Verweildauer</small><b>${(() => { const D = live.reduce((a, u) => a + (u.dur || 0), 0), N = live.reduce((a, u) => a + (u.sn || 0), 0); return N ? fmtVd(D / N) : '–'; })()}</b></div>
+      <div class="tile"><small>Trainings gesamt</small><b>${live.reduce((a, u) => a + (u.wo || 0) + (u.runs || 0), 0)}</b></div></div>
+    <div class="sec-title">🕒 Letzte Aktivität</div>
+    <div class="panel usg-feed">${(() => { const ev = []; USG.list.forEach(u => (u.log || []).forEach(e => ev.push(Object.assign({ nick: u.nick }, e)))); ev.sort((a, b) => b.t - a.t);
+      return ev.slice(0, 40).map(e => `<div class="usg-ev"><span>${evIcon(e)}</span><b>${esc(e.nick || '?')}</b><span class="usg-et">${esc(evTxt(e))}</span><small>${tShort(e.t)}</small></div>`).join('') || '<p class="sub" style="margin:0">Noch keine Einträge (ab Version 45).</p>'; })()}</div>
     <div class="sec-title">Aktive Nutzer pro Tag (14 Tage)</div>
     <div class="panel">${svgBars(dau, days14.map(k => k.slice(8) + '.' + k.slice(5, 7) + '.'), v => String(v))}</div>
     <div class="sec-title">Wer nutzt wann wie viel</div>
     <div class="seg" role="radiogroup" style="grid-template-columns:repeat(4,1fr);margin-bottom:8px">${[['last', 'Zuletzt'], ['active', 'Aktive Tage'], ['wo', 'Trainings'], ['min', 'Minuten']].map(([k, n]) => `<button type="button" role="radio" aria-checked="${USG.sort === k}" data-act="adm-usort" data-v="${k}">${n}</button>`).join('')}</div>
     ${USG.err ? `<p class="sub">${esc(USG.err)}</p>` : ''}
     <div class="usg-list">${rows.map(r => `<div class="panel usg-row ${r.status === 'blocked' ? 'off' : ''}"><div class="adm-h"><b>${esc(r.nick)}${r.status === 'blocked' ? ' · gesperrt' : ''}</b><small>zuletzt ${ago(r.last)}</small></div>
-      <div class="usg-nums"><span><b>${d30(r)}</b> ${d30(r) === 1 ? 'Tag' : 'Tage'} aktiv (30 T.)</span><span><b>${r.wo || 0}</b> Workouts</span><span><b>${r.runs || 0}</b> Läufe</span><span><b>${r.min || 0}</b> Min.</span>${r.km ? `<span><b>${num(r.km, 1)}</b> km</span>` : ''}<span><b>${r.opens || 0}</b>× geöffnet</span></div>
+      <div class="usg-nums"><span><b>${d30(r)}</b> ${d30(r) === 1 ? 'Tag' : 'Tage'} aktiv (30 T.)</span><span><b>${r.wo || 0}</b> Workouts</span><span><b>${r.runs || 0}</b> Läufe</span><span><b>${r.min || 0}</b> Min.</span>${r.km ? `<span><b>${num(r.km, 1)}</b> km</span>` : ''}<span><b>${r.opens || 0}</b>× geöffnet</span>${avg(r) != null ? `<span>Ø <b>${fmtVd(r.dur / r.sn)}</b> pro Besuch</span>` : ''}</div>
+      ${(r.log || []).length ? `<details class="usg-det"><summary>Verlauf (${r.log.length})</summary>${r.log.slice().reverse().map(e => `<div class="usg-ev"><span>${evIcon(e)}</span><span class="usg-et">${esc(evTxt(e))}</span><small>${tShort(e.t)}</small></div>`).join('')}</details>` : ''}
       ${r.first ? `<p class="sub" style="margin:4px 0 0">dabei seit ${new Date(r.first).toLocaleDateString('de-DE')}</p>` : ''}</div>`).join('') || '<div class="panel"><p class="sub" style="margin:0">Noch keine Nutzungsdaten.</p></div>'}</div>
-    <p class="sub">Erfasst wird nur, an welchen Tagen jemand die App öffnet und wie viele Workouts, Läufe und Minuten zusammenkommen. Keine Inhalte, kein Puls, kein Ort. Daten gibt es erst ab App-Version 29.</p>
+    <p class="sub">Erfasst werden: Zeitpunkte des Öffnens, Verweildauer pro Besuch, absolvierte Workouts (Programmname, Minuten) und Läufe (km, Minuten). Keine Inhalte, kein Puls, kein Ort. Zeitpunkte und Verweildauer gibt es ab App-Version 45.</p>
     <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-ureload">Aktualisieren</button></div>
     ${errAdminHTML()}`;
 }
+
+/* Verweildauer: sichtbare Zeit pro Sitzung messen (max. 2 Std.), beim Verlassen melden */
+let visT0 = Date.now(), visAcc = 0;
+document.addEventListener('visibilitychange', () => {
+  if (!account || !account.uid) { visT0 = Date.now(); return; }
+  if (document.visibilityState === 'hidden') { visAcc += Math.min(7200, (Date.now() - visT0) / 1000); if (visAcc > 5) { usageTrack('dur', visAcc); visAcc = 0; } }
+  else { if (Date.now() - visT0 > 30 * 60000) { usageOpenDone = ''; usageTrack('open'); } visT0 = Date.now(); }
+});
 
 /* ============================================================
    NAVIGATION (ab Version 31): feste Leiste unten + aufgeräumte Startseite
@@ -6314,7 +6347,7 @@ document.addEventListener('visibilitychange', () => { if (document.visibilitySta
    errlog/{id}: Meldung, Quelle, Zeile, App-Version, Gerät (grob), Zeitpunkt.
    Keine Trainingsdaten, keine E-Mail. Lesen nur Admin.
    ============================================================ */
-const APP_VER = '44';
+const APP_VER = '45';
 let errSent = 0; const errSeen = new Set();
 const errDevice = () => { const u = navigator.userAgent || ''; return (/iPhone|iPad/.test(u) ? 'iOS' : /Android/.test(u) ? 'Android' : /Mac/.test(u) ? 'Mac' : /Windows/.test(u) ? 'Windows' : 'Sonstiges') + ' · ' + (/CriOS|Chrome/.test(u) ? 'Chrome' : /FxiOS|Firefox/.test(u) ? 'Firefox' : /Safari/.test(u) ? 'Safari' : 'Browser') + (window.matchMedia && matchMedia('(display-mode: standalone)').matches ? ' · Homescreen-App' : ''); };
 window.__uipReport = (rec, own) => {
@@ -6461,7 +6494,7 @@ function addSave() {
   history.sort((a, b) => b.date - a.date); history = history.slice(0, 500);
   if (!saveHistory()) { err('Speichern nicht möglich'); return; }
   addDraft = null; closeSheet(); render(); toast('✅ ' + L('Training nachgetragen', 'Workout added', 'Séance ajoutée', 'Antrenman eklendi'));
-  try { boardSync().catch(() => {}); } catch (e) {}
+  try { boardSync().catch(() => {}); usageTrack('wo', history.find(h => h.date === t && h.manual)); } catch (e) {}
 }
 function woDelete(id) {
   confirmSheet(L('Eintrag löschen?', 'Delete entry?', 'Supprimer ?', 'Silinsin mi?'), L('Dieses Training wird aus dem Verlauf entfernt.', 'This workout will be removed from your history.', 'Cette séance sera supprimée.', 'Bu antrenman silinecek.'), L('LÖSCHEN', 'DELETE', 'SUPPRIMER', 'SİL'), () => { history = history.filter(h => h.id !== id); saveHistory(); render(); }, true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal'));
@@ -6603,7 +6636,7 @@ function legalSheet() {
       <li>Event-Community: Wenn du bei einem Event „Ich bin dabei“ wählst, werden dein Nickname und der Zeitpunkt bei Google Firebase gespeichert und sind für freigeschaltete Mitglieder sichtbar. Du kannst das jederzeit wieder abwählen.</li>
       <li>Feed: Ein Training erscheint nur in der Community, wenn du es nach dem Training ausdrücklich teilst (Titel, angezeigte Werte, dein Text, Nickname). Kudos und Kommentare sind für freigeschaltete Mitglieder sichtbar. Eigene Beiträge kannst du jederzeit löschen.</li>
       <li>Rangliste: Teilnahme nur nach Einwilligung. Gespeichert werden Nickname und Punktzahl. Austreten löscht den Eintrag.</li>
-      <li>Nutzungsübersicht für den Admin: Gespeichert werden Nickname, erster und letzter Nutzungstag, an welchen Tagen die App geöffnet wurde (letzte 90 Tage) sowie die Anzahl der Workouts und Läufe, Minuten und Kilometer. Keine Trainingsinhalte, kein Puls, kein Ort. Zweck: Betrieb und Verbesserung der App. Beim Löschen des Kontos wird auch dieser Eintrag gelöscht.</li>
+      <li>Nutzungsübersicht für den Admin: Gespeichert werden Nickname, erster und letzter Nutzungstag, Zeitpunkte des Öffnens (letzte 50 Ereignisse), Verweildauer pro Besuch, an welchen Tagen die App geöffnet wurde (letzte 90 Tage) sowie absolvierte Workouts (Programmname, Minuten) und Läufe (Kilometer, Minuten). Keine Trainingsinhalte, kein Puls, kein Ort. Zweck: Betrieb und Verbesserung der App. Beim Löschen des Kontos wird auch dieser Eintrag gelöscht.</li>
       <li>Fotos für die Teilen-Funktion werden nur lokal im Browser verarbeitet und nicht hochgeladen oder gespeichert. Was du teilst, entscheidest du selbst.</li>
       <li>Hosting: Die Dateien werden über GitHub Pages (GitHub Inc., USA) ausgeliefert. Beim Aufruf verarbeitet GitHub technisch notwendige Verbindungsdaten wie die IP-Adresse. Details: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</li>
     </ul>
@@ -6985,12 +7018,12 @@ function showLogin(err, info) {
     ${termsBox('rterms')}
     <p class="sub" style="margin:8px 0 0">* Pflichtangaben</p>
     <label class="terms"><input type="checkbox" id="rage"><span>Ich bin mindestens 16 Jahre alt.</span></label>
-    <label class="terms"><input type="checkbox" id="rmail"><span>Ich bin einverstanden, dass Name, Nickname und E-Mail gespeichert und per E-Mail an den Admin gesendet werden. Der Admin sieht außerdem, an welchen Tagen ich die App nutze und wie viele Workouts, Läufe und Minuten zusammenkommen (keine Inhalte, kein Puls, kein Ort).</span></label>
+    <label class="terms"><input type="checkbox" id="rmail"><span>Ich bin einverstanden, dass Name, Nickname und E-Mail gespeichert und per E-Mail an den Admin gesendet werden. Der Admin sieht außerdem, wann ich die App öffne, wie lange ich sie nutze und welche Workouts und Läufe ich absolviere (Programm, Minuten, km; kein Puls, kein Ort).</span></label>
     <button type="button" class="btn btn-lamp xl" style="margin-top:14px" data-act="register">REGISTRIERUNG SENDEN</button>`;
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 44 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 45 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
