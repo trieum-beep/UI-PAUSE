@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-hpgePWR4bZ4hnRv4vzbRFZes1JK8YLr2+yydvid+aN0=' 'sha256-WjsJ5KaIAbK75REn8VYVS1IUoDONotSPNZTTco2Yvug=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-hpgePWR4bZ4hnRv4vzbRFZes1JK8YLr2+yydvid+aN0=' 'sha256-oYeC9+FEyRF88Z8x3M1go5/f34o85GntfZX+/jHXUJ8=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
@@ -394,6 +394,9 @@ td small.up { color: var(--ok); } td small.down { color: var(--muted); }
 .rl-fb p { display: flex; gap: 10px; align-items: flex-start; margin: 0; padding: 10px 0; border-top: 1px solid var(--paper-line); line-height: 1.4; }
 .rl-fb p:first-child { border-top: 0; }
 .rl-fb p span { flex: none; width: 24px; text-align: center; }
+.quick-run { margin-bottom: 8px; }
+.quick-run .qr-log { width: 100%; font-size: 17px; letter-spacing: .04em; }
+.quick-run small { display: block; text-align: center; margin-top: 6px; color: var(--muted); font-size: 12.5px; }
 .dash-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .dash-title .mini { text-transform: none; letter-spacing: 0; font-size: 12.5px; }
 .dash-list { display: grid; gap: 6px; }
@@ -444,6 +447,45 @@ td small.up { color: var(--ok); } td small.down { color: var(--muted); }
 .usg-nums { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13.5px; margin-top: 4px; }
 .usg-nums b { color: var(--paper-ink); }
 .adm-tabs { grid-template-columns: repeat(3, 1fr) !important; }
+.bnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)); background: var(--bg); border-top: 1px solid var(--ghost-line); box-shadow: 0 -6px 18px rgba(0,0,0,.18); }
+.bnav[hidden] { display: none !important; }
+.bnav .bn { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 52px; border: 0; background: transparent; color: var(--muted); font: 700 10.5px var(--sans); cursor: pointer; border-radius: 10px; padding: 4px 0; }
+.bnav .bn.on { color: var(--brand); }
+.bnav .bn.on .bn-ic, .bnav .bn.on .bn-av { transform: translateY(-1px) scale(1.08); }
+.bnav .bn.on::before { content: ""; position: absolute; top: -6px; left: 28%; right: 28%; height: 3px; border-radius: 0 0 3px 3px; background: var(--brand); }
+.bn-ic { font-size: 21px; line-height: 1; }
+.bn-t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.bn-av { width: 24px; height: 24px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: var(--brand); color: #fff; font: 800 12px var(--sans); }
+.bn-av img { width: 100%; height: 100%; object-fit: cover; }
+.bn-badge { position: absolute; top: 2px; right: 14%; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: #E5484D; color: #fff; font: 800 10.5px/18px var(--sans); }
+body.has-bnav .wrap { padding-bottom: 96px; }
+body.has-bnav.has-ctl .wrap { padding-bottom: 290px; }
+body.has-bnav .ctlbar { bottom: calc(64px + env(safe-area-inset-bottom, 0px)); padding-bottom: 10px; }
+body.has-bnav .acc-btn { display: none !important; }
+body.has-bnav .toast { bottom: 150px; }
+.tabs { display: none !important; }
+.st-hello { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+.st-hello small { color: var(--muted); font-weight: 700; }
+.st-hello h2 { margin: 2px 0 0; font-size: 24px; }
+.st-streak { flex: none; padding: 6px 10px; border-radius: 99px; background: var(--paper); border: 1px solid var(--paper-line); color: var(--paper-ink); font: 800 13px var(--sans); }
+.st-resume { width: 100%; text-align: left; padding: 14px 16px; border-radius: 14px; border: 0; background: var(--signal, #E5484D); color: #fff; cursor: pointer; font-family: var(--sans); }
+.st-resume b { display: block; font-size: 17px; }
+.st-resume small { opacity: .9; }
+.st-quick, .tr-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.st-q { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px; border-radius: 14px; border: 0; cursor: pointer; text-align: left; background: var(--brand); color: #fff; font-family: var(--sans); min-height: 104px; }
+.st-q span { font-size: 26px; line-height: 1; }
+:root[data-skin="m"][data-skin="m"]:not([data-theme="light"]) .st-q:not(.tr-links .st-q) { color: #061025 !important; }
+.st-q b { font-size: 16px; }
+.st-q small { font-size: 12.5px; opacity: .85; }
+.tr-links .st-q { min-height: 0; background: var(--paper); color: var(--paper-ink); border: 1px solid var(--paper-line); }
+.st-card { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 13px 16px; border-radius: 12px; border: 1px solid var(--paper-line); background: var(--paper); color: var(--paper-text); cursor: pointer; font-family: var(--sans); }
+.st-card .ic { font-size: 24px; line-height: 1; }
+.st-card b { display: block; color: var(--paper-ink); font-size: 15.5px; }
+.st-card small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.st-card .go { margin-left: auto; font-size: 22px; color: var(--muted); }
+.st-edit { text-align: center; margin: 4px 0 0; }
+.acc-menu { display: grid; gap: 8px; }
+.page-h { margin: 0 0 4px; font-size: 24px; }
 .lang-chips { display: flex; gap: 6px; justify-content: flex-end; margin: -4px 0 10px; }
 .lang-chips .chip { margin-top: 0; min-height: 34px; padding: 6px 10px; font-size: 12px; }
 
@@ -928,12 +970,6 @@ header .score[hidden] { display: none; }
     <button type="button" class="acc-btn" id="accBtn" data-act="member" aria-label="Mein Konto" hidden></button>
     <div class="score" aria-live="off"><b id="hdrPct">0 %</b>Fortschritt</div>
   </header>
-  <nav class="tabs" role="tablist" aria-label="Bereiche">
-    <button type="button" role="tab" data-act="view" data-v="train">Training</button>
-    <button type="button" role="tab" data-act="view" data-v="plan">Übungen</button>
-    <button type="button" role="tab" data-act="view" data-v="history">Erfolge</button>
-    <button type="button" role="tab" data-act="view" data-v="settings">Einstellungen</button>
-  </nav>
   <main id="app">
     <div class="note warn" id="nojs"><b>App startet nicht?</b>Diese Ansicht führt keine Skripte aus. Das passiert in der Dateivorschau auf dem iPhone (Dateien-App, Mail-Anhang, Chat-Vorschau). Bitte den Link https://trieum-beep.github.io/UI-PAUSE/ in Safari öffnen oder die Datei am Computer per Doppelklick im Browser starten.</div>
   </main>
@@ -944,6 +980,7 @@ header .score[hidden] { display: none; }
   </footer>
 </div>
 <div class="ctlbar hidden" id="ctlbar"><div class="ctl" id="ctl"></div></div>
+<nav class="bnav" id="bnav" aria-label="Hauptmenü" hidden></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <dialog id="dlg" aria-labelledby="dlgTitle"><div class="sheet" id="sheet"></div></dialog>
 <canvas id="tinsel" class="hidden" aria-hidden="true"></canvas>
@@ -1699,7 +1736,7 @@ let history = store.get(KEY_HIST, []);
 if (!Array.isArray(history)) history = [];
 let sess = store.get(KEY_SESS, null);
 if (sess && (sess.v !== 1 || !Array.isArray(sess.steps) || !sess.steps.length)) sess = null;
-let view = 'train';
+let view = 'start';
 
 const saveSettings = () => store.set(KEY_SET, settings);
 const saveHistory = () => store.set(KEY_HIST, history);
@@ -2605,11 +2642,9 @@ function homeView() {
   const progMin = p => { const cc = effCfg(Object.assign({}, settings, { program: p.id })); return mins(buildPlan(cc).reduce((a, s) => a + estRaw(s) + (s.rest ? restSec(s.rest, cc) * 1000 : 0), 0)); };
   const finName = c.finisher && plan.find(s => s.phase === 'finisher') ? EX[plan.find(s => s.phase === 'finisher').ex].name : null;
   return `<div class="stack fade-in">
-    ${dashOn('account') ? accountHomeCard() : ''}
-    ${homeOpen && sess && sess.state === 'ACTIVE' ? pausedBanner() : (dashOn('run') ? runHomeCard() : '') + (dashOn('community') ? communityHomeCard() : '') + (dashOn('event') ? eventsHomeCard() : '') + (dashOn('board') ? boardHomeCard() : '')}
-    ${dashOn('weight') ? weightHomeCard() : ''}
-    ${dashOn('achieve') ? achieveCardHome() : ''}
-    <div class="sec-title dash-title"><span>Training wählen</span><button type="button" class="mini" data-act="dash-open" data-notr>✏️ ${L('Startseite anpassen', 'Customise', 'Personnaliser', 'Özelleştir')}</button></div>
+    ${homeOpen && sess && sess.state === 'ACTIVE' ? pausedBanner() : ''}
+    <div class="tr-links" data-notr>${dashOn('run') ? `<button type="button" class="st-q" data-act="run-open" data-v="log"><span>🏃</span><b>${L('Laufen', 'Running', 'Course', 'Koşu')}</b><small>${L('eintragen, Plan, Prognose', 'log, plan, prediction', 'saisie, plan, prévision', 'gir, plan, tahmin')}</small></button>` : ''}<button type="button" class="st-q" data-act="view" data-v="plan"><span>📚</span><b>${L('Übungen', 'Exercises', 'Exercices', 'Egzersizler')}</b><small>${L('mit Anleitung', 'with instructions', 'avec consignes', 'talimatlı')}</small></button></div>
+    <div class="sec-title dash-title"><span>Training wählen</span><button type="button" class="mini" data-act="dash-open" data-notr>✏️ ${L('Bereiche anpassen', 'Customise', 'Personnaliser', 'Özelleştir')}</button></div>
     <div class="pgroups">${visibleGroups().map(g => { const open = openGroup() === g.id, list = g.ids.map(id => PROGRAMS.find(p => p.id === id)).filter(Boolean), has = g.ids.includes(prog.id);
       return `<section class="pgroup ${open ? 'open' : ''}"><button type="button" class="pg-head" data-act="pgroup" data-v="${g.id}" aria-expanded="${open}"><span class="pg-name">${esc(g.name)}${has && !open ? `<small class="pg-sel">✓ ${esc(prog.name)}</small>` : ''}</span><span class="pg-cnt">${list.length}</span><span class="pg-chev" aria-hidden="true">›</span></button>
         ${open ? `<div class="progs" role="radiogroup" aria-label="${esc(g.name)}">${list.map(p => `<button type="button" role="radio" aria-checked="${p.id === prog.id}" class="prog ${p.id === prog.id ? 'sel' : ''}" data-act="program" data-id="${p.id}"><b>${esc(p.name)}</b><span>${esc(p.short)}</span><em>≈ ${progMin(p)} min${p.custom ? '' : ' · ' + p.rounds + ' Runden'}</em></button>`).join('')}</div>` : ''}</section>`; }).join('')}</div>
@@ -3010,7 +3045,7 @@ function runAnalysis(q) {
 }
 function runView() {
   const R = store.get(runKey(), null);
-  const tabs = `<div class="seg run-tabs" role="tablist" style="grid-template-columns:repeat(2,1fr);margin-bottom:14px" data-notr>${[['log', '📝 ' + L('Läufe & Auswertung', 'Runs & analysis', 'Sorties & analyse', 'Koşular & analiz')], ['plan', '🗓️ ' + L('Trainingsplan', 'Training plan', 'Plan', 'Antrenman planı')]].map(([k, n]) => `<button type="button" role="tab" aria-checked="${runTab === k}" data-act="run-tab" data-v="${k}">${n}</button>`).join('')}</div>`;
+  const tabs = `<div class="seg run-tabs" role="tablist" style="grid-template-columns:repeat(2,1fr);margin-bottom:14px" data-notr>${[['log', '📝 ' + L('Lauf eintragen', 'Log a run', 'Enregistrer', 'Koşu gir')], ['plan', '🗓️ ' + L('Trainingsplan', 'Training plan', 'Plan', 'Antrenman planı')]].map(([k, n]) => `<button type="button" role="tab" aria-checked="${runTab === k}" data-act="run-tab" data-v="${k}">${n}</button>`).join('')}</div>`;
   if (runTab === 'log') return tabs + rlLogView();
   if (!R || runDraft) return tabs + runForm();
   return tabs + runPlanView(R);
@@ -3074,7 +3109,7 @@ function runPlanView(R) {
   </div>`;
 }
 function runAct(a, b) {
-  if (a === 'run-open') { view = 'run'; runDraft = null; if (b && b.dataset.v) runTab = b.dataset.v; render(); window.scrollTo(0, 0); return; }
+  if (a === 'run-open') { view = 'run'; runDraft = null; if (b && b.dataset.v) runTab = b.dataset.v; render(); window.scrollTo(0, 0); if (b && b.dataset.focus) setTimeout(() => { const f = document.getElementById('rl_km'); if (f) { f.scrollIntoView({ block: 'center' }); f.focus(); } }, 80); return; }
   if (a === 'rq') { const k = b.dataset.k, v = b.dataset.v; const t5 = document.getElementById('r5k'); if (t5) runDraft.t5 = t5.value; const kn = document.getElementById('rknee'); if (kn) runDraft.knee = kn.checked; runDraft[k] = k === 'goal' ? v : +v; render(); return; }
   if (a === 'run-make') { runTab = 'plan';
     const q = runDraft; const t5 = document.getElementById('r5k'); q.t5 = t5 ? t5.value.trim() : ''; q.knee = false;
@@ -3089,8 +3124,11 @@ function runAct(a, b) {
   if (a === 'run-cancel') { runDraft = null; render(); return; }
   if (a === 'run-done') { const R = store.get(runKey(), null); if (!R) return; const s = R.plan[+b.dataset.w].sessions[+b.dataset.i]; s.done = !s.done; store.set(runKey(), R); render(); if (s.done) toast(L('Stark, Lauf erledigt!', 'Great, run done!', 'Bravo, sortie faite !', 'Harika, koşu tamam!')); }
 }
-const runHomeCard = () => { const R = store.get(runKey(), null); const sub = R ? `${RUN_GOALS[R.q.goal].name} · ${L('Woche', 'week', 'semaine', 'hafta')} ${clamp(Math.floor((Date.now() - R.start) / 6048e5), 0, R.plan.length - 1) + 1}/${R.plan.length}` : L('Läufe eintragen, Auswertung & Trainingsplan', 'Log runs, analysis & training plan', 'Sorties, analyse & plan', 'Koşu gir, analiz & plan');
-  return `<button type="button" class="run-card" data-act="run-open" data-notr><span class="ic" aria-hidden="true">🏃</span><span><b>${L('Lauftrainer', 'Running coach', 'Coach running', 'Koşu koçu')}</b><small>${sub}</small></span><span class="go">›</span></button>`; };
+const runHomeCard = () => { const R = store.get(runKey(), null); const sub = R ? `${RUN_GOALS[R.q.goal].name} · ${L('Woche', 'week', 'semaine', 'hafta')} ${clamp(Math.floor((Date.now() - R.start) / 6048e5), 0, R.plan.length - 1) + 1}/${R.plan.length}` : L('Trainingsplan, Auswertung & Prognosen', 'Training plan, analysis & predictions', 'Plan, analyse & prévisions', 'Plan, analiz & tahminler');
+  const n = typeof rlList === 'function' ? rlList().length : 0, wk = n ? weekKm(rlList(), weekStart(Date.now())) : 0;
+  return `<div class="quick-run" data-notr><button type="button" class="btn btn-primary xl qr-log" data-act="run-open" data-v="log" data-focus="1">🏃 ${L('LAUF EINTRAGEN', 'LOG A RUN', 'ENREGISTRER UNE COURSE', 'KOŞU GİR')}</button>
+    <small>${n ? L(`Diese Woche ${num(wk, 1)} km · ${n} Läufe insgesamt`, `This week ${num(wk, 1)} km · ${n} runs in total`, `Cette semaine ${num(wk, 1)} km · ${n} sorties`, `Bu hafta ${num(wk, 1)} km · toplam ${n} koşu`) : L('Distanz, Dauer und Puls eintragen und sofort Feedback bekommen', 'Enter distance, time and heart rate and get instant feedback', 'Saisis distance, durée et pouls et reçois un retour immédiat', 'Mesafe, süre ve nabzı gir, anında geri bildirim al')}</small></div>
+  <button type="button" class="run-card" data-act="run-open" data-v="plan" data-notr><span class="ic" aria-hidden="true">🏃</span><span><b>${L('Lauftrainer', 'Running coach', 'Coach running', 'Koşu koçu')}</b><small>${sub}</small></span><span class="go">›</span></button>`; };
 
 const HEAT_COLS = ['var(--paper-line)', 'var(--heat1, #B9E3B2)', 'var(--heat2, #7FCB73)', 'var(--heat3, #45A538)', 'var(--heat4, #2C7A22)'];
 /* ============================================================
@@ -4064,9 +4102,10 @@ function communityView() {
   if (cbState !== 'on') { if (cbState === 'off') setTimeout(cbStart, 0);
     return `<div class="panel fade-in" data-notr><h3>Community</h3><p class="sub" style="margin:0">${cbState === 'error' ? L('Verbindung fehlgeschlagen: ', 'Connection failed: ', 'Connexion impossible : ', 'Bağlantı kurulamadı: ') + esc(cbErr) : L('Verbinde …', 'Connecting …', 'Connexion …', 'Bağlanıyor …')}</p>${cbState === 'error' ? `<button type="button" class="btn btn-ghost" style="width:100%;margin-top:10px" data-act="c-retry">${L('Erneut versuchen', 'Try again', 'Réessayer', 'Tekrar dene')}</button>` : ''}</div>`; }
   const demo = CB.demo ? `<div class="note warn" style="margin-top:0"><b>Demo</b>${L('Firebase ist noch nicht eingerichtet. Nachrichten bleiben nur auf diesem Gerät.', 'Firebase is not set up yet. Messages stay on this device only.', 'Firebase n\'est pas encore configuré. Les messages restent sur cet appareil.', 'Firebase henüz kurulmadı. Mesajlar yalnızca bu cihazda kalır.')}</div>` : '';
+  const isEB = cbTab === 'events' || cbTab === 'board';
   if (!cbRoom) return `<div class="stack fade-in" data-notr>${demo}
-    <article class="face front" style="--ph:var(--ph-circuit)"><div class="kicker"><span>Community</span><span class="r">${esc(cNick())}</span></div><h2 class="c-me">${avHTML(cNick(), 40)}${L('Community', 'Community', 'Communauté', 'Topluluk')}</h2><p>${L('Verabrede dich zum Training, starte eine Abstimmung oder schlag Termin und Ort vor.', 'Meet up for training, start a poll or suggest a date and place.', 'Donne rendez-vous pour t\'entraîner, lance un sondage ou propose une date et un lieu.', 'Antrenman için buluş, anket başlat ya da tarih ve yer öner.')}</p></article>
-    <div class="seg c-tabs4" role="tablist" style="grid-template-columns:repeat(3,1fr)">${[['feed', '📣 Feed'], ['rooms', '💬 ' + L('Räume', 'Rooms', 'Salons', 'Odalar')], ['events', '🏁 Events'], ['board', '🏆 ' + L('Rangliste', 'Ranking', 'Classement', 'Sıralama')], ['people', L('Mitglieder', 'Members', 'Membres', 'Üyeler')], ['dms', L('Nachrichten', 'Messages', 'Messages', 'Mesajlar') + (unreadDms() ? ` <span class="c-badge">${unreadDms()}</span>` : '')]].map(([k, n]) => `<button type="button" role="tab" aria-checked="${cbTab === k}" data-act="c-tab" data-v="${k}">${n}</button>`).join('')}</div>
+    ${isEB ? `<h2 class="page-h">${cbTab === 'events' ? '🏁 ' + L('Laufevents', 'Races', 'Courses', 'Koşu etkinlikleri') : '🏆 ' + L('Rangliste', 'Leaderboard', 'Classement', 'Sıralama')}</h2>` : `<article class="face front" style="--ph:var(--ph-circuit)"><div class="kicker"><span>Community</span><span class="r">${esc(cNick())}</span></div><h2 class="c-me">${avHTML(cNick(), 40)}${L('Community', 'Community', 'Communauté', 'Topluluk')}</h2><p>${L('Verabrede dich zum Training, starte eine Abstimmung oder schlag Termin und Ort vor.', 'Meet up for training, start a poll or suggest a date and place.', 'Donne rendez-vous pour t\'entraîner, lance un sondage ou propose une date et un lieu.', 'Antrenman için buluş, anket başlat ya da tarih ve yer öner.')}</p></article>`}
+    ${isEB ? '' : `<div class="seg c-tabs4" role="tablist" style="grid-template-columns:repeat(4,1fr)">${[['feed', '📣 Feed'], ['rooms', '💬 ' + L('Räume', 'Rooms', 'Salons', 'Odalar')], ['people', L('Mitglieder', 'Members', 'Membres', 'Üyeler')], ['dms', L('Nachrichten', 'Messages', 'Messages', 'Mesajlar') + (unreadDms() ? ` <span class="c-badge">${unreadDms()}</span>` : '')]].map(([k, n]) => `<button type="button" role="tab" aria-checked="${cbTab === k}" data-act="c-tab" data-v="${k}">${n}</button>`).join('')}</div>`}
     ${cbTab === 'people' ? peopleHTML() : cbTab === 'dms' ? dmsHTML() : cbTab === 'events' ? eventsHTML() : cbTab === 'feed' ? feedHTML() : cbTab === 'board' ? boardHTML() : roomListHTML() + `<button type="button" class="btn btn-ghost" style="width:100%" data-act="c-newroom">+ ${L('Neuer Raum', 'New room', 'Nouveau salon', 'Yeni oda')}</button>`}
     <p class="sub c-legal"><button type="button" class="mini" data-act="c-rules">${L('Community-Regeln', 'Community rules', 'Règles', 'Topluluk kuralları')}</button> · <button type="button" class="mini" data-act="legal">${L('Datenschutz', 'Privacy', 'Confidentialité', 'Gizlilik')}</button> · <button type="button" class="mini" data-act="c-wipe">${L('Meine Community-Daten löschen', 'Delete my community data', 'Supprimer mes données', 'Topluluk verilerimi sil')}</button></p>
     ${cbErr ? `<p class="sub">${esc(cbErr)}</p>` : ''}</div>`;
@@ -4244,7 +4283,7 @@ function watchRooms() {
   });
 }
 function updBadges() {
-  updTitle();
+  updTitle(); try { bnavRender(); } catch (e) {}
   if (view === 'train' && !(sess && sess.state === 'ACTIVE' && !homeOpen)) render();
   else if (view === 'community' && !cbRoom) render();
 }
@@ -4390,6 +4429,7 @@ function memberView() {
     <article class="face front" style="--ph:var(--ph-circuit)"><div class="kicker"><span>${L('Mitgliederbereich', 'Members area', 'Espace membre', 'Üye alanı')}</span><span class="r">${esc(account.name)}</span></div>
       <h2>${L('Mein Konto', 'My account', 'Mon compte', 'Hesabım')}</h2><p class="sub" style="margin:0">${L('Login, Passwort und Tarif verwaltet der Server. Wohnort, Ziel, Bild und Trainingsdaten bleiben auf diesem Gerät.', 'Login, password and plan are managed by the server. Town, goal, picture and training data stay on this device.', 'Connexion, mot de passe et formule sont gérés par le serveur. Ville, objectif, photo et données d\'entraînement restent sur cet appareil.', 'Giriş, şifre ve plan sunucuda yönetilir. Şehir, hedef, fotoğraf ve antrenman verileri bu cihazda kalır.')}</p></article>
 
+    ${accountMenuHTML()}
     <div class="sec-title">👤 ${L('Persönliche Daten', 'Personal details', 'Données personnelles', 'Kişisel bilgiler')}</div>
     <div class="panel">
       <div class="m-av"><label for="pf_av" class="m-av-pic" title="${L('Bild ändern', 'Change picture', 'Changer la photo', 'Fotoğrafı değiştir')}">${P.av ? `<img src="${esc(P.av)}" alt="">` : `<span>${esc(account.name.charAt(0).toUpperCase())}</span>`}<i>📷</i></label><div><b>${L('Profilbild', 'Profile picture', 'Photo de profil', 'Profil fotoğrafı')}</b><label class="chip" style="margin-top:6px">📷 ${P.av ? L('Ändern', 'Change', 'Changer', 'Değiştir') : L('Hochladen', 'Upload', 'Ajouter', 'Yükle')}<input type="file" id="pf_av" accept="image/*" hidden></label>${P.av ? ` <button type="button" class="chip" style="margin-top:6px" data-act="m-av-del">${L('Entfernen', 'Remove', 'Supprimer', 'Kaldır')}</button>` : ''}</div></div>
@@ -5863,6 +5903,88 @@ function admUsageHTML() {
     <div class="adm-acts"><button type="button" class="btn btn-ghost" data-act="adm-ureload">Aktualisieren</button></div>`;
 }
 
+/* ============================================================
+   NAVIGATION (ab Version 31): feste Leiste unten + aufgeräumte Startseite
+   Start · Workouts · Community · Events · Rangliste · Konto
+   ============================================================ */
+const NAV = [
+  ['start', '🏠', () => L('Start', 'Home', 'Accueil', 'Ana')],
+  ['train', '💪', () => L('Training', 'Training', 'Entraîn.', 'Antrenman')],
+  ['community', '👥', () => 'Community'],
+  ['events', '🏁', () => 'Events'],
+  ['board', '🏆', () => L('Rangliste', 'Ranking', 'Classem.', 'Sıralama')],
+  ['member', '', () => L('Konto', 'Account', 'Compte', 'Hesap')]
+];
+function navCur() {
+  if (view === 'community') return cbTab === 'events' ? 'events' : cbTab === 'board' ? 'board' : 'community';
+  if (['train', 'run', 'plan'].includes(view)) return 'train';
+  if (['member', 'settings', 'history'].includes(view)) return 'member';
+  return 'start';
+}
+const navHidden = () => !account || adminMode || (view === 'train' && sess && sess.state === 'ACTIVE' && !homeOpen);
+function navAv() { const P = store.get(`uipause-${account.id}-profile-v1`, {}); return `<span class="bn-av">${P.av ? `<img src="${esc(P.av)}" alt="">` : esc(account.name.charAt(0).toUpperCase())}</span>`; }
+function bnavRender() {
+  const el = document.getElementById('bnav'); if (!el) return;
+  const hide = navHidden(); el.hidden = hide; document.body.classList.toggle('has-bnav', !hide);
+  if (hide) return;
+  const cur = navCur(), un = (typeof CB !== 'undefined' && CB && typeof unreadTotal === 'function') ? unreadTotal() : 0;
+  el.innerHTML = NAV.map(([k, ic, n]) => `<button type="button" class="bn ${cur === k ? 'on' : ''}" data-act="nav" data-v="${k}" aria-current="${cur === k ? 'page' : 'false'}">${k === 'member' ? navAv() : `<span class="bn-ic" aria-hidden="true">${ic}</span>`}<span class="bn-t">${esc(n())}</span>${k === 'community' && un ? `<span class="bn-badge">${un > 99 ? '99+' : un}</span>` : ''}</button>`).join('');
+}
+function navAct(v) {
+  closeSheet && document.getElementById('dlg').open && closeSheet();
+  if (v === 'community' || v === 'events' || v === 'board') {
+    view = 'community'; cbRoom && (() => { try { cbUnsub && cbUnsub(); } catch (e) {} cbUnsub = null; cbRoom = null; })();
+    cbTab = v === 'events' ? 'events' : v === 'board' ? 'board' : (['events', 'board'].includes(cbTab) ? 'feed' : cbTab);
+  } else if (v === 'train') { view = 'train'; }
+  else if (v === 'member') { view = 'member'; }
+  else view = 'start';
+  render(); window.scrollTo(0, 0);
+}
+/* ---------------- Startseite ---------------- */
+function startView() {
+  const P = store.get(`uipause-${account.id}-profile-v1`, {}), h = new Date().getHours();
+  const hi = h < 11 ? L('Guten Morgen', 'Good morning', 'Bonjour', 'Günaydın') : h < 18 ? L('Hallo', 'Hi', 'Salut', 'Merhaba') : L('Guten Abend', 'Good evening', 'Bonsoir', 'İyi akşamlar');
+  const w0 = weekStart(Date.now()), hist = (history || []).filter(x => x.date >= w0 && x.exDone > 0), runs = rlList().filter(r => r.t >= w0);
+  const km = runs.reduce((s, r) => s + r.km, 0), min = Math.round(hist.reduce((s, x) => s + (x.ms || 0), 0) / 60000 + runs.reduce((s, r) => s + r.sec, 0) / 60);
+  const streak = streakDays(history || []), active = sess && sess.state === 'ACTIVE';
+  const ev = dashOn('event') ? nextEvents()[0] : null, goal = rlCfg().goalEv, gEv = goal ? EVENTS_ALL().find(e => e.id === goal) : null;
+  const un = (typeof CB !== 'undefined' && CB) ? unreadTotal() : 0;
+  const prog = programOf(settings);
+  return `<div class="stack fade-in start" data-notr>
+    <section class="st-hello"><div><small>${new Date().toLocaleDateString(LOC, { weekday: 'long', day: 'numeric', month: 'long' })}</small><h2>${hi}, ${esc(P.first || account.name)} 👋</h2></div>
+      ${streak > 1 ? `<span class="st-streak">🔥 ${streak} ${L('Tage', 'days', 'jours', 'gün')}</span>` : ''}</section>
+    ${active ? `<button type="button" class="st-resume" data-act="nav-resume"><b>▶ ${L('Workout fortsetzen', 'Resume workout', 'Reprendre', 'Devam et')}</b><small>${esc(sess.cfg.programName || '')} · ${fmt(elapsed())}</small></button>` : ''}
+    <div class="st-quick">
+      <button type="button" class="st-q" data-act="nav" data-v="train"><span>💪</span><b>${L('Workout starten', 'Start workout', 'Lancer la séance', 'Antrenman başlat')}</b><small>${esc(prog.name)}</small></button>
+      <button type="button" class="st-q" data-act="run-open" data-v="log" data-focus="1"><span>🏃</span><b>${L('Lauf eintragen', 'Log a run', 'Enregistrer une course', 'Koşu gir')}</b><small>${L('mit Feedback', 'with feedback', 'avec retour', 'geri bildirimli')}</small></button>
+    </div>
+    <div class="sec-title">${L('Deine Woche', 'Your week', 'Ta semaine', 'Haftan')}</div>
+    <div class="tiles st-tiles">
+      <div class="tile"><small>Workouts</small><b>${hist.length}</b></div>
+      <div class="tile"><small>${L('Gelaufen', 'Run', 'Couru', 'Koşu')}</small><b>${num(km, 1)} <small>km</small></b></div>
+      <div class="tile"><small>${L('Aktive Minuten', 'Active minutes', 'Minutes actives', 'Aktif dakika')}</small><b>${min}</b></div>
+      <div class="tile"><small>${L('Punkte (Monat)', 'Points (month)', 'Points (mois)', 'Puan (ay)')}</small><b>${ptsSum(monthStart())}</b></div>
+    </div>
+    ${gEv ? `<button type="button" class="st-card" data-act="nav" data-v="events"><span class="ic">🎯</span><span><b>${esc(gEv.name)}</b><small>${L(`Dein Ziel · noch ${evDays(gEv)} Tage`, `Your goal · ${evDays(gEv)} days to go`, `Ton objectif · encore ${evDays(gEv)} jours`, `Hedefin · ${evDays(gEv)} gün`)}</small></span><span class="go">›</span></button>`
+      : ev ? `<button type="button" class="st-card" data-act="nav" data-v="events"><span class="ic">🏁</span><span><b>${esc(ev.name)}</b><small>${esc(evDateTxt(ev))} · ${L(`noch ${evDays(ev)} Tage`, `${evDays(ev)} days to go`, `encore ${evDays(ev)} jours`, `${evDays(ev)} gün`)}</small></span><span class="go">›</span></button>` : ''}
+    ${settings.community && dashOn('community') ? `<button type="button" class="st-card" data-act="nav" data-v="community"><span class="ic">👥</span><span><b>Community${un ? ` <span class="c-badge">${un}</span>` : ''}</b><small>${un ? L(`${un} Neuigkeiten`, `${un} updates`, `${un} nouveautés`, `${un} yenilik`) : L('Feed, Räume & Nachrichten', 'Feed, rooms & messages', 'Fil, salons & messages', 'Akış, odalar & mesajlar')}</small></span><span class="go">›</span></button>` : ''}
+    ${dashOn('weight') ? weightHomeCard() : ''}
+    ${dashOn('achieve') ? achieveCardHome() : ''}
+    <p class="st-edit"><button type="button" class="mini" data-act="dash-open">✏️ ${L('Startseite anpassen', 'Customise home', 'Personnaliser', 'Özelleştir')}</button></p>
+  </div>`;
+}
+/* Konto-Seite: Menü zu Erfolgen, Übungen, Einstellungen */
+function accountMenuHTML() {
+  const it = (act, v, ic, t, s) => `<button type="button" class="st-card" data-act="${act}" ${v ? `data-v="${v}"` : ''}><span class="ic">${ic}</span><span><b>${t}</b><small>${s}</small></span><span class="go">›</span></button>`;
+  return `<div class="acc-menu" data-notr>
+    ${it('view', 'history', '🎖️', L('Erfolge & Statistik', 'Achievements & stats', 'Succès & stats', 'Başarılar & istatistik'), L('Verlauf, Abzeichen, Fortschritt', 'History, badges, progress', 'Historique, badges, progrès', 'Geçmiş, rozetler, ilerleme'))}
+    ${it('view', 'plan', '📚', L('Übungen', 'Exercises', 'Exercices', 'Egzersizler'), L('Alle Übungen mit Anleitung', 'All exercises with instructions', 'Tous les exercices', 'Tüm egzersizler'))}
+    ${it('view', 'settings', '⚙️', L('Einstellungen', 'Settings', 'Réglages', 'Ayarlar'), L('Sprache, Sound, Darstellung, Community', 'Language, sound, display, community', 'Langue, son, affichage', 'Dil, ses, görünüm'))}
+    ${it('dash-open', '', '✏️', L('Startseite anpassen', 'Customise home', 'Personnaliser l\'accueil', 'Ana sayfayı özelleştir'), L('Karten und Bereiche ein- oder ausblenden', 'Show or hide cards and areas', 'Afficher ou masquer', 'Kartları göster/gizle'))}
+    ${account.admin ? it('admin-open', '', '🛠️', 'Admin-Bereich', 'Accounts, Nutzung, Community') : ''}
+  </div>`;
+}
+
 let lastRKey = '';
 function render() {
   if (!account) { if (adminMode) showAdmin(); else showLogin(); return; }
@@ -5874,6 +5996,7 @@ function render() {
   else if (view === 'community') html = communityView();
   else if (view === 'member') html = memberView();
   else if (view === 'run') html = runView();
+  else if (view === 'start') html = startView();
   else html = !sess || (homeOpen && sess.state === 'ACTIVE') ? homeView() : sess.state === 'COMPLETED' ? resultView() : workoutView();
   $app.innerHTML = html;
   const rkey = view + '|' + (sess ? sess.id + curTok() + sess.paused + sess.state : '');
@@ -5883,7 +6006,7 @@ function render() {
   document.getElementById('ctl').innerHTML = ctl;
   document.getElementById('ctlbar').classList.toggle('hidden', !ctl);
   document.body.classList.toggle('has-ctl', !!ctl);
-  updateHeader(); updateLive();
+  updateHeader(); updateLive(); try { bnavRender(); } catch (e) {}
   const fr = document.querySelector('#finRing .arc');
   if (fr) requestAnimationFrame(() => requestAnimationFrame(() => fr.setAttribute('stroke-dashoffset', (RC * (1 - (sess.aborted ? progressFrac() : 1))).toFixed(1))));
 }
@@ -6117,8 +6240,10 @@ function act(a, b) {
     case 'dash-open': case 'dash-reset': dashAct(a); break;
     case 'bd-open': view = 'community'; cbTab = 'board'; cbRoom = null; render(); window.scrollTo(0, 0); break;
     case 'bd-tab': case 'bd-join': case 'bd-leave': case 'fd-private': case 'fd-share': case 'fd-post': case 'fd-react': case 'fd-open': case 'fd-csend': case 'fd-cdel': case 'fd-del': socialAct(a, b); break;
+    case 'nav': navAct(b.dataset.v); break;
+    case 'nav-resume': homeOpen = false; view = 'train'; if (sess && sess.paused) resumeWorkout(); else render(); window.scrollTo(0, 0); break;
     case 'lang-menu': langSheet(); break;
-    case 'go-home': if (!account) break; closeSheet(); if (sess && sess.state === 'COMPLETED') { homeOpen = false; view = 'train'; newWorkout(); break; } if (sess && sess.state === 'ACTIVE') { if (!sess.paused) pauseWorkout(); homeOpen = true; } view = 'train'; render(); window.scrollTo(0, 0); break;
+    case 'go-home': if (!account) break; closeSheet(); if (sess && sess.state === 'COMPLETED') { homeOpen = false; view = 'train'; newWorkout(); break; } if (sess && sess.state === 'ACTIVE') { if (!sess.paused) pauseWorkout(); homeOpen = true; } view = 'start'; render(); window.scrollTo(0, 0); break;
     case 'resume-home': homeOpen = false; if (sess && sess.paused) resumeWorkout(); else render(); window.scrollTo(0, 0); break;
     case 'end-home': homeOpen = false; if (sess && sess.state === 'ACTIVE') finish(true); break;
     case 'discard-home': homeOpen = false; discardBackup = sess ? clone(sess) : null; stopMusic(); sess = null; store.del(KEY_SESS); render(); toast(L('Workout verworfen', 'Workout discarded', 'Entraînement abandonné', 'Antrenman silindi'), !!discardBackup, 'undo-discard'); break;
@@ -6322,7 +6447,7 @@ function enterAccount(acc) {
   history = store.get(KEY_HIST, []); if (!Array.isArray(history)) history = [];
   sess = store.get(KEY_SESS, null);
   if (sess && (sess.v !== 1 || !Array.isArray(sess.steps) || !sess.steps.length)) sess = null;
-  view = 'train';
+  view = sess && sess.state === 'ACTIVE' ? 'train' : 'start';
   store.set(KEY_AUTH, acc.id);
   document.body.classList.remove('locked');
   setAccountLabel();
@@ -6379,7 +6504,7 @@ function showLogin(err, info) {
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 29 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 31 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
