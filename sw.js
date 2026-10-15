@@ -1,7 +1,7 @@
 /* Service Worker für Pausen Workout · Body Activity App.
    Legt index.html in den Cache, damit die App auch ohne Internet startet.
    Konfigurationsdateien werden immer zuerst frisch geladen. */
-const CACHE = 'uipause-v45';
+const CACHE = 'uipause-v46';
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html']).then(() => Promise.all(['./manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png'].map(u => c.add(u).catch(() => {}))))).then(() => self.skipWaiting()));
 });

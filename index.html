@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fkwBA/H4i5cSs0z3ulQ3UQCZ+miv6/vbJLP55H+iVTI=' 'sha256-xe+fCeSeWTi6D6nNAaicRxg2KXBHMaYWhM0zexQ3bWM=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fkwBA/H4i5cSs0z3ulQ3UQCZ+miv6/vbJLP55H+iVTI=' 'sha256-y0zC2eBvTTo5LxtscRPP4L9PqSfIOZQ0upkincUuv2A=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
@@ -570,6 +570,8 @@ body.has-bnav .toast { bottom: 150px; }
 .usg-ev small { flex: none; color: var(--muted); font-size: 12px; }
 .usg-det { margin-top: 6px; }
 .usg-det summary { cursor: pointer; font: 700 13px var(--sans); color: var(--brand); }
+.ev-regs { margin-top: 10px; }
+.ev-regs .chip { margin-top: 0; }
 .lang-chips { display: flex; gap: 6px; justify-content: flex-end; margin: -4px 0 10px; }
 .lang-chips .chip { margin-top: 0; min-height: 34px; padding: 6px 10px; font-size: 12px; }
 
@@ -1233,6 +1235,18 @@ const EX = {
     desc: 'Aus dem Stand springen: Beine auseinander, Arme über den Kopf, dann zurück. Locker auf den Fußballen landen. Leise Variante fürs Hotelzimmer: statt zu springen abwechselnd ein Bein zur Seite setzen.' },
   high_knees: { name: 'Knieheben schnell', muscles: 'Kreislauf · Hüftbeuger · Bauch', kind: 'time', cat: 'strength',
     desc: 'Auf der Stelle zügig die Knie Richtung Hüfthöhe ziehen, Arme schwingen mit. Oberkörper aufrecht. Leise Variante: ohne Sprung, nur schnell marschieren.' },
+  abc_ankle: { name: 'Fußgelenksarbeit', muscles: 'Waden · Sprunggelenk · Fußgelenk', kind: 'time', cat: 'strength',
+    desc: 'Lauf-ABC. Kleine, schnelle Schritte nur über den Vorfuß: Ferse hebt kaum ab, Knie bleibt fast gestreckt. Aktiver Fußaufsatz unter dem Körper, Arme laufen locker mit. Auf 20 bis 30 m oder auf der Stelle.' },
+  abc_buttkick: { name: 'Anfersen', muscles: 'Beinrückseite · Hüftstrecker', kind: 'time', cat: 'strength',
+    desc: 'Lauf-ABC. Fersen zügig Richtung Gesäß ziehen, Knie zeigen nach unten. Oberkörper aufrecht, Arme schwingen wie beim Laufen. Kurze Bodenkontakte.' },
+  abc_askip: { name: 'Hopserlauf', muscles: 'Hüftbeuger · Waden · Koordination', kind: 'time', cat: 'strength',
+    desc: 'Lauf-ABC. Bei jedem Schritt kleiner Hopser, das Schwungbein wird mit Knie nach oben gezogen, der Gegenarm schwingt kräftig mit. Locker und rhythmisch, nicht weit, sondern hoch.' },
+  abc_side: { name: 'Seitgalopp', muscles: 'Abduktoren · Hüfte · Koordination', kind: 'time', cat: 'strength', half: 'Richtung wechseln',
+    desc: 'Lauf-ABC. Seitlich galoppieren: Füße schließen kurz, ohne sich zu kreuzen. Leicht in den Knien, Blick nach vorn. Nach der Hälfte Richtung wechseln.' },
+  abc_carioca: { name: 'Überkreuzlauf', muscles: 'Hüfte · Rumpfrotation · Koordination', kind: 'time', cat: 'strength', half: 'Richtung wechseln',
+    desc: 'Lauf-ABC (Carioca). Seitwärts laufen, das hintere Bein abwechselnd vor und hinter dem Standbein kreuzen. Hüfte dreht mit, Schultern bleiben ruhig. Nach der Hälfte Richtung wechseln.' },
+  abc_strides: { name: 'Steigerungslauf', muscles: 'Ganzer Körper · Laufökonomie', kind: 'time', cat: 'strength',
+    desc: 'Auf 60 bis 80 m locker beginnen und gleichmäßig bis etwa 90 % beschleunigen, dann auslaufen. Lange, lockere Schritte, Arme aktiv. Zurück gehen ist die Pause. Ohne Platz: auf der Stelle zügig laufen.' },
   mountain_climber: { name: 'Mountain Climbers', muscles: 'Bauch · Schultern · Kreislauf', kind: 'time', cat: 'core',
     desc: 'Hoher Liegestütz, Hände unter den Schultern. Abwechselnd die Knie zügig Richtung Brust ziehen. Hüfte bleibt tief, Rücken gerade. Leichter: langsam im Wechsel steigen.' },
 
@@ -1341,7 +1355,7 @@ const MG = {
   kb_goblet: ['Oberschenkel', 'Gesäß'], kb_press: ['Schultern', 'Trizeps'], floor_press: ['Brust', 'Trizeps'], lateral_raise: ['Schultern'],
   hammer_curl: ['Bizeps', 'Unterarme'], tri_ext: ['Trizeps'], pike_pushup: ['Schultern', 'Trizeps'], diamond_pushup: ['Trizeps', 'Brust'], knee_pushup: ['Brust', 'Trizeps', 'Schultern'],
   chinup: ['Bizeps', 'Latissimus'], knee_raise: ['Bauch', 'Unterarme'], side_plank: ['Seitlicher Rumpf'], superman: ['Unterer Rücken', 'Gesäß'],
-  bird_dog: ['Rumpf', 'Unterer Rücken'], bicycle: ['Bauch'], reverse_crunch: ['Bauch'], leg_raise: ['Bauch', 'Hüftbeuger'], jumping_jack: ['Waden', 'Schultern', 'Oberschenkel'], high_knees: ['Hüftbeuger', 'Bauch', 'Oberschenkel'], mountain_climber: ['Bauch', 'Schultern', 'Rumpf'], russian_twist: ['Seitlicher Rumpf', 'Bauch'], hollow: ['Bauch', 'Rumpf'], br_calf: ['Waden'], br_quad: ['Oberschenkel'], br_it: ['Oberschenkel'], br_ham: ['Beinrückseite'],
+  bird_dog: ['Rumpf', 'Unterer Rücken'], bicycle: ['Bauch'], reverse_crunch: ['Bauch'], leg_raise: ['Bauch', 'Hüftbeuger'], jumping_jack: ['Waden', 'Schultern', 'Oberschenkel'], abc_ankle: ['Waden'], abc_buttkick: ['Beinrückseite'], abc_askip: ['Hüftbeuger', 'Waden'], abc_side: ['Gesäß', 'Oberschenkel'], abc_carioca: ['Seitlicher Rumpf', 'Gesäß'], abc_strides: ['Oberschenkel', 'Waden', 'Gesäß'], high_knees: ['Hüftbeuger', 'Bauch', 'Oberschenkel'], mountain_climber: ['Bauch', 'Schultern', 'Rumpf'], russian_twist: ['Seitlicher Rumpf', 'Bauch'], hollow: ['Bauch', 'Rumpf'], br_calf: ['Waden'], br_quad: ['Oberschenkel'], br_it: ['Oberschenkel'], br_ham: ['Beinrückseite'],
   br_glute: ['Gesäß'], y_catcow: ['Rücken'], y_child: ['Rücken'], y_dog: ['Beinrückseite', 'Schultern', 'Waden'], y_puppy: ['Schultern', 'Oberer Rücken'],
   y_lunge: ['Oberschenkel'], y_crescent: ['Oberschenkel', 'Schultern'], y_warrior2: ['Oberschenkel', 'Schultern'], y_triangle: ['Beinrückseite', 'Seitlicher Rumpf'], y_fold: ['Beinrückseite', 'Unterer Rücken'],
   y_cobra: ['Unterer Rücken', 'Brust'], y_sphinx: ['Unterer Rücken', 'Brust'], y_updog: ['Unterer Rücken', 'Brust', 'Schultern'], y_pigeon: ['Gesäß'], y_fig4: ['Gesäß'], y_twist: ['Seitlicher Rumpf', 'Rücken'],
@@ -1460,15 +1474,25 @@ const PROGRAMS = [
       leicht: { name: 'Leicht', info: 'Einstieg: 2 Runden, weniger Wiederholungen, längere Pausen. Hampelmann und Knieheben gern in der leisen Variante.', rounds: 2, f: 0.7, restEx: 20, restRound: 60, target: 18 },
       mittel: { name: 'Mittel', info: '3 Runden mit Standard-Wiederholungen, kurze Pausen. Garantiert schwitzen.', rounds: 3, f: 1, restEx: 15, restRound: 45, target: 25 },
       fordernd: { name: 'Fordernd', info: '3 Runden, mehr Wiederholungen und längere Cardio-Intervalle, kaum Pause.', rounds: 3, f: 1.3, restEx: 10, restRound: 40, target: 32 } } },
+  { id: 'lauf_abc', name: 'Lauf-ABC', short: 'Technik-Drills für einen leichteren, schnelleren Laufstil · draußen auf 20–30 m oder auf der Stelle · ca. 20 min', rounds: 2, fin: null, restEx: 30, restRound: 60, targetMin: 20, noCooldown: false,
+    stations: [{ id: 'abc_ankle', sec: 30 }, { id: 'high_knees', sec: 25 }, { id: 'abc_buttkick', sec: 30 }, { id: 'abc_askip', sec: 30 }, { id: 'abc_side', sec: 40 }, { id: 'abc_carioca', sec: 40 }, { id: 'abc_strides', sec: 20 }] },
+  { id: 'gate', name: 'Boarding-Booster', short: 'Am Gate, Bahnsteig oder im Wartebereich · im Stehen, unauffällig · ca. 10 min', rounds: 2, fin: null, noWarmup: true, noCooldown: true, restEx: 10, restRound: 30, targetMin: 10,
+    stations: [{ id: 'march', sec: 45 }, { id: 'calf', reps: 15 }, { id: 'chair_squat', reps: 10 }, { id: 'standing_cross_crunch', reps: 10 }, { id: 'side_leg_raise', reps: 10 }, { id: 'single_leg_stand', sec: 40 }, { id: 'chest_stretch', sec: 40 }] },
+  { id: 'park', name: 'Parkbank-Power', short: 'Draußen im Park, eine Bank reicht · Kraft & Cardio · ca. 25 min · 3 Stufen', rounds: 3, fin: null, restEx: 15, restRound: 60, targetMin: 25,
+    stations: [{ id: 'jumping_jack', sec: 40 }, { id: 'wall_pushup', sec: 40 }, { id: 'squat', reps: 15 }, { id: 'step_back_lunge', reps: 10 }, { id: 'high_knees', sec: 30 }, { id: 'mountain_climber', sec: 30 }, { id: 'glute', variant: 'glute_double', reps: 15 }, { id: 'plank', sec: 40 }],
+    levels: {
+      leicht: { name: 'Leicht', info: '2 Runden, längere Pausen. Push-ups an der Banklehne (stehend).', rounds: 2, f: 0.7, restEx: 20, restRound: 75, target: 18 },
+      mittel: { name: 'Mittel', info: '3 Runden mit Standard-Wiederholungen.', rounds: 3, f: 1, restEx: 15, restRound: 60, target: 25 },
+      fordernd: { name: 'Fordernd', info: '3 Runden, mehr Wiederholungen, kurze Pausen. Push-ups an der Sitzfläche.', rounds: 3, f: 1.3, restEx: 10, restRound: 45, target: 32 } } },
   { id: 'custom', name: 'Eigenes Workout', short: 'Deine Stationen aus den Einstellungen', custom: true }
 ];
 const PROGRAM_GROUPS = [
   { id: 'challenge', name: 'Challenges', ids: ['noexcuse', 'deskrevenge', 'women'] },
-  { id: 'travel', name: 'Unterwegs & Hotel · ohne Geräte', ids: ['hotel'] },
+  { id: 'travel', name: 'Unterwegs & Hotel · ohne Geräte', ids: ['hotel', 'park', 'gate'] },
   { id: 'office', name: 'Am Arbeitsplatz · 10 Minuten', ids: ['office_neck', 'office_active', 'office_seated'] },
   { id: 'start', name: 'Einstieg & Alltag', ids: ['starter', 'balance', 'standing'] },
   { id: 'strength', name: 'Kraft & Muskelaufbau', ids: ['fullbody', 'push', 'pull', 'kettlebell', 'express', 'custom'] },
-  { id: 'core', name: 'Core & Laufunterstützung', ids: ['sixpack', 'core', 'runner'] },
+  { id: 'core', name: 'Core & Laufunterstützung', ids: ['lauf_abc', 'runner', 'sixpack', 'core'] },
   { id: 'mobility', name: 'Beweglichkeit & Erholung', ids: ['blackroll', 'yoga_flow', 'yoga_relax'] }
 ];
 const FIN_EX = ['curl', 'hammer_curl', 'tri_ext', 'lateral_raise'];
@@ -1492,7 +1516,7 @@ const MET = {
 const DEFAULTS = {
   v: 4, kneeMode: false, program: 'fullbody', bodyWeight: 72, targetMin: 40, rounds: 3, dbWeight: 10, kbWeight: 12,
   restEx: 10, restRound: 90, restSet: 60,
-  skin: 'auto', sound: true, vibration: true, autoAdvance: false, autoWarmup: true, autoRest: 'short', levels: { women: 'leicht' },
+  skin: 'auto', sound: true, vibration: true, autoAdvance: false, autoWarmup: true, voice: true, autoRest: 'short', levels: { women: 'leicht' },
   warmup: true, cooldown: true, finisher: true, theme: 'auto',
   warmupDur: { arm_circles: 30, rotation: 30, march: 45, hip_hinge: 45, wall_pushup: 30, hip_circles: 30, wrist_ankle: 30, kb_halo: 30 },
   warmupOn: { arm_circles: true, rotation: true, march: true, hip_hinge: true, wall_pushup: true, hip_circles: false, wrist_ankle: false, kb_halo: false },
@@ -1761,6 +1785,18 @@ const FIG = (() => {
     pose(FRONT, { E1: [88, 62], W1: [86, 80], E2: [112, 62], W2: [114, 80], K1: [97, 106], F1: [96, 128], K2: [103, 106], F2: [104, 128] }),
     pose(FRONT, { H: [100, 27], N: [100, 41], P: [100, 81], E1: [84, 34], W1: [76, 16], E2: [116, 34], W2: [124, 16], K1: [89, 104], F1: [80, 127], K2: [111, 104], F2: [120, 127] })] };
   F.high_knees = { props: ['floor'], dur: 0.6, poses: march(122, 86, 118, 106) };
+  /* Lauf-ABC */
+  F.abc_ankle = { props: ['floor'], dur: 0.45, poses: march(104, 105, 103, 125) };
+  { const aA = { E1: [107, 62], W1: [115, 76], E2: [93, 63], W2: [88, 80] }, aB = { E1: [93, 63], W1: [88, 80], E2: [107, 62], W2: [115, 76] };
+    F.abc_buttkick = { props: ['floor'], dur: 0.6, poses: [pose(SIDE, { ...aA, K1: [100, 106], F1: [100, 128], K2: [100, 107], F2: [84, 93] }), pose(SIDE, { ...aB, K1: [100, 107], F1: [84, 93], K2: [100, 106], F2: [100, 128] })] };
+    F.abc_askip = { props: ['floor'], dur: 0.8, poses: [shift(pose(SIDE, { E1: [108, 56], W1: [116, 44], E2: [93, 64], W2: [87, 80], K1: [100, 106], F1: [100, 128], K2: [118, 90], F2: [114, 110] }), 0, -5),
+      shift(pose(SIDE, { E1: [93, 64], W1: [87, 80], E2: [108, 56], W2: [116, 44], K1: [118, 90], F1: [114, 110], K2: [100, 106], F2: [100, 128] }), 0, -5)] };
+    F.abc_strides = { props: ['floor'], dur: 0.55, poses: [
+      pose(SIDE, { H: [104, 31], N: [103, 45], ...aA, K1: [88, 110], F1: [76, 121], K2: [112, 101], F2: [121, 125] }),
+      pose(SIDE, { H: [104, 31], N: [103, 45], ...aB, K1: [112, 101], F1: [121, 125], K2: [88, 110], F2: [76, 121] })] }; }
+  { const up = { E1: [84, 58], W1: [72, 62], E2: [116, 58], W2: [128, 62] };
+    F.abc_side = { props: ['floor'], dur: 0.7, poses: [pose(FRONT, { ...up, K1: [90, 106], F1: [83, 128], K2: [110, 106], F2: [117, 128] }), shift(pose(FRONT, { ...up, K1: [96, 106], F1: [95, 128], K2: [104, 106], F2: [105, 128] }), 8, -4)] };
+    F.abc_carioca = { props: ['floor'], dur: 0.8, poses: [pose(FRONT, { ...up, K1: [104, 106], F1: [109, 128], K2: [98, 106], F2: [93, 128] }), pose(FRONT, { ...up, K1: [91, 106], F1: [85, 128], K2: [109, 106], F2: [115, 128] })] }; }
   F.mountain_climber = { props: ['mat'], dur: 0.9, poses: [
     pose(SIDE, { H: [146, 92], N: [134, 98], P: [94, 108], E1: [133, 112], W1: [136, 126], E2: [136, 112], W2: [139, 126], K1: [71, 116], F1: [48, 124], K2: [120, 112], F2: [102, 124] }),
     pose(SIDE, { H: [146, 92], N: [134, 98], P: [94, 108], E1: [133, 112], W1: [136, 126], E2: [136, 112], W2: [139, 126], K1: [120, 112], F1: [102, 124], K2: [71, 116], F2: [48, 124] })] };
@@ -2178,6 +2214,7 @@ function enterStep(j) {
   if (sess.cfg.autoNext && sess.timer && !sess.timer.done && !sess.paused) runTimer(sess.timer);
   /* Warm-up läuft automatisch durch: Zeit startet sofort von selbst */
   else if (autoWarm(st) && sess.timer && !sess.timer.done && !sess.paused) runTimer(sess.timer);
+  try { voiceStep(j); } catch (e) {}
 }
 const autoWarm = st => !!st && st.phase === 'warmup' && st.kind === 'time' && settings.autoWarmup !== false;
 function enterRest(kind) {
@@ -2185,6 +2222,7 @@ function enterRest(kind) {
   sess.mode = 'rest'; sess.restKind = kind;
   sess.timer = newTimer(restSec(kind));
   if (!sess.paused) { runTimer(sess.timer); openSeg(); }
+  try { voiceRest(); } catch (e) {}
 }
 function carryWeight(i, w) {
   const ex = sess.steps[i].ex;
@@ -2274,6 +2312,7 @@ function finish(aborted) {
   if (sess.summary.exDone > 0) saveWorkout(true);
   save(); wakeOff(); view = 'train'; render(); window.scrollTo(0, 0);
   if (sess.summary.exDone > 0) { sfx('melody'); buzz([200, 100, 200, 100, 400]); fireworks(); }
+  try { voiceDone(aborted); } catch (e) {}
 }
 function saveWorkout(quiet) {
   if (!sess || sess.state !== 'COMPLETED' || sess.saved) return;
@@ -2427,8 +2466,8 @@ function loop() {
       render(); return;
     }
     const sec = Math.ceil(rem / 1000);
-    if (!sess.cfg.calm && sec <= 3 && sec >= 1 && t.lastBeep !== sec && rem > 150) { t.lastBeep = sec; sfx('tick'); if (sec === 1) buzz(60); }
-    if (sess.mode === 'exercise' && EX[step().ex].half && !t.half && rem <= t.dur * 500) { t.half = true; sfx(sess.cfg.calm ? 'chime' : 'half'); if (!sess.cfg.calm) buzz([80, 60, 80]); save(); render(); return; }
+    if (!sess.cfg.calm && sec <= 3 && sec >= 1 && t.lastBeep !== sec && rem > 150) { t.lastBeep = sec; sfx('tick'); try { voiceCount(sec); } catch (e) {} if (sec === 1) buzz(60); }
+    if (sess.mode === 'exercise' && EX[step().ex].half && !t.half && rem <= t.dur * 500) { t.half = true; sfx(sess.cfg.calm ? 'chime' : 'half'); try { voiceHalf(); } catch (e) {} if (!sess.cfg.calm) buzz([80, 60, 80]); save(); render(); return; }
   }
   updateLive();
 }
@@ -2992,6 +3031,8 @@ function settingsView() {
       ${selRow('skin', 'Farbwelt', c.skin || 'auto', [['auto', 'Passend zum Profil'], ['m', 'Dunkelblau-Gold'], ['w', 'Rosé-Pastell'], ['d', 'Mint-Pastell']])}
       <div class="set-row" data-notr><label for="sCommunity">Community<small>${L('Chat, Abstimmungen & Treffen. Nickname und Beiträge werden bei Google Firebase gespeichert und sind für alle Mitglieder sichtbar.', 'Chat, polls & meetups. Nickname and posts are stored at Google Firebase and visible to all members.', 'Chat, sondages & rendez-vous. Pseudo et messages stockés chez Google Firebase, visibles par tous.', 'Sohbet, anket & buluşma. Kullanıcı adı ve mesajlar Google Firebase\'da saklanır, herkes görür.')}</small></label><input class="sw" id="sCommunity" type="checkbox" ${settings.community ? 'checked' : ''}></div>
       ${swRow('sound', 'Sound', c.sound, 'Countdown-Signale, Übungsende, Rundenende, Abschlussmelodie')}
+      ${swRow('voice', '🎧 Sprachansage', c.voice !== false, 'Sagt die nächste Übung an, zählt 3, 2, 1 und meldet Pausen und Seitenwechsel. Ideal mit Kopfhörern.')}
+      <div class="set-row" data-notr><span></span><button type="button" class="btn btn-ghost" data-act="voice-test">🔊 ${L('Ansage testen', 'Test announcement', 'Tester l’annonce', 'Anonsu test et')}</button></div>
       ${swRow('vibration', 'Vibration', c.vibration, canVibrate() ? 'Wird von diesem Browser unterstützt' : 'Dieser Browser unterstützt keine Vibration (z. B. Safari auf dem iPhone)')}
       ${selRow('autoRest', 'Nach Pausen automatisch weiter', c.autoRest || 'short', [['short', 'Bei kurzen Pausen'], ['all', 'Bei allen Pausen'], ['off', 'Nie (NEXT drücken)']], 'Kurze Pausen = zwischen zwei Übungen. Runden- und Satzpausen warten sonst auf dich.')}
       ${syncInfoHTML()}
@@ -5643,6 +5684,14 @@ const EVENTS = [
   { id: 'silvester26', ic: '🎆', name: 'Bitburger 0,0% Silvesterlauf Trier', date: '2026-12-31', time: '16:00', city: 'Trier', place: L('Hauptmarkt, 1-km-Runden durch die Altstadt', 'Main market, 1 km laps through the old town', 'Hauptmarkt, boucles de 1 km', 'Hauptmarkt, 1 km turlar'), km: 5, kmName: '5 km',
     dist: L('Volksläufe 5 km (16:00, 16:40, 17:15) · Kinder- und Jugendläufe ab 13:00 · Elitelauf', 'Fun runs 5 km (16:00, 16:40, 17:15) · kids races from 13:00 · elite race', 'Courses populaires 5 km (16h00, 16h40, 17h15) · enfants dès 13h00 · élite', 'Halk koşuları 5 km (16:00, 16:40, 17:15) · çocuk koşuları 13:00 · elit'),
     info: L('Anmeldung über cologne-timing.de, Meldeschluss laut Veranstalter um den 20.–23.12. (bitte auf der Seite prüfen).', 'Registration via cologne-timing.de, deadline around 20–23 Dec according to the organiser (please check).', 'Inscription via cologne-timing.de, clôture vers le 20–23 déc. (à vérifier).', 'Kayıt cologne-timing.de üzerinden, son tarih 20–23 Aralık civarı (kontrol et).'), url: 'https://silvesterlauf.de/event/silvesterlauf/' },
+  { id: 'martinslosheim26', ic: '🏮', name: 'Int. Martinslauf Losheim', date: '2026-11-08', city: 'Losheim am See', km: 10, kmName: '10 km', dist: L('0,2 / 2 / 5 / 10 km', '0.2 / 2 / 5 / 10 km', '0,2 / 2 / 5 / 10 km', '0,2 / 2 / 5 / 10 km'), url: 'https://www.laufdatensaar.de/home/termine.php?jhr=2026' },
+  { id: 'adventsb26', ic: '🕯️', name: 'Ford-Advent-Lauf Saarbrücken', date: '2026-11-30', city: 'Saarbrücken', km: 10, kmName: '10 km', dist: L('2 / 10 km', '2 / 10 km', '2 / 10 km', '2 / 10 km'), url: 'https://www.laufdatensaar.de/home/termine.php?jhr=2026' },
+  { id: 'nachtwaechter26', ic: '🔦', name: 'Nachtwächterlauf Ottweiler', date: '2026-12-12', city: 'Ottweiler', km: 10, kmName: '10 km', dist: L('5 / 10 km', '5 / 10 km', '5 / 10 km', '5 / 10 km'), url: 'https://www.laufdatensaar.de/home/termine.php?jhr=2026' },
+  { id: 'heiligabend26', ic: '🎄', name: 'Heiligabendlauf Neubrücke', date: '2026-12-24', city: 'Neubrücke (Hoppstädten-Weiersbach)', km: 8.5, kmName: '8,5 km', dist: L('2 / 8,5 km / Marathon', '2 / 8.5 km / marathon', '2 / 8,5 km / marathon', '2 / 8,5 km / maraton'), url: 'https://www.laufdatensaar.de/home/termine.php?jhr=2026' },
+  { id: 'silvestersb26', ic: '🎇', name: 'Bank1Saar Silvesterlauf Saarbrücken', date: '2026-12-27', time: '11:30', city: 'Saarbrücken', place: 'Sportcampus Saar', km: 10, kmName: '10 km', dist: L('10 km · 4,4 km · Schülerlauf 2,2 km · Kinderläufe', '10 km · 4.4 km · school run 2.2 km · kids races', '10 km · 4,4 km · courses enfants', '10 km · 4,4 km · çocuk koşuları'), url: 'https://silvesterlauf-sb.de/' },
+  { id: 'gohm27', ic: '🏃', name: 'Go! Halbmarathon Saarbrücken', date: '2027-03-14', tbd: true, city: 'Saarbrücken', km: 21.0975, kmName: 'Halbmarathon', dist: L('Halbmarathon (2026 am 15.03.)', 'Half marathon (2026: 15 Mar)', 'Semi-marathon (2026 : 15/03)', 'Yarı maraton (2026: 15 Mart)'), info: L('Termin 2027 noch nicht veröffentlicht, voraussichtlich Mitte März.', '2027 date not yet published, expected mid-March.', 'Date 2027 non publiée, prévue mi-mars.', '2027 tarihi henüz yok, Mart ortası bekleniyor.'), url: 'https://www.laufdatensaar.de/home/termine.php?jhr=2026' },
+  { id: 'globus27', ic: '🏅', name: 'Globus Marathon St. Wendel', date: '2027-04-25', tbd: true, city: 'St. Wendel', km: 21.0975, kmName: 'Halbmarathon', dist: L('5,3 / 10 km / Halbmarathon / Marathon (2026 am 26.04.)', '5.3 / 10 km / half / marathon (2026: 26 Apr)', '5,3 / 10 km / semi / marathon', '5,3 / 10 km / yarı / maraton'), info: L('Termin 2027 noch nicht veröffentlicht, voraussichtlich Ende April.', '2027 date not yet published, expected late April.', 'Date 2027 non publiée, prévue fin avril.', '2027 tarihi henüz yok, Nisan sonu bekleniyor.'), url: 'https://www.laufdatensaar.de/home/termine.php?jhr=2026' },
+  { id: 'firmensb27', ic: '🏢', name: 'Firmenlauf Saarbrücken', date: '2027-06-01', tbd: true, city: 'Saarbrücken', km: 5, kmName: '5 km', dist: L('5 km durch die Innenstadt, 2026 rund 13.100 Teilnehmende', '5 km through the city centre, approx. 13,100 runners in 2026', '5 km en centre-ville, 13 100 coureurs en 2026', 'Şehir merkezinde 5 km, 2026\'da ~13.100 kişi'), info: L('Termin 2027 noch nicht veröffentlicht (2026 war am 02.06.).', '2027 date not yet published (2026: 2 June).', 'Date 2027 non publiée (2026 : 2 juin).', '2027 tarihi henüz yok (2026: 2 Haziran).'), url: 'https://www.runnersworld.de/news-fotos/firmenlauf-saarbruecken-2026/' },
   { id: 'firmentrier27', ic: '🏢', name: 'Bitburger 0,0% Firmenlauf Trier', date: '2027-05-05', time: '19:30', city: 'Trier', place: 'ARENA Trier', km: 5.3, kmName: '5,3 km',
     dist: L('ca. 5,3 km, ideal als Team mit Kolleginnen und Kollegen', 'approx. 5.3 km, ideal as a team with colleagues', 'env. 5,3 km, idéal en équipe', 'yakl. 5,3 km, iş arkadaşlarıyla takım halinde'), url: 'https://silvesterlauf.de/em-aktuelles/was-in-trier-2027-laeuft/' },
   { id: 'ingnight27', ic: '🌙', name: 'ING Night Marathon Luxembourg', date: '2027-05-08', time: '19:00', city: 'Luxembourg', place: 'Luxexpo The Box, Kirchberg', km: 42.195, kmName: 'Marathon',
@@ -5654,6 +5703,8 @@ const EVENTS = [
     info: L('Termin 2027 noch nicht veröffentlicht, voraussichtlich September (2026 war es Donnerstag, 17.09.).', '2027 date not yet published, expected in September (2026: Thursday 17 Sep).', 'Date 2027 pas encore publiée, probablement en septembre (2026 : jeudi 17/09).', '2027 tarihi henüz açıklanmadı, muhtemelen Eylül (2026: 17 Eylül Perşembe).'), url: 'https://business-run.lu/news' },
   { id: 'stadttrier27', ic: '🏙️', name: 'Trierer Stadtlauf', date: '2027-09-19', city: 'Trier', km: 10, kmName: '10 km', dist: L('Halbmarathon, 10 km und 5 km', 'Half marathon, 10 km and 5 km', 'Semi, 10 km et 5 km', 'Yarı maraton, 10 km ve 5 km'), alt: [['Halbmarathon', 21.0975], ['5 km', 5]], url: 'https://silvesterlauf.de/em-aktuelles/was-in-trier-2027-laeuft/' }
 ];
+let evReg = 'all';
+const evRegion = e => /luxemb|kirchberg/i.test((e.city || '') + (e.place || '')) ? 'lux' : /trier/i.test(e.city || '') ? 'trier' : /saarbr|losheim|ottweiler|wendel|neubrücke|saarlouis|merzig|homburg|lebach|wadern/i.test(e.city || '') ? 'saar' : 'other';
 let evExtra = [], evGoing = {}, evLoaded = 0, evBusy = false;
 const evTs = e => new Date(e.date + 'T' + (e.time || '12:00') + ':00').getTime();
 const EVENTS_ALL = () => EVENTS.concat(evExtra.filter(x => x && x.date && !EVENTS.some(e => e.id === x.id))).sort((a, b) => evTs(a) - evTs(b));
@@ -5681,8 +5732,9 @@ async function evLoad(force) {
 const evIGo = e => (evGoing[e.id] || []).some(g => g.uid === (account && account.uid || account.id));
 function eventsHTML() {
   if (Date.now() - evLoaded > 60000) setTimeout(() => evLoad(), 0);
-  const list = nextEvents(), goal = rlCfg().goalEv;
-  return `<div class="note blue" style="margin-top:12px">${L('Anstehende Läufe in der Region. Sag, dass du dabei bist, tausch dich im Event-Chat aus und hol dir einen Trainingsplan, der genau bis zum Lauftag reicht.', 'Upcoming races in the region. Say you are in, chat in the event room and get a training plan that ends right on race day.', 'Courses à venir dans la région. Inscris-toi ici, échange dans le salon et obtiens un plan qui se termine le jour J.', 'Bölgedeki yaklaşan koşular. Katıldığını söyle, etkinlik sohbetinde konuş ve yarış gününe kadar süren bir plan al.')}</div>
+  const all = nextEvents(), list = all.filter(e => evReg === 'all' || evRegion(e) === evReg), goal = rlCfg().goalEv;
+  const chips = [['all', L('Alle', 'All', 'Tous', 'Tümü')], ['saar', 'Saarland'], ['trier', 'Trier'], ['lux', 'Luxemburg']].map(([k, n]) => `<button type="button" class="chip ${evReg === k ? 'on' : ''}" data-act="ev-reg" data-v="${k}">${n} (${k === 'all' ? all.length : all.filter(e => evRegion(e) === k).length})</button>`).join('');
+  return `<div class="onb-chips ev-regs">${chips}</div><div class="note blue" style="margin-top:12px">${L('Anstehende Läufe in der Region. Sag, dass du dabei bist, tausch dich im Event-Chat aus und hol dir einen Trainingsplan, der genau bis zum Lauftag reicht.', 'Upcoming races in the region. Say you are in, chat in the event room and get a training plan that ends right on race day.', 'Courses à venir dans la région. Inscris-toi ici, échange dans le salon et obtiens un plan qui se termine le jour J.', 'Bölgedeki yaklaşan koşular. Katıldığını söyle, etkinlik sohbetinde konuş ve yarış gününe kadar süren bir plan al.')}</div>
   ${list.map(e => { const go = evGoing[e.id] || [], me = evIGo(e), d = evDays(e);
     return `<article class="panel ev-card">
       <div class="ev-top"><span class="ev-ic" aria-hidden="true">${esc(e.ic || '🏁')}</span><div><b>${esc(e.name)}</b><small>${esc(evDateTxt(e))}${e.city ? ' · 📍 ' + esc(e.city) : ''}</small></div><span class="ev-cd"><b>${d}</b><small>${L('Tage', 'days', 'jours', 'gün')}</small></span></div>
@@ -5729,6 +5781,7 @@ function evNewSheet() {
 async function eventsAct(a, b) {
   const e = b && b.dataset.id ? EVENTS_ALL().find(x => x.id === b.dataset.id) : null;
   try {
+    if (a === 'ev-reg') { evReg = b.dataset.v; render(); return; }
     if (a === 'ev-open') { view = 'community'; cbTab = 'events'; cbRoom = null; render(); window.scrollTo(0, 0); return; }
     if (a === 'ev-go' && e) { await evToggle(e); return; }
     if (a === 'ev-chat' && e) { cbOpenRoom(evRoomId(e)); return; }
@@ -6347,7 +6400,7 @@ document.addEventListener('visibilitychange', () => { if (document.visibilitySta
    errlog/{id}: Meldung, Quelle, Zeile, App-Version, Gerät (grob), Zeitpunkt.
    Keine Trainingsdaten, keine E-Mail. Lesen nur Admin.
    ============================================================ */
-const APP_VER = '45';
+const APP_VER = '46';
 let errSent = 0; const errSeen = new Set();
 const errDevice = () => { const u = navigator.userAgent || ''; return (/iPhone|iPad/.test(u) ? 'iOS' : /Android/.test(u) ? 'Android' : /Mac/.test(u) ? 'Mac' : /Windows/.test(u) ? 'Windows' : 'Sonstiges') + ' · ' + (/CriOS|Chrome/.test(u) ? 'Chrome' : /FxiOS|Firefox/.test(u) ? 'Firefox' : /Safari/.test(u) ? 'Safari' : 'Browser') + (window.matchMedia && matchMedia('(display-mode: standalone)').matches ? ' · Homescreen-App' : ''); };
 window.__uipReport = (rec, own) => {
@@ -6499,6 +6552,56 @@ function addSave() {
 function woDelete(id) {
   confirmSheet(L('Eintrag löschen?', 'Delete entry?', 'Supprimer ?', 'Silinsin mi?'), L('Dieses Training wird aus dem Verlauf entfernt.', 'This workout will be removed from your history.', 'Cette séance sera supprimée.', 'Bu antrenman silinecek.'), L('LÖSCHEN', 'DELETE', 'SUPPRIMER', 'SİL'), () => { history = history.filter(h => h.id !== id); saveHistory(); render(); }, true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal'));
 }
+
+/* ============================================================
+   SPRACHANSAGE (ab Version 46): Ansage der nächsten Übung, Countdown
+   „3, 2, 1“, Seitenwechsel, Pause. Nutzt die Sprachausgabe des Geräts
+   (Web Speech API), funktioniert mit Kopfhörern. Nichts wird übertragen.
+   ============================================================ */
+const VOICE_LANG = () => ({ de: 'de-DE', en: 'en-GB', fr: 'fr-FR', tr: 'tr-TR' })[LANG] || 'de-DE';
+const voiceOK = () => !!(window.speechSynthesis && window.SpeechSynthesisUtterance) && settings && settings.sound !== false && settings.voice !== false;
+let voicePick = null, voiceUnlocked = false;
+function voiceFind() {
+  try { const vs = speechSynthesis.getVoices() || [], lg = VOICE_LANG(), base = lg.slice(0, 2);
+    voicePick = vs.find(v => v.lang === lg && /premium|enhanced|neural|google/i.test(v.name)) || vs.find(v => v.lang === lg) || vs.find(v => (v.lang || '').startsWith(base)) || null; } catch (e) { voicePick = null; }
+}
+try { if (window.speechSynthesis) { voiceFind(); speechSynthesis.onvoiceschanged = voiceFind; } } catch (e) {}
+function voiceSay(text, opt) {
+  if (!voiceOK() || !text) return;
+  try {
+    const o = opt || {};
+    if (o.interrupt !== false) speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(String(text));
+    u.lang = VOICE_LANG(); if (voicePick) u.voice = voicePick;
+    u.rate = o.rate || 1.05; u.pitch = 1; u.volume = 1;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+/* iOS gibt Sprachausgabe erst nach einer Berührung frei */
+document.addEventListener('click', () => { if (voiceUnlocked || !window.speechSynthesis) return; voiceUnlocked = true; try { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } catch (e) {} }, true);
+const exSpoken = id => String((EX[id] || { name: id }).name).replace(/\s*\/.*$/, '').replace(/\(.*?\)/g, '').trim();
+function voiceStepTxt(st) {
+  if (!st) return '';
+  const n = exSpoken(st.ex);
+  if (st.kind === 'time') return L(`${n}. ${st.dur} Sekunden.`, `${n}. ${st.dur} seconds.`, `${n}. ${st.dur} secondes.`, `${n}. ${st.dur} saniye.`);
+  const per = EX[st.ex] && EX[st.ex].perSide;
+  return L(`${n}. ${st.reps} Wiederholungen${per ? ' pro Seite' : ''}.`, `${n}. ${st.reps} reps${per ? ' per side' : ''}.`, `${n}. ${st.reps} répétitions${per ? ' par côté' : ''}.`, `${n}. ${st.reps} tekrar${per ? ' her taraf' : ''}.`);
+}
+function voiceStep(j) {
+  if (!sess || sess.paused || sess.state !== 'ACTIVE') return;
+  const st = sess.steps[j]; if (!st || (sess.results[j] && sess.results[j].status === 'done')) return;
+  const first = j === sess.steps.findIndex(s => !s.removed);
+  voiceSay((first ? L('Los geht’s! ', 'Let’s go! ', 'C’est parti ! ', 'Başlıyoruz! ') : '') + voiceStepTxt(st));
+}
+function voiceRest() {
+  if (!sess || sess.paused) return;
+  const nx = nextIdx(sess.idx), st = nx >= 0 ? sess.steps[nx] : null, sec = sess.timer ? Math.round(sess.timer.dur) : 0;
+  voiceSay(L(`Pause, ${sec} Sekunden.`, `Rest, ${sec} seconds.`, `Pause, ${sec} secondes.`, `Mola, ${sec} saniye.`) + (st ? ' ' + L('Als Nächstes: ', 'Up next: ', 'Ensuite : ', 'Sıradaki: ') + exSpoken(st.ex) + '.' : ''));
+}
+function voiceCount(sec) { if (sess && !sess.cfg.calm) voiceSay(String(sec), { rate: 1.15 }); }
+function voiceHalf() { const h = sess && EX[step().ex] && EX[step().ex].half; voiceSay(LANG === 'de' && typeof h === 'string' ? h + '.' : L('Seite wechseln.', 'Switch sides.', 'Change de côté.', 'Taraf değiştir.')); }
+function voiceDone(aborted) { voiceSay(aborted ? L('Workout beendet. Gut gemacht.', 'Workout ended. Well done.', 'Séance terminée. Bravo.', 'Antrenman bitti. Aferin.') : L('Geschafft! Stark gemacht!', 'Done! Great job!', 'Terminé ! Super !', 'Bitti! Harika!')); }
+function voiceTest() { voiceSay(L('Hallo! So klingt die Ansage. Drei, zwei, eins. Nächste Übung: Squats.', 'Hi! This is how announcements sound. Three, two, one. Next exercise: squats.', 'Salut ! Voici l’annonce. Trois, deux, un. Exercice suivant : squats.', 'Merhaba! Anons böyle. Üç, iki, bir. Sıradaki: squat.')); }
 
 let lastRKey = '';
 function render() {
@@ -6757,6 +6860,8 @@ function act(a, b) {
     case 'bd-open': view = 'community'; cbTab = 'board'; cbRoom = null; render(); window.scrollTo(0, 0); break;
     case 'bd-tab': case 'bd-join': case 'bd-leave': case 'fd-private': case 'fd-share': case 'fd-post': case 'fd-react': case 'fd-open': case 'fd-csend': case 'fd-cdel': case 'fd-del': socialAct(a, b); break;
     case 'nav': navAct(b.dataset.v); break;
+    case 'voice-test': voiceTest(); break;
+    case 'ev-reg': eventsAct(a, b); break;
     case 'sync-now': syncState.err = ''; syncBadgeUpd(); syncPush().catch(() => {}).then(() => syncBadgeUpd()); break;
     case 'mr-nav': case 'nav-journal': case 'jr-filter': case 'jr-more': case 'jr-open': case 'jr-add': case 'jr-add-save': case 'jr-del': journalAct(a, b); break;
     case 'nav-resume': homeOpen = false; view = 'train'; if (sess && sess.paused) resumeWorkout(); else render(); window.scrollTo(0, 0); break;
@@ -7023,7 +7128,7 @@ function showLogin(err, info) {
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 45 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 46 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
