@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fkwBA/H4i5cSs0z3ulQ3UQCZ+miv6/vbJLP55H+iVTI=' 'sha256-y0zC2eBvTTo5LxtscRPP4L9PqSfIOZQ0upkincUuv2A=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fkwBA/H4i5cSs0z3ulQ3UQCZ+miv6/vbJLP55H+iVTI=' 'sha256-BFIImWXA3XnbGcXZ0uWwNDs2QozjvsC0pLglnCvYTE4=' https://www.gstatic.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.emailjs.com https://content-firebaseappcheck.googleapis.com https://www.google.com; frame-src https://pausen-workout.firebaseapp.com https://www.google.com https://recaptcha.google.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
@@ -1034,6 +1034,202 @@ header .score[hidden] { display: none; }
 .ach-b small { font-size: 10.5px; line-height: 1.25; color: var(--muted); }
 .ach-b em { font-style: normal; font-size: 11px; font-weight: 700; }
 .ach-b .ach-bar { width: 100%; }
+/* ============================================================
+   VERSION 47 · Designsystem „Next Level“
+   Abstände 4/8/12/16/24/32 · Radien 12/16/22 · klare Hierarchie
+   ============================================================ */
+:root { --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --r1: 12px; --r2: 16px; --r3: 22px; --on-brand: #fff;
+  --hero-1: #13499E; --hero-2: #0B2A63; --hero-3: #061025; --hero-acc: #D6C28C; --hero-ink: #fff; }
+:root[data-skin="m"][data-skin="m"]:not([data-theme="light"]) { --on-brand: #061025; }
+:root[data-skin="w"] { --hero-1: #C26A8D; --hero-2: #96466A; --hero-3: #5E2840; --hero-acc: #FFE1EC; }
+:root[data-skin="d"] { --hero-1: #2F8F72; --hero-2: #1E6650; --hero-3: #103A2E; --hero-acc: #C9F5E2; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+/* Kopf: ruhiger, keine doppelten Fortschrittsanzeigen */
+header .score { display: none !important; }
+.head-txt .team { display: none; }
+body.wo-on .bell-btn, body.wo-on .acc-btn { display: none !important; }
+body.has-ctl .toast { bottom: calc(205px + env(safe-area-inset-bottom, 0px)); }
+body.has-bnav.has-ctl .toast { bottom: calc(260px + env(safe-area-inset-bottom, 0px)); }
+header.top { margin-bottom: 8px; }
+
+/* Grundlayout der neuen Ansichten */
+.v47.stack > * + * { margin-top: var(--s4); }
+.v47 .sec-title { margin: var(--s5) 0 var(--s2); }
+.page-h { margin: 0; font: 800 26px/1.15 var(--sans); letter-spacing: -.01em; color: var(--ink); }
+.v47 .mini { font-size: 13px; }
+
+/* Startseite */
+.st-hello { align-items: flex-start; }
+.st-hello h2 { font-size: 26px; letter-spacing: -.01em; }
+.st-week { margin: 4px 0 0; font: 600 14px var(--sans); color: var(--muted); }
+.st-streak { font-size: 14px; }
+.sync-wrap { margin: 6px 0 0 !important; }
+.start .st-hello + .sync-wrap { margin-top: 4px !important; }
+.sg { position: relative; overflow: hidden; border-radius: var(--r3); padding: 20px 20px 16px; color: var(--hero-ink);
+  background: radial-gradient(120% 90% at 100% 0%, rgba(214,194,140,.26) 0%, rgba(214,194,140,0) 55%), linear-gradient(150deg, var(--hero-1) 0%, var(--hero-2) 55%, var(--hero-3) 100%);
+  box-shadow: 0 12px 30px rgba(6,16,37,.28); }
+.sg-k { display: flex; align-items: center; gap: 8px; font: 800 12px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--hero-acc); }
+.sg-k span { font-size: 16px; letter-spacing: 0; }
+.sg-h { margin: 10px 0 6px; font: 900 28px/1.1 var(--sans); letter-spacing: -.015em; color: #fff; }
+.sg-why { margin: 0; font: 500 15.5px/1.45 var(--sans); color: rgba(255,255,255,.88); }
+.sg-meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 16px; }
+.sg-meta span { padding: 6px 10px; border-radius: 99px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.16); font: 700 13px var(--sans); color: #fff; }
+.sg-acts { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.sg-acts .btn-primary { background: var(--hero-acc) !important; color: #0A1B3F !important; font-size: 16px; }
+:root[data-skin="w"] .sg-acts .btn-primary { color: #5E2840 !important; }
+:root[data-skin="d"] .sg-acts .btn-primary { color: #103A2E !important; }
+.sg-acts .btn-ghost { color: #fff !important; border-color: rgba(255,255,255,.45) !important; padding: 12px 16px; }
+.sg-other { display: block; width: 100%; margin-top: 12px; padding: 6px 0 0; border: 0; background: none; color: rgba(255,255,255,.78); font: 700 13.5px var(--sans); text-align: left; cursor: pointer; }
+.st-sec2 { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 10px; }
+.st-sec2 .btn { min-height: 48px; font-size: 14.5px; letter-spacing: 0; color: var(--ink); }
+.st-ev { border-color: var(--brand) !important; }
+.st-more { display: flex; gap: 8px; flex-wrap: wrap; }
+.st-mini { flex: 1; min-height: 44px; padding: 10px 12px; border-radius: var(--r1); border: 1px solid var(--paper-line); background: var(--paper); color: var(--paper-ink); font: 700 14px var(--sans); cursor: pointer; }
+.start .jr-list .jr-row:nth-child(n+4) { display: none; }
+
+/* Training: Kategorien, Liste, Vorschau */
+.tr-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.cat-row { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 6px; margin: 0 -16px; padding-left: 16px; padding-right: 16px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.cat-row::-webkit-scrollbar { display: none; }
+.cat { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 42px; padding: 8px 14px; border-radius: 99px; border: 1.5px solid var(--paper-line); background: var(--paper); color: var(--paper-ink); font: 800 14px var(--sans); cursor: pointer; white-space: nowrap; }
+.cat span { font-size: 16px; }
+.cat.on { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+.pl-list { display: grid; gap: 8px; }
+.pl-row { display: flex; align-items: center; gap: 12px; width: 100%; padding: 13px 14px; border-radius: var(--r2); border: 1.5px solid var(--paper-line); background: var(--paper); color: var(--paper-text); text-align: left; cursor: pointer; font-family: var(--sans); }
+.pl-row.on { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand) inset; }
+.pl-m { flex: 1; min-width: 0; }
+.pl-m b { display: block; font: 800 16px/1.25 var(--sans); color: var(--paper-ink); }
+.pl-row.on .pl-m b::after { content: " ✓"; color: var(--brand); }
+.pl-m small { display: block; margin-top: 2px; font: 500 13px/1.35 var(--sans); color: var(--muted); }
+.pl-r { flex: none; text-align: right; }
+.pl-r b { display: block; font: 800 14px var(--sans); color: var(--paper-ink); white-space: nowrap; }
+.pl-r small { display: block; margin-top: 2px; font: 600 12px var(--sans); color: var(--muted); white-space: nowrap; }
+.pl-link .pl-r { font-size: 22px; color: var(--muted); }
+.wpv { scroll-margin-top: 12px; border-radius: var(--r3); padding: 20px; background: var(--paper); border: 1px solid var(--paper-line); color: var(--paper-text); }
+.wpv-k { font: 800 12px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.wpv-h { margin: 6px 0 4px; font: 900 28px/1.1 var(--sans); letter-spacing: -.015em; color: var(--paper-ink); }
+.wpv-goal { margin: 0; font-size: 15.5px; line-height: 1.45; }
+.wpv-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 16px 0; }
+.wpv-facts div { padding: 10px 10px 9px; border-radius: var(--r1); background: var(--bg2); min-width: 0; }
+.wpv-facts b { display: block; font: 800 14.5px/1.25 var(--sans); color: var(--paper-ink); hyphens: auto; -webkit-hyphens: auto; }
+.wpv-facts small { display: block; margin-top: 3px; font: 700 11px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.wpv-lvl { margin-top: 4px; }
+.wpv-lvlinfo { margin: 8px 0 0; font-size: 13.5px; color: var(--muted); }
+.wpv-eq { margin-top: 16px; padding: 14px; border-radius: var(--r2); border: 1.5px solid var(--paper-line); }
+.wpv-eq.need { border-color: color-mix(in srgb, var(--brand) 45%, var(--paper-line)); }
+.wpv-eq > b { display: block; font: 800 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--paper-ink); }
+.wpv-eq > b.ok { color: var(--ok); font-size: 15px; letter-spacing: 0; text-transform: none; }
+.wpv-eq ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.wpv-eq li { font: 700 15px var(--sans); color: var(--paper-ink); }
+.wpv-opt { margin: 10px 0 0; font-size: 13.5px; color: var(--muted); }
+.wpv-miss { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 12px; }
+.wpv-miss > span { width: 100%; font: 700 13px var(--sans); color: var(--muted); }
+.wpv-miss .chip { margin-top: 0; }
+.wpv-swaps { margin: 10px 0 0; font-size: 13.5px; color: var(--paper-ink); }
+.wpv-ex { margin-top: 16px; }
+.wpv-sub { font: 800 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.wpv-ex ol { margin: 8px 0 0; padding: 0 0 0 22px; }
+.wpv-ex li { padding: 7px 0; border-bottom: 1px solid var(--paper-line); font-size: 15px; }
+.wpv-ex li::marker { color: var(--muted); font-weight: 700; }
+.wpv-ex li { display: list-item; }
+.wpv-ex li .wx-n { font-weight: 700; color: var(--paper-ink); }
+.wpv-ex li .wx-v { float: right; margin-left: 8px; color: var(--muted); font-weight: 600; font-size: 14px; }
+.wpv-more summary { cursor: pointer; margin-top: 10px; font: 700 14px var(--sans); color: var(--brand); }
+.wpv-phases { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+.wpv-phases i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.wpv-links { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+
+/* Während des Workouts */
+.hud2 { margin-bottom: 12px; }
+.hud2-top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; margin-bottom: 10px; }
+.hud2-end { min-height: 40px; padding: 8px 12px; border-radius: 99px; border: 1px solid var(--paper-line); background: transparent; color: var(--muted); font: 700 13px var(--sans); cursor: pointer; }
+.hud2-t { text-align: center; }
+.hud2-t b { display: block; font: 800 26px/1 var(--sans); font-variant-numeric: tabular-nums; color: var(--ink); }
+.hud2-t small, .hud2-r small { font: 700 11px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.hud2-r { text-align: right; }
+.hud2-r b { display: block; font: 800 15px var(--sans); color: var(--ink); }
+.hud2-p span.now { outline: 1px solid var(--lamp); outline-offset: 1px; }
+.hud2-music { margin: 8px 0 0; text-align: right; }
+.how2 { margin-top: 12px; border-top: 1px solid var(--paper-line); padding-top: 10px; }
+.how2 summary { cursor: pointer; font: 800 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.how2 p { margin: 8px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--paper-text); }
+.how2 .how2-opt { font-size: 14px; color: var(--muted); }
+.undo-l { margin: 10px 0 0; text-align: center; }
+.nx-mini { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 8px 12px; border-radius: var(--r1); background: var(--bg2); color: var(--ink); font: 600 14px/1.35 var(--sans); }
+.nx-mini .nx-l { font: 800 11px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.nx-mini b { font-weight: 800; }
+.nx-mini .nx-m { color: var(--muted); }
+.nx-mini .nx-eq { width: 100%; font: 700 13px var(--sans); color: var(--signal); }
+.nx-mini.last { justify-content: center; font-weight: 800; }
+.rest-card .rest-eq { display: block; margin-top: 6px; font: 700 13px var(--sans); font-style: normal; color: var(--rest-accent, #FFE1EC); }
+.rest-lbl { text-transform: uppercase; }
+
+/* Abschluss */
+.res2 > * + * { margin-top: var(--s4); }
+.res2-hero { border-radius: var(--r3); padding: 22px 20px 18px; text-align: center; color: #fff;
+  background: radial-gradient(120% 90% at 100% 0%, rgba(214,194,140,.24) 0%, rgba(214,194,140,0) 55%), linear-gradient(150deg, var(--hero-1) 0%, var(--hero-2) 55%, var(--hero-3) 100%); }
+.res2-hero.ab { background: linear-gradient(150deg, #3A4560 0%, #252C40 100%); }
+.res2-badge { display: inline-block; padding: 5px 12px; border-radius: 99px; background: rgba(255,255,255,.14); font: 800 12px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--hero-acc); }
+.res2-hero.ab .res2-badge { color: #fff; }
+.res2-hero h2 { margin: 12px 0 4px; font: 900 28px/1.1 var(--sans); color: #fff; }
+.res2-prog { margin: 0; font-size: 14px; color: rgba(255,255,255,.78); }
+.res2-time { margin: 16px 0 4px; }
+.res2-time b { display: block; font: 900 56px/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.res2-time small { font: 700 12px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+.res2-note { margin: 6px 0 0; min-height: 1em; font-size: 13px; color: rgba(255,255,255,.72); }
+.res2-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.res2-kpis div { padding: 12px 10px; border-radius: var(--r2); background: var(--paper); border: 1px solid var(--paper-line); text-align: center; min-width: 0; }
+.res2-kpis b { display: block; font: 900 22px/1.15 var(--sans); color: var(--paper-ink); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.res2-kpis b small { font: 700 13px var(--sans); color: var(--muted); }
+.res2-kpis span { display: block; margin-top: 4px; font: 700 11.5px/1.25 var(--sans); color: var(--muted); }
+.res2-msg { margin: 0; text-align: center; font: 700 16px/1.45 var(--sans); color: var(--ink); }
+.res2-pts { display: inline-block; margin-left: 6px; padding: 3px 10px; border-radius: 99px; background: var(--bg2); font-size: 13.5px; }
+details.fold { border-radius: var(--r2); background: var(--paper); border: 1px solid var(--paper-line); color: var(--paper-text); }
+details.fold > summary { list-style: none; cursor: pointer; padding: 15px 16px; font: 800 15px var(--sans); color: var(--paper-ink); display: flex; justify-content: space-between; align-items: center; }
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::after { content: "›"; font-size: 22px; color: var(--muted); transition: transform .2s; }
+details.fold[open] > summary::after { transform: rotate(90deg); }
+details.fold > :not(summary) { margin: 0 16px 16px; }
+details.fold .panel { padding: 0; background: transparent; border: 0 !important; }
+.kc-big { margin: 0 0 10px; font-size: 15px; }
+.kc-big b { color: var(--paper-ink); }
+.kc .t td small { color: var(--muted); }
+.kw { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--paper-line); }
+.kw label { display: block; font: 800 14px var(--sans); color: var(--paper-ink); margin-bottom: 6px; }
+.kw-row { display: flex; gap: 8px; }
+.kw-row .inp { flex: 1; min-width: 0; }
+.kw-row .btn { min-height: 46px; padding: 8px 14px; letter-spacing: 0; }
+
+/* Teilen */
+.sh2 .share-prev { max-height: 48vh; width: auto; max-width: 100%; margin: 6px auto 0; }
+.sh2-l { margin: 14px 0 6px; font: 800 12px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.sh2-tpl { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; padding: 4px; background: var(--bg2); border-radius: 12px; }
+.sh2-tpl button { min-height: 40px; border: 0; border-radius: 9px; background: transparent; color: var(--ink-soft); font: 800 12.5px var(--sans); cursor: pointer; padding: 0 2px; }
+.sh2-tpl button[aria-checked="true"] { background: var(--brand); color: var(--on-brand); }
+.sh2-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.sh2-row .btn { flex: 1; min-height: 44px; font-size: 13.5px; letter-spacing: 0; padding: 8px 10px; }
+.sh2-met { display: flex; flex-wrap: wrap; gap: 6px; }
+.sh2-met .chip { margin-top: 0; }
+.sh-entry b { color: var(--paper-ink); }
+.cp-prev { display: block; width: 46%; margin: 4px auto 12px; border-radius: 10px; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+.cp-txt { width: 100%; resize: vertical; min-height: 64px; font: 500 15px var(--sans); }
+.cp-data { margin: 12px 0; padding: 10px 12px; border: 1px solid var(--paper-line); border-radius: 12px; }
+.cp-data legend { padding: 0 6px; font: 800 12px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.cp-data label { display: flex; gap: 10px; align-items: center; padding: 6px 0; font-size: 14.5px; color: var(--paper-ink); }
+.cp-data input { width: 20px; height: 20px; flex: none; }
+.cp-ok { text-align: center; }
+.cp-ok-ic { width: 64px; height: 64px; margin: 8px auto 10px; border-radius: 50%; display: grid; place-items: center; font: 900 32px var(--sans); background: var(--ok); color: #fff; }
+.fd-img { margin: 10px 0 8px; border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--bg2); }
+.fd-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.fd-img-ph { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, var(--bg2), var(--paper-line), var(--bg2)); background-size: 200% 100%; animation: fdph 1.4s linear infinite; }
+@keyframes fdph { to { background-position: -200% 0; } }
+
+/* Fußzeile mit Version */
+.foot-ver { width: 100%; font-weight: 700; opacity: .85; }
+.hud2-r small { white-space: nowrap; }
+.mr2 { background: radial-gradient(120% 90% at 100% 0%, rgba(214,194,140,.26) 0%, rgba(214,194,140,0) 55%), linear-gradient(150deg, var(--hero-1) 0%, var(--hero-2) 55%, var(--hero-3) 100%) !important; }
+
 </style>
 </head>
 <body>
@@ -1062,6 +1258,7 @@ header .score[hidden] { display: none; }
   <footer>
     <span id="accLbl"></span>
     <span>Pausen Workout · Body Activity App · <b>Testversion, kostenlos</b> · keine medizinische Beratung</span>
+    <span class="foot-ver">App-Version 47 · „Next Level“</span>
     <span class="foot-links"><button type="button" data-act="safety">Sicherheitshinweise</button> · <button type="button" data-act="legal">Rechtliches &amp; Datenschutz</button></span>
   </footer>
 </div>
@@ -1486,7 +1683,7 @@ const PROGRAMS = [
       fordernd: { name: 'Fordernd', info: '3 Runden, mehr Wiederholungen, kurze Pausen. Push-ups an der Sitzfläche.', rounds: 3, f: 1.3, restEx: 10, restRound: 45, target: 32 } } },
   { id: 'custom', name: 'Eigenes Workout', short: 'Deine Stationen aus den Einstellungen', custom: true }
 ];
-const PROGRAM_GROUPS = [
+const PROGRAM_GROUPS_V46 = [
   { id: 'challenge', name: 'Challenges', ids: ['noexcuse', 'deskrevenge', 'women'] },
   { id: 'travel', name: 'Unterwegs & Hotel · ohne Geräte', ids: ['hotel', 'park', 'gate'] },
   { id: 'office', name: 'Am Arbeitsplatz · 10 Minuten', ids: ['office_neck', 'office_active', 'office_seated'] },
@@ -1494,6 +1691,13 @@ const PROGRAM_GROUPS = [
   { id: 'strength', name: 'Kraft & Muskelaufbau', ids: ['fullbody', 'push', 'pull', 'kettlebell', 'express', 'custom'] },
   { id: 'core', name: 'Core & Laufunterstützung', ids: ['lauf_abc', 'runner', 'sixpack', 'core'] },
   { id: 'mobility', name: 'Beweglichkeit & Erholung', ids: ['blackroll', 'yoga_flow', 'yoga_relax'] }
+];
+const PROGRAM_GROUPS = [
+  { id: 'strength', name: 'Kraft', ids: ['fullbody', 'push', 'pull', 'kettlebell', 'express', 'women', 'custom'] },
+  { id: 'bodyweight', name: 'Ohne Geräte', ids: ['noexcuse', 'hotel', 'park', 'gate', 'sixpack', 'core'] },
+  { id: 'office', name: 'Büro & Einstieg', ids: ['office_neck', 'office_active', 'office_seated', 'deskrevenge', 'starter', 'balance', 'standing'] },
+  { id: 'run', name: 'Laufen', ids: ['lauf_abc', 'runner'] },
+  { id: 'mobility', name: 'Erholung', ids: ['blackroll', 'yoga_flow', 'yoga_relax'] }
 ];
 const FIN_EX = ['curl', 'hammer_curl', 'tri_ext', 'lateral_raise'];
 const PHASES = { warmup: { name: 'Warm-up', state: 'WARMUP', color: 'var(--ph-warmup)' }, circuit: { name: 'Full-Body-Circuit', state: 'EXERCISE', color: 'var(--ph-circuit)' },
@@ -1904,7 +2108,7 @@ function save() {
 
 /* Aktives Programm in eine konkrete Konfiguration übersetzen */
 const programOf = c => PROGRAMS.find(p => p.id === c.program) || PROGRAMS[0];
-function effCfg(src) {
+function effCfg_v46(src) {
   const c = clone(src), p = programOf(src);
   c.programName = p.name; c.programId = p.id;
   if (!p.custom) {
@@ -2023,7 +2227,7 @@ function progressFrac(s = sess) {
 /* ============================================================
    STATISTIK
    ============================================================ */
-function summarize(s) {
+function summarize_v46(s) {
   let reps = 0, vol = 0, bwVol = 0, exDone = 0, exTotal = 0;
   const per = {};
   s.steps.forEach((st, i) => {
@@ -2287,7 +2491,7 @@ function startTimer() {
   const t = sess.timer; if (!t || sess.mode !== 'exercise' || t.running || t.done || sess.paused) return;
   unlockAudio(); runTimer(t); save(); render();
 }
-function pauseWorkout() {
+function pauseWorkout_v46() {
   if (!sess || sess.paused || sess.state !== 'ACTIVE') return;
   closeSeg(); sess.paused = true;
   if (sess.timer && sess.timer.running) { haltTimer(sess.timer); sess.timer.wasRunning = !sess.timer.done; }
@@ -2304,17 +2508,17 @@ function resumeWorkout() {
   if (music.want) startMusic();
   save(); render(); wakeOn();
 }
-function finish(aborted) {
+function finish_v46(aborted) {
   closeSeg(); stopMusic();
   sess.state = 'COMPLETED'; sess.aborted = !!aborted; sess.paused = false; sess.endedAt = Date.now(); sess.timer = null; sess.undo = [];
   sess.summary = summarize(sess);
   sess.reward = { c: Math.floor(Math.random() * COMPLIMENTS.length), hour: new Date().getHours() };
   if (sess.summary.exDone > 0) saveWorkout(true);
   save(); wakeOff(); view = 'train'; render(); window.scrollTo(0, 0);
-  if (sess.summary.exDone > 0) { sfx('melody'); buzz([200, 100, 200, 100, 400]); fireworks(); }
+  if (sess.summary.exDone > 0 && !sess.aborted) { sfx('melody'); buzz([200, 100, 200, 100, 400]); fireworks(); }
   try { voiceDone(aborted); } catch (e) {}
 }
-function saveWorkout(quiet) {
+function saveWorkout_v46(quiet) {
   if (!sess || sess.state !== 'COMPLETED' || sess.saved) return;
   const s = sess.summary || summarize(sess);
   if (!history.some(h => h.id === sess.id)) {
@@ -2679,7 +2883,7 @@ function phaseGroups() {
   });
   return g;
 }
-function hudHTML() {
+function hudHTML_v46() {
   const st = step();
   const g = phaseGroups();
   const segs = g.map(o => {
@@ -2755,13 +2959,12 @@ function exerciseCard() {
     <h2>${esc(e.name)}</h2>
     ${sidePill(st, e)}
     <div class="muscles">${esc(e.muscles)}${st.opt ? ' · <span class="badge opt">optional</span>' : ''}</div>
-    ${e.option ? `<div class="opt-hint">${esc(e.option)}</div>` : ''}
     ${st.kind === 'time' ? body + `<div class="fig-box fig-sm">${figSVG(st.ex)}${cue}</div>` + knee : `<div class="fig-box">${figSVG(st.ex)}${cue}</div>` + knee + body}
-    <p class="how">${esc(e.desc)}</p>
-    <p style="display:flex;justify-content:space-between;gap:12px;margin:12px 0 0">${can ? `<button type="button" class="mini" data-act="undo">↶ Letzte Aktion rückgängig</button>` : '<span></span>'}<button type="button" class="mini" data-act="restart">↺ Workout neu starten</button></p>
+    ${howHTML(st, e)}
+    ${undoLink()}
   </article>`;
 }
-function restCard() {
+function restCard_v46() {
   const t = sess.timer, r = timerRemain(t), nx = nextLabel(nextIdx(sess.idx));
   return `<article class="rest-card fade-in">
     <div class="rest-lbl">${sess.restKind === 'round' ? 'ROUND REST · ' : sess.restKind === 'set' ? 'SET REST · ' : ''}REST TIME</div>
@@ -2780,7 +2983,7 @@ function pausedCard() {
     <div class="note"><b>${sess.mode === 'rest' ? 'Aktuell: Pause vor' : 'Aktuelle Übung'}</b>${esc(sess.mode === 'rest' ? (nextLabel(nextIdx(sess.idx)) || { e: { name: 'Abschluss' } }).e.name : e.name)}${sess.timer ? ' · Rest ' + fmtCd(timerRemain(sess.timer)) : ''}</div>
   </article>`;
 }
-function workoutView() {
+function workoutView_v46() {
   return hudHTML() + (sess.paused ? pausedCard() : sess.mode === 'rest' ? restCard() : exerciseCard() + nextUpHTML());
 }
 function nextUpHTML() {
@@ -2793,7 +2996,7 @@ function nextUpHTML() {
 /* Startseite */
 let pgOpen = null;
 const openGroup = () => pgOpen !== null ? pgOpen : ((PROGRAM_GROUPS.find(g => g.ids.includes(settings.program)) || PROGRAM_GROUPS[0]).id);
-function homeView() {
+function homeView_v46() {
   const c = effCfg(settings), prog = programOf(settings);
   const plan = buildPlan(c);
   const ph = {}; plan.forEach(s => { ph[s.phase] = (ph[s.phase] || 0) + estRaw(s) + (s.rest ? restSec(s.rest, c) * 1000 : 0); });
@@ -2835,7 +3038,7 @@ function homeView() {
 const dateTxt = ts => new Date(ts).toLocaleDateString(LOC, { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' }) + ', ' + new Date(ts).toLocaleTimeString(LOC, { hour: '2-digit', minute: '2-digit' }) + (LANG === 'de' ? ' Uhr' : '');
 
 /* Abschluss */
-function resultView() {
+function resultView_v46() {
   const s = sess.summary || summarize(sess);
   const prev = history.find(h => h.id !== sess.id);
   const cmp = (a, b, unit) => b == null ? '' : `<small class="${a >= b ? 'up' : 'down'}"> ${a >= b ? '▲' : '▼'} ${num(Math.abs(a - b))}${unit}</small>`;
@@ -3068,7 +3271,7 @@ function settingsView() {
 }
 
 /* Steuerleiste */
-function ctlHTML() {
+function ctlHTML_v46() {
   if (view !== 'train') return '';
   if (homeOpen && sess && sess.state === 'ACTIVE') return `<button type="button" class="btn btn-lamp xl" data-act="resume-home">▶ ${L('WORKOUT FORTSETZEN', 'RESUME WORKOUT', 'REPRENDRE L\'ENTRAÎNEMENT', 'ANTRENMANA DEVAM')}</button>`;
   if (!sess) return `<button type="button" class="btn btn-primary xl" data-act="start-workout">START WORKOUT</button>`;
@@ -4035,7 +4238,7 @@ function renderShare() {
   }
   return cv;
 }
-function sharePreview() {
+function sharePreview_v46() {
   const cv = renderShare();
   cv.toBlob(b => { shareBlob = b; }, 'image/jpeg', 0.9);
   const styles = [L('Bilanz', 'Stats', 'Bilan', 'Özet'), L('Fun', 'Fun', 'Fun', 'Eğlenceli'), L('Döner', 'Kebab', 'Kebab', 'Döner'), L('Minimal', 'Minimal', 'Minimal', 'Sade')];
@@ -4121,7 +4324,7 @@ function shareCardHTML(s) {
 }
 
 /* Lauf: Bild erstellen (im Feier- und Detaildialog) */
-function runShareHTML(r) {
+function runShareHTML_v46(r) {
   return `<div class="panel share-card" style="margin-top:12px"><b>📸 ${L('Bild für Instagram, WhatsApp & Co.', 'Picture for Instagram, WhatsApp & co.', 'Image pour Instagram, WhatsApp & co.', 'Instagram, WhatsApp vb. için görsel')}</b>
     <p class="sub" style="margin:4px 0 10px">${L('Foto wählen oder ohne Foto. Distanz, Zeit und Tempo kommen automatisch drauf.', 'Pick a photo or go without. Distance, time and pace are added automatically.', 'Choisis une photo ou non. Distance, temps et allure sont ajoutés.', 'Fotoğraf seç ya da seçme. Mesafe, süre ve tempo otomatik eklenir.')}</p>
     <div class="adm-acts"><label class="btn btn-primary" data-act="share-run-photo" data-id="${esc(r.id)}">${L('Foto wählen', 'Choose photo', 'Choisir une photo', 'Fotoğraf seç')}<input type="file" accept="image/*" id="sharePhoto" hidden></label><button type="button" class="btn btn-ghost" data-act="share-run" data-id="${esc(r.id)}">${L('Ohne Foto', 'Without photo', 'Sans photo', 'Fotoğrafsız')}</button></div></div>`;
@@ -5399,7 +5602,7 @@ async function acmWipeNick(nick) {
       for (const m of q.docs) { if (nickKey(m.data().nick || '') === k) { await m.ref.delete(); n++; } } } catch (e) {}
   }
   try { const uq = await db.collection('users').get(); for (const u of uq.docs) if (nickKey(u.data().nick || '') === k) await u.ref.delete(); } catch (e) {}
-  try { const fq = await db.collection('feed').get(); for (const f of fq.docs) { if (nickKey(f.data().nick || '') === k) { for (const sub of ['kudos', 'cmts']) { try { const q = await f.ref.collection(sub).get(); for (const x of q.docs) await x.ref.delete(); } catch (e) {} } await f.ref.delete(); n++; } } } catch (e) {}
+  try { const fq = await db.collection('feed').get(); for (const f of fq.docs) { if (nickKey(f.data().nick || '') === k) { for (const sub of ['img', 'kudos', 'cmts']) { try { const q = await f.ref.collection(sub).get(); for (const x of q.docs) await x.ref.delete(); } catch (e) {} } await f.ref.delete(); n++; } } } catch (e) {}
   try { const bq = await db.collection('board').get(); for (const x of bq.docs) if (nickKey(x.data().nick || '') === k) await x.ref.delete(); } catch (e) {}
   return n;
 }
@@ -5724,10 +5927,11 @@ async function evLoad(force) {
       const G = {};
       await Promise.all(nextEvents().map(async e => { try { const q = await db.collection('events').doc(e.id).collection('going').limit(200).get(); G[e.id] = q.docs.map(d => ({ uid: d.id, nick: String(d.data().nick || '') })); } catch (x) { G[e.id] = []; } }));
       evGoing = G;
+      try { const me0 = account.uid || account.id; store.set(evMineKey(), Object.keys(G).filter(k => G[k].some(g => g.uid === me0))); } catch (x) {}
     } else { const L0 = store.get(evLocalKey(), []); evGoing = {}; L0.forEach(id => { evGoing[id] = [{ uid: account.id, nick: cNick() }]; }); }
     evLoaded = Date.now();
   } finally { evBusy = false; }
-  if (view === 'community' && cbTab === 'events' && !cbRoom) render();
+  if ((view === 'community' && cbTab === 'events' && !cbRoom) || view === 'start') render();
 }
 const evIGo = e => (evGoing[e.id] || []).some(g => g.uid === (account && account.uid || account.id));
 function eventsHTML() {
@@ -5767,6 +5971,7 @@ async function evToggle(e) {
   const { db } = await fbCore(), ref = db.collection('events').doc(e.id).collection('going').doc(uid);
   if (me) await ref.delete(); else await ref.set({ nick: cNick(), ts: Date.now() });
   evGoing[e.id] = me ? (evGoing[e.id] || []).filter(g => g.uid !== uid) : (evGoing[e.id] || []).concat({ uid, nick: cNick() });
+  try { const M0 = store.get(evMineKey(), []).filter(x => x !== e.id); if (!me) M0.push(e.id); store.set(evMineKey(), M0); } catch (x) {}
   render();
   if (!me) toast(L('Eingetragen! Viel Spaß bei der Vorbereitung 💪', 'You\'re in! Enjoy the preparation 💪', 'C\'est noté ! Bonne préparation 💪', 'Kaydoldun! İyi hazırlıklar 💪'));
 }
@@ -5909,11 +6114,11 @@ async function feedLoad(force) {
   if (view === 'community' && cbTab === 'feed' && !cbRoom) render();
 }
 const agoTxt = t => { const m = Math.round((Date.now() - t) / 60000); return m < 1 ? L('gerade eben', 'just now', 'à l\'instant', 'şimdi') : m < 60 ? L(`vor ${m} Min.`, `${m} min ago`, `il y a ${m} min`, `${m} dk önce`) : m < 1440 ? L(`vor ${Math.round(m / 60)} Std.`, `${Math.round(m / 60)} h ago`, `il y a ${Math.round(m / 60)} h`, `${Math.round(m / 60)} sa önce`) : new Date(t).toLocaleDateString(LOC, { day: 'numeric', month: 'short' }); };
-function postStats(p) { const s = p.st || {}, out = [];
+function postStats_v46(p) { const s = p.st || {}, out = [];
   if (s.km) out.push(['📏', num(s.km, 2) + ' km']); if (s.min) out.push(['⏱️', s.min + ' Min']); if (s.pace) out.push(['⚡', s.pace + ' /km']);
   if (s.kcal) out.push(['🔥', '≈ ' + s.kcal + ' kcal']); if (s.pts) out.push(['⭐', '+' + s.pts + ' ' + L('Punkte', 'pts', 'pts', 'puan')]);
   return out.map(([i, v]) => `<span>${i} ${esc(v)}</span>`).join(''); }
-function postHTML(p, full) {
+function postHTML_v46(p, full) {
   const mine = p.uid === myUid(), my = (p.kudos || []).find(k => k.uid === myUid());
   const cnt = {}; (p.kudos || []).forEach(k => { cnt[k.e] = (cnt[k.e] || 0) + 1; });
   return `<article class="panel fd-post" data-pid="${esc(p.id)}">
@@ -5938,7 +6143,7 @@ function feedHTML() {
 function feedSheet(id) { const p = FEED.list.find(x => x.id === id); if (!p) return; openSheet(`<div data-notr><h2 id="dlgTitle" class="sr-only">${esc(p.title)}</h2>${postHTML(p, true)}</div>`); }
 /* Teilen-Dialog (nach Workout oder Lauf) */
 let SHARE_ITEM = null;
-function shareAskHTML(kind, id) {
+function shareAskHTML_v46(kind, id) {
   return `<div class="panel fd-ask" data-notr><b>📣 ${L('Mit der Community teilen?', 'Share with the community?', 'Partager avec la communauté ?', 'Toplulukla paylaş?')}</b>
     <p class="sub" style="margin:4px 0 8px">${L('Freiwillig. Ohne Klick bleibt dein Training privat.', 'Optional. Without a tap your session stays private.', 'Facultatif. Sans clic, ta séance reste privée.', 'İsteğe bağlı. Dokunmazsan antrenmanın gizli kalır.')}</p>
     <div class="adm-acts"><button type="button" class="btn btn-primary" data-act="fd-share" data-k="${kind}" data-id="${esc(id)}">${L('Teilen', 'Share', 'Partager', 'Paylaş')}</button><button type="button" class="btn btn-ghost" data-act="fd-private">🔒 ${L('Privat lassen', 'Keep private', 'Garder privé', 'Gizli tut')}</button></div></div>`;
@@ -5971,7 +6176,7 @@ async function socialAct(a, b) {
     if (a === 'bd-join') { const c = document.getElementById('bd_ok'); if (!c || !c.checked) { toast(L('Bitte zuerst die Einwilligung bestätigen.', 'Please confirm the consent first.', 'Confirme d\'abord ton accord.', 'Önce onayı işaretle.')); return; } await boardJoin(); toast('🏆 ' + L('Willkommen in der Rangliste!', 'Welcome to the leaderboard!', 'Bienvenue au classement !', 'Sıralamaya hoş geldin!')); return; }
     if (a === 'bd-leave') { confirmSheet(L('Aus der Rangliste austreten?', 'Leave the leaderboard?', 'Quitter le classement ?', 'Sıralamadan ayrıl?'), L('Dein Eintrag mit Nickname und Punkten wird gelöscht.', 'Your entry with nickname and points will be deleted.', 'Ton entrée sera supprimée.', 'Kaydın silinecek.'), L('AUSTRETEN', 'LEAVE', 'QUITTER', 'AYRIL'), () => boardLeave().catch(e => toast(String(e && (e.code || e.message)))), true, L('Abbrechen', 'Cancel', 'Annuler', 'İptal')); return; }
     if (a === 'fd-private') { const x = b.closest('.fd-ask'); if (x) x.remove(); toast('🔒 ' + L('Bleibt privat', 'Stays private', 'Reste privé', 'Gizli kalır')); return; }
-    if (a === 'fd-share') { shareSheet(b.dataset.k, id); return; }
+    if (a === 'fd-share') { shOpen(b.dataset.k === 'run' ? 'run' : 'workout', id); return; }
     if (a === 'fd-post') { const s = SHARE_ITEM; if (!s) return; const db = await socDb();
       await db.collection('feed').add({ uid: myUid(), nick: cNick(), kind: s.kind, title: shareTitle(s), txt: val('fd_txt').slice(0, 200), st: shareStats(s), ts: Date.now() });
       const sh = store.get(`uipause-${account.id}-shared-v1`, []); sh.push(s.id); store.set(`uipause-${account.id}-shared-v1`, sh.slice(-500));
@@ -5987,14 +6192,14 @@ async function socialAct(a, b) {
       P.cmts = (P.cmts || []).concat({ id: r.id, uid: myUid(), nick: cNick(), text: t.slice(0, 300), ts: Date.now() }); notifyOwner(P, 'cmt', t); feedSheet(P.id); render(); return; }
     if (a === 'fd-cdel' && P) { const db = await socDb(); await db.collection('feed').doc(P.id).collection('cmts').doc(b.dataset.c).delete(); P.cmts = P.cmts.filter(c => c.id !== b.dataset.c); feedSheet(P.id); render(); return; }
     if (a === 'fd-del' && P) { const db = await socDb();
-      for (const sub of ['kudos', 'cmts']) { try { const q = await db.collection('feed').doc(P.id).collection(sub).get(); for (const d of q.docs) { try { await d.ref.delete(); } catch (e) {} } } catch (e) {} }
+      for (const sub of ['img', 'kudos', 'cmts']) { try { const q = await db.collection('feed').doc(P.id).collection(sub).get(); for (const d of q.docs) { try { await d.ref.delete(); } catch (e) {} } } catch (e) {} }
       await db.collection('feed').doc(P.id).delete(); FEED.list = FEED.list.filter(x => x.id !== P.id); closeSheet(); render(); return; }
   } catch (e) { toast(L('Das hat nicht geklappt: ', 'That did not work: ', 'Échec : ', 'Olmadı: ') + (e && (e.code || e.message) || e)); }
 }
 /* Eigene Social-Daten löschen (bei Community-Daten löschen / Konto löschen) */
 async function socialWipe(db, uid) {
   try { await db.collection('board').doc(uid).delete(); } catch (e) {}
-  try { const q = await db.collection('feed').where('uid', '==', uid).get(); for (const d of q.docs) { for (const sub of ['kudos', 'cmts']) { try { const s = await d.ref.collection(sub).get(); for (const x of s.docs) { try { await x.ref.delete(); } catch (e) {} } } catch (e) {} } try { await d.ref.delete(); } catch (e) {} } } catch (e) {}
+  try { const q = await db.collection('feed').where('uid', '==', uid).get(); for (const d of q.docs) { for (const sub of ['img', 'kudos', 'cmts']) { try { const s = await d.ref.collection(sub).get(); for (const x of s.docs) { try { await x.ref.delete(); } catch (e) {} } } catch (e) {} } try { await d.ref.delete(); } catch (e) {} } } catch (e) {}
   try { const q = await db.collection('feed').limit(300).get(); for (const d of q.docs) { try { await d.ref.collection('kudos').doc(uid).delete(); } catch (e) {} try { const c = await d.ref.collection('cmts').where('uid', '==', uid).get(); for (const x of c.docs) await x.ref.delete(); } catch (e) {} } } catch (e) {}
   try { store.del(boardKey()); } catch (e) {}
 }
@@ -6066,7 +6271,7 @@ function dashSheet() {
     <div class="sec-title" style="margin:10px 0 6px">${L('Karten', 'Cards', 'Cartes', 'Kartlar')}</div>
     <div class="dash-list">${DASH_CARDS.map(([k, ic, n]) => sw(k, ic, n)).join('')}</div>
     <div class="sec-title" style="margin:14px 0 6px">${L('Trainingsbereiche', 'Training areas', 'Domaines d\'entraînement', 'Antrenman alanları')}</div>
-    <div class="dash-list">${PROGRAM_GROUPS.map(g => sw('g_' + g.id, '💪', g.name)).join('')}</div>
+    <div class="dash-list">${PROGRAM_GROUPS.map(g => sw('g_' + g.id, CAT_IC[g.id] || '💪', catName(g.id))).join('')}</div>
     <div class="sec-title" style="margin:14px 0 6px">${L('Community-Räume', 'Community rooms', 'Salons', 'Topluluk odaları')}</div>
     <div class="dash-list">${DEF_ROOMS.map(r => sw('room_' + r.id, r.ic, r.name)).join('')}</div>
     <div class="acts"><button type="button" class="btn btn-primary xl" data-act="sheet-close">${L('FERTIG', 'DONE', 'TERMINÉ', 'TAMAM')}</button><button type="button" class="btn btn-ghost" data-act="dash-reset">${L('Alles wieder einblenden', 'Show everything again', 'Tout réafficher', 'Hepsini göster')}</button></div></div>`);
@@ -6213,7 +6418,7 @@ function navAct(v) {
   render(); window.scrollTo(0, 0);
 }
 /* ---------------- Startseite ---------------- */
-function startView() {
+function startView_v46() {
   const P = store.get(`uipause-${account.id}-profile-v1`, {}), h = new Date().getHours();
   const hi = h < 11 ? L('Guten Morgen', 'Good morning', 'Bonjour', 'Günaydın') : h < 18 ? L('Hallo', 'Hi', 'Salut', 'Merhaba') : L('Guten Abend', 'Good evening', 'Bonsoir', 'İyi akşamlar');
   const w0 = weekStart(Date.now()), hist = (history || []).filter(x => x.date >= w0 && x.exDone > 0), runs = rlList().filter(r => r.t >= w0);
@@ -6400,7 +6605,7 @@ document.addEventListener('visibilitychange', () => { if (document.visibilitySta
    errlog/{id}: Meldung, Quelle, Zeile, App-Version, Gerät (grob), Zeitpunkt.
    Keine Trainingsdaten, keine E-Mail. Lesen nur Admin.
    ============================================================ */
-const APP_VER = '46';
+const APP_VER = '47';
 let errSent = 0; const errSeen = new Set();
 const errDevice = () => { const u = navigator.userAgent || ''; return (/iPhone|iPad/.test(u) ? 'iOS' : /Android/.test(u) ? 'Android' : /Mac/.test(u) ? 'Mac' : /Windows/.test(u) ? 'Windows' : 'Sonstiges') + ' · ' + (/CriOS|Chrome/.test(u) ? 'Chrome' : /FxiOS|Firefox/.test(u) ? 'Firefox' : /Safari/.test(u) ? 'Safari' : 'Browser') + (window.matchMedia && matchMedia('(display-mode: standalone)').matches ? ' · Homescreen-App' : ''); };
 window.__uipReport = (rec, own) => {
@@ -6432,7 +6637,7 @@ let mrOff = 0, jrFilter = 'all', jrShow = 40;
 const monthRange = off => { const d = new Date(); const a = new Date(d.getFullYear(), d.getMonth() + off, 1), b = new Date(d.getFullYear(), d.getMonth() + off + 1, 1); return [a.getTime(), b.getTime()]; };
 /* Alle Einheiten als einheitliche Liste */
 function sessionsAll() {
-  const w = (history || []).filter(h => h.exDone > 0).map(h => ({ id: 'w_' + h.id, raw: h, kind: 'wo', t: h.date, title: h.program || 'Workout', min: Math.round((h.ms || 0) / 60000), kcal: h.kcal || 0, vol: h.vol || 0, aborted: !!h.aborted, pts: PTS_WO(h) }));
+  const w = (history || []).filter(h => h.exDone > 0).map(h => ({ id: 'w_' + h.id, raw: h, kind: 'wo', t: h.date, title: h.program || 'Workout', min: Math.round((h.ms || 0) / 60000), kcal: h.kcalW || h.kcal || 0, vol: h.vol || 0, aborted: !!h.aborted, pts: PTS_WO(h) }));
   const r = rlList().map(x => ({ id: 'r_' + x.id, raw: x, kind: 'run', t: x.t, title: (RUN_TYPES.find(y => y[0] === x.type) || ['', L('Lauf', 'Run', 'Course', 'Koşu')])[1], min: Math.round(x.sec / 60), km: x.km, pace: paceTxt(x.sec / x.km), hr: x.hr, pts: PTS_RUN(x) }));
   return w.concat(r).sort((a, b) => b.t - a.t);
 }
@@ -6542,8 +6747,8 @@ function addSave() {
   if (!(min >= 3 && min <= 300)) { err(L('Dauer zwischen 3 und 300 Minuten.', 'Duration between 3 and 300 minutes.', 'Durée entre 3 et 300 minutes.', 'Süre 3–300 dakika.')); return; }
   const t = new Date(date + 'T' + time + ':00').getTime(); if (!(t <= Date.now() + 6e4)) { err(L('Das Datum liegt in der Zukunft.', 'Date is in the future.', 'Date dans le futur.', 'Tarih gelecekte.')); return; }
   const P = PROGRAMS.find(p => p.id === prog), bw = +settings.bodyWeight || 75;
-  const kcal = Math.round(5 * 3.5 * bw / 200 * min); /* ca. 5 MET, Schätzung */
-  history.unshift({ id: 'm' + Date.now().toString(36), date: t, ms: min * 60000, kcal, vol: 0, bwVol: 0, reps: 0, rounds: 0, roundsPlanned: 0, exDone: 1, exTotal: 1, aborted: false, best: {}, bw, program: P ? P.name : L('Anderes Training', 'Other training', 'Autre entraînement', 'Diğer antrenman'), manual: true });
+  const kcal = Math.round((5 - 1) * 3.5 * bw / 200 * min); /* ca. 5 MET, aktive kcal ohne Grundumsatz, Schätzung */
+  history.unshift({ id: 'm' + Date.now().toString(36), date: t, ms: min * 60000, kcal, vol: 0, bwVol: 0, reps: 0, rounds: 0, roundsPlanned: 0, exDone: 1, exTotal: 1, aborted: false, best: {}, bw, program: P ? P.name : L('Anderes Training', 'Other training', 'Autre entraînement', 'Diğer antrenman'), manual: true, kv: 2, pid: P ? P.id : '' });
   history.sort((a, b) => b.date - a.date); history = history.slice(0, 500);
   if (!saveHistory()) { err('Speichern nicht möglich'); return; }
   addDraft = null; closeSheet(); render(); toast('✅ ' + L('Training nachgetragen', 'Workout added', 'Séance ajoutée', 'Antrenman eklendi'));
@@ -6603,6 +6808,767 @@ function voiceHalf() { const h = sess && EX[step().ex] && EX[step().ex].half; vo
 function voiceDone(aborted) { voiceSay(aborted ? L('Workout beendet. Gut gemacht.', 'Workout ended. Well done.', 'Séance terminée. Bravo.', 'Antrenman bitti. Aferin.') : L('Geschafft! Stark gemacht!', 'Done! Great job!', 'Terminé ! Super !', 'Bitti! Harika!')); }
 function voiceTest() { voiceSay(L('Hallo! So klingt die Ansage. Drei, zwei, eins. Nächste Übung: Squats.', 'Hi! This is how announcements sound. Three, two, one. Next exercise: squats.', 'Salut ! Voici l’annonce. Trois, deux, un. Exercice suivant : squats.', 'Merhaba! Anons böyle. Üç, iki, bir. Sıradaki: squat.')); }
 
+/* ============================================================
+   VERSION 47 „Next Level“
+   Mehr Übersicht: Tagesvorschlag, ruhige Workout-Auswahl mit Vorschau
+   (Ziel, Dauer, Equipment, Ort), Mini-Vorschau der nächsten Übung,
+   sauberer Abbruch, klare Abschlussansicht, nachvollziehbare
+   Kalorienschätzung, Teilen mit Vorlagen und in die Community.
+   ============================================================ */
+const APP_VNAME = 'Next Level';
+const L2 = (de, en) => LANG === 'de' ? de : en;
+const r5 = n => Math.max(0, Math.round((+n || 0) / 5) * 5);
+
+/* ---------------- Equipment ---------------- */
+const EQ_NAMES = {
+  db: ['Kurzhanteln', 'Dumbbells', 'Haltères', 'Dambıl'], kb: ['Kettlebell', 'Kettlebell', 'Kettlebell', 'Kettlebell'],
+  bar: ['Klimmzugstange', 'Pull-up bar', 'Barre de traction', 'Barfiks'], chair: ['Stuhl oder Bank', 'Chair or bench', 'Chaise ou banc', 'Sandalye veya bank'],
+  roller: ['Faszienrolle', 'Foam roller', 'Rouleau de massage', 'Köpük rulo'], mat: ['Matte', 'Mat', 'Tapis', 'Mat'],
+  band: ['Widerstandsband', 'Resistance band', 'Élastique', 'Direnç bandı'], space: ['20–30 m Platz', '20–30 m of space', '20–30 m d’espace', '20–30 m alan']
+};
+const EQ_IC = { db: '🏋️', kb: '🔔', bar: '➖', chair: '🪑', roller: '🧻', mat: '🧘', band: '〰️', space: '↔️' };
+const eqName = k => { const n = EQ_NAMES[k] || [k, k, k, k]; return L(n[0], n[1], n[2], n[3]); };
+const FLOOR = new Set(['pushup', 'knee_pushup', 'diamond_pushup', 'pike_pushup', 'situp', 'deadbug', 'crunch', 'plank', 'glute_single', 'glute_double', 'bird_dog', 'superman',
+  'bicycle', 'reverse_crunch', 'leg_raise', 'russian_twist', 'hollow', 'side_plank', 'mountain_climber', 'floor_press']);
+function exEq(id) {
+  const e = EX[id] || {}, req = [], opt = [];
+  if (e.load === 'db2' || e.load === 'db1') req.push('db');
+  if (e.load === 'kb1') req.push('kb');
+  if (['pullup', 'chinup', 'knee_raise'].includes(id)) req.push('bar');
+  if (['pullup', 'chinup'].includes(id)) opt.push('band');
+  if (/^br_/.test(id)) req.push('roller');
+  if (/^(chair_squat|seated_)/.test(id)) req.push('chair');
+  if (id === 'farmer_walk') opt.push('db');
+  if (FLOOR.has(id) || (/^(y_|r_)/.test(id) && !['r_neck', 'r_sidebend'].includes(id))) opt.push('mat');
+  if (/^abc_/.test(id)) opt.push('space');
+  return { req, opt };
+}
+const EQ_ORDER = ['db', 'kb', 'bar', 'chair', 'roller', 'mat', 'band', 'space'];
+function planEq(steps) {
+  const req = new Set(), opt = new Set();
+  steps.filter(s => !s.removed).forEach(s => { const q = exEq(s.ex); q.req.forEach(k => req.add(k)); q.opt.forEach(k => opt.add(k)); });
+  req.forEach(k => opt.delete(k));
+  return { req: EQ_ORDER.filter(k => req.has(k)), opt: EQ_ORDER.filter(k => opt.has(k)) };
+}
+/* Heute nicht dabei: gilt nur für den aktuellen Tag */
+const missingEq = () => { const m = settings.missing; return m && m.d === dayKeyS(Date.now()) ? (m.eq || {}) : {}; };
+const eqOk = (id, miss) => exEq(id).req.every(k => !miss[k]);
+/* Fachlich sinnvolle Alternativen, wenn ein Gerät fehlt (gleiche Bewegungsrichtung oder Muskelgruppe) */
+const ALT = { pullup: ['row', 'reverse_fly', 'superman'], chinup: ['row', 'reverse_fly', 'superman'], knee_raise: ['reverse_crunch', 'leg_raise'],
+  row: ['superman', 'bird_dog'], press: ['pike_pushup'], floor_press: ['pushup', 'knee_pushup'], rdl: ['glute_double', 'superman'], lateral_raise: ['pike_pushup'],
+  reverse_fly: ['superman'], tri_ext: ['diamond_pushup'], kb_swing: ['rdl', 'glute_double'], kb_deadlift: ['rdl', 'glute_double'], kb_goblet: ['squat'],
+  kb_press: ['press', 'pike_pushup'], kb_halo: ['arm_circles'] };
+function applyMissing(c) {
+  const miss = missingEq(); c.swaps = [];
+  if (!Object.keys(miss).some(k => miss[k])) return c;
+  const used = new Set(c.circuit.filter(s => s.on).map(slotEx));
+  c.circuit = c.circuit.map(s => {
+    if (!s.on) return s; const id = slotEx(s); if (eqOk(id, miss)) return s;
+    const alts = (ALT[id] || []).filter(a => EX[a] && eqOk(a, miss)), alt = alts.find(a => !used.has(a)) || alts[0];
+    if (!alt) { c.swaps.push([id, null]); return Object.assign({}, s, { on: false }); }
+    used.add(alt); c.swaps.push([id, alt]);
+    const def = DEFAULTS.circuit.find(x => x.id === alt) || {}, y = Object.assign({}, s, { id: alt }); delete y.variant; delete y.wf; delete y.hard;
+    if (EX[alt].kind === 'time') { y.sec = def.sec || 40; delete y.reps; } else { y.reps = s.reps && s.reps >= 6 ? s.reps : (def.reps || 10); delete y.sec; }
+    return y;
+  });
+  if (c.finisher && c.fin && !eqOk(c.fin.ex, miss)) { c.finisher = false; c.swaps.push([c.fin.ex, null]); }
+  if (c.warmup && c.warmupOn && c.warmupOn.kb_halo && miss.kb) c.warmupOn = Object.assign({}, c.warmupOn, { kb_halo: false });
+  return c;
+}
+function effCfg(src) { return applyMissing(effCfg_v46(src)); }
+
+/* ---------------- Programm-Infos: Ziel, Ort, Niveau ---------------- */
+const PLACE = {
+  home: ['Zuhause', 'At home', 'À la maison', 'Evde'], homegym: ['Zuhause / Gym', 'Home / gym', 'Maison / salle', 'Ev / salon'],
+  any: ['Überall', 'Anywhere', 'Partout', 'Her yerde'], mat: ['Mit Matte', 'With a mat', 'Avec tapis', 'Matla'],
+  office: ['Büro', 'Office', 'Bureau', 'Ofis'], hotel: ['Hotel', 'Hotel', 'Hôtel', 'Otel'],
+  outdoor: ['Draußen', 'Outdoors', 'Dehors', 'Dışarıda'], travel: ['Unterwegs', 'On the go', 'En déplacement', 'Yolda']
+};
+const PMETA = {
+  fullbody: ['homegym', 'mid', 'Kraft und Fitness für den ganzen Körper', 'Strength and fitness for the whole body'],
+  push: ['homegym', 'mid', 'Brust, Schultern und Trizeps stärken', 'Chest, shoulders and triceps'],
+  pull: ['homegym', 'mid', 'Rücken und Bizeps, bessere Haltung', 'Back and biceps, better posture'],
+  kettlebell: ['homegym', 'mid', 'Hüftkraft und stabiler Rumpf', 'Hip power and a stable core'],
+  express: ['homegym', 'mid', 'Ganzkörper in rund 20 Minuten', 'Full body in about 20 minutes'],
+  women: ['home', null, 'Po, Beine, Bauch und Arme kräftigen', 'Glutes, legs, core and arms'],
+  runner: ['home', 'mid', 'Kraft für Läufer: Waden, Gesäß, Rumpf', 'Strength for runners: calves, glutes, core'],
+  sixpack: ['mat', null, 'Bauchmuskeln gezielt trainieren', 'Targeted ab training'],
+  core: ['mat', null, 'Tiefe Rumpfmuskeln, rückenfreundlich', 'Deep core, back-friendly'],
+  blackroll: ['home', 'easy', 'Regeneration mit der Faszienrolle', 'Recovery with the foam roller'],
+  yoga_flow: ['mat', null, 'Beweglichkeit und Mobilität', 'Flexibility and mobility'],
+  yoga_relax: ['mat', null, 'Entspannen und runterkommen', 'Relax and unwind'],
+  starter: ['home', null, 'Sanfter Einstieg für den ganzen Körper', 'Gentle full-body start'],
+  balance: ['home', null, 'Gleichgewicht und Kraft für den Alltag', 'Balance and everyday strength'],
+  standing: ['home', null, 'Ganzkörper ohne Hinlegen', 'Full body without lying down'],
+  noexcuse: ['any', null, 'Ganzkörper ohne Geräte', 'Full body, no equipment'],
+  deskrevenge: ['office', null, 'Ausgleich zum vielen Sitzen', 'Counterbalance to sitting'],
+  office_neck: ['office', 'easy', 'Nacken und Rücken lösen', 'Release neck and back'],
+  office_active: ['office', 'easy', 'Kreislauf hoch, Kopf frei', 'Get moving, clear your head'],
+  office_seated: ['office', 'easy', 'Bewegung komplett im Sitzen', 'Movement fully seated'],
+  hotel: ['hotel', null, 'Schwitzen ohne Geräte', 'Sweat without equipment'],
+  lauf_abc: ['outdoor', 'mid', 'Lauftechnik und Koordination', 'Running technique and coordination'],
+  gate: ['travel', 'easy', 'Kreislauf in Gang bringen auf Reisen', 'Get moving while travelling'],
+  park: ['outdoor', null, 'Kraft und Cardio im Freien', 'Strength and cardio outdoors'],
+  custom: ['home', null, 'Deine eigene Auswahl', 'Your own selection']
+};
+const LVL_EXP = { easy: ['Einsteiger', 'Beginner', 'Débutant', 'Başlangıç'], mid: ['Mit Erfahrung', 'Some experience', 'Intermédiaire', 'Orta'], hard: ['Erfahren', 'Experienced', 'Confirmé', 'Deneyimli'] };
+const lvlKey = k => ({ leicht: 'easy', mittel: 'mid', fordernd: 'hard' })[k] || 'mid';
+const lx = a => L(a[0], a[1], a[2], a[3]);
+function progInfo(p, c) {
+  const m = PMETA[p.id] || ['home', 'mid', p.short || '', p.short || ''];
+  const level = p.levels && c.level ? p.levels[c.level].name : null, exp = lx(LVL_EXP[p.levels && c.level ? lvlKey(c.level) : (m[1] || 'mid')]);
+  return { place: lx(PLACE[m[0]] || PLACE.home), goal: L2(m[2], m[3]), level: level ? tr(level) : exp, exp };
+}
+const planMs = (c, steps) => (steps || buildPlan(c)).reduce((a, s) => a + estRaw(s) + (s.rest ? restSec(s.rest, c) * 1000 : 0), 0);
+
+/* ---------------- Kategorien der Workout-Auswahl ---------------- */
+const CAT_NAMES = {
+  strength: ['Kraft', 'Strength', 'Force', 'Güç'], bodyweight: ['Ohne Geräte', 'No equipment', 'Sans matériel', 'Ekipmansız'],
+  office: ['Büro & Einstieg', 'Office & starter', 'Bureau & débutant', 'Ofis & başlangıç'], run: ['Laufen', 'Running', 'Course', 'Koşu'], mobility: ['Erholung', 'Recovery', 'Récupération', 'Toparlanma']
+};
+const CAT_IC = { strength: '🏋️', bodyweight: '🤸', office: '🪑', run: '🏃', mobility: '🧘' };
+const OLD_GROUP = { challenge: 'strength', travel: 'bodyweight', start: 'office', core: 'run' };
+const catName = id => CAT_NAMES[id] ? lx(CAT_NAMES[id]) : id;
+const catOf = pid => (PROGRAM_GROUPS.find(g => g.ids.includes(pid)) || PROGRAM_GROUPS[0]).id;
+let trCat = null;
+
+/* ---------------- Tagesvorschlag ---------------- */
+const FOCUS = { fullbody: 'full', push: 'push', pull: 'pull', kettlebell: 'full', express: 'full', women: 'lower', runner: 'lower', noexcuse: 'full', hotel: 'full', park: 'full',
+  deskrevenge: 'full', starter: 'full', balance: 'light', standing: 'full', sixpack: 'core', core: 'core', office_neck: 'light', office_active: 'light', office_seated: 'light',
+  gate: 'light', lauf_abc: 'run', blackroll: 'rec', yoga_flow: 'rec', yoga_relax: 'rec', custom: 'full' };
+const PROG_BY_LEN = () => PROGRAMS.slice().sort((a, b) => b.name.length - a.name.length);
+const pidOf = h => h.pid || (PROG_BY_LEN().find(p => String(h.program || '').startsWith(p.name)) || {}).id || '';
+const pname = id => tr((PROGRAMS.find(p => p.id === id) || { name: 'Workout' }).name);
+function gearHave() {
+  const P = account ? store.get(`uipause-${account.id}-profile-v1`, {}) : {}, f = P.fit || {}, miss = missingEq();
+  const used = new Set((history || []).slice(0, 60).map(pidOf));
+  const db = !miss.db && (f.db == null ? true : f.db > 0), kb = !miss.kb && (f.kb ? f.kb > 0 : used.has('kettlebell')), bar = !miss.bar && (used.has('pull') || used.has('fullbody') || f.db == null);
+  return { db, kb, bar };
+}
+function todaySuggest() {
+  const now = Date.now(), today = dayKeyS(now), noon = k => new Date(k + 'T12:00:00').getTime();
+  const ago = t => Math.round((noon(today) - noon(dayKeyS(t))) / DAY);
+  const wos = (history || []).filter(h => h.exDone > 0).map(h => ({ t: h.date, pid: pidOf(h), min: Math.round((h.ms || 0) / 60000) })).sort((a, b) => b.t - a.t);
+  const runs = (account ? rlList() : []).slice().sort((a, b) => b.t - a.t);
+  const g = gearHave(), fav = PROGRAMS.find(p => p.id === settings.program) ? settings.program : 'fullbody';
+  const pick = (pid, why, ic) => ({ pid, why, ic });
+  const hard = w => ['full', 'push', 'pull', 'lower', 'core'].includes(FOCUS[w.pid]) && w.min >= 12;
+  if (wos.some(w => ago(w.t) === 0) || runs.some(r => ago(r.t) === 0))
+    return pick(new Date().getHours() >= 16 ? 'yoga_relax' : 'office_neck', L2('Heute schon trainiert. Wenn du magst: locker runterkommen und dehnen.', 'Already trained today. If you like: wind down and stretch.'), '✅');
+  let streak = 0; for (let i = 1; i <= 7; i++) { if (wos.some(w => ago(w.t) === i && hard(w)) || runs.some(r => ago(r.t) === i)) streak++; else break; }
+  const lastW = wos[0], wAgo = lastW ? ago(lastW.t) : 99, rAgo = runs[0] ? ago(runs[0].t) : 99;
+  if (streak >= 3) return pick(lastW && ['lower', 'full', 'run'].includes(FOCUS[lastW.pid]) ? 'blackroll' : 'yoga_flow', L2(`${streak} Tage in Folge aktiv. Heute ist Erholung dran, dabei wirst du stärker.`, `${streak} active days in a row. Recovery today, that is when you get stronger.`), '🧘');
+  if (wAgo >= 4 && rAgo >= 4) {
+    if (!wos.length && !runs.length) return pick(g.db ? (fav === 'custom' ? 'fullbody' : fav) : 'starter', L2('Dein Start: in Ruhe ausprobieren, Technik vor Tempo.', 'Your start: take it easy, technique before speed.'), '🚀');
+    return pick(g.db ? 'express' : 'noexcuse', L2(`Seit ${Math.min(wAgo, rAgo)} Tagen kein Training. Kurz und knackig wieder reinkommen.`, `No training for ${Math.min(wAgo, rAgo)} days. Get back in, short and sharp.`), '🚀');
+  }
+  const goalId = rlCfg().goalEv, goal = goalId ? EVENTS_ALL().find(e => e.id === goalId) : null;
+  if (lastW && wAgo === 1) {
+    const f = FOCUS[lastW.pid], was = pname(lastW.pid);
+    if (f === 'push') return pick(g.bar || g.db ? 'pull' : 'core', L2(`Gestern ${was}. Heute sind Rücken und Bizeps dran.`, `Yesterday ${was}. Today: back and biceps.`), '🔄');
+    if (f === 'pull') return pick(g.db ? 'push' : 'noexcuse', L2(`Gestern ${was}. Heute Brust, Schultern und Trizeps.`, `Yesterday ${was}. Today: chest, shoulders, triceps.`), '🔄');
+    if (f === 'full' || f === 'lower') return goal && rAgo >= 2
+      ? pick('lauf_abc', L2(`Gestern ${was}. Heute Lauftechnik, die Muskeln erholen sich dabei.`, `Yesterday ${was}. Today running drills while your muscles recover.`), '🏃')
+      : pick('core', L2(`Gestern ${was}. Heute den Rumpf stärken, die Beine erholen sich.`, `Yesterday ${was}. Today core work while your legs recover.`), '🔄');
+    if (f === 'core') return pick(g.db ? 'fullbody' : 'noexcuse', L2(`Gestern ${was}. Heute wieder der ganze Körper.`, `Yesterday ${was}. Today the whole body again.`), '🔄');
+  }
+  if (goal && evDays(goal) <= 84 && rAgo >= 2) return pick('lauf_abc', L2(`${goal.name} in ${evDays(goal)} Tagen. Technik-Drills machen dein Laufen ökonomischer.`, `${goal.name} in ${evDays(goal)} days. Drills make your running more economical.`), '🏁');
+  const base = ['rec', 'light'].includes(FOCUS[fav]) || fav === 'custom' ? (g.db ? 'fullbody' : 'noexcuse') : fav;
+  return pick(base, L2('Dein Favorit. Passt heute gut.', 'Your favourite. A good fit today.'), '⭐');
+}
+function sgMeta(pid) {
+  const p = PROGRAMS.find(x => x.id === pid), c = effCfg(Object.assign({}, settings, { program: pid })), steps = buildPlan(c), eq = planEq(steps), info = progInfo(p, c);
+  return { p, c, min: mins(planMs(c, steps)), eq, info };
+}
+
+/* ---------------- Startseite ---------------- */
+const evMineKey = () => `uipause-${account ? account.id : 'none'}-evmine-v1`;
+function myEvents() {
+  const mine = store.get(evMineKey(), []), goal = rlCfg().goalEv;
+  return nextEvents().filter(e => evIGo(e) || mine.includes(e.id) || goal === e.id).slice(0, 2);
+}
+function startView() {
+  const P = store.get(`uipause-${account.id}-profile-v1`, {}), h = new Date().getHours();
+  const hi = h < 11 ? L('Guten Morgen', 'Good morning', 'Bonjour', 'Günaydın') : h < 18 ? L('Hallo', 'Hi', 'Salut', 'Merhaba') : L('Guten Abend', 'Good evening', 'Bonsoir', 'İyi akşamlar');
+  const w0 = weekStart(Date.now()), hist = (history || []).filter(x => x.date >= w0 && x.exDone > 0), runs = rlList().filter(r => r.t >= w0);
+  const km = runs.reduce((s, r) => s + r.km, 0), pts = hist.reduce((a, x) => a + PTS_WO(x), 0) + runs.reduce((a, x) => a + PTS_RUN(x), 0);
+  const streak = streakDays(history || []), active = sess && sess.state === 'ACTIVE';
+  const un = (typeof CB !== 'undefined' && CB) ? unreadTotal() : 0;
+  if (typeof evLive === 'function' && evLive() && Date.now() - evLoaded > 600000) setTimeout(() => evLoad().catch(() => {}), 0);
+  const weekTxt = [hist.length ? `${hist.length} Workout${hist.length === 1 ? '' : 's'}` : '', km ? `${num(km, 1)} km` : '', pts ? `${pts} ${L('Punkte', 'points', 'points', 'puan')}` : ''].filter(Boolean).join(' · ');
+  let hero = '';
+  if (active) {
+    hero = `<button type="button" class="st-resume" data-act="nav-resume"><b>▶ ${L('Workout fortsetzen', 'Resume workout', 'Reprendre', 'Devam et')}</b><small>${esc(tr(sess.cfg.programName || ''))} · ${fmt(elapsed())}</small></button>`;
+  } else {
+    const S = todaySuggest(), M = sgMeta(S.pid);
+    const eqTxt = M.eq.req.length ? M.eq.req.map(k => `${EQ_IC[k]} ${eqName(k)}`).join(' · ') : '✓ ' + L('Ohne Equipment', 'No equipment', 'Sans matériel', 'Ekipmansız');
+    hero = `<section class="sg" data-notr>
+      <div class="sg-k"><span>${S.ic}</span>${L('Vorschlag für heute', 'Suggested for today', 'Suggestion du jour', 'Bugünün önerisi')}</div>
+      <h2 class="sg-h">${esc(tr(M.c.programName))}</h2>
+      <p class="sg-why">${esc(S.why)}</p>
+      <div class="sg-meta"><span>⏱ ≈ ${M.min} min</span><span>${esc(eqTxt)}</span><span>${esc(M.info.level)}</span></div>
+      <div class="sg-acts"><button type="button" class="btn btn-primary" data-act="sg-start" data-id="${S.pid}">▶ ${L('Workout starten', 'Start workout', 'Démarrer', 'Başlat')}</button><button type="button" class="btn btn-ghost" data-act="sg-view" data-id="${S.pid}">${L('Details', 'Details', 'Détails', 'Detaylar')}</button></div>
+      <button type="button" class="sg-other" data-act="nav" data-v="train">${L('Lieber etwas anderes? Alle Workouts', 'Something else? All workouts', 'Autre chose ? Tous les entraînements', 'Başka bir şey? Tüm antrenmanlar')} ›</button>
+    </section>`;
+  }
+  const evs = dashOn('event') ? myEvents() : [];
+  const more = [dashOn('weight') && weightDue() ? `<button type="button" class="st-mini" data-act="w-log">⚖️ ${L('Gewicht eintragen', 'Log weight', 'Noter le poids', 'Kilo gir')}</button>` : '', dashOn('achieve') ? `<button type="button" class="st-mini" data-act="view" data-v="history">🎖️ ${L('Erfolge & Statistik', 'Achievements & stats', 'Succès & stats', 'Başarılar')}</button>` : ''].filter(Boolean);
+  return `<div class="stack v47 fade-in start" data-notr>
+    <section class="st-hello"><div><small>${new Date().toLocaleDateString(LOC, { weekday: 'long', day: 'numeric', month: 'long' })}</small><h2>${hi}, ${esc(P.first || account.name)}</h2>
+      <p class="st-week">${weekTxt ? L('Diese Woche', 'This week', 'Cette semaine', 'Bu hafta') + ': ' + esc(weekTxt) : L('Diese Woche ist noch frei. Zeit für den ersten Schritt.', 'Nothing yet this week. Time for the first step.', 'Rien encore cette semaine.', 'Bu hafta henüz boş.')}</p></div>
+      ${streak > 1 ? `<span class="st-streak">🔥 ${streak}</span>` : ''}</section>
+    <div id="syncBadge" class="sync-wrap">${syncBadgeHTML()}</div>
+    ${hero}
+    <div class="st-sec2">${dashOn('run') ? `<button type="button" class="btn btn-ghost" data-act="run-open" data-v="log" data-focus="1">🏃 ${L('Lauf eintragen', 'Log a run', 'Enregistrer une course', 'Koşu gir')}</button>` : ''}<button type="button" class="btn btn-ghost" data-act="jr-add">➕ ${L('Nachtragen', 'Add session', 'Ajouter', 'Ekle')}</button></div>
+    ${evs.map(e => `<button type="button" class="st-card st-ev" data-act="nav" data-v="events"><span class="ic">${esc(e.ic || '🏁')}</span><span><b>${esc(e.name)}</b><small>${rlCfg().goalEv === e.id ? L('Dein Ziel', 'Your goal', 'Ton objectif', 'Hedefin') : L('Du bist dabei', 'You’re in', 'Tu y participes', 'Katılıyorsun')} · ${esc(evDateTxt(e))} · ${L(`noch ${evDays(e)} Tage`, `${evDays(e)} days to go`, `encore ${evDays(e)} jours`, `${evDays(e)} gün`)}</small></span><span class="go">›</span></button>`).join('')}
+    ${monthReportHTML()}
+    ${recentHTML()}
+    ${settings.community && dashOn('community') && un ? `<button type="button" class="st-card" data-act="nav" data-v="community"><span class="ic">👥</span><span><b>Community <span class="c-badge">${un}</span></b><small>${L(`${un} Neuigkeiten`, `${un} updates`, `${un} nouveautés`, `${un} yenilik`)}</small></span><span class="go">›</span></button>` : ''}
+    ${more.length ? `<div class="st-more">${more.join('')}</div>` : ''}
+    <p class="st-edit"><button type="button" class="mini" data-act="dash-open">✏️ ${L('Startseite anpassen', 'Customise home', 'Personnaliser', 'Özelleştir')}</button></p>
+  </div>`;
+}
+function sgAct(a, b) {
+  const id = b.dataset.id; if (!PROGRAMS.find(p => p.id === id)) return;
+  settings.program = id; saveSettings(); trCat = catOf(id);
+  if (a === 'sg-start') { if (sess && sess.state === 'ACTIVE') { toast(L('Es läuft noch ein Workout.', 'A workout is still running.', 'Une séance est en cours.', 'Bir antrenman devam ediyor.')); return; } if (sess) newWorkoutQuiet(); homeOpen = false; startWorkout(); return; }
+  view = 'train'; render(); trScrollPreview();
+}
+function newWorkoutQuiet() { stopMusic(); sess = null; store.del(KEY_SESS); }
+function trScrollPreview() { requestAnimationFrame(() => { const el = document.getElementById('wpv'); if (el) el.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' }); }); }
+
+/* ---------------- Training: Auswahl + Vorschau ---------------- */
+function homeView() {
+  const prog = programOf(settings), c = effCfg(settings), cats = visibleGroups();
+  let cur = trCat || catOf(prog.id); if (!cats.some(g => g.id === cur)) cur = cats[0].id;
+  const G = cats.find(g => g.id === cur), list = G.ids.map(id => PROGRAMS.find(p => p.id === id)).filter(Boolean);
+  const row = p => { const cc = effCfg(Object.assign({}, settings, { program: p.id })), st = buildPlan(cc), eq = planEq(st), on = p.id === prog.id;
+    return `<button type="button" class="pl-row ${on ? 'on' : ''}" role="radio" aria-checked="${on}" data-act="program" data-id="${p.id}">
+      <span class="pl-m"><b>${esc(tr(p.name))}</b><small>${esc(progInfo(p, cc).goal)}</small></span>
+      <span class="pl-r"><b>≈ ${mins(planMs(cc, st))} min</b><small>${eq.req.length ? eq.req.map(k => EQ_IC[k]).join(' ') : L('ohne Geräte', 'no gear', 'sans matériel', 'ekipmansız')}</small></span></button>`; };
+  const runRows = cur === 'run' ? `<button type="button" class="pl-row pl-link" data-act="run-open" data-v="log"><span class="pl-m"><b>🏃 ${L('Lauf eintragen & Laufplan', 'Log a run & running plan', 'Course & plan', 'Koşu gir & plan')}</b><small>${L('Lauftagebuch mit Feedback, Prognose, Plan bis zum Event', 'Run log with feedback, prediction, plan up to race day', 'Journal, prévision, plan', 'Koşu günlüğü, tahmin, plan')}</small></span><span class="pl-r">›</span></button>` : '';
+  return `<div class="stack v47 fade-in" data-notr>
+    ${homeOpen && sess && sess.state === 'ACTIVE' ? pausedBanner() : ''}
+    <div class="tr-head"><h2 class="page-h">${L('Training', 'Training', 'Entraînement', 'Antrenman')}</h2><button type="button" class="mini" data-act="view" data-v="plan">📚 ${L('Alle Übungen', 'All exercises', 'Tous les exercices', 'Tüm egzersizler')}</button></div>
+    <div class="cat-row" role="tablist" aria-label="${L('Kategorien', 'Categories', 'Catégories', 'Kategoriler')}">${cats.map(g => `<button type="button" role="tab" class="cat ${g.id === cur ? 'on' : ''}" aria-selected="${g.id === cur}" data-act="pgroup" data-v="${g.id}"><span>${CAT_IC[g.id] || '💪'}</span>${esc(catName(g.id))}</button>`).join('')}</div>
+    <div class="pl-list" role="radiogroup" aria-label="${esc(catName(cur))}">${runRows}${list.map(row).join('')}</div>
+    ${previewHTML(prog, c)}
+    ${settings.kneeMode ? '<div class="note warn"><b>Knie-Modus aktiv</b>Kniebelastende Übungen sind ausgeblendet. Ausschalten in den Einstellungen.</div>' : ''}
+  </div>`;
+}
+function previewHTML(p, c) {
+  const steps = buildPlan(c), eq = planEq(steps), info = progInfo(p, c), miss = missingEq();
+  const total = planMs(c, steps), ph = {}; steps.forEach(s => { ph[s.phase] = (ph[s.phase] || 0) + estRaw(s) + (s.rest ? restSec(s.rest, c) * 1000 : 0); });
+  const circ = c.circuit.filter(x => x.on), fin = steps.find(s => s.phase === 'finisher');
+  const wt = k => k === 'db' ? ` · 2 × ${kg(c.dbWeight)} kg` : k === 'kb' ? ` · ${kg(c.kbWeight)} kg` : '';
+  const needAll = new Set(eq.req); Object.keys(miss).forEach(k => { if (miss[k]) needAll.add(k); });
+  const togg = ['db', 'kb', 'bar'].filter(k => needAll.has(k) || (c.swaps || []).some(([a]) => exEq(a).req.includes(k)));
+  const exRows = circ.map(s => { const id = slotEx(s), e = EX[id], q = exEq(id).req;
+    return `<li><span class="wx-n">${esc(tr(e.name))}${s.opt ? ` <small class="badge opt">optional</small>` : ''}</span><span class="wx-v">${e.kind === 'time' ? (s.sec || 40) + ' s' : (s.reps || '') + ' ' + L('Wdh.', 'reps', 'rép.', 'tekrar') + (e.perSide ? ' ' + L('je Seite', 'per side', 'par côté', 'her taraf') : '')}${q.length ? ' ' + q.map(k => EQ_IC[k]).join('') : ''}</span></li>`; });
+  const showN = 6;
+  return `<section class="wpv" id="wpv" data-notr>
+    <div class="wpv-k">${L('Dein Workout', 'Your workout', 'Ta séance', 'Antrenmanın')}</div>
+    <h2 class="wpv-h">${esc(tr(p.name))}</h2>
+    <p class="wpv-goal">${esc(info.goal)}</p>
+    <div class="wpv-facts">
+      <div><b>≈ ${mins(total)} min</b><small>${L('inkl. Pausen', 'incl. rests', 'pauses incl.', 'molalar dahil')}</small></div>
+      <div><b>${esc(info.level)}</b><small>${L('Niveau', 'Level', 'Niveau', 'Seviye')}</small></div>
+      <div><b>${esc(info.place)}</b><small>${L('Ort', 'Place', 'Lieu', 'Yer')}</small></div>
+    </div>
+    ${p.levels ? `<div class="seg wpv-lvl" role="radiogroup" aria-label="${L('Schwierigkeit', 'Difficulty', 'Difficulté', 'Zorluk')}">${Object.entries(p.levels).map(([k, Lv]) => `<button type="button" role="radio" aria-checked="${c.level === k}" data-act="level" data-v="${k}">${esc(tr(Lv.name))}</button>`).join('')}</div><p class="wpv-lvlinfo">${esc(tr(p.levels[c.level].info))}</p>` : ''}
+    <div class="wpv-eq ${eq.req.length ? 'need' : 'free'}">
+      ${eq.req.length ? `<b>${L('Du brauchst', 'You need', 'Il te faut', 'Gerekenler')}</b><ul>${eq.req.map(k => `<li>${EQ_IC[k]} ${esc(eqName(k))}${wt(k)}</li>`).join('')}</ul>` : `<b class="ok">✓ ${L('Ohne Equipment machbar', 'No equipment needed', 'Sans matériel', 'Ekipman gerekmez')}</b>`}
+      ${eq.opt.length ? `<p class="wpv-opt">${L('Optional', 'Optional', 'En option', 'İsteğe bağlı')}: ${eq.opt.map(k => esc(eqName(k))).join(', ')}</p>` : ''}
+      ${togg.length ? `<div class="wpv-miss"><span>${L('Heute dabei?', 'Got it today?', 'Dispo aujourd’hui ?', 'Bugün var mı?')}</span>${togg.map(k => `<button type="button" class="chip ${miss[k] ? '' : 'on'}" data-act="eq-miss" data-v="${k}" aria-pressed="${!miss[k]}">${miss[k] ? '✕' : '✓'} ${esc(eqName(k))}</button>`).join('')}</div>` : ''}
+      ${(c.swaps || []).length ? `<p class="wpv-swaps">${L('Angepasst', 'Adjusted', 'Adapté', 'Uyarlandı')}: ${c.swaps.map(([a, b]) => b ? `${esc(tr(EX[a].name))} → ${esc(tr(EX[b].name))}` : `${esc(tr(EX[a].name))} ${L('entfällt', 'dropped', 'supprimé', 'çıkarıldı')}`).join(' · ')}</p>` : ''}
+    </div>
+    <div class="wpv-ex"><div class="wpv-sub">${circ.length} ${L('Übungen', 'exercises', 'exercices', 'egzersiz')}${c.rounds > 1 ? ` · ${c.rounds} ${L('Runden', 'rounds', 'tours', 'tur')}` : ''}</div>
+      <ol>${exRows.slice(0, showN).join('')}</ol>
+      ${exRows.length > showN ? `<details class="wpv-more"><summary>${L(`Alle ${exRows.length} Übungen`, `All ${exRows.length} exercises`, `Les ${exRows.length} exercices`, `Tüm ${exRows.length} egzersiz`)}</summary><ol start="${showN + 1}">${exRows.slice(showN).join('')}</ol></details>` : ''}
+      <p class="wpv-phases">${Object.keys(PHASES).filter(k => ph[k]).map(k => `<span><i style="background:${PHASES[k].color}"></i>${k === 'finisher' && fin ? 'Finisher · ' + esc(tr(EX[fin.ex].name)) : k === 'circuit' && c.circuitName ? esc(tr(c.circuitName)) : esc(tr(PHASES[k].name))} ≈ ${mins(ph[k])} min</span>`).join('')}</p>
+    </div>
+    <p class="wpv-links">${p.custom ? `<button type="button" class="mini" data-act="edit-custom">✎ ${L('Eigenes Workout bearbeiten', 'Edit custom workout', 'Modifier', 'Düzenle')}</button>` : `<button type="button" class="mini" data-act="copy-custom">⧉ ${L('Als eigenes Workout übernehmen', 'Copy as custom workout', 'Copier comme séance perso', 'Özel antrenman olarak kopyala')}</button>`} · <button type="button" class="mini" data-act="safety">${L('Sicherheitshinweise', 'Safety notes', 'Sécurité', 'Güvenlik')}</button></p>
+  </section>`;
+}
+function eqMissToggle(k) {
+  const m = missingEq(), eq = Object.assign({}, m); eq[k] = !eq[k];
+  settings.missing = { d: dayKeyS(Date.now()), eq }; saveSettings(); render();
+  toast(eq[k] ? L(`Ohne ${eqName(k)}: passende Alternativen eingeplant`, `Without ${eqName(k)}: alternatives planned`, `Sans ${eqName(k)} : alternatives prévues`, `${eqName(k)} olmadan: alternatifler`) : L(`${eqName(k)} wieder eingeplant`, `${eqName(k)} back in the plan`, `${eqName(k)} de retour`, `${eqName(k)} tekrar planda`));
+}
+
+/* ---------------- Während des Workouts ---------------- */
+const eqDelta = (a, b) => exEq(b).req.filter(k => !exEq(a).req.includes(k));
+function nxTag(cur, s) {
+  if (s.phase !== cur.phase) return s.phase === 'circuit' ? `${L('Runde', 'Round', 'Tour', 'Tur')} ${s.round}` : tr(PHASES[s.phase].name);
+  if (s.phase === 'circuit' && s.round !== cur.round) return `${L('Runde', 'Round', 'Tour', 'Tur')} ${s.round} / ${sess.cfg.rounds}`;
+  return '';
+}
+function hudHTML() {
+  const st = step(), g = phaseGroups();
+  const segs = g.map(o => { const d = o.idx.filter(i => sess.results[i]).length, f = d / o.idx.length; return `<span class="${f >= 1 ? 'done' : ''} ${o.idx.includes(sess.idx) ? 'now' : ''}"><i style="width:${Math.round(f * 100)}%"></i></span>`; }).join('');
+  const where = st.phase === 'circuit' ? (sess.cfg.rounds > 1 ? `${L('Runde', 'Round', 'Tour', 'Tur')} ${st.round}/${sess.cfg.rounds}` : 'Circuit') : st.phase === 'finisher' ? `Finisher ${st.set}/${st.sets}` : tr(PHASES[st.phase].name);
+  return `<section class="hud2" data-notr>
+    <div class="hud2-top">
+      <button type="button" class="hud2-end" data-act="end-ask" aria-label="${L('Workout beenden', 'End workout', 'Terminer la séance', 'Antrenmanı bitir')}">✕ ${L('Beenden', 'End', 'Terminer', 'Bitir')}</button>
+      <div class="hud2-t"><b data-live="elapsed">00:00</b><small>${L('Trainingszeit', 'Training time', 'Temps', 'Süre')}</small></div>
+      <div class="hud2-r"><b>${esc(where)}</b><small>${L('noch', 'left', 'reste', 'kalan')} <span data-live="est">–</span></small></div>
+    </div>
+    <div class="progress hud2-p" aria-hidden="true">${segs}</div>
+    ${sess.cfg.music ? `<p class="hud2-music"><button type="button" class="reset-btn ${music.on ? 'on' : ''}" data-act="music" aria-pressed="${music.on}">♪ ${music.on ? L('Musik an', 'Music on', 'Musique', 'Müzik açık') : L('Musik aus', 'Music off', 'Musique off', 'Müzik kapalı')}</button></p>` : ''}
+  </section>`;
+}
+function workoutView() { return hudHTML() + (sess.paused ? pausedCard() : sess.mode === 'rest' ? restCard() : exerciseCard()); }
+function howHTML(st, e) {
+  const open = st.phase !== 'circuit' || st.round === 1;
+  return `<details class="how2" ${open ? 'open' : ''}><summary>${L('Anleitung', 'How to', 'Consignes', 'Nasıl yapılır')}</summary><p>${esc(tr(e.desc))}</p>${e.option ? `<p class="how2-opt">${esc(tr(e.option))}</p>` : ''}</details>`;
+}
+const undoLink = () => sess.undo && sess.undo.length ? `<p class="undo-l"><button type="button" class="mini" data-act="undo">↶ ${L('Letzte Aktion rückgängig', 'Undo last action', 'Annuler', 'Geri al')}</button></p>` : '';
+function restCard() {
+  const t = sess.timer, r = timerRemain(t), cur = step(), j = nextIdx(sess.idx), nx = nextLabel(j);
+  const tag = nx ? nxTag(cur, nx.s) : '', eqNew = nx ? eqDelta(cur.ex, nx.s.ex) : [];
+  const lbl = sess.restKind === 'round' ? L('Rundenpause', 'Round rest', 'Pause entre tours', 'Tur molası') : sess.restKind === 'set' ? L('Satzpause', 'Set rest', 'Pause entre séries', 'Set molası') : L('Pause', 'Rest', 'Pause', 'Mola');
+  return `<article class="rest-card fade-in" data-notr>
+    <div class="rest-lbl">${lbl}</div>
+    <div class="timer">${ring(t.dur ? r / (t.dur * 1000) : 0)}<div class="cd"><b data-live="cd">${fmtCd(r)}</b><small>${t.done ? L('Pause vorbei', 'Rest over', 'Pause finie', 'Mola bitti') : L('Durchatmen', 'Breathe', 'Respire', 'Nefes al')}</small></div></div>
+    ${nx ? `<div class="rest-next"><div class="tn">${figSVG(nx.s.ex)}</div><div><small>${L('Als Nächstes', 'Up next', 'Ensuite', 'Sıradaki')}${tag ? ' · ' + esc(tag) : ''}</small><b>${esc(tr(nx.e.name))}</b><span>${esc(tr(nx.meta))}</span>${eqNew.length ? `<em class="rest-eq">${eqNew.map(k => EQ_IC[k] + ' ' + esc(eqName(k))).join(', ')} ${L('bereitlegen', 'get ready', 'à préparer', 'hazırla')}</em>` : ''}</div></div>` : ''}
+  </article>${undoLink()}`;
+}
+function nextMiniHTML() {
+  if (!sess || sess.state !== 'ACTIVE' || sess.paused || sess.mode === 'rest' || homeOpen) return '';
+  const st = step(), j = nextIdx(sess.idx);
+  if (j < 0) return `<div class="nx-mini last" data-notr>🏁 ${L('Letzte Übung. Danach ist das Workout geschafft.', 'Last exercise. Then you are done.', 'Dernier exercice.', 'Son egzersiz.')}</div>`;
+  const n = nextLabel(j), tag = nxTag(st, n.s), eqNew = eqDelta(st.ex, n.s.ex);
+  return `<div class="nx-mini" data-notr><span class="nx-l">${L('Als Nächstes', 'Up next', 'Ensuite', 'Sıradaki')}${tag ? ' · ' + esc(tag) : ''}</span><b>${esc(tr(n.e.name))}</b><span class="nx-m">${esc(tr(n.meta))}</span>${eqNew.length ? `<span class="nx-eq">${eqNew.map(k => EQ_IC[k] + ' ' + esc(eqName(k))).join(', ')}</span>` : ''}</div>`;
+}
+function ctlHTML() {
+  if (view !== 'train') return '';
+  if (sess && sess.state === 'COMPLETED') return sess.summary && sess.summary.exDone > 0
+    ? `<button type="button" class="btn btn-primary xl" data-act="sh-open" data-k="workout" data-id="${esc(sess.id)}">📤 ${L('ERGEBNIS TEILEN', 'SHARE RESULT', 'PARTAGER', 'PAYLAŞ')}</button><button type="button" class="btn btn-ghost" data-act="res-done">${L('Zur Übersicht', 'Back to overview', 'Vers l’aperçu', 'Genel bakış')}</button>`
+    : `<button type="button" class="btn btn-primary xl" data-act="res-done">${L('Zur Übersicht', 'Back to overview', 'Vers l’aperçu', 'Genel bakış')}</button>`;
+  if (sess && sess.state === 'ACTIVE' && sess.paused && !homeOpen) return `<button type="button" class="btn btn-lamp xl" data-act="resume">▶ RESUME</button><div class="row"><button type="button" class="btn btn-ghost" data-act="restart">↺ RESET</button><button type="button" class="btn btn-ghost" data-act="timecheck">TIME CHECK</button><button type="button" class="btn btn-dghost" data-act="end-ask">${L('BEENDEN', 'END', 'TERMINER', 'BİTİR')}</button></div>`;
+  return nextMiniHTML() + ctlHTML_v46();
+}
+/* Abbrechen: erst pausieren, dann bewusst entscheiden */
+function endAsk() {
+  if (!sess || sess.state !== 'ACTIVE') return;
+  if (!sess.paused) pauseWorkout();
+  const s = summarize(sess);
+  openSheet(`<div data-notr><h2 id="dlgTitle">${L('Workout beenden?', 'End workout?', 'Terminer la séance ?', 'Antrenman bitsin mi?')}</h2>
+    <p>${L('Bisher', 'So far', 'Jusqu’ici', 'Şu ana kadar')}: <b>${fmt(elapsed())}</b> · ${s.exDone} ${L('von', 'of', 'sur', '/')} ${s.exTotal} ${L('Übungen', 'exercises', 'exercices', 'egzersiz')}</p>
+    <p class="sub">${s.exDone ? L2('Das Training ist pausiert. Beim Beenden werden die erledigten Übungen gespeichert und als „Vorzeitig beendet“ markiert.', 'Training is paused. If you end now, completed exercises are saved and marked as “ended early”.') : L2('Das Training ist pausiert. Es ist noch keine Übung erledigt, beim Beenden wird nichts gespeichert.', 'Training is paused. No exercise completed yet, nothing will be saved.')}</p>
+    <div class="acts"><button type="button" class="btn btn-primary xl" data-act="end-no">▶ ${L('Weitertrainieren', 'Keep training', 'Continuer', 'Devam et')}</button><button type="button" class="btn btn-dghost xl" data-act="end-yes">${L('Workout beenden', 'End workout', 'Terminer', 'Bitir')}</button></div></div>`, true);
+}
+function pauseWorkout() { pauseWorkout_v46(); try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch (e) {} try { if (navigator.vibrate) navigator.vibrate(0); } catch (e) {} }
+function finish(aborted) {
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch (e) {}
+  try { if (navigator.vibrate) navigator.vibrate(0); } catch (e) {}
+  try { if (dlg.open) closeSheet(); } catch (e) {}
+  try { document.getElementById('toast').classList.remove('show'); } catch (e) {}
+  if (!sess) return;
+  if (summarize(sess).exDone === 0) {
+    closeSeg(); stopMusic(); wakeOff(); sess.timer = null; sess = null; store.del(KEY_SESS); homeOpen = false; view = 'train'; render(); window.scrollTo(0, 0);
+    toast(L('Workout beendet. Es war noch keine Übung erledigt, nichts gespeichert.', 'Workout ended. No exercise completed, nothing saved.', 'Séance terminée. Rien d’enregistré.', 'Antrenman bitti. Kayıt yok.'));
+    return;
+  }
+  finish_v46(aborted);
+}
+
+/* ---------------- Kalorien: dokumentierte Schätzung ----------------
+   MET-Werte nach dem 2024 Adult Compendium of Physical Activities.
+   Aktivkalorien = (MET − 1) × 3,5 × kg ÷ 200 × Minuten (ohne Grundumsatz),
+   Gesamtkalorien = MET × 3,5 × kg ÷ 200 × Minuten. Basis ist die real
+   gemessene Zeit je Abschnitt, pausierte Zeit zählt nicht. */
+Object.assign(MET.core, { met: 2.8, note: 'Crunches, Planks · Compendium 02024' });
+Object.assign(MET.strength, { met: 3.5, note: 'Mehrere Übungen, 8–15 Wdh. · Compendium 02054' });
+Object.assign(MET.warmup, { note: 'leichte Calisthenics · Compendium 02024' });
+Object.assign(MET.mobility, { met: 2.3, note: 'wie leichtes Dehnen · Compendium 02101' });
+Object.assign(MET.cooldown, { note: 'leichtes Dehnen, Gehen · Compendium 02101' });
+Object.assign(MET.rest, { note: 'Stehen und Nachatmen (ruhiges Stehen 1,3 · 07040)' });
+MET.cardio = { met: 7.5, label: 'Cardio-Intervalle', note: 'Hampelmann, Knieheben, Mountain Climbers, Lauf-ABC, Swings · Compendium 02020' };
+['jumping_jack', 'high_knees', 'mountain_climber', 'abc_ankle', 'abc_buttkick', 'abc_askip', 'abc_side', 'abc_carioca', 'abc_strides', 'kb_swing'].forEach(id => { if (EX[id]) EX[id].cat = 'cardio'; });
+function kcalEst(sum, bw) {
+  let a = 0, g = 0; const by = {};
+  for (const k in MET) { const m = sum.kcalBy && sum.kcalBy[k] ? sum.kcalBy[k].min : 0, f = 3.5 * bw / 200 * m; by[k] = { min: m, kcal: MET[k].met * f, act: Math.max(0, MET[k].met - 1) * f }; a += by[k].act; g += by[k].kcal; }
+  return { active: a, gross: g, by };
+}
+function summarize(s) {
+  const o = summarize_v46(s), k = kcalEst(o, s.cfg.bodyWeight);
+  o.kcalBy = k.by; o.kcal = k.active; o.kcalG = k.gross; o.restMs = Math.round(((k.by.rest || {}).min || 0) * 60000);
+  return o;
+}
+function saveWorkout(quiet) {
+  const was = !!(sess && sess.saved);
+  saveWorkout_v46(quiet);
+  if (!sess || !sess.saved || was) return;
+  const h = history.find(x => x.id === sess.id), s = sess.summary || summarize(sess); if (!h) return;
+  Object.assign(h, { pid: sess.cfg.programId || '', lvl: sess.cfg.level || '', kcal: Math.round(s.kcal), kcalG: Math.round(s.kcalG || 0), kv: 2,
+    rest: s.restMs || 0, idle: Math.max(0, (sess.endedAt || Date.now()) - sess.createdAt - s.ms) });
+  saveHistory();
+}
+const hKcal = h => h ? (h.kcalW || h.kcal || 0) : 0;
+function kcalDetailHTML(s, h) {
+  const bw = sess.cfg.bodyWeight, P = store.get(`uipause-${account.id}-profile-v1`, {}), dflt = !P.weight && +bw === DEFAULTS.bodyWeight;
+  const rows = Object.keys(MET).filter(k => s.kcalBy[k] && s.kcalBy[k].min > 0.05).map(k => `<tr><td>${esc(tr(MET[k].label))}<br><small>${esc(MET[k].note)}</small></td><td class="n">${num(MET[k].met, 1)}</td><td class="n">${num(s.kcalBy[k].min, 1)}</td><td class="n">${num(s.kcalBy[k].act)}</td></tr>`).join('');
+  return `<div class="kc">
+    <p class="kc-big">${L('Aktiv', 'Active', 'Actives', 'Aktif')} <b>≈ ${num(r5(s.kcal))} kcal</b> · ${L('Gesamt inkl. Grundumsatz', 'Total incl. resting', 'Total avec métabolisme de base', 'Bazal dahil toplam')} ≈ ${num(r5(s.kcalG))} kcal</p>
+    <table class="t"><thead><tr><th>${L('Abschnitt', 'Section', 'Partie', 'Bölüm')}</th><th class="n">MET</th><th class="n">Min.</th><th class="n">${L('kcal aktiv', 'kcal active', 'kcal act.', 'aktif kcal')}</th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="sub">${L2(`So rechnen wir: Aktivkalorien = (MET − 1) × 3,5 × ${num(bw, 1)} kg ÷ 200 × Minuten. Grundlage ist die tatsächlich gemessene Zeit je Abschnitt. Pausierte Zeit zählt nicht. MET-Werte aus dem 2024 Adult Compendium of Physical Activities. Das ist eine Schätzung, die real um 20 bis 30 % abweichen kann.`, `How we calculate: active calories = (MET − 1) × 3.5 × ${num(bw, 1)} kg ÷ 200 × minutes, based on the actually measured time per section. Paused time does not count. MET values from the 2024 Adult Compendium of Physical Activities. This is an estimate and may be 20 to 30 % off.`)}</p>
+    <p class="sub">${L2('Warum zeigt die Uhr etwas anderes? Eine Uhr misst deinen Puls und bezieht deine persönliche Belastung ein. Vergleiche die „Aktiven Kalorien“ der Uhr mit dem Aktiv-Wert hier, nicht mit den Gesamtkalorien.', 'Why does your watch differ? A watch measures your heart rate and your personal effort. Compare the watch’s “active calories” with the active value here, not with total calories.')}</p>
+    <p class="sub">${L('Berechnet mit', 'Calculated with', 'Calculé avec', 'Hesaplama')} ${num(bw, 1)} kg${dflt ? ' ' + L('(Standardwert, bitte dein Gewicht eintragen)', '(default value, please enter your weight)', '(valeur par défaut)', '(varsayılan değer)') : ''}. <button type="button" class="mini" data-act="view" data-v="settings">${L('Gewicht ändern', 'Change weight', 'Modifier le poids', 'Kiloyu değiştir')}</button></p>
+    ${h ? `<div class="kw"><label for="kw_in">⌚ ${L('Aktive Kalorien von deiner Uhr (optional)', 'Active calories from your watch (optional)', 'Calories actives de ta montre (option)', 'Saatindeki aktif kalori (isteğe bağlı)')}</label>
+      <div class="kw-row"><input id="kw_in" class="inp" type="text" inputmode="numeric" maxlength="4" placeholder="${L('z. B. 210', 'e.g. 210', 'p. ex. 210', 'örn. 210')}" value="${h.kcalW || ''}"><button type="button" class="btn btn-ghost" data-act="kw-save">${L('Übernehmen', 'Apply', 'Appliquer', 'Uygula')}</button>${h.kcalW ? `<button type="button" class="btn btn-dghost" data-act="kw-del">${L('Entfernen', 'Remove', 'Retirer', 'Kaldır')}</button>` : ''}</div>
+      <p class="sub">${L2('Wird als „manuell von der Uhr übernommen“ gespeichert, die App-Schätzung bleibt daneben erhalten. Es gibt keine automatische Verbindung zu einer Uhr.', 'Saved as “manually taken from the watch”; the app estimate is kept as well. There is no automatic connection to any watch.')}</p></div>` : ''}
+  </div>`;
+}
+function kwAct(a) {
+  const h = sess && history.find(x => x.id === sess.id); if (!h) return;
+  if (a === 'kw-del') { delete h.kcalW; delete h.kcalWt; saveHistory(); render(); return; }
+  const v = parseInt(String(val('kw_in')).replace(/\D/g, ''), 10);
+  if (!(v > 0 && v <= 3000)) { toast(L('Bitte einen Wert zwischen 1 und 3000 eingeben.', 'Please enter a value between 1 and 3000.', 'Valeur entre 1 et 3000.', '1 ile 3000 arası bir değer gir.')); return; }
+  h.kcalW = v; h.kcalWt = Date.now(); saveHistory(); render(); toast('⌚ ' + L('Uhr-Wert übernommen', 'Watch value applied', 'Valeur de la montre appliquée', 'Saat değeri uygulandı'));
+}
+
+/* ---------------- Abschlussansicht ---------------- */
+function resultView() {
+  const s = sess.summary || summarize(sess), h = history.find(x => x.id === sess.id), ab = !!sess.aborted;
+  const idle = Math.max(0, (sess.endedAt || Date.now()) - sess.createdAt - s.ms), restMs = s.restMs || 0;
+  const pts = h ? PTS_WO(h) : 0;
+  if (h && resSynced !== sess.id) { resSynced = sess.id; setTimeout(() => { boardSync().catch(() => {}); usageTrack('wo', h); }, 300); }
+  const kc = h && h.kcalW ? { v: h.kcalW, w: true } : { v: r5(s.kcal), w: false, lt: s.kcal < 5 };
+  const third = s.vol > 0 ? [num(Math.round(s.vol)), 'kg', L('Hantelvolumen', 'Weight volume', 'Volume', 'Hacim')] : s.reps ? [num(s.reps), '', L('Wiederholungen', 'Reps', 'Répétitions', 'Tekrar')] : [`${s.rounds}/${s.roundsPlanned}`, '', L('Runden', 'Rounds', 'Tours', 'Tur')];
+  const perRows = Object.values(s.per).map(p => `<tr><td>${esc(tr(p.name))}</td><td class="n">${p.sets}</td><td class="n">${p.reps ? num(p.reps) : p.sec ? p.sec + ' s' : '–'}</td><td class="n">${p.vol ? num(p.vol) + ' kg' : '–'}</td></tr>`).join('');
+  const r = sess.reward || { c: 0 };
+  return `<div class="res2 v47 fade-in" data-notr>
+    <section class="res2-hero ${ab ? 'ab' : ''}">
+      <div class="res2-badge">${ab ? '⏹ ' + L('Vorzeitig beendet', 'Ended early', 'Arrêtée', 'Erken bitti') : '✓ ' + L('Abgeschlossen', 'Completed', 'Terminée', 'Tamamlandı')}</div>
+      <h2>${ab ? L('Workout beendet', 'Workout ended', 'Séance terminée', 'Antrenman bitti') : L('Workout abgeschlossen', 'Workout completed', 'Séance terminée', 'Antrenman tamamlandı')}</h2>
+      <p class="res2-prog">${esc(tr(sess.cfg.programName || 'Workout'))} · ${esc(dateTxt(sess.createdAt))}</p>
+      <div class="res2-time"><b>${fmt(s.ms)}</b><small>${L('absolvierte Trainingszeit', 'training time completed', 'temps d’entraînement', 'antrenman süresi')}</small></div>
+      <p class="res2-note">${restMs > 30000 ? `${L('inkl.', 'incl.', 'dont', 'dahil')} ${fmt(restMs)} ${L('Pausen zwischen den Übungen', 'rests between exercises', 'de pauses', 'egzersiz arası mola')}` : ''}${restMs > 30000 && idle > 60000 ? ' · ' : ''}${idle > 60000 ? `${fmt(idle)} ${L('angehalten, nicht gezählt', 'paused, not counted', 'en pause, non compté', 'duraklatıldı, sayılmadı')}` : ''}</p>
+    </section>
+    <div class="res2-kpis">
+      <div><b>${s.exDone}<small>/${s.exTotal}</small></b><span>${L('Übungen', 'Exercises', 'Exercices', 'Egzersiz')}</span></div>
+      <div><b>${kc.w ? '⌚ ' + num(kc.v) : kc.lt ? '< 5' : '≈ ' + num(kc.v)}</b><span>${kc.w ? L('kcal von der Uhr', 'kcal from watch', 'kcal montre', 'saat kcal') : L('kcal aktiv · Schätzung', 'active kcal · estimate', 'kcal actives · estim.', 'aktif kcal · tahmin')}</span></div>
+      <div><b>${third[0]}${third[1] ? `<small> ${third[1]}</small>` : ''}</b><span>${third[2]}</span></div>
+    </div>
+    <p class="res2-msg">${ab ? L2(s.exDone === 1 ? 'Gespeichert als „Vorzeitig beendet“. Gezählt wird nur die eine erledigte Übung.' : `Gespeichert als „Vorzeitig beendet“. Gezählt werden nur die ${s.exDone} erledigten Übungen.`, s.exDone === 1 ? 'Saved as “ended early”. Only the one completed exercise counts.' : `Saved as “ended early”. Only the ${s.exDone} completed exercises count.`) : esc(tr(COMPLIMENTS[r.c % COMPLIMENTS.length]))}${pts ? ` <span class="res2-pts">⭐ +${pts} ${L('Punkte', 'points', 'points', 'puan')}</span>` : ''}</p>
+    <details class="fold"><summary>🔥 ${L('Kalorien: so schätzen wir', 'Calories: how we estimate', 'Calories : notre estimation', 'Kalori: tahmin yöntemi')}</summary>${kcalDetailHTML(s, h)}</details>
+    <details class="fold"><summary>📋 ${L('Übungen im Detail', 'Exercise details', 'Détail des exercices', 'Egzersiz detayları')}</summary><table class="t"><thead><tr><th>${L('Übung', 'Exercise', 'Exercice', 'Egzersiz')}</th><th class="n">${L('Sätze', 'Sets', 'Séries', 'Set')}</th><th class="n">${L('Wdh.', 'Reps', 'Rép.', 'Tekrar')}</th><th class="n">${L('Volumen', 'Volume', 'Volume', 'Hacim')}</th></tr></thead><tbody>${perRows || `<tr><td colspan="4">–</td></tr>`}</tbody></table></details>
+    ${s.exDone && !ab ? `<details class="fold"><summary>💪 ${L('Muskeln & Erholung', 'Muscles & recovery', 'Muscles & récupération', 'Kaslar & toparlanma')}</summary>${rewardHTML(s)}</details>` : ''}
+    ${s.exDone ? `<details class="fold"><summary>✨ ${L('Motivation & Woche', 'Motivation & week', 'Motivation & semaine', 'Motivasyon & hafta')}</summary>${motivationHTML(s)}</details>` : ''}
+  </div>`;
+}
+function resDone() { const was = sess && sess.state === 'COMPLETED'; stopMusic(); sess = null; store.del(KEY_SESS); homeOpen = false; view = was ? 'start' : 'train'; render(); window.scrollTo(0, 0); }
+
+/* ---------------- Teilen: Bildvorlagen ---------------- */
+const TPLS = [['clean', 'Clean'], ['athletic', 'Athletic'], ['calm', 'Calm'], ['bold', 'Bold'], ['fun', 'Fun']];
+let shSrc = null, shTpl = 'clean', shHead = 0, shMet = null, shareCanvas = null;
+const SW = 1080, SH = 1350, SMG = 84;
+const SH_PAL = {
+  m: { deep: '#061025', mid: '#0E2F6E', acc: '#D6C28C', acc2: '#A8893F', soft: '#F6F1E4', ink: '#0A1B3F', mute: '#6B7896', line: 'rgba(10,27,63,.16)' },
+  w: { deep: '#2B1520', mid: '#7A3553', acc: '#F4B6CB', acc2: '#B4547C', soft: '#FCF2F4', ink: '#5A2440', mute: '#9A7682', line: 'rgba(90,36,64,.16)' },
+  d: { deep: '#0A221B', mid: '#1E5A46', acc: '#9BE7C7', acc2: '#24866A', soft: '#EEF8F3', ink: '#0F3A2D', mute: '#5D7F72', line: 'rgba(15,58,45,.16)' }
+};
+const shPal = () => SH_PAL[currentSkin()] || SH_PAL.m;
+const MET_LBL = { time: ['Zeit', 'Time'], kcal: ['Kalorien', 'Calories'], ex: ['Übungen', 'Exercises'], vol: ['Volumen', 'Volume'], reps: ['Wiederholungen', 'Reps'], rounds: ['Runden', 'Rounds'], km: ['Distanz', 'Distance'], pace: ['Tempo', 'Pace'] };
+const metLabel = k => L2((MET_LBL[k] || [k])[0], (MET_LBL[k] || [k, k])[1]);
+function runPB(r) {
+  const prev = rlList().filter(x => x.id !== r.id && x.t <= r.t), sim = prev.filter(x => x.km >= r.km * 0.8);
+  return { pb: r.km >= 3 && sim.length >= 2 && paceOf(r) < Math.min(...sim.map(paceOf)), longest: prev.length >= 2 && r.km > Math.max(...prev.map(x => x.km)) };
+}
+function shData() {
+  if (!shSrc || !account) return null;
+  const dt = t => new Date(t).toLocaleDateString(LOC, { day: 'numeric', month: 'long', year: 'numeric' });
+  if (shSrc.kind === 'run') {
+    const r = rlList().find(x => x.id === shSrc.id); if (!r) return null;
+    const bw = +(store.get(`uipause-${account.id}-profile-v1`, {}).weight || settings.bodyWeight || 75), kcal = r5(r.km * bw), pb = runPB(r);
+    return { kind: 'run', key: 'r_' + r.id, id: r.id, r, title: (RUN_TYPES.find(x => x[0] === r.type) || ['', L('Lauf', 'Run', 'Course', 'Koşu')])[1] + ' · ' + num(r.km, 1) + ' km',
+      prog: L('Lauf', 'Run', 'Course', 'Koşu'), date: dt(r.t), km: r.km, sec: r.sec, min: Math.max(1, Math.round(r.sec / 60)), kcal, kcalW: false, pb: pb.pb, longest: pb.longest, aborted: false, rec: false,
+      seed: [...String(r.id)].reduce((a, c) => a + c.charCodeAt(0), 0), pts: PTS_RUN(r),
+      M: { km: [num(r.km, r.km < 10 ? 2 : 1), 'KM', 'DISTANCE'], time: [fmtDur(r.sec), '', 'TIME'], pace: [paceTxt(r.sec / r.km), '/KM', 'PACE'], kcal: [num(kcal), 'KCAL', 'EST.'] }, def: ['km', 'time', 'pace'] };
+  }
+  const h = history.find(x => x.id === shSrc.id); if (!h || !(h.exDone > 0)) return null;
+  const pid = pidOf(h), min = Math.max(1, Math.round((h.ms || 0) / 60000)), kw = !!h.kcalW, kcal = kw ? h.kcalW : r5(h.kcal);
+  const M = { time: [String(min), 'MIN', 'TRAINING'], kcal: [num(kcal), 'KCAL', kw ? 'WATCH' : h.kv === 2 ? 'ACTIVE · EST.' : 'EST.'], ex: [h.aborted ? `${h.exDone}/${h.exTotal}` : String(h.exDone), '', 'EXERCISES'] };
+  if (h.vol > 0) M.vol = [num(h.vol), 'KG', 'VOLUME']; if (h.reps > 0) M.reps = [num(h.reps), '', 'REPS']; if (h.roundsPlanned > 1) M.rounds = [`${h.rounds}/${h.roundsPlanned}`, '', 'ROUNDS'];
+  return { kind: 'workout', key: 'w_' + h.id, id: h.id, h, title: String(h.program || 'Workout'), prog: tr(h.program || 'Workout'), date: dt(h.date), min, kcal, kcalW: kw, aborted: !!h.aborted,
+    rec: FOCUS[pid] === 'rec' || pid === 'office_neck', seed: [...String(h.id)].reduce((a, c) => a + c.charCodeAt(0), 0), kgMoved: Math.round((h.vol || 0) + (h.bwVol || 0)), pts: PTS_WO(h), M, def: ['time', 'kcal', h.vol > 0 ? 'vol' : 'ex'] };
+}
+/* Headlines passend zum Ergebnis: kein „Personal Best“ ohne Nachweis, keine Abschlussmeldung bei Abbruch */
+function shHeads(D) {
+  if (D.kind === 'run') { const H = []; if (D.pb) H.push('NEW PERSONAL BEST.'); if (D.longest) H.push('LONGEST RUN YET.'); if (D.km >= 15 || D.sec >= 5400) H.push('LONG RUN. DONE.');
+    return H.concat(['RUN DONE.', 'ANOTHER RUN IN THE BOOKS.', `${num(D.km, D.km < 10 ? 1 : 0)} KM IN THE BANK.`, 'FINISH STRONG.']); }
+  if (D.aborted) return ['EVERY REP COUNTS.', 'PROGRESS, NOT PERFECTION.', 'SHOWED UP. MOVED.'];
+  if (D.rec) return ['RESET. RECHARGED.', 'MOBILITY DONE.', 'STRETCHED & RESTORED.'];
+  return ['WORKOUT COMPLETE.', 'SHOWED UP. GOT IT DONE.', 'FINISH STRONG.', 'ANOTHER ONE DONE.'].concat(D.min >= 30 ? [`${D.min} MINUTES WELL SPENT.`] : []);
+}
+const cF = (c, w, s) => { c.font = `${w} ${s}px ${FONT}`; };
+const cLS = (c, px) => { try { if ('letterSpacing' in c) c.letterSpacing = px + 'px'; } catch (e) {} };
+function cWrap(c, txt, maxW) { const out = []; let line = ''; String(txt).split(' ').forEach(wd => { const t = line ? line + ' ' + wd : wd; if (line && c.measureText(t).width > maxW) { out.push(line); line = wd; } else line = t; }); if (line) out.push(line); return out; }
+function cFitWrap(c, txt, maxW, w, s, min, maxLines) {
+  for (let z = s; z >= min; z -= 4) { cF(c, w, z); const ls = cWrap(c, txt, maxW); if (ls.length <= maxLines && ls.every(l => c.measureText(l).width <= maxW)) return { size: z, lines: ls }; }
+  cF(c, w, min); return { size: min, lines: cWrap(c, txt, maxW).slice(0, maxLines) };
+}
+function cFit(c, txt, maxW, w, s, min) { for (let z = s; z > min; z -= 2) { cF(c, w, z); if (c.measureText(txt).width <= maxW) return z; } cF(c, w, min); return min; }
+function cCover(c, img, x, y, w, h) { const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height, sc = Math.max(w / iw, h / ih); c.save(); c.beginPath(); c.rect(x, y, w, h); c.clip(); c.drawImage(img, x + (w - iw * sc) / 2, y + (h - ih * sc) / 2, iw * sc, ih * sc); c.restore(); }
+const cRR = (c, x, y, w, h, r) => { c.beginPath(); if (c.roundRect) c.roundRect(x, y, w, h, r); else c.rect(x, y, w, h); };
+const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+const shMets = D => (shMet || D.def).filter(k => D.M[k]).slice(0, 3).map(k => D.M[k]);
+/* Kennzahlen-Zeile: Wert groß, Einheit klein, Beschriftung darunter */
+function cMetrics(c, list, x, base, w, o) {
+  if (!list.length) return; const cw = w / list.length;
+  list.forEach(([v, u, l], i) => {
+    const cx = o.center ? x + cw * i + cw / 2 : x + cw * i + (i ? 28 : 0);
+    if (i && o.sep) { c.fillStyle = o.sep; c.fillRect(x + cw * i, base - o.size * 0.8, 2, o.size * 1.25); }
+    cLS(c, 0); const uS = Math.round(o.size * 0.36); cF(c, 800, uS); const uw = u ? c.measureText(u).width + 8 : 0;
+    const vs = cFit(c, String(v), cw - 40 - uw, o.w || 900, o.size, 30), vw = c.measureText(String(v)).width;
+    c.textBaseline = 'alphabetic'; c.textAlign = 'left';
+    const x0 = o.center ? cx - (vw + uw) / 2 : cx;
+    c.fillStyle = o.val; cF(c, o.w || 900, vs); c.fillText(String(v), x0, base);
+    if (u) { c.fillStyle = o.unit; cF(c, 800, uS); c.fillText(u, x0 + vw + 8, base); }
+    c.fillStyle = o.lab; cF(c, 700, o.lsize || 22); cLS(c, 3); if (o.center) { c.textAlign = 'center'; c.fillText(l, cx, base + (o.lgap || 42)); c.textAlign = 'left'; } else c.fillText(l, cx, base + (o.lgap || 42)); cLS(c, 0);
+  });
+}
+function cBrand(c, x, y, col, acc, size) {
+  drawLogo(c, x + size, y, size, col, acc); c.fillStyle = col; c.textBaseline = 'middle'; c.textAlign = 'left'; cLS(c, 2); cF(c, 800, Math.round(size * 0.78)); c.fillText('PAUSEN WORKOUT', x + size * 2.4, y + 1); cLS(c, 0);
+}
+function tClean(c, D, P, img) {
+  c.fillStyle = P.soft; c.fillRect(0, 0, SW, SH);
+  cBrand(c, SMG, 112, P.ink, P.acc2, 30);
+  c.textAlign = 'right'; c.textBaseline = 'middle'; c.fillStyle = P.mute; cF(c, 700, 26); c.fillText(D.date, SW - SMG, 112); c.textAlign = 'left';
+  let y;
+  if (img) { c.save(); cRR(c, SMG, 190, SW - 2 * SMG, 560, 36); c.clip(); cCover(c, img, SMG, 190, SW - 2 * SMG, 560); c.restore(); y = 830; }
+  else { c.save(); c.globalAlpha = 0.06; drawLogo(c, SW * 0.76, 520, 300, P.ink, P.ink); c.restore(); y = 350; }
+  c.textBaseline = 'alphabetic'; c.fillStyle = P.mute; cLS(c, 4); cF(c, 800, 26); c.fillText(D.prog.toUpperCase().slice(0, 40), SMG, y); cLS(c, 0);
+  const HH = cFitWrap(c, D.head, SW - 2 * SMG, 900, img ? 86 : 128, 52, img ? 2 : 3);
+  c.fillStyle = P.ink; let hy = y + 18 + HH.size * 0.92; HH.lines.forEach(l => { cF(c, 900, HH.size); c.fillText(l, SMG - 4, hy); hy += HH.size * 1.0; });
+  if (!img) { c.fillStyle = P.acc2; c.fillRect(SMG, hy - HH.size + 40, 120, 10); }
+  cMetrics(c, shMets(D), SMG, img ? 1188 : 1150, SW - 2 * SMG, { val: P.ink, unit: P.acc2, lab: P.mute, sep: P.line, size: img ? 70 : 92 });
+  if (!img) { c.fillStyle = P.line; c.fillRect(SMG, 1258, SW - 2 * SMG, 2); c.fillStyle = P.mute; cF(c, 600, 22); cLS(c, 3); c.fillText('BODY ACTIVITY APP', SMG, 1298); cLS(c, 0); }
+}
+function tAthletic(c, D, P, img) {
+  if (img) { cCover(c, img, 0, 0, SW, SH); const g = c.createLinearGradient(0, SH * 0.3, 0, SH); g.addColorStop(0, rgba(P.deep, 0)); g.addColorStop(1, rgba(P.deep, 0.94)); c.fillStyle = g; c.fillRect(0, 0, SW, SH);
+    const t = c.createLinearGradient(0, 0, 0, 560); t.addColorStop(0, rgba(P.deep, 0.88)); t.addColorStop(0.6, rgba(P.deep, 0.55)); t.addColorStop(1, rgba(P.deep, 0)); c.fillStyle = t; c.fillRect(0, 0, SW, 560); }
+  else { c.fillStyle = P.deep; c.fillRect(0, 0, SW, SH); }
+  c.save(); c.translate(SW / 2, 560); c.rotate(-0.2); c.fillStyle = rgba(P.mid, img ? 0.55 : 1); c.fillRect(-SW, -80, SW * 2, 150); c.fillStyle = P.acc; c.fillRect(-SW, 86, SW * 2, 20); c.globalAlpha = 0.4; c.fillRect(-SW, 120, SW * 2, 8); c.restore();
+  cBrand(c, SMG, 112, '#fff', P.acc, 28);
+  c.textAlign = 'right'; c.textBaseline = 'middle'; c.fillStyle = 'rgba(255,255,255,.8)'; cF(c, 700, 26); c.fillText(D.date, SW - SMG, 112); c.textAlign = 'left';
+  const sk = 0.16, skew = (fn) => { c.save(); c.transform(1, 0, -sk, 1, 0, 0); fn(); c.restore(); };
+  const HH = cFitWrap(c, D.head, SW - 2 * SMG - 80, 900, 104, 56, 2);
+  skew(() => { c.textBaseline = 'alphabetic'; c.fillStyle = P.acc; let y = 230 + HH.size; HH.lines.forEach(l => { cF(c, 900, HH.size); c.fillText(l, SMG + y * sk, y); y += HH.size * 0.98; }); });
+  const ms = shMets(D), m0 = ms[0];
+  if (m0) skew(() => { const by = SH - 300; const uS = 84; c.textBaseline = 'alphabetic'; cF(c, 800, uS); const uw = m0[1] ? c.measureText(m0[1]).width + 16 : 0;
+    const s = cFit(c, m0[0], SW - 2 * SMG - uw - 40, 900, 330, 120); const vw = c.measureText(m0[0]).width;
+    c.fillStyle = '#fff'; c.fillText(m0[0], SMG + by * sk, by); if (m0[1]) { c.fillStyle = P.acc; cF(c, 800, uS); c.fillText(m0[1], SMG + by * sk + vw + 16, by); }
+    c.fillStyle = 'rgba(255,255,255,.75)'; cF(c, 800, 26); cLS(c, 4); c.fillText(m0[2], SMG + (by + 46) * sk, by + 46); cLS(c, 0); });
+  cMetrics(c, ms.slice(1), SMG, SH - 112, SW - 2 * SMG, { val: '#fff', unit: P.acc, lab: 'rgba(255,255,255,.7)', sep: 'rgba(255,255,255,.25)', size: 56, lgap: 36 });
+}
+function tCalm(c, D, P, img) {
+  if (img) { cCover(c, img, 0, 0, SW, SH); c.fillStyle = rgba(P.deep, 0.58); c.fillRect(0, 0, SW, SH); }
+  else { const g = c.createLinearGradient(0, 0, 0, SH); g.addColorStop(0, P.mid); g.addColorStop(1, P.deep); c.fillStyle = g; c.fillRect(0, 0, SW, SH);
+    const r = c.createRadialGradient(SW / 2, 260, 10, SW / 2, 260, 700); r.addColorStop(0, rgba(P.acc, 0.18)); r.addColorStop(1, rgba(P.acc, 0)); c.fillStyle = r; c.fillRect(0, 0, SW, SH); }
+  c.textAlign = 'center'; c.textBaseline = 'alphabetic';
+  drawLogo(c, SW / 2, 190, 40, '#fff', P.acc);
+  c.fillStyle = 'rgba(255,255,255,.82)'; cLS(c, 6); cF(c, 700, 24); c.fillText('PAUSEN WORKOUT', SW / 2, 280); cLS(c, 0);
+  c.fillStyle = 'rgba(255,255,255,.62)'; cF(c, 500, 26); c.fillText(D.date, SW / 2, 324);
+  const HH = cFitWrap(c, D.head, SW - 2 * SMG - 60, 700, 88, 48, 3);
+  let y = SH * 0.5 - (HH.lines.length * HH.size * 1.08) / 2 + HH.size * 0.8; c.fillStyle = '#fff';
+  HH.lines.forEach(l => { cF(c, 700, HH.size); c.fillText(l, SW / 2, y); y += HH.size * 1.08; });
+  c.fillStyle = P.acc; c.fillRect(SW / 2 - 45, y - HH.size * 0.45 + 24, 90, 4);
+  c.textAlign = 'left'; cMetrics(c, shMets(D), SMG, SH - 290, SW - 2 * SMG, { val: '#fff', unit: P.acc, lab: 'rgba(255,255,255,.66)', size: 62, w: 600, center: true, lsize: 20 });
+  c.textAlign = 'center'; c.fillStyle = 'rgba(255,255,255,.62)'; cLS(c, 4); cF(c, 700, 22); c.fillText(D.prog.toUpperCase().slice(0, 40), SW / 2, SH - 110); cLS(c, 0); c.textAlign = 'left';
+}
+function tBold(c, D, P, img) {
+  const top = img ? Math.round(SH * 0.5) : 0;
+  if (img) { cCover(c, img, 0, 0, SW, top); }
+  c.fillStyle = P.acc; c.fillRect(0, top, SW, SH - top);
+  if (!img) { c.fillStyle = P.deep; c.textBaseline = 'middle'; cF(c, 800, 26); c.globalAlpha = 0.75; c.fillText(D.date, SMG, 112); c.globalAlpha = 1; c.textAlign = 'right'; cLS(c, 3); cF(c, 900, 26); c.fillText('PAUSEN WORKOUT', SW - SMG, 112); cLS(c, 0); c.textAlign = 'left'; }
+  else { c.fillStyle = 'rgba(0,0,0,.35)'; cRR(c, SMG - 20, 72, 420, 70, 35); c.fill(); cBrand(c, SMG, 107, '#fff', P.acc, 24); }
+  const words = D.head.split(' '), maxW = SW - 2 * SMG;
+  const HH = img ? cFitWrap(c, D.head, maxW, 900, 140, 60, 2) : (() => { /* Wort für Wort riesig */ let z = 260; for (; z >= 90; z -= 6) { cF(c, 900, z); const ls = cWrap(c, D.head, maxW); if (ls.length <= 4 && ls.every(l => c.measureText(l).width <= maxW)) return { size: z, lines: ls }; } return { size: 90, lines: cWrap(c, D.head, maxW) }; })();
+  c.fillStyle = P.deep; c.textBaseline = 'alphabetic'; let y = (img ? top + 40 : 200) + HH.size * 0.86;
+  HH.lines.forEach(l => { cF(c, 900, HH.size); c.fillText(l, SMG - 6, y); y += HH.size * 0.92; });
+  void words;
+  cMetrics(c, shMets(D), SMG, SH - (img ? 96 : 150), maxW, { val: P.deep, unit: P.deep, lab: rgba(P.deep, 0.7), sep: rgba(P.deep, 0.25), size: img ? 60 : 76 });
+  if (!img) { c.fillStyle = rgba(P.deep, 0.75); cF(c, 800, 24); cLS(c, 3); c.fillText(D.prog.toUpperCase().slice(0, 40), SMG, SH - 60); cLS(c, 0); }
+}
+function tFun(c, D, P, img) {
+  if (img) { cCover(c, img, 0, 0, SW, SH); } else { const g = c.createLinearGradient(0, 0, SW, SH); g.addColorStop(0, P.mid); g.addColorStop(1, P.deep); c.fillStyle = g; c.fillRect(0, 0, SW, SH); c.save(); c.globalAlpha = 0.07; drawLogo(c, SW * 0.72, SH * 0.3, 380, '#fff', P.acc); c.restore(); }
+  const g2 = c.createLinearGradient(0, SH * 0.32, 0, SH); g2.addColorStop(0, rgba(P.deep, 0)); g2.addColorStop(1, rgba(P.deep, 0.95)); c.fillStyle = g2; c.fillRect(0, 0, SW, SH);
+  cBrand(c, SMG, 112, '#fff', P.acc, 28);
+  const pillTxt = `${D.min} MIN · ${D.prog.toUpperCase().slice(0, 28)}`; cF(c, 800, 28); const pw = c.measureText(pillTxt).width + 40;
+  c.fillStyle = P.acc; cRR(c, SMG, SH - 600, pw, 52, 26); c.fill(); c.fillStyle = P.deep; c.textBaseline = 'middle'; c.fillText(pillTxt, SMG + 20, SH - 573);
+  c.textBaseline = 'alphabetic'; c.fillStyle = '#fff';
+  const fk = D.kcal >= 60 ? funPick(FUN_KCAL, D.kcal, D.seed) : null;
+  const sec = D.kind === 'run' ? funPick(FUN_KM, D.km, D.seed >> 1) : D.kgMoved >= 70 ? funPick(FUN_KG, D.kgMoved, D.seed >> 1) : null;
+  cF(c, 900, 56); c.fillText(fk ? L('Heute verbrannt:', 'Burned today:', 'Brûlé aujourd’hui :', 'Bugün yakılan:') : L('Heute bewegt:', 'Moved today:', 'Bougé aujourd’hui :', 'Bugün hareket:'), SMG, SH - 450);
+  const big = fk ? `${fk.ic} ${funNum(fk.n)} ${fk.name}` : `⏱ ${D.min} ${L('Minuten', 'minutes', 'minutes', 'dakika')}`; cFit(c, big, SW - 2 * SMG, 900, 92, 50); c.fillText(big, SMG, SH - 350);
+  if (sec) { cF(c, 900, 56); c.fillText(D.kind === 'run' ? L('Und gelaufen:', 'And ran:', 'Et couru :', 'Ve koşulan:') : L('Und bewegt:', 'And moved:', 'Et soulevé :', 'Ve kaldırılan:'), SMG, SH - 240); const t2 = `${sec.ic} ${funNum(sec.n)} ${sec.name}`; cFit(c, t2, SW - 2 * SMG, 900, 92, 50); c.fillText(t2, SMG, SH - 142); }
+  c.fillStyle = 'rgba(255,255,255,.72)'; cF(c, 600, 24); c.fillText(`${D.kcalW ? '⌚' : '≈'} ${num(D.kcal)} kcal${D.kcalW ? ' (Uhr)' : ' (' + L('Schätzung', 'estimate', 'estimation', 'tahmin') + ')'}${D.kind === 'run' ? ' · ' + num(D.km, 1) + ' km' : ''}`, SMG, SH - 66);
+}
+function renderTpl(D) {
+  const cv = document.createElement('canvas'); cv.width = SW; cv.height = SH; const c = cv.getContext('2d'), P = shPal();
+  ({ clean: tClean, athletic: tAthletic, calm: tCalm, bold: tBold, fun: tFun }[shTpl] || tClean)(c, D, P, shareImg);
+  return cv;
+}
+function shOpen(kind, id) { shSrc = { kind, id }; shareRun = kind === 'run' ? (rlList().find(x => x.id === id) || null) : null; shareImg = null; shHead = 0; shMet = null; sharePreview(); }
+function sharePreview() {
+  if (!shSrc && shareRun) shSrc = { kind: 'run', id: shareRun.id };
+  const D = shData(); if (!D) { toast(L('Für dieses Ergebnis gibt es nichts zu teilen.', 'Nothing to share for this result.', 'Rien à partager.', 'Paylaşılacak bir şey yok.')); return; }
+  if (!shMet) shMet = D.def.filter(k => D.M[k]);
+  const heads = shHeads(D); D.head = heads[shHead % heads.length];
+  const cv = renderTpl(D); shareCanvas = cv; shareBlob = null; try { cv.toBlob(b => { shareBlob = b; }, 'image/jpeg', 0.9); } catch (e) {}
+  const posted = cpPosted()[D.key];
+  openSheet(`<div data-notr class="sh2"><h2 id="dlgTitle">${L('Ergebnis teilen', 'Share result', 'Partager le résultat', 'Sonucu paylaş')}</h2>
+    <img class="share-prev" src="${cv.toDataURL('image/jpeg', 0.85)}" alt="${L('Vorschau des Bildes', 'Image preview', 'Aperçu', 'Önizleme')}">
+    <div class="sh2-l">${L('Vorlage', 'Template', 'Modèle', 'Şablon')}</div>
+    <div class="sh2-tpl" role="radiogroup">${TPLS.map(([k, n]) => `<button type="button" role="radio" aria-checked="${shTpl === k}" data-act="sh-tpl" data-v="${k}">${n}</button>`).join('')}</div>
+    <div class="sh2-row"><label class="btn btn-ghost">📷 ${shareImg ? L('Anderes Foto', 'Other photo', 'Autre photo', 'Başka foto') : L('Foto wählen', 'Add photo', 'Ajouter une photo', 'Foto ekle')}<input type="file" accept="image/*" id="sharePhoto" hidden></label>${shareImg ? `<button type="button" class="btn btn-ghost" data-act="sh-nophoto">${L('Ohne Foto', 'No photo', 'Sans photo', 'Fotoğrafsız')}</button>` : ''}<button type="button" class="btn btn-ghost" data-act="sh-head">↻ Headline</button></div>
+    ${shTpl === 'fun' ? `<p class="sub" style="margin:10px 0 0">${L2('Fun zeigt deine Kalorien als lustigen Vergleich.', 'Fun shows your calories as a playful comparison.')}</p>` : `<div class="sh2-l">${L('Werte im Bild (bis zu 3)', 'Values on the image (up to 3)', 'Valeurs (max. 3)', 'Değerler (en fazla 3)')}</div>
+    <div class="sh2-met">${Object.keys(D.M).map(k => `<button type="button" class="chip ${shMet.includes(k) ? 'on' : ''}" data-act="sh-met" data-v="${k}" aria-pressed="${shMet.includes(k)}">${esc(metLabel(k))}</button>`).join('')}</div>`}
+    <div class="acts">
+      <button type="button" class="btn btn-primary xl" data-act="share-go">📤 ${L('TEILEN', 'SHARE', 'PARTAGER', 'PAYLAŞ')}<small class="share-apps">Instagram · WhatsApp · Facebook · …</small></button>
+      <div class="row"><button type="button" class="btn btn-ghost" data-act="share-save">⬇ ${L('Speichern', 'Save', 'Enregistrer', 'Kaydet')}</button><button type="button" class="btn btn-ghost" data-act="cp-open">👥 ${posted ? '✓ ' + L('In der Community', 'In the community', 'Dans la communauté', 'Toplulukta') : L('In Community posten', 'Post to community', 'Publier', 'Toplulukta paylaş')}</button></div>
+      <button type="button" class="btn btn-ghost" data-act="sheet-close">${L('Schließen', 'Close', 'Fermer', 'Kapat')}</button>
+    </div>
+    <p class="sub">${L2('Dein Foto bleibt auf dem Gerät. Hochgeladen wird es nur, wenn du das Bild ausdrücklich in der Community postest.', 'Your photo stays on your device. It is only uploaded if you explicitly post the image to the community.')}</p></div>`);
+}
+function shAct(a, b) {
+  if (a === 'sh-open') { shOpen(b.dataset.k === 'run' ? 'run' : 'workout', b.dataset.id); return; }
+  if (a === 'sh-tpl') { shTpl = b.dataset.v; sharePreview(); return; }
+  if (a === 'sh-head') { shHead++; sharePreview(); return; }
+  if (a === 'sh-nophoto') { shareImg = null; sharePreview(); return; }
+  if (a === 'sh-back') { sharePreview(); return; }
+  if (a === 'sh-met') { const k = b.dataset.v; shMet = shMet.includes(k) ? shMet.filter(x => x !== k) : shMet.concat(k).slice(-3); if (!shMet.length) shMet = [k]; sharePreview(); return; }
+}
+function runShareHTML(r) {
+  return `<div class="panel share-card sh-entry" data-notr><b>📤 ${L('Ergebnis teilen', 'Share result', 'Partager', 'Paylaş')}</b><p class="sub" style="margin:4px 0 10px">${L2('Bild für Instagram, WhatsApp & Co. oder als Beitrag in der Community.', 'Image for Instagram, WhatsApp & co. or as a community post.')}</p>
+    <button type="button" class="btn btn-primary" style="width:100%" data-act="sh-open" data-k="run" data-id="${esc(r.id)}">${L('Bild erstellen & teilen', 'Create image & share', 'Créer l’image', 'Görsel oluştur')}</button></div>`;
+}
+function shareAskHTML() { return ''; }
+
+/* ---------------- In der Community posten ---------------- */
+const cpKey = () => `uipause-${account ? account.id : 'none'}-posted-v1`;
+const cpPosted = () => store.get(cpKey(), {});
+const FEEDIMG = {}, FEEDIMG_BUSY = new Set(), IMG_RX = /^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/;
+let CP = { busy: false, ids: {} };
+function cpImage() {
+  if (!shareCanvas) return '';
+  const mk = (w, q) => { const cv = document.createElement('canvas'); cv.width = w; cv.height = Math.round(w * SH / SW); cv.getContext('2d').drawImage(shareCanvas, 0, 0, cv.width, cv.height); return cv.toDataURL('image/jpeg', q); };
+  for (const [w, q] of [[720, 0.8], [720, 0.68], [600, 0.66], [480, 0.6]]) { const d = mk(w, q); if (d.length < 330000) return d; }
+  return '';
+}
+function cpStats(D, keys) {
+  const st = { pts: D.pts };
+  keys.forEach(k => {
+    if (k === 'time') st.min = D.min; else if (k === 'kcal') { st.kcal = D.kcal; if (D.kcalW) st.kw = 1; }
+    else if (k === 'km') st.km = Math.round(D.km * 100) / 100; else if (k === 'pace') st.pace = paceTxt(D.sec / D.km);
+    else if (k === 'ex') st.ex = D.M.ex[0]; else if (k === 'vol') st.vol = D.h.vol; else if (k === 'reps') st.reps = D.h.reps; else if (k === 'rounds') st.rnd = D.M.rounds[0];
+  });
+  return st;
+}
+function cpOpen() {
+  const D = shData(); if (!D) return;
+  if (!settings.community) {
+    openSheet(`<div data-notr><h2 id="dlgTitle">👥 ${L('Community ist aus', 'Community is off', 'Communauté désactivée', 'Topluluk kapalı')}</h2><p>${L2('Zum Posten brauchst du die Community. Du entscheidest danach bei jedem Beitrag selbst, was geteilt wird.', 'You need the community to post. You still decide for every post what is shared.')}</p>
+      <div class="acts"><button type="button" class="btn btn-primary xl" data-act="c-open">${L('Community aktivieren', 'Activate community', 'Activer', 'Etkinleştir')}</button><button type="button" class="btn btn-ghost" data-act="sh-back">${L('Zurück', 'Back', 'Retour', 'Geri')}</button></div></div>`);
+    return;
+  }
+  const pid = cpPosted()[D.key];
+  if (pid) {
+    openSheet(`<div data-notr><h2 id="dlgTitle">✓ ${L('Schon in der Community', 'Already in the community', 'Déjà publié', 'Zaten paylaşıldı')}</h2><p>${L2('Dieses Ergebnis hast du bereits gepostet. Ein zweiter Beitrag dazu ist nicht nötig.', 'You already posted this result.')}</p>
+      <div class="acts"><button type="button" class="btn btn-primary xl" data-act="cp-view">${L('Im Feed ansehen', 'View in feed', 'Voir dans le fil', 'Akışta gör')}</button><button type="button" class="btn btn-dghost" data-act="cp-del" data-id="${esc(pid)}">${L('Beitrag löschen', 'Delete post', 'Supprimer', 'Sil')}</button><button type="button" class="btn btn-ghost" data-act="sh-back">${L('Zurück', 'Back', 'Retour', 'Geri')}</button></div></div>`);
+    return;
+  }
+  const keys = (shMet || D.def).filter(k => D.M[k]);
+  openSheet(`<div data-notr class="cp"><h2 id="dlgTitle">👥 ${L('In Community posten', 'Post to community', 'Publier', 'Toplulukta paylaş')}</h2>
+    <p class="sub">${L2('Prüfe, was geteilt wird. Erst mit „Jetzt veröffentlichen“ wird der Beitrag sichtbar.', 'Check what will be shared. The post only appears after “Publish now”.')}</p>
+    <img class="cp-prev" src="${shareCanvas ? shareCanvas.toDataURL('image/jpeg', 0.7) : ''}" alt="${L('Vorschau', 'Preview', 'Aperçu', 'Önizleme')}">
+    <label class="lbl-pw" for="cp_txt">${L('Dein Text (optional)', 'Your text (optional)', 'Ton texte (option)', 'Metnin (isteğe bağlı)')}</label>
+    <textarea id="cp_txt" class="inp full cp-txt" maxlength="200" rows="2" placeholder="${L('z. B. Schweinehund besiegt! 🐷', 'e.g. Beat the couch!', 'p. ex. Flemme vaincue !', 'örn. Tembelliği yendim!')}"></textarea>
+    <fieldset class="cp-data"><legend>${L('Das wird geteilt', 'This will be shared', 'Ce qui est partagé', 'Paylaşılanlar')}</legend>
+      <label><input type="checkbox" checked disabled> ${L('Titel', 'Title', 'Titre', 'Başlık')}: ${esc(tr(D.title))} · ${L('dein Nickname', 'your nickname', 'ton pseudo', 'takma adın')}</label>
+      ${keys.map(k => `<label><input type="checkbox" class="cp-k" data-k="${k}" checked> ${esc(metLabel(k))}: ${esc(D.M[k][0] + (D.M[k][1] ? ' ' + D.M[k][1].toLowerCase() : ''))}</label>`).join('')}
+      <label><input type="checkbox" id="cp_img" checked> ${L('Bild', 'Image', 'Image', 'Görsel')}${shareImg ? ' ' + L('mit deinem Foto (wird hochgeladen)', 'with your photo (will be uploaded)', 'avec ta photo (envoyée)', 'fotoğrafınla (yüklenir)') : ''}</label>
+    </fieldset>
+    <p class="sub">${L2('Sichtbar für alle freigeschalteten Mitglieder. Kein Puls, kein Ort, kein Körpergewicht. Du kannst den Beitrag jederzeit wieder löschen.', 'Visible to all approved members. No heart rate, location or body weight. You can delete the post at any time.')}</p>
+    <p class="msg-err" id="cp_err" role="alert"></p>
+    <div class="acts"><button type="button" class="btn btn-primary xl" id="cp_go" data-act="cp-post">${L('Jetzt veröffentlichen', 'Publish now', 'Publier maintenant', 'Şimdi yayınla')}</button><button type="button" class="btn btn-ghost" data-act="sh-back">${L('Zurück', 'Back', 'Retour', 'Geri')}</button></div></div>`);
+}
+function cpErrText(e) {
+  const c = String(e && (e.code || e.message) || e);
+  if (/permission/.test(c)) return L2('Der Server hat den Beitrag abgelehnt. Vermutlich sind die neuen Firestore-Regeln (Version 47) noch nicht veröffentlicht oder dein Konto ist nicht freigeschaltet. Es wurde nichts gepostet.', 'The server rejected the post. Most likely the new Firestore rules (version 47) are not published yet or your account is not approved. Nothing was posted.');
+  if (/timeout|unavailable|network|offline/i.test(c)) return L2('Keine Verbindung zum Server. Prüfe dein Internet und versuche es erneut.', 'No connection to the server. Check your internet and try again.');
+  if (c === 'img') return L2('Das Bild konnte nicht vorbereitet werden. Versuche es ohne Foto oder mit einer anderen Vorlage.', 'The image could not be prepared. Try without a photo or another template.');
+  return L('Das hat nicht geklappt: ', 'That did not work: ', 'Échec : ', 'Olmadı: ') + c;
+}
+async function cpPost() {
+  if (CP.busy) return;
+  const D = shData(); if (!D) return;
+  if (cpPosted()[D.key]) { cpOpen(); return; }
+  const btn = document.getElementById('cp_go'), err = document.getElementById('cp_err');
+  const keys = [...document.querySelectorAll('.cp-k')].filter(x => x.checked).map(x => x.dataset.k), withImg = !!(document.getElementById('cp_img') || {}).checked, txt = val('cp_txt').slice(0, 200);
+  CP.busy = true; if (btn) { btn.disabled = true; btn.textContent = L('Wird veröffentlicht …', 'Publishing …', 'Publication …', 'Yayınlanıyor …'); } if (err) err.textContent = '';
+  let id = CP.ids[D.key];
+  try {
+    const db = await socDb(), ref = id ? db.collection('feed').doc(id) : db.collection('feed').doc(); id = ref.id; CP.ids[D.key] = id;
+    const now = Date.now(), doc = { uid: myUid(), nick: cNick(), kind: D.kind === 'run' ? 'run' : 'workout', title: String(D.title).slice(0, 60), txt, st: cpStats(D, keys), ts: now };
+    let d = ''; if (withImg) { d = cpImage(); if (!IMG_RX.test(d)) throw Object.assign(new Error('img'), { code: 'img' }); doc.img = true; doc.tpl = shTpl; }
+    const bt = db.batch(); bt.set(ref, doc); if (d) bt.set(ref.collection('img').doc('main'), { uid: myUid(), d, ts: now });
+    try { await Promise.race([bt.commit(), new Promise((_, rj) => setTimeout(() => rj(Object.assign(new Error('timeout'), { code: 'timeout' })), 20000))]); }
+    catch (e) { /* Erneuter Versuch nach unklarem Ausgang: existiert der Beitrag schon, zählt er als veröffentlicht */
+      let ok = false; if (/permission/.test(String(e && e.code))) { try { const s = await ref.get(); ok = s.exists && s.data().uid === myUid(); } catch (x) {} } if (!ok) throw e; }
+    const P0 = cpPosted(); P0[D.key] = id; store.set(cpKey(), P0); delete CP.ids[D.key];
+    const sh = store.get(`uipause-${account.id}-shared-v1`, []); if (!sh.includes(D.key)) { sh.push(D.key); store.set(`uipause-${account.id}-shared-v1`, sh.slice(-500)); }
+    if (d) FEEDIMG[id] = d; FEED.loaded = 0; CP.busy = false;
+    openSheet(`<div data-notr class="cp-ok"><div class="cp-ok-ic" aria-hidden="true">✓</div><h2 id="dlgTitle">${L('Veröffentlicht', 'Published', 'Publié', 'Yayınlandı')}</h2><p>${L2('Dein Beitrag ist jetzt im Community-Feed. Mal sehen, wer Kudos gibt 👏', 'Your post is now in the community feed. Let’s see who gives kudos 👏')}</p>
+      <div class="acts"><button type="button" class="btn btn-primary xl" data-act="cp-view">${L('Im Feed ansehen', 'View in feed', 'Voir dans le fil', 'Akışta gör')}</button><button type="button" class="btn btn-ghost" data-act="sheet-close">${L('Fertig', 'Done', 'Terminé', 'Tamam')}</button><button type="button" class="btn btn-dghost" data-act="cp-del" data-id="${esc(id)}">${L('Beitrag wieder löschen', 'Delete post again', 'Supprimer la publication', 'Gönderiyi sil')}</button></div></div>`);
+  } catch (e) {
+    CP.busy = false;
+    const b2 = document.getElementById('cp_go'), e2 = document.getElementById('cp_err');
+    if (e2) e2.textContent = cpErrText(e); if (b2) { b2.disabled = false; b2.textContent = L('Erneut versuchen', 'Try again', 'Réessayer', 'Tekrar dene'); }
+  }
+}
+async function cpDelete(id) {
+  if (CP.busy || !id) return; CP.busy = true;
+  try {
+    const db = await socDb(), ref = db.collection('feed').doc(id);
+    for (const sub of ['img', 'kudos', 'cmts']) { try { const q = await ref.collection(sub).get(); for (const d of q.docs) { try { await d.ref.delete(); } catch (e) {} } } catch (e) {} }
+    await ref.delete();
+    const P0 = cpPosted(), sh = store.get(`uipause-${account.id}-shared-v1`, []); let gone = [];
+    Object.keys(P0).forEach(k => { if (P0[k] === id) { delete P0[k]; gone.push(k); } }); store.set(cpKey(), P0); store.set(`uipause-${account.id}-shared-v1`, sh.filter(k => !gone.includes(k)));
+    FEED.list = FEED.list.filter(x => x.id !== id); delete FEEDIMG[id];
+    closeSheet(); render(); toast(L('Beitrag gelöscht', 'Post deleted', 'Publication supprimée', 'Gönderi silindi'));
+  } catch (e) { toast(L('Löschen hat nicht geklappt: ', 'Delete failed: ', 'Échec : ', 'Silinemedi: ') + (e && (e.code || e.message) || e)); }
+  finally { CP.busy = false; }
+}
+function cpAct(a, b) {
+  if (a === 'cp-open') { cpOpen(); return; }
+  if (a === 'cp-post') { cpPost(); return; }
+  if (a === 'cp-del') { cpDelete(b.dataset.id); return; }
+  if (a === 'cp-view') { closeSheet(); homeOpen = false; view = 'community'; cbTab = 'feed'; cbRoom = null; FEED.loaded = 0; render(); window.scrollTo(0, 0); return; }
+}
+/* Feed: Bild nachladen (nur Bilder aus der eigenen Community, als JPEG-Daten) */
+async function feedImgLoad(id) {
+  if (FEEDIMG[id] || FEEDIMG_BUSY.has(id)) return; FEEDIMG_BUSY.add(id);
+  try { const db = await socDb(), s = await db.collection('feed').doc(id).collection('img').doc('main').get();
+    const d = s.exists ? String(s.data().d || '') : ''; if (IMG_RX.test(d)) { FEEDIMG[id] = d; document.querySelectorAll('.fd-img').forEach(el => { if (el.dataset.img === id) el.innerHTML = `<img src="${d}" alt="${L('Ergebnisbild', 'Result image', 'Image du résultat', 'Sonuç görseli')}">`; }); } }
+  catch (e) {} finally { FEEDIMG_BUSY.delete(id); }
+}
+function postHTML(p, full) {
+  let h = postHTML_v46(p, full);
+  if (p.img && p.id !== 'x') { const d = FEEDIMG[p.id];
+    h = h.replace('<div class="fd-stats">', `<div class="fd-img" data-img="${esc(p.id)}">${d ? `<img src="${d}" alt="${L('Ergebnisbild', 'Result image', 'Image du résultat', 'Sonuç görseli')}">` : '<span class="fd-img-ph"></span>'}</div><div class="fd-stats">`);
+    if (!d) setTimeout(() => feedImgLoad(p.id), 0); }
+  return h;
+}
+function postStats(p) {
+  const s = p.st || {}, ex = [];
+  if (s.ex) ex.push(['✅', s.ex + ' ' + L('Übungen', 'exercises', 'exercices', 'egzersiz')]); if (s.vol) ex.push(['🏋️', num(s.vol) + ' kg']); if (s.reps) ex.push(['🔁', num(s.reps) + ' ' + L('Wdh.', 'reps', 'rép.', 'tekrar')]); if (s.rnd) ex.push(['🔄', s.rnd + ' ' + L('Runden', 'rounds', 'tours', 'tur')]);
+  let h = postStats_v46(p); if (s.kw) h = h.replace('🔥 ≈ ', '⌚ ');
+  return h + ex.map(([i, v]) => `<span>${i} ${esc(v)}</span>`).join('');
+}
+
 let lastRKey = '';
 function render() {
   if (!account) { if (adminMode) showAdmin(); else showLogin(); return; }
@@ -6626,6 +7592,7 @@ function render() {
   document.getElementById('ctlbar').classList.toggle('hidden', !ctl);
   document.body.classList.toggle('has-ctl', !!ctl);
   updateHeader(); updateLive(); try { bnavRender(); } catch (e) {}
+  document.body.classList.toggle('wo-on', !!(sess && sess.state === 'ACTIVE' && view === 'train' && !homeOpen));
   const fr = document.querySelector('#finRing .arc');
   if (fr) requestAnimationFrame(() => requestAnimationFrame(() => fr.setAttribute('stroke-dashoffset', (RC * (1 - (sess.aborted ? progressFrac() : 1))).toFixed(1))));
 }
@@ -6737,10 +7704,10 @@ function legalSheet() {
       <li>Mitgliederbereich: Zusätzliche Profilangaben (Wohnort, Geburtsjahr, Größe, Ziel, Profilbild) sind freiwillig. Ist die Community aktiviert, sind Nickname, Profilbild und Wohnort für andere Mitglieder sichtbar.</li>
       <li>Lauftagebuch: Auswertungen und Prognosen sind Schätzungen und keine medizinische Beratung.</li>
       <li>Event-Community: Wenn du bei einem Event „Ich bin dabei“ wählst, werden dein Nickname und der Zeitpunkt bei Google Firebase gespeichert und sind für freigeschaltete Mitglieder sichtbar. Du kannst das jederzeit wieder abwählen.</li>
-      <li>Feed: Ein Training erscheint nur in der Community, wenn du es nach dem Training ausdrücklich teilst (Titel, angezeigte Werte, dein Text, Nickname). Kudos und Kommentare sind für freigeschaltete Mitglieder sichtbar. Eigene Beiträge kannst du jederzeit löschen.</li>
+      <li>Feed: Ein Training erscheint nur in der Community, wenn du es nach dem Training ausdrücklich teilst (Titel, angezeigte Werte, dein Text, Nickname). Kudos und Kommentare sind für freigeschaltete Mitglieder sichtbar. Optional kannst du dabei das Ergebnisbild mitschicken, auch mit einem eigenen Foto. Es wird verkleinert gespeichert und ist für freigeschaltete Mitglieder sichtbar. Eigene Beiträge samt Bild kannst du jederzeit löschen.</li>
       <li>Rangliste: Teilnahme nur nach Einwilligung. Gespeichert werden Nickname und Punktzahl. Austreten löscht den Eintrag.</li>
       <li>Nutzungsübersicht für den Admin: Gespeichert werden Nickname, erster und letzter Nutzungstag, Zeitpunkte des Öffnens (letzte 50 Ereignisse), Verweildauer pro Besuch, an welchen Tagen die App geöffnet wurde (letzte 90 Tage) sowie absolvierte Workouts (Programmname, Minuten) und Läufe (Kilometer, Minuten). Keine Trainingsinhalte, kein Puls, kein Ort. Zweck: Betrieb und Verbesserung der App. Beim Löschen des Kontos wird auch dieser Eintrag gelöscht.</li>
-      <li>Fotos für die Teilen-Funktion werden nur lokal im Browser verarbeitet und nicht hochgeladen oder gespeichert. Was du teilst, entscheidest du selbst.</li>
+      <li>Fotos für die Teilen-Funktion werden lokal im Browser verarbeitet. Hochgeladen wird ein Bild nur, wenn du es ausdrücklich in der Community postest. Dann wird das fertige Ergebnisbild (verkleinert, als JPEG, mit einem gewählten Foto) bei Google Firebase gespeichert, bis du den Beitrag löschst. Was du teilst, entscheidest du selbst.</li>
       <li>Hosting: Die Dateien werden über GitHub Pages (GitHub Inc., USA) ausgeliefert. Beim Aufruf verarbeitet GitHub technisch notwendige Verbindungsdaten wie die IP-Adresse. Details: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</li>
     </ul>
     <h3>Deine Rechte nach der DSGVO</h3>
@@ -6860,6 +7827,15 @@ function act(a, b) {
     case 'bd-open': view = 'community'; cbTab = 'board'; cbRoom = null; render(); window.scrollTo(0, 0); break;
     case 'bd-tab': case 'bd-join': case 'bd-leave': case 'fd-private': case 'fd-share': case 'fd-post': case 'fd-react': case 'fd-open': case 'fd-csend': case 'fd-cdel': case 'fd-del': socialAct(a, b); break;
     case 'nav': navAct(b.dataset.v); break;
+    case 'sg-start': case 'sg-view': sgAct(a, b); break;
+    case 'eq-miss': eqMissToggle(b.dataset.v); break;
+    case 'end-ask': endAsk(); break;
+    case 'end-no': closeSheet(); if (sess && sess.state === 'ACTIVE' && sess.paused) resumeWorkout(); break;
+    case 'end-yes': closeSheet(); if (sess && sess.state === 'ACTIVE') finish(true); break;
+    case 'res-done': resDone(); break;
+    case 'kw-save': case 'kw-del': kwAct(a); break;
+    case 'sh-open': case 'sh-tpl': case 'sh-head': case 'sh-nophoto': case 'sh-back': case 'sh-met': shAct(a, b); break;
+    case 'cp-open': case 'cp-post': case 'cp-del': case 'cp-view': cpAct(a, b); break;
     case 'voice-test': voiceTest(); break;
     case 'ev-reg': eventsAct(a, b); break;
     case 'sync-now': syncState.err = ''; syncBadgeUpd(); syncPush().catch(() => {}).then(() => syncBadgeUpd()); break;
@@ -6887,7 +7863,7 @@ function act(a, b) {
     case 'assist': if (sess && sess.draft) { sess.draft.assisted = !sess.draft.assisted; save(); render(); } break;
     case 'glute-double': switchGlute(); break;
     case 'undo': document.getElementById('toast').classList.remove('show'); undo(); break;
-    case 'end': confirmSheet('Training beenden?', 'Alles bisher Erledigte wird ausgewertet. Du kannst das Ergebnis danach speichern.', 'END WORKOUT', () => { if (sess && sess.state === 'ACTIVE') finish(true); }, true, 'Weiter trainieren'); break;
+    case 'end': endAsk(); break;
     case 'timecheck': openTimeCheck(); break;
     case 'login': doLogin(); break;
     case 'register': doRegister(); break;
@@ -6898,9 +7874,9 @@ function act(a, b) {
     case 'restart': resetWorkout(); break;
     case 'music': toggleMusic(); break;
     case 'undo-reset': document.getElementById('toast').classList.remove('show'); undoReset(); break;
-    case 'pgroup': pgOpen = openGroup() === b.dataset.v ? '' : b.dataset.v; render(); break;
+    case 'pgroup': trCat = OLD_GROUP[b.dataset.v] || b.dataset.v; render(); break;
     case 'run-open': case 'rq': case 'run-make': case 'run-undo': case 'run-edit': case 'run-cancel': case 'run-done': runAct(a, b); break;
-    case 'program': view = 'train'; settings.program = b.dataset.id; saveSettings(); render(); break;
+    case 'program': view = 'train'; settings.program = b.dataset.id; saveSettings(); render(); trScrollPreview(); break;
     case 'level': settings.levels = Object.assign({}, settings.levels, { [settings.program]: b.dataset.v }); saveSettings(); render(); break;
     case 'edit-custom': view = 'settings'; render(); { const el = document.getElementById('customSec'); if (el) el.scrollIntoView(); } break;
     case 'copy-custom': {
@@ -7128,7 +8104,7 @@ function showLogin(err, info) {
   $app.innerHTML = `<article class="face front fade-in login" style="--ph:var(--brand)">${loginLangRow()}${tabs}${body}
     ${info ? `<div class="note ok"><b>Erledigt</b>${esc(info)}</div>` : ''}
     <p class="msg-err" role="alert">${err ? esc(err) : ''}</p>
-    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 46 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
+    <p class="sub" data-notr style="margin:14px 0 0;text-align:center;opacity:.6;font-size:12px">App-Version 47 · Firebase-Anmeldung · <button type="button" class="mini" data-act="au-diag">Diagnose</button></p></article>`;
   const pw = document.getElementById('pw');
   if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 }
@@ -7159,7 +8135,7 @@ setInterval(function () { try { loop(); } catch (e) { try { console.error(e); } 
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {}); });
 }
-window.__uip = { figSVG, EX, PROGRAMS, MET, PHASES, COMPLIMENTS, REGIONS, get account() { return account; }, get sess() { return sess; }, get settings() { return settings; }, get history() { return history; }, summarize, elapsed: () => sess ? elapsed() : 0, estRemainingMs };
+window.__uip = { todaySuggest, shHeads, shData, kcalEst, planEq, effCfg, buildPlan, missingEq, get shMet() { return shMet; }, figSVG, EX, PROGRAMS, MET, PHASES, COMPLIMENTS, REGIONS, get account() { return account; }, get sess() { return sess; }, get settings() { return settings; }, get history() { return history; }, summarize, elapsed: () => sess ? elapsed() : 0, estRemainingMs };
 })();
 </script>
 </body>
